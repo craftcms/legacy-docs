@@ -290,7 +290,7 @@ Some template functions have been deprecated in Craft 3, and will be completely 
 | `craft.request.isPut()`                                 | `craft.app.request.isPut`
 | `craft.request.isAjax()`                                | `craft.app.request.isAjax`
 | `craft.request.isSecure()`                              | `craft.app.request.isSecureConnection`
-| `craft.request.isLivePreview()`                         | `craft.app.request.isLivePreview`
+| `craft.request.isLivePreview()`                         | `craft.app.request.isPreview`
 | `craft.request.getScriptName()`                         | `craft.app.request.scriptFilename`
 | `craft.request.getPath()`                               | `craft.app.request.pathInfo`
 | `craft.request.getUrl()`                                | `url(craft.app.request.pathInfo)`
