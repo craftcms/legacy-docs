@@ -6,5 +6,6 @@ files:
   - source: '**.md'
     ignore:
       - /ja/
+      - /fr/
     translation: /%two_letters_code%/%original_path%/%file_name%.md
     type: md
