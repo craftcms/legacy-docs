@@ -5,7 +5,6 @@ preserve_hierarchy: true
 files:
   - source: '**.md'
     ignore:
-      - /ja/
       - /fr/
       - /ar/
       - /de/
