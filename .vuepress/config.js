@@ -14,9 +14,9 @@ module.exports = {
         }
     },
     themeConfig: {
-        docsRepo: 'craftcms/cms',
-        docsDir: 'docs',
-        docsBranch: 'develop',
+        docsRepo: 'craftcms/docs',
+        docsDir: '',
+        docsBranch: 'v3',
         editLinks: true,
         searchMaxSuggestions: 10,
         locales: {
