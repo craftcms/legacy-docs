@@ -7,5 +7,13 @@ files:
     ignore:
       - /ja/
       - /fr/
+      - /ar/
+      - /de/
+      - /es/
+      - /it/
+      - /nl/
+      - /pt/
+      - /ru/
+      - /zh/
     translation: /%two_letters_code%/%original_path%/%file_name%.md
     type: md
