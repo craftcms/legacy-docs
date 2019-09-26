@@ -23,7 +23,6 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that have a date selected between 2018-04-01 and 2018-05-01.     |
 | `['or', '< 2018-04-04', '> 2018-05-01']`   | that have a date selected before 2018-04-01 or after 2018-05-01. |
 
-
 ```twig
 {# Fetch entries with with a selected date in the next month #}
 {% set start = now|atom %}
@@ -129,7 +128,7 @@ The time input can either be set to the `HH:MM` format (24-hour), or the current
 ::: tip To find out what your current locale’s date and time formats are, add this to your template:
 
 ```twig
-Date format: <code>{{ craft.app.locale.getDateFormat('short', 'php') }}</code><br >
+Date format: <code>{{ craft.app.locale.getDateFormat('short', 'php') }}</code><br>
 Time format: <code>{{ craft.app.locale.getTimeFormat('short', 'php') }}</code>
 ```
 
