@@ -3,17 +3,14 @@
 You can fetch Matrix blocks in your templates or PHP code using **Matrix block queries**.
 
 ::: code
-
 ```twig
 {# Create a new Matrix block query #}
 {% set myMatrixBlockQuery = craft.matrixBlocks() %}
 ```
-
 ```php
 // Create a new Matrix block query
 $myMatrixBlockQuery = \craft\elements\MatrixBlock::find();
 ```
-
 :::
 
 Once you’ve created a Matrix block query, you can set [parameters](#parameters) on it to narrow down the results, and then [execute it](README.md#executing-element-queries) by calling `.all()`. An array of [MatrixBlock](api:craft\elements\MatrixBlock) objects will be returned.
@@ -57,8 +54,11 @@ Matrix block queries support the following parameters:
 
 Clears out the [status](#status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch all Matrix blocks, regardless of status #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -72,15 +72,18 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->anyStatus()
     ->all();
 ```
-
 :::
+
 
 ### `asArray`
 
 Causes the query to return matching Matrix blocks as arrays of data, rather than [MatrixBlock](api:craft\elements\MatrixBlock) objects.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch Matrix blocks as arrays #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -94,12 +97,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->asArray()
     ->all();
 ```
-
 :::
+
 
 ### `dateCreated`
 
 Narrows the query results based on the Matrix blocks’ creation dates.
+
+
 
 Possible values include:
 
@@ -110,8 +115,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch Matrix blocks created last month #}
 {% set start = date('first day of last month')|atom %}
@@ -131,12 +136,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->dateCreated(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `dateUpdated`
 
 Narrows the query results based on the Matrix blocks’ last-updated dates.
+
+
 
 Possible values include:
 
@@ -147,8 +154,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch Matrix blocks updated in the last week #}
 {% set lastWeek = date('1 week ago')|atom %}
@@ -166,12 +173,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
 ```
-
 :::
+
 
 ### `draftCreator`
 
 Narrows the query results to only drafts created by a given user.
+
+
 
 Possible values include:
 
@@ -181,8 +190,8 @@ Possible values include:
 | a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts by the current user #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -196,12 +205,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->draftCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `draftId`
 
 Narrows the query results based on the Matrix blocks’ draft’s ID (from the `drafts` table).
+
+
 
 Possible values include:
 
@@ -210,8 +221,8 @@ Possible values include:
 | `1`   | for the draft with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a draft #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -225,12 +236,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->draftIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `draftOf`
 
 Narrows the query results to only drafts of a given Matrix block.
+
+
 
 Possible values include:
 
@@ -240,8 +253,8 @@ Possible values include:
 | a [MatrixBlock](api:craft\elements\MatrixBlock) object | for the Matrix block represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts of the Matrix block #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -255,15 +268,18 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->draftOf($myBlock)
     ->all();
 ```
-
 :::
+
 
 ### `drafts`
 
 Narrows the query results to only drafts Matrix blocks.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a draft Matrix block #}
 {% set MatrixBlocks = {twig-function}
@@ -279,8 +295,8 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `fieldId`
 
@@ -296,8 +312,8 @@ Possible values include:
 | `['not', 1, 2]` | not in a field with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch Matrix blocks in the field with an ID of 1 #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -311,15 +327,18 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->fieldId(1)
     ->all();
 ```
-
 :::
+
 
 ### `fixedOrder`
 
 Causes the query results to be returned in the order specified by [id](#id).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch Matrix blocks in a specific order #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -335,12 +354,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->fixedOrder()
     ->all();
 ```
-
 :::
+
 
 ### `id`
 
 Narrows the query results based on the Matrix blocks’ IDs.
+
+
 
 Possible values include:
 
@@ -352,8 +373,8 @@ Possible values include:
 | `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch the Matrix block by its ID #}
 {% set MatrixBlock = craft.matrixBlocks()
@@ -367,21 +388,35 @@ $MatrixBlock = \craft\elements\MatrixBlock::find()
     ->id(1)
     ->one();
 ```
-
 :::
 
+
+
 ::: tip This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order. :::
+
 
 ### `ignorePlaceholders`
 
 Causes the query to return matching Matrix blocks as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
+
+
+
+
+
+
+
+
+
 ### `inReverse`
 
 Causes the query results to be returned in reverse order.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch Matrix blocks in reverse #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -395,15 +430,16 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->inReverse()
     ->all();
 ```
-
 :::
+
 
 ### `limit`
 
 Determines the number of Matrix blocks that should be returned.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch up to 10 Matrix blocks  #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -417,15 +453,16 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->limit(10)
     ->all();
 ```
-
 :::
+
 
 ### `offset`
 
 Determines how many Matrix blocks should be skipped in the results.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all Matrix blocks except for the first 3 #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -439,15 +476,16 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->offset(3)
     ->all();
 ```
-
 :::
+
 
 ### `orderBy`
 
 Determines the order that the Matrix blocks should be returned in.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all Matrix blocks in order of date created #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -461,15 +499,16 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->orderBy('dateCreated asc')
     ->all();
 ```
-
 :::
+
 
 ### `owner`
 
 Sets the [ownerId](#ownerid) and [siteId](#siteid) parameters based on a given element.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch Matrix blocks created for this entry #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -483,8 +522,8 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->owner($myEntry)
     ->all();
 ```
-
 :::
+
 
 ### `ownerId`
 
@@ -500,8 +539,8 @@ Possible values include:
 | `['not', 1, 2]` | not created for an element with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch Matrix blocks created for an element with an ID of 1 #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -515,19 +554,22 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->ownerId(1)
     ->all();
 ```
-
 :::
+
 
 ### `preferSites`
 
 If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
 
+
+
 For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique Matrix blocks from Site A, or Site B if they don’t exist in Site A #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -545,17 +587,20 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->preferSites(['a', 'b'])
     ->all();
 ```
-
 :::
+
 
 ### `relatedTo`
 
 Narrows the query results to only Matrix blocks that are related to certain other elements.
 
+
+
 See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all Matrix blocks that are related to myCategory #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -569,12 +614,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->relatedTo($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `revisionCreator`
 
 Narrows the query results to only revisions created by a given user.
+
+
 
 Possible values include:
 
@@ -584,8 +631,8 @@ Possible values include:
 | a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions by the current user #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -599,12 +646,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->revisionCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `revisionId`
 
 Narrows the query results based on the Matrix blocks’ revision’s ID (from the `revisions` table).
+
+
 
 Possible values include:
 
@@ -613,8 +662,8 @@ Possible values include:
 | `1`   | for the revision with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a revision #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -628,12 +677,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->revisionIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `revisionOf`
 
 Narrows the query results to only revisions of a given Matrix block.
+
+
 
 Possible values include:
 
@@ -643,8 +694,8 @@ Possible values include:
 | a [MatrixBlock](api:craft\elements\MatrixBlock) object | for the Matrix block represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions of the Matrix block #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -658,15 +709,18 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->revisionOf($myBlock)
     ->all();
 ```
-
 :::
+
 
 ### `revisions`
 
 Narrows the query results to only revision Matrix blocks.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a revision Matrix block #}
 {% set MatrixBlocks = {twig-function}
@@ -682,17 +736,20 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `search`
 
 Narrows the query results to only Matrix blocks that match a search query.
 
+
+
 See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -712,12 +769,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->search($searchQuery)
     ->all();
 ```
-
 :::
+
 
 ### `site`
 
 Determines which site(s) the Matrix blocks should be queried in.
+
+
 
 The current site will be used by default.
 
@@ -731,11 +790,11 @@ Possible values include:
 | a `\craft\elements\db\Site` object | from the site represented by the object.       |
 | `'*'`                                  | from any site.                                 |
 
-
 ::: tip If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this. :::
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch Matrix blocks from the Foo site #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -749,17 +808,20 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->site('foo')
     ->all();
 ```
-
 :::
+
 
 ### `siteId`
 
 Determines which site(s) the Matrix blocks should be queried in, per the site’s ID.
 
+
+
 The current site will be used by default.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch Matrix blocks from the site with an ID of 1 #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -773,12 +835,14 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->siteId(1)
     ->all();
 ```
-
 :::
+
 
 ### `status`
 
 Narrows the query results based on the Matrix blocks’ statuses.
+
+
 
 Possible values include:
 
@@ -788,8 +852,8 @@ Possible values include:
 | `'disabled'`            | that are disabled.     |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch disabled Matrix blocks #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -803,15 +867,18 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->status('disabled')
     ->all();
 ```
-
 :::
+
 
 ### `trashed`
 
 Narrows the query results to only Matrix blocks that have been soft-deleted.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch trashed Matrix blocks #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -825,8 +892,8 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->trashed()
     ->all();
 ```
-
 :::
+
 
 ### `type`
 
@@ -843,8 +910,8 @@ Possible values include:
 | an [MatrixBlockType](api:craft\models\MatrixBlockType) object | of a type represented by the object.           |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch Matrix blocks with a Foo block type #}
 {% set MatrixBlocks = myEntry.myMatrixField
@@ -858,8 +925,8 @@ $MatrixBlocks = $myEntry->myMatrixField
     ->type('foo')
     ->all();
 ```
-
 :::
+
 
 ### `typeId`
 
@@ -875,8 +942,8 @@ Possible values include:
 | `['not', 1, 2]` | not of a type with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch Matrix blocks of the block type with an ID of 1 #}
 {% set MatrixBlocks = myEntry.myMatrixField
@@ -890,15 +957,18 @@ $MatrixBlocks = $myEntry->myMatrixField
     ->typeId(1)
     ->all();
 ```
-
 :::
+
 
 ### `uid`
 
 Narrows the query results based on the Matrix blocks’ UIDs.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch the Matrix block by its UID #}
 {% set MatrixBlock = craft.matrixBlocks()
@@ -912,17 +982,20 @@ $MatrixBlock = \craft\elements\MatrixBlock::find()
     ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     ->one();
 ```
-
 :::
+
 
 ### `unique`
 
 Determines whether only elements with unique IDs should be returned by the query.
 
+
+
 This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique Matrix blocks across all sites #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -938,17 +1011,20 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->unique()
     ->all();
 ```
-
 :::
+
 
 ### `with`
 
 Causes the query to return matching Matrix blocks eager-loaded with related elements.
 
+
+
 See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch Matrix blocks eager-loaded with the "Related" field’s relations #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -962,7 +1038,9 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->with(['related'])
     ->all();
 ```
-
 :::
 
+
+
 <!-- END PARAMS -->
+
