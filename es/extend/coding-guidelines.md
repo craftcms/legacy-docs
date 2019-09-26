@@ -18,12 +18,12 @@ Do your best to follow these guidelines when writing code for Craft and Craft pl
 ## Best Practices
 
 - Declare method argument types whenever possible.
-  
-        php
-        public function foo(Entry $entry, array $settings)
+
+    ```php
+    public function foo(Entry $entry, array $settings)
+    ```
 
 - Use strict comparison operators (`===` and `!==`) whenever possible.
-
 - Use `$foo === null`/`$bar !== null` rather than `is_null($foo)`/`!is_null($bar)`.
 - Use `(int)$foo`/`(float)$bar` rather than `intval($foo)`/`floatval($bar)`.
 - Always pass `true`/`false` to the third argument of [in_array()](http://php.net/manual/en/function.in-array.php) to indicate whether the check should be type-strict (and make it `true` whenever possible).
@@ -42,15 +42,15 @@ Do your best to follow these guidelines when writing code for Craft and Craft pl
 - Use `$str === ''` rather than `strlen($str) === 0` when checking if a string is empty.
 - Avoid using `array_merge()` within loops when possible.
 - Unset variables created by reference in foreach-loops after the loop is finished.
-  
-        php
-        foreach ($array as &$value) {
-            // ...
-        }
-        unset($value);
+
+    ```php
+    foreach ($array as &$value) {
+        // ...
+    }
+    unset($value);
+    ```
 
 - Use `implode()` rather than `join()`.
-
 - Use `in_array()` rather than `array_search(...) !== false` when the position of the needle isn’t needed.
 - Don’t use a `switch` statement when a single `if` condition will suffice.
 - Use single quotes (`'`) whenever double quotes (`"`) aren’t needed.
@@ -82,8 +82,8 @@ Getter methods that **accept one or more arguments** (regardless of whether they
 
 Static methods should generally not start with `get`.
 
-- `className()`
-- `displayName()`
+  - `className()`
+  - `displayName()`
 
 ## Type Declarations
 
@@ -248,10 +248,9 @@ $this->requireAcceptsJson();
 - Use the `['col1' => SORT_ASC, 'col2' => SORT_DESC]` syntax with `orderBy()` instead of `'col1, col2 desc'`.
 
 ### Conditions
-
 - Always use Yii’s [declarative condition syntax](api:yii\db\QueryInterface::where()) when possible, as it will automatically quote table/column names and values for you.
-- For consistency, use: 
-  - `['col' => $values]` instead of `['in', 'col', $values]`
+- For consistency, use:
+  -  `['col' => $values]` instead of `['in', 'col', $values]`
   - `['col' => $value]` instead of `['=', 'col', $value]`
   - `['like', 'col', 'value']` instead of `['like', 'col', '%value%', false]` *(unless the `%` is only needed on one side of `value`)*
 - If searching for `NULL`, use the `['col' => null]` syntax.
