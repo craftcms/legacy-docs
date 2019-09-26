@@ -434,9 +434,9 @@ If `html` is included in the attributes argument (and `text` isn’t), its value
 
 ```twig
 {{ tag('div', {
-    html: 'Hello<br>world'
+    html: 'Hello<br >world'
 }) }}
-{# Output: <div>Hello<br>world</div> #}
+{# Output: <div>Hello<br >world</div> #}
 ```
 
 All other keys passed to the second argument will be set as attributes on the tag, using <api:yii\helpers\BaseHtml::renderTagAttributes()>.
