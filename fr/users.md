@@ -61,7 +61,6 @@ The permissions Craft comes with are:
 | ↳&nbsp; Create subfolders                                 | `createFoldersInVolume:[VolumeID]`         |
 | ↳&nbsp; Remove files                                      | `deleteFilesAndFoldersInVolume:[VolumeID]` |
 
-
 ## Public Registration
 
 Craft Pro has the option of allowing public user registration, which is disabled by default.
