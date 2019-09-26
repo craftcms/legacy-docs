@@ -108,4 +108,4 @@ If any settings managed by the project config are modified elsewhere in the data
 
 ```bash
 ./craft project-config/rebuild
-```
+``` 
