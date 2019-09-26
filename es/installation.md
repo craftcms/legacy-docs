@@ -35,23 +35,24 @@ Extract the archive wherever you want your new Craft project to live.
 
 Once Craft’s files are in place, your project directory should have a directory structure like this:
 
-    my-project.test/
-    ├── config/
-    │   └── ...
-    ├── storage/
-    │   └── ...
-    ├── templates/
-    │   └── ...
-    ├── vendor/
-    │   └── ...
-    ├── web/
-    │   └── ...
-    ├── .env
-    ├── .env.example
-    ├── composer.json
-    ├── craft
-    └── craft.bat
-    
+```
+my-project.test/
+├── config/
+│   └── ...
+├── storage/
+│   └── ...
+├── templates/
+│   └── ...
+├── vendor/
+│   └── ...
+├── web/
+│   └── ...
+├── .env
+├── .env.example
+├── composer.json
+├── craft
+└── craft.bat
+```
 
 ::: tip The `web/` folder represents your site’s webroot, and it can be renamed to whatever you want (`www/`, `public/`, `public_html/`, etc.). :::
 
@@ -93,8 +94,7 @@ First generate a cryptographically secure key, preferably using a password gener
 
 Then open up your `.env` file (you may need to use an app like [Transmit](https://panic.com/transmit/) to do this if you’re running macOS), and find this line:
 
-      SECURITY_KEY=""
-    
+    SECURITY_KEY=""
 
 Paste your security key inside the quotes and save the file.
 
@@ -113,11 +113,10 @@ Next up, you need to create a database for your Craft project. Craft 3 supports 
 If you’re given a choice, we recommend the following database settings in most cases:
 
 - **MySQL**
-  
   - Default Character Set: `utf8`
   - Default Collation: `utf8_unicode_ci`
+
 - **PostgreSQL**
-  
   - Character Set: `UTF8`
 
 ## Step 5: Set up the Web Server
