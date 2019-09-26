@@ -70,7 +70,6 @@ The following aliases are available out of the box:
 | `@web`               | The URL to the folder that contains the `index.php` file that was loaded for the request               |
 | `@webroot`           | The path to the folder that contains the `index.php` file that was loaded for the request              |
 
-
 You can define additional custom aliases using the <config:aliases> config setting. For example, you may wish to create aliases that define the base URL and base path that your asset volumes will live in.
 
 ```php
@@ -105,7 +104,6 @@ Then you can pull them into the alias definitions using [getenv()](http://php.ne
 ```twig
 {{ alias('@assetBaseUrl') }}
 ```
-
 :::
 
 ## URL Rules
