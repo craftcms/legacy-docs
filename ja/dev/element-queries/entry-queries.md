@@ -1,33 +1,30 @@
-# Entry Queries
+# エントリクエリ
 
-You can fetch entries in your templates or PHP code using **entry queries**.
+**エントリクエリ**を使用して、テンプレートや PHP コード内でエントリを取得できます。
 
 ::: code
-
 ```twig
 {# Create a new entry query #}
 {% set myEntryQuery = craft.entries() %}
 ```
-
 ```php
 // Create a new entry query
 $myEntryQuery = \craft\elements\Entry::find();
 ```
-
 :::
 
-Once you’ve created an entry query, you can set [parameters](#parameters) on it to narrow down the results, and then [execute it](README.md#executing-element-queries) by calling `.all()`. An array of [Entry](api:craft\elements\Entry) objects will be returned.
+エレメントクエリを作成すると、結果を絞り込むための[パラメータ](#parameters)をセットできます。さらに、 `.all()` を呼び出して[実行](README.md#executing-element-queries)できます。[Entry](api:craft\elements\Entry) オブジェクトの配列が返されます。
 
-::: tip See [Introduction to Element Queries](README.md) to learn about how element queries work. :::
+::: tip エレメントクエリがどのように機能するかについては、[エレメントクエリについて](README.md)を参照してください。 :::
 
-## Example
+## 実例
 
-We can display the 10 most recent entries in a “Blog” section by doing the following:
+次の操作を行うことで、「Blog」セクションに含まれる最新10件のエントリを表示できます。
 
-1. Create an entry query with `craft.entries()`.
-2. Set the [section](#section) and [limit](#limit) parameters on it.
-3. Fetch the entries with `.all()`.
-4. Loop through the entries using a [for](https://twig.symfony.com/doc/2.x/tags/for.html) tag to output the blog post HTML.
+1. `craft.entries()` でエントリクエリを作成します。
+2. [section](#section) および [limit](#limit) パラメータをセットします。
+3. `.all()` でエントリを取得します。
+4. [for](https://twig.symfony.com/doc/2.x/tags/for.html) タグを使用してエントリをループ処理し、ブログ投稿の HTML を出力します。
 
 ```twig
 {# Create an entry query with the 'section' and 'limit' parameters #}
@@ -48,26 +45,26 @@ We can display the 10 most recent entries in a “Blog” section by doing the f
 {% endfor %}
 ```
 
-## Parameters
+## パラメータ
 
-Entry queries support the following parameters:
+エントリクエリは、次のパラメータをサポートしています。
 
 <!-- BEGIN PARAMS -->
 
 ### `after`
 
-Narrows the query results to only entries that were posted on or after a certain date.
+特定の日付以降に投稿されたエントリだけに、クエリの結果を絞り込みます。
 
-Possible values include:
+利用可能な値には、次のものが含まれます。
 
-| Value                                              | Fetches entries…                                           |
-| -------------------------------------------------- | ---------------------------------------------------------- |
-| `'2018-04-01'`                                     | that were posted after 2018-04-01.                         |
-| a [DateTime](http://php.net/class.datetime) object | that were posted after the date represented by the object. |
+| 値                                                | 取得するエントリ                   |
+| ------------------------------------------------ | -------------------------- |
+| `'2018-04-01'`                                   | 2018-04-01 以降に投稿されたもの。     |
+| [DateTime](http://php.net/class.datetime) オブジェクト | オブジェクトとして表される日付以降に投稿されたもの。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries posted this month #}
 {% set firstDayOfMonth = date('first day of this month') %}
@@ -85,15 +82,18 @@ $entries = \craft\elements\Entry::find()
     ->after($firstDayOfMonth)
     ->all();
 ```
-
 :::
+
 
 ### `ancestorDist`
 
-Narrows the query results to only entries that are up to a certain distance away from the entry specified by [ancestorOf](#ancestorof).
+[ancestorOf](#ancestorof) で指定されたエントリから特定の距離だけ離れているエントリのみに、クエリの結果を絞り込みます。
+
+
+
+
 
 ::: code
-
 ```twig
 {# Fetch entries above this one #}
 {% set entries = craft.entries()
@@ -109,23 +109,25 @@ $entries = \craft\elements\Entry::find()
     ->ancestorDist(3)
     ->all();
 ```
-
 :::
+
 
 ### `ancestorOf`
 
-Narrows the query results to only entries that are ancestors of another entry.
+指定したエントリの先祖であるエントリだけに、クエリの結果を絞り込みます。
 
-Possible values include:
 
-| Value                                        | Fetches entries…                           |
-| -------------------------------------------- | ------------------------------------------ |
-| `1`                                          | above the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | above the entry represented by the object. |
+
+利用可能な値には、次のものが含まれます。
+
+| 値                                          | 取得するエントリ            |
+| ------------------------------------------ | ------------------- |
+| `1`                                        | ID が 1 のエントリの上層。    |
+| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの上層。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries above this one #}
 {% set entries = craft.entries()
@@ -139,17 +141,22 @@ $entries = \craft\elements\Entry::find()
     ->ancestorOf($myEntry)
     ->all();
 ```
-
 :::
 
-::: tip This can be combined with [ancestorDist](#ancestordist) if you want to limit how far away the ancestor entries can be. :::
+
+
+::: tip どれだけ離れた先祖エントリを対象にするか制限したい場合、[ancestorDist](#ancestordist) と組み合わせることができます。 :::
+
 
 ### `anyStatus`
 
-Clears out the [status](#status) and [enabledForSite](#enabledforsite) parameters.
+[status](#status) および [enabledForSite](#enabledforsite) パラメータをクリアします。
+
+
+
+
 
 ::: code
-
 ```twig
 {# Fetch all entries, regardless of status #}
 {% set entries = craft.entries()
@@ -163,15 +170,18 @@ $entries = \craft\elements\Entry::find()
     ->anyStatus()
     ->all();
 ```
-
 :::
+
 
 ### `asArray`
 
-Causes the query to return matching entries as arrays of data, rather than [Entry](api:craft\elements\Entry) objects.
+[Entry](api:craft\elements\Entry) オブジェクトではなく、データの配列として、マッチしたエントリをクエリが返します。
+
+
+
+
 
 ::: code
-
 ```twig
 {# Fetch entries as arrays #}
 {% set entries = craft.entries()
@@ -185,26 +195,26 @@ $entries = \craft\elements\Entry::find()
     ->asArray()
     ->all();
 ```
-
 :::
+
 
 ### `authorGroup`
 
-Narrows the query results based on the user group the entries’ authors belong to.
+エントリの投稿者が属するユーザーグループに基づいて、クエリの結果を絞り込みます。
 
-Possible values include:
+利用可能な値には、次のものが含まれます。
 
-| Value                                              | Fetches entries…                                               |
-| -------------------------------------------------- | -------------------------------------------------------------- |
-| `'foo'`                                            | with an author in a group with a handle of `foo`.              |
-| `'not foo'`                                        | not with an author in a group with a handle of `foo`.          |
-| `['foo', 'bar']`                                   | with an author in a group with a handle of `foo` or `bar`.     |
-| `['not', 'foo', 'bar']`                            | not with an author in a group with a handle of `foo` or `bar`. |
-| a [UserGroup](api:craft\models\UserGroup) object | with an author in a group represented by the object.           |
+| 値                                                | 取得するエントリ                              |
+| ------------------------------------------------ | ------------------------------------- |
+| `'foo'`                                          | ハンドルが `foo` のグループ内の投稿者。               |
+| `'not foo'`                                      | ハンドルが `foo` のグループ内の投稿者ではない。           |
+| `['foo', 'bar']`                                 | ハンドルが `foo` または `bar` のグループ内の投稿者。     |
+| `['not', 'foo', 'bar']`                          | ハンドルが `foo` または `bar` のグループ内の投稿者ではない。 |
+| [UserGroup](api:craft\models\UserGroup) オブジェクト | オブジェクトで表されるグループ内の投稿者。                 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries with an author in the Foo user group #}
 {% set entries = craft.entries()
@@ -218,25 +228,25 @@ $entries = \craft\elements\Entry::find()
     ->authorGroup('foo')
     ->all();
 ```
-
 :::
+
 
 ### `authorGroupId`
 
-Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.
+グループの ID ごとに、エントリの投稿者が属するユーザーグループに基づいて、クエリの結果を絞り込みます。
 
-Possible values include:
+利用可能な値には、次のものが含まれます。
 
-| Value           | Fetches entries…                                    |
-| --------------- | --------------------------------------------------- |
-| `1`             | with an author in a group with an ID of 1.          |
-| `'not 1'`       | not with an author in a group with an ID of 1.      |
-| `[1, 2]`        | with an author in a group with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not with an author in a group with an ID of 1 or 2. |
+| 値               | 取得するエントリ                     |
+| --------------- | ---------------------------- |
+| `1`             | ID が 1 のグループ内の投稿者。           |
+| `'not 1'`       | ID が 1 のグループ内の投稿者ではない。       |
+| `[1, 2]`        | ID が 1 または 2 のグループ内の投稿者。     |
+| `['not', 1, 2]` | ID が 1 または 2 のグループ内の投稿者ではない。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries with an author in a group with an ID of 1 #}
 {% set entries = craft.entries()
@@ -250,25 +260,25 @@ $entries = \craft\elements\Entry::find()
     ->authorGroupId(1)
     ->all();
 ```
-
 :::
+
 
 ### `authorId`
 
-Narrows the query results based on the entries’ authors.
+エントリの投稿者に基づいて、クエリの結果を絞り込みます。
 
-Possible values include:
+利用可能な値には、次のものが含まれます。
 
-| Value           | Fetches entries…                         |
-| --------------- | ---------------------------------------- |
-| `1`             | with an author with an ID of 1.          |
-| `'not 1'`       | not with an author with an ID of 1.      |
-| `[1, 2]`        | with an author with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not with an author with an ID of 1 or 2. |
+| 値               | 取得するエントリ               |
+| --------------- | ---------------------- |
+| `1`             | ID が 1 の投稿者。           |
+| `'not 1'`       | ID が 1 の投稿者ではない。       |
+| `[1, 2]`        | ID が 1 または 2 の投稿者。     |
+| `['not', 1, 2]` | ID が 1 または 2 の投稿者ではない。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries with an author with an ID of 1 #}
 {% set entries = craft.entries()
@@ -282,23 +292,23 @@ $entries = \craft\elements\Entry::find()
     ->authorId(1)
     ->all();
 ```
-
 :::
+
 
 ### `before`
 
-Narrows the query results to only entries that were posted before a certain date.
+特定の日付より前に投稿されたエントリだけに、クエリの結果を絞り込みます。
 
-Possible values include:
+利用可能な値には、次のものが含まれます。
 
-| Value                                              | Fetches entries…                                            |
-| -------------------------------------------------- | ----------------------------------------------------------- |
-| `'2018-04-01'`                                     | that were posted before 2018-04-01.                         |
-| a [DateTime](http://php.net/class.datetime) object | that were posted before the date represented by the object. |
+| 値                                                | 取得するエントリ                  |
+| ------------------------------------------------ | ------------------------- |
+| `'2018-04-01'`                                   | 2018-04-01 より前に投稿されたもの。   |
+| [DateTime](http://php.net/class.datetime) オブジェクト | オブジェクトで表される日付より前に投稿されたもの。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries posted before this month #}
 {% set firstDayOfMonth = date('first day of this month') %}
@@ -316,24 +326,26 @@ $entries = \craft\elements\Entry::find()
     ->before($firstDayOfMonth)
     ->all();
 ```
-
 :::
+
 
 ### `dateCreated`
 
-Narrows the query results based on the entries’ creation dates.
+エントリの作成日に基づいて、クエリの結果を絞り込みます。
 
-Possible values include:
 
-| Value                                            | Fetches entries…                                     |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
-| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
+
+利用可能な値には、次のものが含まれます。
+
+| 値                                                | 取得するエントリ                             |
+| ------------------------------------------------ | ------------------------------------ |
+| `'>= 2018-04-01'`                             | 2018-04-01 以降に作成されたもの。               |
+| `'< 2018-05-01'`                              | 2018-05-01 より前に作成されたもの。              |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間に作成されたもの。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries created last month #}
 {% set start = date('first day of last month')|atom %}
@@ -353,24 +365,26 @@ $entries = \craft\elements\Entry::find()
     ->dateCreated(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `dateUpdated`
 
-Narrows the query results based on the entries’ last-updated dates.
+エントリの最終アップデート日に基づいて、クエリの結果が絞り込まれます。
 
-Possible values include:
 
-| Value                                            | Fetches entries…                                     |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
-| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
+
+利用可能な値には、次のものが含まれます。
+
+| 値                                                | 取得するエントリ                                 |
+| ------------------------------------------------ | ---------------------------------------- |
+| `'>= 2018-04-01'`                             | 2018-04-01 以降にアップデートされたもの。               |
+| `'< 2018-05-01'`                              | 2018-05-01 より前にアップデートされたもの。              |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間にアップデートされたもの。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries updated in the last week #}
 {% set lastWeek = date('1 week ago')|atom %}
@@ -388,15 +402,18 @@ $entries = \craft\elements\Entry::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
 ```
-
 :::
+
 
 ### `descendantDist`
 
-Narrows the query results to only entries that are up to a certain distance away from the entry specified by [descendantOf](#descendantof).
+[descendantOf](#descendantof) で指定されたエントリから特定の距離だけ離れているエントリのみに、クエリの結果を絞り込みます。
+
+
+
+
 
 ::: code
-
 ```twig
 {# Fetch entries below this one #}
 {% set entries = craft.entries()
@@ -412,23 +429,25 @@ $entries = \craft\elements\Entry::find()
     ->descendantDist(3)
     ->all();
 ```
-
 :::
+
 
 ### `descendantOf`
 
-Narrows the query results to only entries that are descendants of another entry.
+指定したエントリの子孫であるエントリだけに、クエリの結果を絞り込みます。
 
-Possible values include:
 
-| Value                                        | Fetches entries…                           |
-| -------------------------------------------- | ------------------------------------------ |
-| `1`                                          | below the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | below the entry represented by the object. |
+
+利用可能な値には、次のものが含まれます。
+
+| 値                                          | 取得するエントリ            |
+| ------------------------------------------ | ------------------- |
+| `1`                                        | ID が 1 のカテゴリの下層。    |
+| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの下層。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries below this one #}
 {% set entries = craft.entries()
@@ -442,138 +461,29 @@ $entries = \craft\elements\Entry::find()
     ->descendantOf($myEntry)
     ->all();
 ```
-
 :::
 
-::: tip This can be combined with [descendantDist](#descendantdist) if you want to limit how far away the descendant entries can be. :::
-
-### `draftCreator`
-
-Narrows the query results to only drafts created by a given user.
-
-Possible values include:
-
-| Value                                  | Fetches drafts…                        |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
+::: tip どれだけ離れた子孫エントリを対象にするか制限したい場合、[descendantDist](#descendantdist) と組み合わせることができます。 :::
 
-```twig
-{# Fetch drafts by the current user #}
-{% set entries = craft.entries()
-    .draftCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch drafts by the current user
-$entries = \craft\elements\Entry::find()
-    ->draftCreator(Craft::$app->user->identity)
-    ->all();
-```
-
-:::
-
-### `draftId`
-
-Narrows the query results based on the entries’ draft’s ID (from the `drafts` table).
-
-Possible values include:
-
-| Value | Fetches drafts…                |
-| ----- | ------------------------------ |
-| `1`   | for the draft with an ID of 1. |
-
-
-::: code
-
-```twig
-{# Fetch a draft #}
-{% set entries = craft.entries()
-    .draftId(10)
-    .all() %}
-```
-
-```php
-// Fetch a draft
-$entries = \craft\elements\Entry::find()
-    ->draftIf(10)
-    ->all();
-```
-
-:::
-
-### `draftOf`
-
-Narrows the query results to only drafts of a given entry.
-
-Possible values include:
-
-| Value                                        | Fetches drafts…                          |
-| -------------------------------------------- | ---------------------------------------- |
-| `1`                                          | for the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | for the entry represented by the object. |
-
-
-::: code
-
-```twig
-{# Fetch drafts of the entry #}
-{% set entries = craft.entries()
-    .draftOf(myEntry)
-    .all() %}
-```
-
-```php
-// Fetch drafts of the entry
-$entries = \craft\elements\Entry::find()
-    ->draftOf($myEntry)
-    ->all();
-```
-
-:::
-
-### `drafts`
-
-Narrows the query results to only drafts entries.
-
-::: code
-
-```twig
-{# Fetch a draft entry #}
-{% set entries = {twig-function}
-    .drafts()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a draft entry
-$entries = \craft\elements\Entry::find()
-    ->drafts()
-    ->id(123)
-    ->one();
-```
-
-:::
 
 ### `enabledForSite`
 
-Narrows the query results based on whether the entries are enabled in the site they’re being queried in, per the [site](#site) parameter.
+[site](#site) パラメータごとに、照会されているサイトでエントリが有効になっているかどうかに基づいて、クエリの結果を絞り込みます。
 
-Possible values include:
 
-| Value              | Fetches entries…                             |
-| ------------------ | -------------------------------------------- |
-| `true` *(default)* | that are enabled in the site.                |
-| `false`            | whether they are enabled or not in the site. |
+
+利用可能な値には、次のものが含まれます。
+
+| 値                                      | 取得するエントリ          |
+| -------------------------------------- | ----------------- |
+| `1`                                    | サイト内で有効になっているもの。  |
+| a `\craft\elements\db\User` object | サイト内で有効かどうかに関係なく。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch all entries, including ones disabled for this site #}
 {% set entries = craft.entries()
@@ -587,26 +497,24 @@ $entries = \craft\elements\Entry::find()
     ->enabledForSite(false)
     ->all();
 ```
-
 :::
+
 
 ### `expiryDate`
 
-Narrows the query results based on the entries’ expiry dates.
+エントリの有効期限日に基づいて、クエリの結果を絞り込みます。
 
-Possible values include:
 
-| Value                                            | Fetches entries…                                    |
-| ------------------------------------------------ | --------------------------------------------------- |
-| `':empty:'`                                      | that don’t have an expiry date.                     |
-| `':notempty:'`                                   | that have an expiry date.                           |
-| `'>= 2020-04-01'`                             | that will expire on or after 2020-04-01.            |
-| `'< 2020-05-01'`                              | that will expire before 2020-05-01                  |
-| `['and', '>= 2020-04-04', '< 2020-05-01']` | that will expire between 2020-04-01 and 2020-05-01. |
+
+利用可能な値には、次のものが含まれます。
+
+| 値                   | 取得するエントリ    |
+| ------------------- | ----------- |
+| `:empty:'':empty:'` | 有効期限日を持たない。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries expiring this month #}
 {% set nextMonth = date('first day of next month')|atom %}
@@ -624,15 +532,25 @@ $entries = \craft\elements\Entry::find()
     ->expiryDate("< {$nextMonth}")
     ->all();
 ```
-
 :::
+
 
 ### `fixedOrder`
 
-Causes the query results to be returned in the order specified by [id](#id).
+クエリの結果を [id](#id) で指定された順序で返します。
+
+
 
 ::: code
 
+| 値                                            | 取得するエントリ    |
+| -------------------------------------------- | ----------- |
+| `1`                                          | ID が 1。     |
+| a [Entry](api:craft\elements\Entry) object | ID が 1ではない。 |
+
+
+
+:::
 ```twig
 {# Fetch entries in a specific order #}
 {% set entries = craft.entries()
@@ -648,17 +566,18 @@ $entries = \craft\elements\Entry::find()
     ->fixedOrder()
     ->all();
 ```
-
 :::
+
 
 ### `hasDescendants`
 
-Narrows the query results based on whether the entries have any descendants.
+（これは [leaves](#leaves) の呼び出しと反対の効果を持っています。）
 
-(This has the opposite effect of calling [leaves](#leaves).)
+
+
+
 
 ::: code
-
 ```twig
 {# Fetch entries that have descendants #}
 {% set entries = craft.entries()
@@ -672,25 +591,25 @@ $entries = \craft\elements\Entry::find()
     ->hasDescendants()
     ->all();
 ```
-
 :::
+
 
 ### `id`
 
-Narrows the query results based on the entries’ IDs.
+エントリの ID に基づいて、クエリの結果を絞り込みます。
 
-Possible values include:
 
-| Value           | Fetches entries…          |
-| --------------- | ------------------------- |
-| `1`             | with an ID of 1.          |
-| `'not 1'`       | not with an ID of 1.      |
-| `[1, 2]`        | with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not with an ID of 1 or 2. |
+
+利用可能な値には、次のものが含まれます。
+
+| 値                  | 取得するエントリ     |
+| ------------------ | ------------ |
+| `true` _(default)_ | レベルが 1。      |
+| `'not 1'`          | レベルが 1 ではない。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch the entry by its ID #}
 {% set entry = craft.entries()
@@ -704,21 +623,26 @@ $entry = \craft\elements\Entry::find()
     ->id(1)
     ->one();
 ```
-
 :::
 
-::: tip This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order. :::
-
-### `ignorePlaceholders`
-
-Causes the query to return matching entries as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 ### `inReverse`
 
-Causes the query results to be returned in reverse order.
+::: tip 特定の順序で結果を返したい場合、[fixedOrder](#fixedorder) と組み合わせることができます。 :::
+
+クエリの結果を逆順で返します。
+
+| 値                                                | 取得するエントリ                                            |
+| ------------------------------------------------ | --------------------------------------------------- |
+| `1`                                              | ID が 1 のエントリの後。                                     |
+| `':notempty:'`                                   | オブジェクトで表されるエントリの後。                                  |
+| `'>= 2020-04-01'`                             | that will expire on or after 2020-04-01.            |
+| `'< 2020-05-01'`                              | that will expire before 2020-05-01                  |
+| `['and', '>= 2020-04-04', '< 2020-05-01']` | that will expire between 2020-04-01 and 2020-05-01. |
+
+
 
 ::: code
-
 ```twig
 {# Fetch entries in reverse #}
 {% set entries = craft.entries()
@@ -732,17 +656,18 @@ $entries = \craft\elements\Entry::find()
     ->inReverse()
     ->all();
 ```
-
 :::
+
 
 ### `leaves`
 
-Narrows the query results based on whether the entries are “leaves” (entries with no descendants).
+エントリが「leaves」（子孫のないエントリ）であるかどうかに基づいて、クエリの結果を絞り込みます。
 
-(This has the opposite effect of calling [hasDescendants](#hasdescendants).)
 
-::: code
 
+
+
+（これは [hasDescendants](#hasdescendants) の呼び出しと反対の効果を持っています。）
 ```twig
 {# Fetch entries that have no descendants #}
 {% set entries = craft.entries()
@@ -756,26 +681,20 @@ $entries = \craft\elements\Entry::find()
     ->leaves()
     ->all();
 ```
-
 :::
+
 
 ### `level`
 
-Narrows the query results based on the entries’ level within the structure.
-
-Possible values include:
-
-| Value           | Fetches entries…                         |
-| --------------- | ---------------------------------------- |
-| `1`             | with a level of 1.                       |
-| `'not 1'`       | not with a level of 1.                   |
-| `'>= 3'`     | with a level greater than or equal to 3. |
-| `[1, 2]`        | with a level of 1 or 2                   |
-| `['not', 1, 2]` | not with level of 1 or 2.                |
+:::
 
 
-::: code
 
+構造内のエントリのレベルに基づいて、クエリの結果を絞り込みます。
+
+
+
+利用可能な値には、次のものが含まれます。
 ```twig
 {# Fetch entries positioned at level 3 or above #}
 {% set entries = craft.entries()
@@ -789,15 +708,27 @@ $entries = \craft\elements\Entry::find()
     ->level('>= 3')
     ->all();
 ```
-
 :::
+
 
 ### `limit`
 
-Determines the number of entries that should be returned.
+:::
+
+
+
+返されるエントリの数を決定します。
+
+| 値               | 取得するエントリ                  |
+| --------------- | ------------------------- |
+| `1`             | ID が 1 のエントリの後。           |
+| `'not 1'`       | オブジェクトで表されるエントリの後。        |
+| `[1, 2]`        | with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an ID of 1 or 2. |
+
+
 
 ::: code
-
 ```twig
 {# Fetch up to 10 entries  #}
 {% set entries = craft.entries()
@@ -811,23 +742,35 @@ $entries = \craft\elements\Entry::find()
     ->limit(10)
     ->all();
 ```
-
 :::
+
+
+
+指定したエントリの直後にあるエントリだけに、クエリの結果を絞り込みます。
+
 
 ### `nextSiblingOf`
 
-Narrows the query results to only the entry that comes immediately after another entry.
+利用可能な値には、次のものが含まれます。
 
-Possible values include:
 
-| Value                                        | Fetches the entry…                         |
-| -------------------------------------------- | ------------------------------------------ |
-| `1`                                          | after the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | after the entry represented by the object. |
 
+
+
+
+
+
+
+
+### `offset`
 
 ::: code
 
+
+
+
+
+:::
 ```twig
 {# Fetch the next entry #}
 {% set entry = craft.entries()
@@ -841,15 +784,20 @@ $entry = \craft\elements\Entry::find()
     ->nextSiblingOf($myEntry)
     ->one();
 ```
-
 :::
 
-### `offset`
 
-Determines how many entries should be skipped in the results.
+### `orderBy`
 
 ::: code
 
+
+
+:::
+
+
+
+返されるエントリの順序を決定します。
 ```twig
 {# Fetch all entries except for the first 3 #}
 {% set entries = craft.entries()
@@ -863,15 +811,28 @@ $entries = \craft\elements\Entry::find()
     ->offset(3)
     ->all();
 ```
+:::
+
+
+### `positionedAfter`
 
 :::
 
-### `orderBy`
 
-Determines the order that the entries should be returned in.
 
-::: code
+指定したエントリの後に位置するエントリだけに、クエリの結果を絞り込みます。
 
+| 値               | 取得するエントリ                                 |
+| --------------- | ---------------------------------------- |
+| `1`             | ID が 1 のエントリの前。                          |
+| `'not 1'`       | オブジェクトで表されるエントリの前。                       |
+| `'>= 3'`     | with a level greater than or equal to 3. |
+| `[1, 2]`        | with a level of 1 or 2                   |
+| `['not', 1, 2]` | not with level of 1 or 2.                |
+
+
+
+利用可能な値には、次のものが含まれます。
 ```twig
 {# Fetch all entries in order of date created #}
 {% set entries = craft.entries()
@@ -885,23 +846,16 @@ $entries = \craft\elements\Entry::find()
     ->orderBy('dateCreated asc')
     ->all();
 ```
+:::
+
+
+### `positionedBefore`
 
 :::
 
-### `positionedAfter`
-
-Narrows the query results to only entries that are positioned after another entry.
-
-Possible values include:
-
-| Value                                        | Fetches entries…                           |
-| -------------------------------------------- | ------------------------------------------ |
-| `1`                                          | after the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | after the entry represented by the object. |
 
 
-::: code
-
+指定したエントリの前に位置するエントリだけに、クエリの結果を絞り込みます。
 ```twig
 {# Fetch entries after this one #}
 {% set entries = craft.entries()
@@ -915,23 +869,25 @@ $entries = \craft\elements\Entry::find()
     ->positionedAfter($myEntry)
     ->all();
 ```
-
 :::
 
-### `positionedBefore`
 
-Narrows the query results to only entries that are positioned before another entry.
-
-Possible values include:
-
-| Value                                        | Fetches entries…                            |
-| -------------------------------------------- | ------------------------------------------- |
-| `1`                                          | before the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | before the entry represented by the object. |
-
+### `postDate`
 
 ::: code
 
+
+
+:::
+
+| 値                                            | 取得するエントリ                |
+| -------------------------------------------- | ----------------------- |
+| `gt;= 2018-04-01'3'>= 2018-04-01'`        | 2018-04-01 以降に投稿されたもの。  |
+| a [Entry](api:craft\elements\Entry) object | 2018-05-01 より前に投稿されたもの。 |
+
+
+
+エントリの投稿日に基づいて、クエリの結果を絞り込みます。
 ```twig
 {# Fetch entries before this one #}
 {% set entries = craft.entries()
@@ -945,24 +901,16 @@ $entries = \craft\elements\Entry::find()
     ->positionedBefore($myEntry)
     ->all();
 ```
-
 :::
 
-### `postDate`
 
-Narrows the query results based on the entries’ post dates.
-
-Possible values include:
-
-| Value                                            | Fetches entries…                                    |
-| ------------------------------------------------ | --------------------------------------------------- |
-| `'>= 2018-04-01'`                             | that were posted on or after 2018-04-01.            |
-| `'< 2018-05-01'`                              | that were posted before 2018-05-01                  |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were posted between 2018-04-01 and 2018-05-01. |
-
+### `prevSiblingOf`
 
 ::: code
 
+
+
+:::
 ```twig
 {# Fetch entries posted last month #}
 {% set start = date('first day of last month')|atom %}
@@ -982,53 +930,16 @@ $entries = \craft\elements\Entry::find()
     ->postDate(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
 
-### `preferSites`
 
-If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
+### `relatedTo`
 
-For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
+利用可能な値には、次のものが含まれます。
 
-If this isn’t set, then preference goes to the current site.
-
-::: code
-
-```twig
-{# Fetch unique entries from Site A, or Site B if they don’t exist in Site A #}
-{% set entries = craft.entries()
-    .site('*')
-    .unique()
-    .preferSites(['a', 'b'])
-    .all() %}
-```
-
-```php
-// Fetch unique entries from Site A, or Site B if they don’t exist in Site A
-$entries = \craft\elements\Entry::find()
-    ->site('*')
-    ->unique()
-    ->preferSites(['a', 'b'])
-    ->all();
-```
-
-:::
-
-### `prevSiblingOf`
-
-Narrows the query results to only the entry that comes immediately before another entry.
-
-Possible values include:
-
-| Value                                        | Fetches the entry…                          |
-| -------------------------------------------- | ------------------------------------------- |
-| `1`                                          | before the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | before the entry represented by the object. |
 
 
 ::: code
-
 ```twig
 {# Fetch the previous entry #}
 {% set entry = craft.entries()
@@ -1042,17 +953,25 @@ $entry = \craft\elements\Entry::find()
     ->prevSiblingOf($myEntry)
     ->one();
 ```
-
 :::
 
-### `relatedTo`
 
-Narrows the query results to only entries that are related to certain other elements.
+### `search`
 
-See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
+特定の他のエレメントと関連付けられたエントリだけに、クエリの結果を絞り込みます。
+
+
+
+このパラメーターがどのように機能するかの詳細については、[リレーション](https://docs.craftcms.com/v3/relations.html)を参照してください。
+
+| 値                                          | 取得するエントリ           |
+| ------------------------------------------ | ------------------ |
+| `1`                                        | ID が 1 のエントリの前。    |
+| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの前。 |
+
+
 
 ::: code
-
 ```twig
 {# Fetch all entries that are related to myCategory #}
 {% set entries = craft.entries()
@@ -1066,130 +985,25 @@ $entries = \craft\elements\Entry::find()
     ->relatedTo($myCategory)
     ->all();
 ```
-
 :::
 
-### `revisionCreator`
 
-Narrows the query results to only revisions created by a given user.
+### `section`
 
-Possible values include:
+検索クエリにマッチするエントリだけに、クエリの結果を絞り込みます。
 
-| Value                                  | Fetches revisions…                     |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
+
+
+このパラメーターがどのように機能するかの詳細については、[検索](https://docs.craftcms.com/v3/searching.html)を参照してください。
+
+| 値                                            | 取得するエントリ                 |
+| -------------------------------------------- | ------------------------ |
+| `foo''foo'`                                  | ハンドルが `foo` のセクション内。     |
+| a [Entry](api:craft\elements\Entry) object | ハンドルが `foo` のセクション内ではない。 |
+
 
 
 ::: code
-
-```twig
-{# Fetch revisions by the current user #}
-{% set entries = craft.entries()
-    .revisionCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch revisions by the current user
-$entries = \craft\elements\Entry::find()
-    ->revisionCreator(Craft::$app->user->identity)
-    ->all();
-```
-
-:::
-
-### `revisionId`
-
-Narrows the query results based on the entries’ revision’s ID (from the `revisions` table).
-
-Possible values include:
-
-| Value | Fetches revisions…                |
-| ----- | --------------------------------- |
-| `1`   | for the revision with an ID of 1. |
-
-
-::: code
-
-```twig
-{# Fetch a revision #}
-{% set entries = craft.entries()
-    .revisionId(10)
-    .all() %}
-```
-
-```php
-// Fetch a revision
-$entries = \craft\elements\Entry::find()
-    ->revisionIf(10)
-    ->all();
-```
-
-:::
-
-### `revisionOf`
-
-Narrows the query results to only revisions of a given entry.
-
-Possible values include:
-
-| Value                                        | Fetches revisions…                       |
-| -------------------------------------------- | ---------------------------------------- |
-| `1`                                          | for the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | for the entry represented by the object. |
-
-
-::: code
-
-```twig
-{# Fetch revisions of the entry #}
-{% set entries = craft.entries()
-    .revisionOf(myEntry)
-    .all() %}
-```
-
-```php
-// Fetch revisions of the entry
-$entries = \craft\elements\Entry::find()
-    ->revisionOf($myEntry)
-    ->all();
-```
-
-:::
-
-### `revisions`
-
-Narrows the query results to only revision entries.
-
-::: code
-
-```twig
-{# Fetch a revision entry #}
-{% set entries = {twig-function}
-    .revisions()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a revision entry
-$entries = \craft\elements\Entry::find()
-    ->revisions()
-    ->id(123)
-    ->one();
-```
-
-:::
-
-### `search`
-
-Narrows the query results to only entries that match a search query.
-
-See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
-
-::: code
-
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -1209,26 +1023,24 @@ $entries = \craft\elements\Entry::find()
     ->search($searchQuery)
     ->all();
 ```
-
 :::
 
-### `section`
 
-Narrows the query results based on the sections the entries belong to.
+### `sectionId`
 
-Possible values include:
+エントリが属するセクションに基づいて、クエリの結果を絞り込みます。
 
-| Value                                          | Fetches entries…                                  |
-| ---------------------------------------------- | ------------------------------------------------- |
-| `'foo'`                                        | in a section with a handle of `foo`.              |
-| `'not foo'`                                    | not in a section with a handle of `foo`.          |
-| `['foo', 'bar']`                               | in a section with a handle of `foo` or `bar`.     |
-| `['not', 'foo', 'bar']`                        | not in a section with a handle of `foo` or `bar`. |
-| a [Section](api:craft\models\Section) object | in a section represented by the object.           |
+利用可能な値には、次のものが含まれます。
+
+| 値         | 取得するエントリ              |
+| --------- | --------------------- |
+| `1`       | ID が 1 のセクション内。       |
+| `'not 1'` | ID が 1 のセクション内ではない。   |
+| `[1, 2]`  | ID が 1 または 2 のセクション内。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries in the Foo section #}
 {% set entries = craft.entries()
@@ -1242,25 +1054,22 @@ $entries = \craft\elements\Entry::find()
     ->section('foo')
     ->all();
 ```
-
 :::
 
-### `sectionId`
 
-Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
+### `siblingOf`
 
-Possible values include:
+セクションの ID ごとに、エントリが属するセクションに基づいて、クエリの結果を絞り込みます。
 
-| Value           | Fetches entries…                       |
-| --------------- | -------------------------------------- |
-| `1`             | in a section with an ID of 1.          |
-| `'not 1'`       | not in a section with an ID of 1.      |
-| `[1, 2]`        | in a section with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not in a section with an ID of 1 or 2. |
 
+
+利用可能な値には、次のものが含まれます。
 
 ::: code
 
+
+
+:::
 ```twig
 {# Fetch entries in the section with an ID of 1 #}
 {% set entries = craft.entries()
@@ -1274,23 +1083,25 @@ $entries = \craft\elements\Entry::find()
     ->sectionId(1)
     ->all();
 ```
-
 :::
 
-### `siblingOf`
 
-Narrows the query results to only entries that are siblings of another entry.
+### `site`
 
-Possible values include:
+利用可能な値には、次のものが含まれます。
 
-| Value                                        | Fetches entries…                            |
-| -------------------------------------------- | ------------------------------------------- |
-| `1`                                          | beside the entry with an ID of 1.           |
-| a [Entry](api:craft\elements\Entry) object | beside the entry represented by the object. |
 
 
 ::: code
 
+| 値                                          | 取得するエントリ           |
+| ------------------------------------------ | ------------------ |
+| `1`                                        | ID が 1 のエントリの横。    |
+| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの横。 |
+
+
+
+:::
 ```twig
 {# Fetch entries beside this one #}
 {% set entries = craft.entries()
@@ -1304,30 +1115,20 @@ $entries = \craft\elements\Entry::find()
     ->siblingOf($myEntry)
     ->all();
 ```
-
 :::
 
-### `site`
 
-Determines which site(s) the entries should be queried in.
+### `siteId`
 
-The current site will be used by default.
-
-Possible values include:
-
-| Value                                  | Fetches entries…                               |
-| -------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                | from the site with a handle of `foo`.          |
-| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
-| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
-| a `\craft\elements\db\Site` object | from the site represented by the object.       |
-| `'*'`                                  | from any site.                                 |
+デフォルトでは、現在のサイトが使用されます。
 
 
-::: tip If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this. :::
+
+利用可能な値には、次のものが含まれます。
+
+
 
 ::: code
-
 ```twig
 {# Fetch entries from the Foo site #}
 {% set entries = craft.entries()
@@ -1341,17 +1142,25 @@ $entries = \craft\elements\Entry::find()
     ->site('foo')
     ->all();
 ```
-
 :::
 
-### `siteId`
 
-Determines which site(s) the entries should be queried in, per the site’s ID.
+### `slug`
 
-The current site will be used by default.
+サイトの ID ごとに、エントリを照会するサイトを決定します。
+
+
+
+デフォルトでは、現在のサイトが使用されます。
+
+| 値                                    | 取得するエントリ            |
+| ------------------------------------ | ------------------- |
+| `0080'foo'`                          | ハンドルが `foo` のサイトから。 |
+| `\craft\elements\db\Site` オブジェクト | オブジェクトで表されるサイトから。   |
+
+
 
 ::: code
-
 ```twig
 {# Fetch entries from the site with an ID of 1 #}
 {% set entries = craft.entries()
@@ -1365,28 +1174,24 @@ $entries = \craft\elements\Entry::find()
     ->siteId(1)
     ->all();
 ```
-
 :::
 
-### `slug`
 
-Narrows the query results based on the entries’ slugs.
+### `status`
 
-Possible values include:
+エントリのスラグに基づいて、クエリの結果を絞り込みます。
 
-| Value                       | Fetches entries…                                 |
-| --------------------------- | ------------------------------------------------ |
-| `'foo'`                     | with a slug of `foo`.                            |
-| `'foo*'`                    | with a slug that begins with `foo`.              |
-| `'*foo'`                    | with a slug that ends with `foo`.                |
-| `'*foo*'`                   | with a slug that contains `foo`.                 |
-| `'not *foo*'`               | with a slug that doesn’t contain `foo`.          |
-| `['*foo*', '*bar*']`        | with a slug that contains `foo` or `bar`.        |
-| `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`. |
+
+
+利用可能な値には、次のものが含まれます。
+
+| 値           | 取得するエントリ    |
+| ----------- | ----------- |
+| `4492'foo'` | スラグが `foo`。 |
+
 
 
 ::: code
-
 ```twig
 {# Get the requested entry slug from the URL #}
 {% set requestedSlug = craft.app.request.getSegment(3) %}
@@ -1406,29 +1211,28 @@ $entry = \craft\elements\Entry::find()
     ->slug(\craft\helpers\Db::escapeParam($requestedSlug))
     ->one();
 ```
-
 :::
 
-### `status`
 
-Narrows the query results based on the entries’ statuses.
+### `title`
 
-Possible values include:
+エントリのステータスに基づいて、クエリの結果を絞り込みます。
 
-| Value                 | Fetches entries…                                            |
-| --------------------- | ----------------------------------------------------------- |
-| `'live'` *(default)*  | that are live.                                              |
-| `'pending'`           | that are pending (enabled with a Post Date in the future).  |
-| `'expired'`           | that are expired (enabled with an Expiry Date in the past). |
-| `'disabled'`          | that are disabled.                                          |
-| `['live', 'pending']` | that are live or pending.                                   |
+
+
+利用可能な値には、次のものが含まれます。
+
+| 値                                            | 取得するエントリ                      |
+| -------------------------------------------- | ----------------------------- |
+| `1`                                          | 公開しているもの。                     |
+| a [Entry](api:craft\elements\Entry) object | 保留しているもの（未来の投稿日がセットされた有効なもの）。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch disabled entries #}
-{% set entries = craft.entries()
+{% set entries = {twig-function}
     .status('disabled')
     .all() %}
 ```
@@ -1439,28 +1243,18 @@ $entries = \craft\elements\Entry::find()
     ->status('disabled')
     ->all();
 ```
-
 :::
 
-### `title`
 
-Narrows the query results based on the entries’ titles.
+### `trashed`
 
-Possible values include:
-
-| Value                       | Fetches entries…                                  |
-| --------------------------- | ------------------------------------------------- |
-| `'Foo'`                     | with a title of `Foo`.                            |
-| `'Foo*'`                    | with a title that begins with `Foo`.              |
-| `'*Foo'`                    | with a title that ends with `Foo`.                |
-| `'*Foo*'`                   | with a title that contains `Foo`.                 |
-| `'not *Foo*'`               | with a title that doesn’t contain `Foo`.          |
-| `['*Foo*', '*Bar*']`        | with a title that contains `Foo` or `Bar`.        |
-| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`. |
+エントリのタイトルに基づいて、クエリの結果を絞り込みます。
 
 
-::: code
 
+
+
+利用可能な値には、次のものが含まれます。
 ```twig
 {# Fetch entries with a title that contains "Foo" #}
 {% set entries = craft.entries()
@@ -1474,18 +1268,23 @@ $entries = \craft\elements\Entry::find()
     ->title('*Foo*')
     ->all();
 ```
+:::
+
+
+### `type`
 
 :::
 
-### `trashed`
 
-Narrows the query results to only entries that have been soft-deleted.
+
+ソフトデリートされたエントリだけに、クエリの結果を絞り込みます。
+
+
 
 ::: code
-
 ```twig
 {# Fetch trashed entries #}
-{% set entries = craft.entries()
+{% set entries = {twig-function}
     .trashed()
     .all() %}
 ```
@@ -1496,26 +1295,26 @@ $entries = \craft\elements\Entry::find()
     ->trashed()
     ->all();
 ```
-
 :::
 
-### `type`
 
-Narrows the query results based on the entries’ entry types.
+### `typeId`
 
-Possible values include:
+エントリの入力タイプに基づいて、クエリの結果を絞り込みます。
 
-| Value                                               | Fetches entries…                               |
-| --------------------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                             | of a type with a handle of `foo`.              |
-| `'not foo'`                                         | not of a type with a handle of `foo`.          |
-| `['foo', 'bar']`                                    | of a type with a handle of `foo` or `bar`.     |
-| `['not', 'foo', 'bar']`                             | not of a type with a handle of `foo` or `bar`. |
-| an [EntryType](api:craft\models\EntryType) object | of a type represented by the object.           |
+利用可能な値には、次のものが含まれます。
+
+| 値                                              | 取得するエントリ           |
+| ---------------------------------------------- | ------------------ |
+| `'Foo'`                                        | タイトルが `Foo`。       |
+| `'Foo*'`                                       | タイトルが `Foo` ではじまる。 |
+| `'*Foo'`                                       | タイトルが `Foo` で終わる。  |
+| `'*Foo*'`                                      | タイトルが `Foo` を含む。   |
+| a [Section](api:craft\models\Section) object | タイトルが `Foo` を含まない。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries in the Foo section with a Bar entry type #}
 {% set entries = craft.entries()
@@ -1531,25 +1330,25 @@ $entries = \craft\elements\Entry::find()
     ->type('bar')
     ->all();
 ```
-
 :::
 
-### `typeId`
 
-Narrows the query results based on the entries’ entry types, per the types’ IDs.
+### `uid`
 
-Possible values include:
+タイプの ID ごとに、エントリの入力タイプに基づいて、クエリの結果を絞り込みます。
 
-| Value           | Fetches entries…                    |
-| --------------- | ----------------------------------- |
-| `1`             | of a type with an ID of 1.          |
-| `'not 1'`       | not of a type with an ID of 1.      |
-| `[1, 2]`        | of a type with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not of a type with an ID of 1 or 2. |
+利用可能な値には、次のものが含まれます。
+
+| 値                       | 取得するエントリ                        |
+| ----------------------- | ------------------------------- |
+| `7'foo'63'foo'`         | ハンドルが `foo` のタイプ。               |
+| `'not foo'`             | ハンドルが `foo` のタイプではない。           |
+| `['foo', 'bar']`        | ハンドルが `foo` または `bar` のタイプ。     |
+| `['not', 'foo', 'bar']` | ハンドルが `foo` または `bar` のタイプではない。 |
+
 
 
 ::: code
-
 ```twig
 {# Fetch entries of the entry type with an ID of 1 #}
 {% set entries = craft.entries()
@@ -1563,15 +1362,25 @@ $entries = \craft\elements\Entry::find()
     ->typeId(1)
     ->all();
 ```
-
 :::
 
-### `uid`
 
-Narrows the query results based on the entries’ UIDs.
+### `uri`
+
+エントリの UID に基づいて、クエリの結果を絞り込みます。
+
+
 
 ::: code
 
+| 値                                            | 取得するエントリ         |
+| -------------------------------------------- | ---------------- |
+| `1`                                          | ID が 1 のタイプ。     |
+| a [Entry](api:craft\elements\Entry) object | ID が 1 のタイプではない。 |
+
+
+
+:::
 ```twig
 {# Fetch the entry by its UID #}
 {% set entry = craft.entries()
@@ -1585,54 +1394,32 @@ $entry = \craft\elements\Entry::find()
     ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     ->one();
 ```
-
 :::
 
-### `unique`
 
-Determines whether only elements with unique IDs should be returned by the query.
+### `with`
 
-This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
+利用可能な値には、次のものが含まれます。
 
-::: code
-
-```twig
-{# Fetch unique entries across all sites #}
-{% set entries = craft.entries()
-    .site('*')
-    .unique()
-    .all() %}
-```
-
-```php
-// Fetch unique entries across all sites
-$entries = \craft\elements\Entry::find()
-    ->site('*')
-    ->unique()
-    ->all();
-```
-
-:::
-
-### `uri`
-
-Narrows the query results based on the entries’ URIs.
-
-Possible values include:
-
-| Value                       | Fetches entries…                                |
-| --------------------------- | ----------------------------------------------- |
-| `'foo'`                     | with a URI of `foo`.                            |
-| `'foo*'`                    | with a URI that begins with `foo`.              |
-| `'*foo'`                    | with a URI that ends with `foo`.                |
-| `'*foo*'`                   | with a URI that contains `foo`.                 |
-| `'not *foo*'`               | with a URI that doesn’t contain `foo`.          |
-| `['*foo*', '*bar*']`        | with a URI that contains `foo` or `bar`.        |
-| `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`. |
 
 
 ::: code
 
+:::
+
+| 値                                      | 取得するエントリ           |
+| -------------------------------------- | ------------------ |
+| `'foo'`                                | URI が `foo`。       |
+| `'foo*'`                               | URI が `foo` ではじまる。 |
+| `'*foo'`                               | URI が `foo` で終わる。  |
+| a `\craft\elements\db\Site` object | URI が `foo` を含む。   |
+| `'not *foo*'`                          | URI が `foo` を含まない。 |
+
+関連付けられたエレメントを eager-loaded した状態で、マッチしたエントリをクエリが返します。
+
+
+
+このパラメーターがどのように機能するかの詳細については、[エレメントのEager-Loading](https://docs.craftcms.com/v3/dev/eager-loading-elements.html)を参照してください。
 ```twig
 {# Get the requested URI #}
 {% set requestedUri = craft.app.request.getPathInfo() %}
@@ -1652,17 +1439,20 @@ $entry = \craft\elements\Entry::find()
     ->uri(\craft\helpers\Db::escapeParam($requestedUri))
     ->one();
 ```
+:::
+
+
+### `siteId`
 
 :::
 
-### `with`
 
-Causes the query to return matching entries eager-loaded with related elements.
 
-See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
+The current site will be used by default.
+
+
 
 ::: code
-
 ```twig
 {# Fetch entries eager-loaded with the "Related" field’s relations #}
 {% set entries = craft.entries()
@@ -1676,7 +1466,338 @@ $entries = \craft\elements\Entry::find()
     ->with(['related'])
     ->all();
 ```
-
 :::
 
+
+### `slug`
+
+Narrows the query results based on the entries’ slugs.
+
+
+
+Possible values include:
+
+| Value                       | Fetches entries…                                 |
+| --------------------------- | ------------------------------------------------ |
+| `'foo'`                     | with a slug of `foo`.                            |
+| `'foo*'`                    | with a slug that begins with `foo`.              |
+| `'*foo'`                    | with a slug that ends with `foo`.                |
+| `'*foo*'`                   | with a slug that contains `foo`.                 |
+| `'not *foo*'`               | with a slug that doesn’t contain `foo`.          |
+| `['*foo*', '*bar*']`        | with a slug that contains `foo` or `bar`.        |
+| `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`. |
+
+
+
+::: code
+```twig
+{# Get the requested entry slug from the URL #}
+{% set requestedSlug = craft.app.request.getSegment(3) %}
+
+{# Fetch the entry with that slug #}
+{% set entry = craft.entries()
+    .slug(requestedSlug|literal)
+    .one() %}
+```
+
+```php
+// Get the requested entry slug from the URL
+$requestedSlug = \Craft::$app->request->getSegment(3);
+
+// Fetch the entry with that slug
+$entry = \craft\elements\Entry::find()
+    ->slug(\craft\helpers\Db::escapeParam($requestedSlug))
+    ->one();
+```
+:::
+
+
+### `status`
+
+Narrows the query results based on the entries’ statuses.
+
+Possible values include:
+
+| Value                 | Fetches entries…                                            |
+| --------------------- | ----------------------------------------------------------- |
+| `'live'` _(default)_  | that are live.                                              |
+| `'pending'`           | that are pending (enabled with a Post Date in the future).  |
+| `'expired'`           | that are expired (enabled with an Expiry Date in the past). |
+| `'disabled'`          | that are disabled.                                          |
+| `['live', 'pending']` | that are live or pending.                                   |
+
+
+
+::: code
+```twig
+{# Fetch disabled entries #}
+{% set entries = craft.entries()
+    .status('disabled')
+    .all() %}
+```
+
+```php
+// Fetch disabled entries
+$entries = \craft\elements\Entry::find()
+    ->status('disabled')
+    ->all();
+```
+:::
+
+
+### `title`
+
+Narrows the query results based on the entries’ titles.
+
+
+
+Possible values include:
+
+| Value                       | Fetches entries…                                  |
+| --------------------------- | ------------------------------------------------- |
+| `'Foo'`                     | with a title of `Foo`.                            |
+| `'Foo*'`                    | with a title that begins with `Foo`.              |
+| `'*Foo'`                    | with a title that ends with `Foo`.                |
+| `'*Foo*'`                   | with a title that contains `Foo`.                 |
+| `'not *Foo*'`               | with a title that doesn’t contain `Foo`.          |
+| `['*Foo*', '*Bar*']`        | with a title that contains `Foo` or `Bar`.        |
+| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`. |
+
+
+
+::: code
+```twig
+{# Fetch entries with a title that contains "Foo" #}
+{% set entries = craft.entries()
+    .title('*Foo*')
+    .all() %}
+```
+
+```php
+// Fetch entries with a title that contains "Foo"
+$entries = \craft\elements\Entry::find()
+    ->title('*Foo*')
+    ->all();
+```
+:::
+
+
+### `trashed`
+
+Narrows the query results to only entries that have been soft-deleted.
+
+
+
+
+
+::: code
+```twig
+{# Fetch trashed entries #}
+{% set entries = craft.entries()
+    .trashed()
+    .all() %}
+```
+
+```php
+// Fetch trashed entries
+$entries = \craft\elements\Entry::find()
+    ->trashed()
+    ->all();
+```
+:::
+
+
+### `type`
+
+Narrows the query results based on the entries’ entry types.
+
+Possible values include:
+
+| Value                                               | Fetches entries…                               |
+| --------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                             | of a type with a handle of `foo`.              |
+| `'not foo'`                                         | not of a type with a handle of `foo`.          |
+| `['foo', 'bar']`                                    | of a type with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                             | not of a type with a handle of `foo` or `bar`. |
+| an [EntryType](api:craft\models\EntryType) object | of a type represented by the object.           |
+
+
+
+::: code
+```twig
+{# Fetch entries in the Foo section with a Bar entry type #}
+{% set entries = craft.entries()
+    .section('foo')
+    .type('bar')
+    .all() %}
+```
+
+```php
+// Fetch entries in the Foo section with a Bar entry type
+$entries = \craft\elements\Entry::find()
+    ->section('foo')
+    ->type('bar')
+    ->all();
+```
+:::
+
+
+### `typeId`
+
+Narrows the query results based on the entries’ entry types, per the types’ IDs.
+
+Possible values include:
+
+| Value           | Fetches entries…                    |
+| --------------- | ----------------------------------- |
+| `1`             | of a type with an ID of 1.          |
+| `'not 1'`       | not of a type with an ID of 1.      |
+| `[1, 2]`        | of a type with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not of a type with an ID of 1 or 2. |
+
+
+
+::: code
+```twig
+{# Fetch entries of the entry type with an ID of 1 #}
+{% set entries = craft.entries()
+    .typeId(1)
+    .all() %}
+```
+
+```php
+// Fetch entries of the entry type with an ID of 1
+$entries = \craft\elements\Entry::find()
+    ->typeId(1)
+    ->all();
+```
+:::
+
+
+### `uid`
+
+Narrows the query results based on the entries’ UIDs.
+
+
+
+
+
+::: code
+```twig
+{# Fetch the entry by its UID #}
+{% set entry = craft.entries()
+    .uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+    .one() %}
+```
+
+```php
+// Fetch the entry by its UID
+$entry = \craft\elements\Entry::find()
+    ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+    ->one();
+```
+:::
+
+
+### `unique`
+
+Determines whether only elements with unique IDs should be returned by the query.
+
+
+
+This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
+
+
+
+::: code
+```twig
+{# Fetch unique entries across all sites #}
+{% set entries = craft.entries()
+    .site('*')
+    .unique()
+    .all() %}
+```
+
+```php
+// Fetch unique entries across all sites
+$entries = \craft\elements\Entry::find()
+    ->site('*')
+    ->unique()
+    ->all();
+```
+:::
+
+
+### `uri`
+
+Narrows the query results based on the entries’ URIs.
+
+
+
+Possible values include:
+
+| Value                       | Fetches entries…                                |
+| --------------------------- | ----------------------------------------------- |
+| `'foo'`                     | with a URI of `foo`.                            |
+| `'foo*'`                    | with a URI that begins with `foo`.              |
+| `'*foo'`                    | with a URI that ends with `foo`.                |
+| `'*foo*'`                   | with a URI that contains `foo`.                 |
+| `'not *foo*'`               | with a URI that doesn’t contain `foo`.          |
+| `['*foo*', '*bar*']`        | with a URI that contains `foo` or `bar`.        |
+| `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`. |
+
+
+
+::: code
+```twig
+{# Get the requested URI #}
+{% set requestedUri = craft.app.request.getPathInfo() %}
+
+{# Fetch the entry with that URI #}
+{% set entry = craft.entries()
+    .uri(requestedUri|literal)
+    .one() %}
+```
+
+```php
+// Get the requested URI
+$requestedUri = \Craft::$app->request->getPathInfo();
+
+// Fetch the entry with that URI
+$entry = \craft\elements\Entry::find()
+    ->uri(\craft\helpers\Db::escapeParam($requestedUri))
+    ->one();
+```
+:::
+
+
+### `with`
+
+Causes the query to return matching entries eager-loaded with related elements.
+
+
+
+See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
+
+
+
+::: code
+```twig
+{# Fetch entries eager-loaded with the "Related" field’s relations #}
+{% set entries = craft.entries()
+    .with(['related'])
+    .all() %}
+```
+
+```php
+// Fetch entries eager-loaded with the "Related" field’s relations
+$entries = \craft\elements\Entry::find()
+    ->with(['related'])
+    ->all();
+```
+:::
+
+
+
 <!-- END PARAMS -->
+
