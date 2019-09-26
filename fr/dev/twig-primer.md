@@ -66,6 +66,7 @@ Resources:
 * [Tags that come with Twig](https://twig.symfony.com/doc/tags/index.html)
 * [Craft’s custom tags](tags.md)
 
+
 ### Comment Tags
 
 You can leave comments for future self in the code using comment tags. Twig won't evaluate anything inside the comment tags; it will simply pretend they don’t exist.
@@ -95,6 +96,7 @@ Additionally, all of your Craft templates are pre-loaded with a few [global vari
 * Templates that are loaded as a result of a matching [route](../routing.md#dynamic-routes) get pre-loaded with the variables defined by the route’s tokens
 * Templates that are loaded as the result of a matching [entry](../sections-and-entries.md) URL get an `entry` variable (see [Routing](../routing.md) for more details).
 
+
 ## Filters
 
 You can manipulate variables with filters. The syntax is the variable name followed by a pipe (`|`) followed by the filter name:
@@ -113,6 +115,7 @@ Resources:
 
 * [Filters that come with Twig](https://twig.symfony.com/doc/filters/index.html)
 * [Craft’s custom filters](filters.md)
+
 
 ## Functions
 
@@ -133,6 +136,7 @@ Resources:
 
 * [Functions that come with Twig](https://twig.symfony.com/doc/functions/index.html)
 * [Craft’s custom functions](functions.md)
+
 
 ## Continued Reading
 
