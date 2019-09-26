@@ -11,8 +11,9 @@ All plugins in the Plugin Store must have one of two licenses:
 
 Create a `LICENSE.md` file at the root of your plugin’s repository, and paste in the license text, beginning with a copyright notice.
 
-    Copyright © <YourName>
-    
+```
+Copyright © <YourName>
+```
 
 ::: tip If you are going with the Craft License, don’t forget to change the `license` value in your `composer.json` file from `MIT` to `proprietary`. :::
 
@@ -34,7 +35,6 @@ If you wish to sell your plugin, choose a price point that makes sense. Here are
 | $49-$99     | Complex field types and integrations                   |
 | $149-$249   | Plugins that add significant new system functionality  |
 | $499-$999   | Major or highly niche applications                     |
-
 
 You will also be required to pick a Renewal Price, which is the annual fee the Plugin Store will charge customers who wish to continue installing new updates, after the first year. Pick a Renewal Price that is around 20-50% of the initial Price. For example, if you are charging $99 for your plugin, your Renewal Price should be between $19-$49.
 
