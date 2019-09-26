@@ -18,7 +18,6 @@ The `{% js %}` tag can be used to register a `<script>` tag on the page.
 {% set script = '_gaq.push(["_trackEvent", "Search", "'~searchTerm|e('js')~'"' %}
 {% do view.registerJs(script) %}
 ```
-
 :::
 
 ## Parameters
@@ -36,7 +35,6 @@ You can specify where the `<script>` tag should be added to the page using one o
 | `at endBody`   | At the end of the page’s `<body>`                                    |
 | `on load`      | At the end of the page’s `<body>`, within `jQuery(window).load()`    |
 | `on ready`     | At the end of the page’s `<body>`, within `jQuery(document).ready()` |
-
 
 ```twig
 {% js at head %}
