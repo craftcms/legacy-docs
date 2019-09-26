@@ -10,6 +10,7 @@ Plain Text fields have the following settings:
 * **Max Length** – The maximum number of characters the field can contain
 * **Allow line breaks** – Whether or not to allow line breaks in this field
 
+
 ## The Field
 
 Plain Text fields will either show a normal text input or a multi-line textarea, depending on whether the “Allow line breaks” setting was checked.
