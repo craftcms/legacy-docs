@@ -122,47 +122,47 @@ public static function find()
 Check your code for any database queries that involve your component’s table. They will need to be updated as well.
 
 - When selecting data from your table, make sure that you’re ignoring rows with a `dateDeleted` value.
-    
-    ```php{4}
-    $results = (new \craft\db\Query())
+
+  ```php{4}
+  $results = (new \craft\db\Query())
       ->select(['...'])
       ->from(['{{%tableName}}'])
       ->where(['dateDeleted' => null])
       ->all();
-    ```
+  ```
 
 - When deleting rows from your table using your Active Record class, call its new `softDelete()` method rather than [delete()](api:yii\db\ActiveRecord::delete()).
-    
-    ```php
-    $record->softDelete();
-    ```
+
+  ```php
+  $record->softDelete();
+  ```
 
 - When deleting rows from your table using a query command, call <api:craft\db\Command::softDelete()> rather than [delete()](api:yii\db\Command::delete()).
-    
-    ```php
-    \Craft::$app->db->createCommand()
+
+  ```php
+  \Craft::$app->db->createCommand()
       ->softDelete('{{%tablename}}', ['id' => $id])
       ->execute(); 
-    ```
+  ```
 
 ## Restoring Soft-Deleted Rows
 
 There are two ways to restore soft-deleted rows that haven’t been hard-deleted by garbage collection yet:
 
 - With your Active Record class, by calling its `restore()` method.
-    
-    ```php
-    $record = MyRecord::findTrashed()
+
+  ```php
+  $record = MyRecord::findTrashed()
         ->where(['id' => $id])
         ->one();
-    
+
     $record->restore();
-    ```
+  ```
 
 - With a query command, by calling <api:craft\db\Command::restore()>.
-    
-    ```php
-    \Craft::$app->db->createCommand()
+
+  ```php
+  \Craft::$app->db->createCommand()
       ->restore('{{%tablename}}', ['id' => $id])
       ->execute();
-    ```
+  ```
