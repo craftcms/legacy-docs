@@ -81,7 +81,7 @@ return [
 ];
 ```
 
-`EntryFixture`EntryFixture will define `$this->sectionIds` with all section handles as key. It will also define `$this->typeIds` with all section handles as the first key and the entry type handles as the second key.
+`EntryFixture` will define `$this->sectionIds` with all section handles as key. It will also define `$this->typeIds` with all section handles as the first key and the entry type handles as the second key.
 
 The primary keys are: `siteId`, `sectionId`, `typeId` and `title`.
 
