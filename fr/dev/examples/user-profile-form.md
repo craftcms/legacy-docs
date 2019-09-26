@@ -208,7 +208,6 @@ Keep in mind that there is a custom Bio field included in this example, so if yo
 We’ll walk through the advanced form example step by step.
 
 #### Require Login
-
 ```twig
 {% requireLogin %}
 ```
