@@ -21,7 +21,6 @@ Possible values include:
 | `'*"foo"*'`     | with a `foo` option checked.    |
 | `'not *"foo"*'` | without a `foo` option checked. |
 
-
 ```twig
 {# Fetch entries with the 'foo' option checked #}
 {% set entries = craft.entries()
