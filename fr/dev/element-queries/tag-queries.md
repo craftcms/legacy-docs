@@ -3,17 +3,14 @@
 You can fetch tags in your templates or PHP code using **tag queries**.
 
 ::: code
-
 ```twig
 {# Create a new tag query #}
 {% set myTagQuery = craft.tags() %}
 ```
-
 ```php
 // Create a new tag query
 $myTagQuery = \craft\elements\Tag::find();
 ```
-
 :::
 
 Once you’ve created a tag query, you can set [parameters](#parameters) on it to narrow down the results, and then [execute it](README.md#executing-element-queries) by calling `.all()`. An array of [Tag](api:craft\elements\Tag) objects will be returned.
@@ -55,8 +52,11 @@ Tag queries support the following parameters:
 
 Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch all tags, regardless of status #}
 {% set tags = craft.tags()
@@ -70,15 +70,18 @@ $tags = \craft\elements\Tag::find()
     ->anyStatus()
     ->all();
 ```
-
 :::
+
 
 ### `asArray`
 
 Causes the query to return matching tags as arrays of data, rather than [Tag](api:craft\elements\Tag) objects.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch tags as arrays #}
 {% set tags = craft.tags()
@@ -92,12 +95,14 @@ $tags = \craft\elements\Tag::find()
     ->asArray()
     ->all();
 ```
-
 :::
+
 
 ### `dateCreated`
 
 Narrows the query results based on the tags’ creation dates.
+
+
 
 Possible values include:
 
@@ -108,8 +113,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch tags created last month #}
 {% set start = date('first day of last month')|atom %}
@@ -129,12 +134,14 @@ $tags = \craft\elements\Tag::find()
     ->dateCreated(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `dateUpdated`
 
 Narrows the query results based on the tags’ last-updated dates.
+
+
 
 Possible values include:
 
@@ -145,8 +152,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch tags updated in the last week #}
 {% set lastWeek = date('1 week ago')|atom %}
@@ -164,12 +171,14 @@ $tags = \craft\elements\Tag::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
 ```
-
 :::
+
 
 ### `draftCreator`
 
 Narrows the query results to only drafts created by a given user.
+
+
 
 Possible values include:
 
@@ -179,8 +188,8 @@ Possible values include:
 | a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts by the current user #}
 {% set tags = craft.tags()
@@ -194,12 +203,14 @@ $tags = \craft\elements\Tag::find()
     ->draftCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `draftId`
 
 Narrows the query results based on the tags’ draft’s ID (from the `drafts` table).
+
+
 
 Possible values include:
 
@@ -208,8 +219,8 @@ Possible values include:
 | `1`   | for the draft with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a draft #}
 {% set tags = craft.tags()
@@ -223,12 +234,14 @@ $tags = \craft\elements\Tag::find()
     ->draftIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `draftOf`
 
 Narrows the query results to only drafts of a given tag.
+
+
 
 Possible values include:
 
@@ -238,8 +251,8 @@ Possible values include:
 | a [Tag](api:craft\elements\Tag) object | for the tag represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts of the tag #}
 {% set tags = craft.tags()
@@ -253,15 +266,18 @@ $tags = \craft\elements\Tag::find()
     ->draftOf($myTag)
     ->all();
 ```
-
 :::
+
 
 ### `drafts`
 
 Narrows the query results to only drafts tags.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a draft tag #}
 {% set tags = {twig-function}
@@ -277,15 +293,18 @@ $tags = \craft\elements\Tag::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `fixedOrder`
 
 Causes the query results to be returned in the order specified by [id](#id).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch tags in a specific order #}
 {% set tags = craft.tags()
@@ -301,8 +320,8 @@ $tags = \craft\elements\Tag::find()
     ->fixedOrder()
     ->all();
 ```
-
 :::
+
 
 ### `group`
 
@@ -319,8 +338,8 @@ Possible values include:
 | a [TagGroup](api:craft\models\TagGroup) object | in a group represented by the object.           |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch tags in the Foo group #}
 {% set tags = craft.tags()
@@ -334,8 +353,8 @@ $tags = \craft\elements\Tag::find()
     ->group('foo')
     ->all();
 ```
-
 :::
+
 
 ### `groupId`
 
@@ -351,8 +370,8 @@ Possible values include:
 | `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch tags in the group with an ID of 1 #}
 {% set tags = craft.tags()
@@ -366,12 +385,14 @@ $tags = \craft\elements\Tag::find()
     ->groupId(1)
     ->all();
 ```
-
 :::
+
 
 ### `id`
 
 Narrows the query results based on the tags’ IDs.
+
+
 
 Possible values include:
 
@@ -383,8 +404,8 @@ Possible values include:
 | `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch the tag by its ID #}
 {% set tag = craft.tags()
@@ -398,21 +419,35 @@ $tag = \craft\elements\Tag::find()
     ->id(1)
     ->one();
 ```
-
 :::
 
+
+
 ::: tip This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order. :::
+
 
 ### `ignorePlaceholders`
 
 Causes the query to return matching tags as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
+
+
+
+
+
+
+
+
+
 ### `inReverse`
 
 Causes the query results to be returned in reverse order.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch tags in reverse #}
 {% set tags = craft.tags()
@@ -426,15 +461,16 @@ $tags = \craft\elements\Tag::find()
     ->inReverse()
     ->all();
 ```
-
 :::
+
 
 ### `limit`
 
 Determines the number of tags that should be returned.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch up to 10 tags  #}
 {% set tags = craft.tags()
@@ -448,15 +484,16 @@ $tags = \craft\elements\Tag::find()
     ->limit(10)
     ->all();
 ```
-
 :::
+
 
 ### `offset`
 
 Determines how many tags should be skipped in the results.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all tags except for the first 3 #}
 {% set tags = craft.tags()
@@ -470,15 +507,16 @@ $tags = \craft\elements\Tag::find()
     ->offset(3)
     ->all();
 ```
-
 :::
+
 
 ### `orderBy`
 
 Determines the order that the tags should be returned in.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all tags in order of date created #}
 {% set tags = craft.tags()
@@ -492,19 +530,22 @@ $tags = \craft\elements\Tag::find()
     ->orderBy('dateCreated asc')
     ->all();
 ```
-
 :::
+
 
 ### `preferSites`
 
 If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
 
+
+
 For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique tags from Site A, or Site B if they don’t exist in Site A #}
 {% set tags = craft.tags()
@@ -522,17 +563,20 @@ $tags = \craft\elements\Tag::find()
     ->preferSites(['a', 'b'])
     ->all();
 ```
-
 :::
+
 
 ### `relatedTo`
 
 Narrows the query results to only tags that are related to certain other elements.
 
+
+
 See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all tags that are related to myCategory #}
 {% set tags = craft.tags()
@@ -546,12 +590,14 @@ $tags = \craft\elements\Tag::find()
     ->relatedTo($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `revisionCreator`
 
 Narrows the query results to only revisions created by a given user.
+
+
 
 Possible values include:
 
@@ -561,8 +607,8 @@ Possible values include:
 | a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions by the current user #}
 {% set tags = craft.tags()
@@ -576,12 +622,14 @@ $tags = \craft\elements\Tag::find()
     ->revisionCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `revisionId`
 
 Narrows the query results based on the tags’ revision’s ID (from the `revisions` table).
+
+
 
 Possible values include:
 
@@ -590,8 +638,8 @@ Possible values include:
 | `1`   | for the revision with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a revision #}
 {% set tags = craft.tags()
@@ -605,12 +653,14 @@ $tags = \craft\elements\Tag::find()
     ->revisionIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `revisionOf`
 
 Narrows the query results to only revisions of a given tag.
+
+
 
 Possible values include:
 
@@ -620,8 +670,8 @@ Possible values include:
 | a [Tag](api:craft\elements\Tag) object | for the tag represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions of the tag #}
 {% set tags = craft.tags()
@@ -635,15 +685,18 @@ $tags = \craft\elements\Tag::find()
     ->revisionOf($myTag)
     ->all();
 ```
-
 :::
+
 
 ### `revisions`
 
 Narrows the query results to only revision tags.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a revision tag #}
 {% set tags = {twig-function}
@@ -659,17 +712,20 @@ $tags = \craft\elements\Tag::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `search`
 
 Narrows the query results to only tags that match a search query.
 
+
+
 See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -689,12 +745,14 @@ $tags = \craft\elements\Tag::find()
     ->search($searchQuery)
     ->all();
 ```
-
 :::
+
 
 ### `site`
 
 Determines which site(s) the tags should be queried in.
+
+
 
 The current site will be used by default.
 
@@ -708,11 +766,11 @@ Possible values include:
 | a `\craft\elements\db\Site` object | from the site represented by the object.       |
 | `'*'`                                  | from any site.                                 |
 
-
 ::: tip If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this. :::
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch tags from the Foo site #}
 {% set tags = craft.tags()
@@ -726,17 +784,20 @@ $tags = \craft\elements\Tag::find()
     ->site('foo')
     ->all();
 ```
-
 :::
+
 
 ### `siteId`
 
 Determines which site(s) the tags should be queried in, per the site’s ID.
 
+
+
 The current site will be used by default.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch tags from the site with an ID of 1 #}
 {% set tags = craft.tags()
@@ -750,12 +811,14 @@ $tags = \craft\elements\Tag::find()
     ->siteId(1)
     ->all();
 ```
-
 :::
+
 
 ### `title`
 
 Narrows the query results based on the tags’ titles.
+
+
 
 Possible values include:
 
@@ -770,8 +833,8 @@ Possible values include:
 | `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch tags with a title that contains "Foo" #}
 {% set tags = craft.tags()
@@ -785,15 +848,18 @@ $tags = \craft\elements\Tag::find()
     ->title('*Foo*')
     ->all();
 ```
-
 :::
+
 
 ### `trashed`
 
 Narrows the query results to only tags that have been soft-deleted.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch trashed tags #}
 {% set tags = craft.tags()
@@ -807,15 +873,18 @@ $tags = \craft\elements\Tag::find()
     ->trashed()
     ->all();
 ```
-
 :::
+
 
 ### `uid`
 
 Narrows the query results based on the tags’ UIDs.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch the tag by its UID #}
 {% set tag = craft.tags()
@@ -829,17 +898,20 @@ $tag = \craft\elements\Tag::find()
     ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     ->one();
 ```
-
 :::
+
 
 ### `unique`
 
 Determines whether only elements with unique IDs should be returned by the query.
 
+
+
 This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique tags across all sites #}
 {% set tags = craft.tags()
@@ -855,12 +927,14 @@ $tags = \craft\elements\Tag::find()
     ->unique()
     ->all();
 ```
-
 :::
+
 
 ### `uri`
 
 Narrows the query results based on the tags’ URIs.
+
+
 
 Possible values include:
 
@@ -875,8 +949,8 @@ Possible values include:
 | `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Get the requested URI #}
 {% set requestedUri = craft.app.request.getPathInfo() %}
@@ -896,17 +970,20 @@ $tag = \craft\elements\Tag::find()
     ->uri(\craft\helpers\Db::escapeParam($requestedUri))
     ->one();
 ```
-
 :::
+
 
 ### `with`
 
 Causes the query to return matching tags eager-loaded with related elements.
 
+
+
 See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch tags eager-loaded with the "Related" field’s relations #}
 {% set tags = craft.tags()
@@ -920,7 +997,9 @@ $tags = \craft\elements\Tag::find()
     ->with(['related'])
     ->all();
 ```
-
 :::
 
+
+
 <!-- END PARAMS -->
+
