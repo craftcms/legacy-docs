@@ -6,16 +6,16 @@ Some settings should be defined on a per-environment basis. For example, when de
 
 Some settings in the Control Panel can be set to environment variables (like the ones defined in your `.env` file):
 
-- General Settings 
+- General Settings
   - **System Name**
-- Sites 
+- Sites
   - **Base URL**
-- Sections 
+- Sections
   - **Preview Target URIs**
-- Asset Volumes 
+- Asset Volumes
   - **Base URL**
   - **File System Path** (Local)
-- Email 
+- Email
   - **System Email Address**
   - **Sender Name**
   - **HTML Email Template**
@@ -42,7 +42,6 @@ For example, you can define a `ROOT_URL` environment variable that is set to the
 # -- .env --
 ROOT_URL="http://my-project.test"
 ```
-
 Then create a `@rootUrl` alias that references it:
 
 ```php
