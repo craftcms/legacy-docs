@@ -22,11 +22,10 @@ Then run the following command to generate a new migration file for your plugin 
 
 ::: code
 
-```bash Plugin Migration ./craft migrate/create <migration_name> --plugin=<plugin-handle>
+```bash Plugin Migration
+<br />```bash Content Migration
+    ./craft migrate/create &lt;migration_name&gt;
 
-    <br />```bash Content Migration
-    ./craft migrate/create <migration_name>
-    
 
 :::
 
@@ -56,11 +55,7 @@ $this->db->createCommand()
 $this->insert('{{%tablename}}', $rows);
 ```
 
-::: warning The <api:api:yii\db\Migration::insert()>, [batchInsert()](api:craft\db\Migration::batchInsert()), and [update()](api:yii\db\Migration::update()) migration methods will automatically insert/update data in the `dateCreated`, `dateUpdated`, `uid` table columns in addition to whatever you specified in the `$columns` argument. If the table you’re working with does’t have those columns, make sure you pass `false` to the `$includeAuditColumns` argument so you don’t get a SQL error. :::
-
-::: tip <api:craft\db\Migration> doesn’t have a method for *selecting* data, so you will still need to go through Yii’s [Query Builder](https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder) for that.
-
-```php
+```bash Content Migration
 use craft\db\Query;
 
 $result = (new Query())
@@ -70,27 +65,91 @@ $result = (new Query())
 
 :::
 
+::: tip <api:craft\db\Migration> doesn’t have a method for *selecting* data, so you will still need to go through Yii’s [Query Builder](https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder) for that.
+
+:::
+
 ### Logging
 
 If you want to log any messages in your migration code, echo it out rather than calling [Craft::info()](api:yii\BaseYii::info()):
+
+If the migration is being run from a console request, this will ensure the message is seen by whoever is executing the migration, as the message will be output into the terminal. If it’s a web request, Craft will capture it and log it to `storage/logs/` just as if you had used `Craft::info()`.
+
+You can have Craft apply your new migration from the terminal:
+
+### Setting Default Project Config Data
+
+::: code
 
 ```php
 echo "    > some note\n";
 ```
 
-If the migration is being run from a console request, this will ensure the message is seen by whoever is executing the migration, as the message will be output into the terminal. If it’s a web request, Craft will capture it and log it to `storage/logs/` just as if you had used `Craft::info()`.
+Craft will also check for new plugin migrations on Control Panel requests, for any plugins that have a new [schema version](api:craft\base\PluginTrait::$schemaVersion), and content migrations can be applied from the Control Panel by going to Utilities → Migrations.
+
+Plugins can have a special “Install” migration which handles the installation and uninstallation of the plugin. Install migrations live at `migrations/Install.php` alongside normal migrations. They should follow this template:
+
+```php
+<br />```bash Content Migration
+    ./craft migrate/up
+
+
+:::
+
+Or you can have Craft apply all new migrations across all migration tracks:
+
+```bash
+./craft migrate/all
+```
+:::
+
+### Logging
+
+When a plugin has an Install migration, its `safeUp()` method will be called when the plugin is installed, and its `safeDown()` method will be called when the plugin is uninstalled (invoked by the plugin’s [install()](api:craft\base\Plugin::install()) and [uninstall()](api:craft\base\Plugin::uninstall()) methods).
+
+```php
+<?php
+namespace ns\prefix\migrations;
+
+use craft\db\Migration;
+
+class Install extends Migration
+{
+    public function safeUp()
+    {
+        // ...
+    }
+
+    public function safeDown()
+    {
+        // ...
+    }
+}
+```
+
+::: tip It is *not* a plugin’s responsibility to manage its row in the `plugins` database table. Craft takes care of that for you. :::
 
 ## Executing Migrations
 
-You can have Craft apply your new migration from the terminal:
+If you want to add things to the [project config](project-config.md) on install, either directly or via your plugin’s API, be sure to only do that if the incoming `project.yaml` file doesn’t already have a record of your plugin.
 
-::: code
+That’s because there’s a chance that your plugin is being installed as part of a project config sync, and if its Install migration were to make any project config changes of its own, they would overwrite all of the incoming changes from `project.yaml`.
 
-```bash Plugin Migration ./craft migrate/up --plugin=<plugin-handle>
+```bash Plugin Migration
+./craft migrate/create install --plugin=<plugin-handle>
+```
 
-    <br />```bash Content Migration
-    ./craft migrate/up
-    
+```bash Content Migration
+public function safeUp()
+{
+    // ...
+
+    // Don't make the same config changes twice
+    if (Craft::$app->projectConfig->get('plugins.<plugin-handle>', true) === null) {
+        // Make the config changes here...
+    }
+}
+```
 
 :::
 
