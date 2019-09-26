@@ -36,3 +36,4 @@ The following template can be used to provide an Atom 1.0 feed on your site. It 
     {% endfor %}
 </feed>
 ```
+
