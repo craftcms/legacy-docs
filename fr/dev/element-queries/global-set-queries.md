@@ -3,17 +3,14 @@
 You can fetch global sets in your templates or PHP code using **global set queries**.
 
 ::: code
-
 ```twig
 {# Create a new global set query #}
 {% set myGlobalSetQuery = craft.globalSets() %}
 ```
-
 ```php
 // Create a new global set query
 $myGlobalSetQuery = \craft\elements\GlobalSet::find();
 ```
-
 :::
 
 Once you’ve created a global set query, you can set [parameters](#parameters) on it to narrow down the results, and then [execute it](README.md#executing-element-queries) by calling `.all()`. An array of [GlobalSet](api:craft\elements\GlobalSet) objects will be returned.
@@ -54,8 +51,11 @@ Global set queries support the following parameters:
 
 Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch all global sets, regardless of status #}
 {% set globalSets = craft.globalSets()
@@ -69,15 +69,18 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->anyStatus()
     ->all();
 ```
-
 :::
+
 
 ### `asArray`
 
 Causes the query to return matching global sets as arrays of data, rather than [GlobalSet](api:craft\elements\GlobalSet) objects.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch global sets as arrays #}
 {% set globalSets = craft.globalSets()
@@ -91,12 +94,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->asArray()
     ->all();
 ```
-
 :::
+
 
 ### `dateCreated`
 
 Narrows the query results based on the global sets’ creation dates.
+
+
 
 Possible values include:
 
@@ -107,8 +112,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch global sets created last month #}
 {% set start = date('first day of last month')|atom %}
@@ -128,12 +133,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->dateCreated(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `dateUpdated`
 
 Narrows the query results based on the global sets’ last-updated dates.
+
+
 
 Possible values include:
 
@@ -144,8 +151,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch global sets updated in the last week #}
 {% set lastWeek = date('1 week ago')|atom %}
@@ -163,12 +170,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
 ```
-
 :::
+
 
 ### `draftCreator`
 
 Narrows the query results to only drafts created by a given user.
+
+
 
 Possible values include:
 
@@ -178,8 +187,8 @@ Possible values include:
 | a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts by the current user #}
 {% set globalSets = craft.globalSets()
@@ -193,12 +202,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->draftCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `draftId`
 
 Narrows the query results based on the global sets’ draft’s ID (from the `drafts` table).
+
+
 
 Possible values include:
 
@@ -207,8 +218,8 @@ Possible values include:
 | `1`   | for the draft with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a draft #}
 {% set globalSets = craft.globalSets()
@@ -222,12 +233,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->draftIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `draftOf`
 
 Narrows the query results to only drafts of a given global set.
+
+
 
 Possible values include:
 
@@ -237,8 +250,8 @@ Possible values include:
 | a [GlobalSet](api:craft\elements\GlobalSet) object | for the global set represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts of the global set #}
 {% set globalSets = craft.globalSets()
@@ -252,15 +265,18 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->draftOf($myGlobalSet)
     ->all();
 ```
-
 :::
+
 
 ### `drafts`
 
 Narrows the query results to only drafts global sets.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a draft global set #}
 {% set globalSets = {twig-function}
@@ -276,15 +292,18 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `fixedOrder`
 
 Causes the query results to be returned in the order specified by [id](#id).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch global sets in a specific order #}
 {% set globalSets = craft.globalSets()
@@ -300,8 +319,8 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->fixedOrder()
     ->all();
 ```
-
 :::
+
 
 ### `handle`
 
@@ -317,8 +336,8 @@ Possible values include:
 | `['not', 'foo', 'bar']` | not with a handle of `foo` or `bar`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch the global set with a handle of 'foo' #}
 {% set globalSet = craft.globalSets()
@@ -332,12 +351,14 @@ $globalSet = \craft\elements\GlobalSet::find()
     ->handle('foo')
     ->one();
 ```
-
 :::
+
 
 ### `id`
 
 Narrows the query results based on the global sets’ IDs.
+
+
 
 Possible values include:
 
@@ -349,8 +370,8 @@ Possible values include:
 | `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch the global set by its ID #}
 {% set globalSet = craft.globalSets()
@@ -364,21 +385,35 @@ $globalSet = \craft\elements\GlobalSet::find()
     ->id(1)
     ->one();
 ```
-
 :::
 
+
+
 ::: tip This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order. :::
+
 
 ### `ignorePlaceholders`
 
 Causes the query to return matching global sets as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
+
+
+
+
+
+
+
+
+
 ### `inReverse`
 
 Causes the query results to be returned in reverse order.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch global sets in reverse #}
 {% set globalSets = craft.globalSets()
@@ -392,15 +427,16 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->inReverse()
     ->all();
 ```
-
 :::
+
 
 ### `limit`
 
 Determines the number of global sets that should be returned.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch up to 10 global sets  #}
 {% set globalSets = craft.globalSets()
@@ -414,15 +450,16 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->limit(10)
     ->all();
 ```
-
 :::
+
 
 ### `offset`
 
 Determines how many global sets should be skipped in the results.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all global sets except for the first 3 #}
 {% set globalSets = craft.globalSets()
@@ -436,15 +473,16 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->offset(3)
     ->all();
 ```
-
 :::
+
 
 ### `orderBy`
 
 Determines the order that the global sets should be returned in.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all global sets in order of date created #}
 {% set globalSets = craft.globalSets()
@@ -458,19 +496,22 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->orderBy('dateCreated asc')
     ->all();
 ```
-
 :::
+
 
 ### `preferSites`
 
 If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
 
+
+
 For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique global sets from Site A, or Site B if they don’t exist in Site A #}
 {% set globalSets = craft.globalSets()
@@ -488,17 +529,20 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->preferSites(['a', 'b'])
     ->all();
 ```
-
 :::
+
 
 ### `relatedTo`
 
 Narrows the query results to only global sets that are related to certain other elements.
 
+
+
 See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all global sets that are related to myCategory #}
 {% set globalSets = craft.globalSets()
@@ -512,12 +556,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->relatedTo($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `revisionCreator`
 
 Narrows the query results to only revisions created by a given user.
+
+
 
 Possible values include:
 
@@ -527,8 +573,8 @@ Possible values include:
 | a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions by the current user #}
 {% set globalSets = craft.globalSets()
@@ -542,12 +588,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->revisionCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `revisionId`
 
 Narrows the query results based on the global sets’ revision’s ID (from the `revisions` table).
+
+
 
 Possible values include:
 
@@ -556,8 +604,8 @@ Possible values include:
 | `1`   | for the revision with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a revision #}
 {% set globalSets = craft.globalSets()
@@ -571,12 +619,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->revisionIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `revisionOf`
 
 Narrows the query results to only revisions of a given global set.
+
+
 
 Possible values include:
 
@@ -586,8 +636,8 @@ Possible values include:
 | a [GlobalSet](api:craft\elements\GlobalSet) object | for the global set represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions of the global set #}
 {% set globalSets = craft.globalSets()
@@ -601,15 +651,18 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->revisionOf($myGlobalSet)
     ->all();
 ```
-
 :::
+
 
 ### `revisions`
 
 Narrows the query results to only revision global sets.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a revision global set #}
 {% set globalSets = {twig-function}
@@ -625,17 +678,20 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `search`
 
 Narrows the query results to only global sets that match a search query.
 
+
+
 See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -655,12 +711,14 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->search($searchQuery)
     ->all();
 ```
-
 :::
+
 
 ### `site`
 
 Determines which site(s) the global sets should be queried in.
+
+
 
 The current site will be used by default.
 
@@ -674,11 +732,11 @@ Possible values include:
 | a `\craft\elements\db\Site` object | from the site represented by the object.       |
 | `'*'`                                  | from any site.                                 |
 
-
 ::: tip If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this. :::
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch global sets from the Foo site #}
 {% set globalSets = craft.globalSets()
@@ -692,17 +750,20 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->site('foo')
     ->all();
 ```
-
 :::
+
 
 ### `siteId`
 
 Determines which site(s) the global sets should be queried in, per the site’s ID.
 
+
+
 The current site will be used by default.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch global sets from the site with an ID of 1 #}
 {% set globalSets = craft.globalSets()
@@ -716,15 +777,18 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->siteId(1)
     ->all();
 ```
-
 :::
+
 
 ### `trashed`
 
 Narrows the query results to only global sets that have been soft-deleted.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch trashed global sets #}
 {% set globalSets = craft.globalSets()
@@ -738,15 +802,18 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->trashed()
     ->all();
 ```
-
 :::
+
 
 ### `uid`
 
 Narrows the query results based on the global sets’ UIDs.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch the global set by its UID #}
 {% set globalSet = craft.globalSets()
@@ -760,17 +827,20 @@ $globalSet = \craft\elements\GlobalSet::find()
     ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     ->one();
 ```
-
 :::
+
 
 ### `unique`
 
 Determines whether only elements with unique IDs should be returned by the query.
 
+
+
 This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique global sets across all sites #}
 {% set globalSets = craft.globalSets()
@@ -786,17 +856,20 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->unique()
     ->all();
 ```
-
 :::
+
 
 ### `with`
 
 Causes the query to return matching global sets eager-loaded with related elements.
 
+
+
 See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch global sets eager-loaded with the "Related" field’s relations #}
 {% set globalSets = craft.globalSets()
@@ -810,7 +883,9 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->with(['related'])
     ->all();
 ```
-
 :::
 
+
+
 <!-- END PARAMS -->
+
