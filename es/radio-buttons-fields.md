@@ -23,7 +23,6 @@ Possible values include:
 | `['foo', 'bar']`        | with either a `foo` or `bar` option selected.    |
 | `['not', 'foo', 'bar']` | without either a `foo` or `bar` option selected. |
 
-
 ```twig
 {# Fetch entries with the 'foo' option selected #}
 {% set entries = craft.entries()
