@@ -1,15 +1,12 @@
 # Fixtures
-
 Fixtures are used to setup data in a test suite that is predictable and the same for each test run (so assertions can be conducted based on this data). They can be defined in the `fixturesMethod` [defined](../framework/config-options.md) in the `codeception.yml` file. In the [Yii2 docs](https://www.yiiframework.com/doc/guide/2.0/en/test-fixtures#defining-a-fixture) you can read about fixture classes and fixture data as well as how these can be setup/used for testing.
 
 To setup fixtures Create a folder called `fixtures` in your `tests` folder. In this folder we will put our fixture classes and fixture data
 
 ## Craft specific data
-
 For traditional database rows regular fixtures will suffice. However Craft introduces several concepts of its own, these come attached to some complicated linked data structures that are very difficult to manage with regular fixtures.
 
 ### Element fixtures
-
 Element types are one of Craft's main selling points for developers. They yield a lot of power. That power is courtesy of a complicated data structure and set of api's. A by-product of this is that some heavy lifting is required if element types are to be defined in a single fixture and data file. For this reason support is provided out of the box for setting up various element types.
 
 Provide your own custom element type? You can extend `craft\test\fixtures\elements\ElementFixture` to provide developers using your module/plugin support for their testing code - or just provide yourself support for testing your own module/plugin.
@@ -88,6 +85,7 @@ return [
 
 The primary keys are: `siteId`, `sectionId`, `typeId` and `title`.
 
+
 ### `Global set fixture`
 
 Extend `craft\test\fixtures\elements\GlobalSetFixture` to add Global Sets.
@@ -154,7 +152,7 @@ If you pass a `fieldLayoutType` into any class that extends the base `ElementFix
 
 If you want to set custom field values you can simply include those into your fixture data file (the examples as shown above). Here's an example of a fixture data file that is creating an entry with a title and some custom fields:
 
-```php
+````php
 <?php
 return [
     [
@@ -190,12 +188,10 @@ return [
     ]
 ];
 
-```
+````
 
 ### Field layout fixtures
-
 Another Craft specific concept is field layouts. Field layouts consist of
-
 - The layouts themselves
 - Tabs
 - Fields
