@@ -57,7 +57,7 @@ Invoke the `consoleCommand` method as follows.
 ```php
 <br />public function testSomething()
 {
-    $this-&gt;consoleCommand('test-controller/test-action');
+    $this->consoleCommand('test-controller/test-action');
 }
 
 
