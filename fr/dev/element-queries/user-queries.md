@@ -3,17 +3,14 @@
 You can fetch users in your templates or PHP code using **user queries**.
 
 ::: code
-
 ```twig
 {# Create a new user query #}
 {% set myUserQuery = craft.users() %}
 ```
-
 ```php
 // Create a new user query
 $myUserQuery = \craft\elements\User::find();
 ```
-
 :::
 
 Once you’ve created a user query, you can set [parameters](#parameters) on it to narrow down the results, and then [execute it](README.md#executing-element-queries) by calling `.all()`. An array of [User](api:craft\elements\User) objects will be returned.
@@ -55,8 +52,9 @@ User queries support the following parameters:
 
 Narrows the query results to only users that have admin accounts.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch admins #}
 {% set elements = craft.queryFunction()
@@ -70,15 +68,18 @@ $elements = ElementClass::find()
     ->admin()
     ->all();
 ```
-
 :::
+
 
 ### `anyStatus`
 
 Clears out the [status](#status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch all elements, regardless of status #}
 {% set elements = craft.queryFunction()
@@ -92,15 +93,18 @@ $elements = ElementClass::find()
     ->anyStatus()
     ->all();
 ```
-
 :::
+
 
 ### `asArray`
 
 Causes the query to return matching elements as arrays of data, rather than ElementClass objects.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch elements as arrays #}
 {% set elements = craft.queryFunction()
@@ -114,8 +118,8 @@ $elements = ElementClass::find()
     ->asArray()
     ->all();
 ```
-
 :::
+
 
 ### `can`
 
@@ -123,8 +127,9 @@ Narrows the query results to only users that have a certain user permission, eit
 
 See [Users](https://docs.craftcms.com/v3/users.html) for a full list of available user permissions defined by Craft.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch users that can access the Control Panel #}
 {% set elements = craft.queryFunction()
@@ -138,12 +143,14 @@ $elements = ElementClass::find()
     ->can('accessCp')
     ->all();
 ```
-
 :::
+
 
 ### `dateCreated`
 
 Narrows the query results based on the elements’ creation dates.
+
+
 
 Possible values include:
 
@@ -154,8 +161,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch elements created last month #}
 {% set start = date('first day of last month')|atom %}
@@ -175,12 +182,14 @@ $elements = ElementClass::find()
     ->dateCreated(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `dateUpdated`
 
 Narrows the query results based on the elements’ last-updated dates.
+
+
 
 Possible values include:
 
@@ -191,8 +200,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch elements updated in the last week #}
 {% set lastWeek = date('1 week ago')|atom %}
@@ -210,12 +219,14 @@ $elements = ElementClass::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
 ```
-
 :::
+
 
 ### `draftCreator`
 
 Narrows the query results to only drafts created by a given user.
+
+
 
 Possible values include:
 
@@ -225,8 +236,8 @@ Possible values include:
 | a [craft\elements\User](api:craft\elements\User) object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts by the current user #}
 {% set elements = craft.queryFunction()
@@ -240,12 +251,14 @@ $elements = ElementClass::find()
     ->draftCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `draftId`
 
 Narrows the query results based on the elements’ draft’s ID (from the `drafts` table).
+
+
 
 Possible values include:
 
@@ -254,8 +267,8 @@ Possible values include:
 | `1`   | for the draft with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a draft #}
 {% set elements = craft.queryFunction()
@@ -269,12 +282,14 @@ $elements = ElementClass::find()
     ->draftIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `draftOf`
 
 Narrows the query results to only drafts of a given element.
+
+
 
 Possible values include:
 
@@ -284,8 +299,8 @@ Possible values include:
 | a ElementClass object | for the element represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts of the element #}
 {% set elements = craft.queryFunction()
@@ -299,15 +314,18 @@ $elements = ElementClass::find()
     ->draftOf($myElement)
     ->all();
 ```
-
 :::
+
 
 ### `drafts`
 
 Narrows the query results to only drafts elements.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a draft element #}
 {% set elements = {twig-function}
@@ -323,8 +341,8 @@ $elements = ElementClass::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `email`
 
@@ -339,8 +357,8 @@ Possible values include:
 | `'*@bar.baz'`       | with an email that ends with `@bar.baz`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch users with a .co.uk domain on their email address #}
 {% set elements = craft.queryFunction()
@@ -354,8 +372,8 @@ $elements = ElementClass::find()
     ->email('*.co.uk')
     ->all();
 ```
-
 :::
+
 
 ### `firstName`
 
@@ -369,8 +387,8 @@ Possible values include:
 | `'not Jane'` | not with a first name of `Jane`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch all the Jane's #}
 {% set elements = craft.queryFunction()
@@ -384,15 +402,18 @@ $elements = ElementClass::find()
     ->firstName('Jane')
     ->one();
 ```
-
 :::
+
 
 ### `fixedOrder`
 
 Causes the query results to be returned in the order specified by [id](#id).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch elements in a specific order #}
 {% set elements = craft.queryFunction()
@@ -408,8 +429,8 @@ $elements = ElementClass::find()
     ->fixedOrder()
     ->all();
 ```
-
 :::
+
 
 ### `group`
 
@@ -426,8 +447,8 @@ Possible values include:
 | a [UserGroup](api:craft\models\UserGroup) object | in a group represented by the object.           |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch elements in the Foo user group #}
 {% set elements = craft.queryFunction()
@@ -441,8 +462,8 @@ $elements = ElementClass::find()
     ->group('foo')
     ->all();
 ```
-
 :::
+
 
 ### `groupId`
 
@@ -458,8 +479,8 @@ Possible values include:
 | `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch elements in a group with an ID of 1 #}
 {% set elements = craft.queryFunction()
@@ -473,12 +494,14 @@ $elements = ElementClass::find()
     ->groupId(1)
     ->all();
 ```
-
 :::
+
 
 ### `id`
 
 Narrows the query results based on the elements’ IDs.
+
+
 
 Possible values include:
 
@@ -490,8 +513,8 @@ Possible values include:
 | `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch the element by its ID #}
 {% set element = craft.queryFunction()
@@ -505,21 +528,35 @@ $element = ElementClass::find()
     ->id(1)
     ->one();
 ```
-
 :::
 
+
+
 ::: tip This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order. :::
+
 
 ### `ignorePlaceholders`
 
 Causes the query to return matching elements as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
+
+
+
+
+
+
+
+
+
 ### `inReverse`
 
 Causes the query results to be returned in reverse order.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch elements in reverse #}
 {% set elements = craft.queryFunction()
@@ -533,8 +570,8 @@ $elements = ElementClass::find()
     ->inReverse()
     ->all();
 ```
-
 :::
+
 
 ### `lastLoginDate`
 
@@ -549,8 +586,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that last logged-in between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch elements that logged in recently #}
 {% set aWeekAgo = date('7 days ago')|atom %}
@@ -568,8 +605,8 @@ $elements = ElementClass::find()
     ->lastLoginDate(">= {$aWeekAgo}")
     ->all();
 ```
-
 :::
+
 
 ### `lastName`
 
@@ -583,8 +620,8 @@ Possible values include:
 | `'not Doe'` | not with a last name of `Doe`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch all the Doe's #}
 {% set elements = craft.queryFunction()
@@ -598,15 +635,16 @@ $elements = ElementClass::find()
     ->lastName('Doe')
     ->one();
 ```
-
 :::
+
 
 ### `limit`
 
 Determines the number of elements that should be returned.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch up to 10 elements  #}
 {% set elements = craft.queryFunction()
@@ -620,15 +658,16 @@ $elements = ElementClass::find()
     ->limit(10)
     ->all();
 ```
-
 :::
+
 
 ### `offset`
 
 Determines how many elements should be skipped in the results.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all elements except for the first 3 #}
 {% set elements = craft.queryFunction()
@@ -642,15 +681,16 @@ $elements = ElementClass::find()
     ->offset(3)
     ->all();
 ```
-
 :::
+
 
 ### `orderBy`
 
 Determines the order that the elements should be returned in.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all elements in order of date created #}
 {% set elements = craft.queryFunction()
@@ -664,19 +704,22 @@ $elements = ElementClass::find()
     ->orderBy('dateCreated asc')
     ->all();
 ```
-
 :::
+
 
 ### `preferSites`
 
 If [unique()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-unique) is set, this determines which site should be selected when querying multi-site elements.
 
+
+
 For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique elements from Site A, or Site B if they don’t exist in Site A #}
 {% set elements = craft.queryFunction()
@@ -694,17 +737,20 @@ $elements = ElementClass::find()
     ->preferSites(['a', 'b'])
     ->all();
 ```
-
 :::
+
 
 ### `relatedTo`
 
 Narrows the query results to only elements that are related to certain other elements.
 
+
+
 See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all elements that are related to myCategory #}
 {% set elements = craft.queryFunction()
@@ -718,12 +764,14 @@ $elements = ElementClass::find()
     ->relatedTo($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `revisionCreator`
 
 Narrows the query results to only revisions created by a given user.
+
+
 
 Possible values include:
 
@@ -733,8 +781,8 @@ Possible values include:
 | a [craft\elements\User](api:craft\elements\User) object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions by the current user #}
 {% set elements = craft.queryFunction()
@@ -748,12 +796,14 @@ $elements = ElementClass::find()
     ->revisionCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `revisionId`
 
 Narrows the query results based on the elements’ revision’s ID (from the `revisions` table).
+
+
 
 Possible values include:
 
@@ -762,8 +812,8 @@ Possible values include:
 | `1`   | for the revision with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a revision #}
 {% set elements = craft.queryFunction()
@@ -777,12 +827,14 @@ $elements = ElementClass::find()
     ->revisionIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `revisionOf`
 
 Narrows the query results to only revisions of a given element.
+
+
 
 Possible values include:
 
@@ -792,8 +844,8 @@ Possible values include:
 | a ElementClass object | for the element represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions of the element #}
 {% set elements = craft.queryFunction()
@@ -807,15 +859,18 @@ $elements = ElementClass::find()
     ->revisionOf($myElement)
     ->all();
 ```
-
 :::
+
 
 ### `revisions`
 
 Narrows the query results to only revision elements.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a revision element #}
 {% set elements = {twig-function}
@@ -831,17 +886,20 @@ $elements = ElementClass::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `search`
 
 Narrows the query results to only elements that match a search query.
 
+
+
 See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -861,8 +919,8 @@ $elements = ElementClass::find()
     ->search($searchQuery)
     ->all();
 ```
-
 :::
+
 
 ### `status`
 
@@ -879,8 +937,8 @@ Possible values include:
 | `['active', 'suspended']` | with active or suspended accounts.                                        |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch active and locked elements #}
 {% set elements = craft.queryFunction()
@@ -894,15 +952,18 @@ $elements = ElementClass::find()
     ->status(['active', 'locked'])
     ->all();
 ```
-
 :::
+
 
 ### `trashed`
 
 Narrows the query results to only elements that have been soft-deleted.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch trashed elements #}
 {% set elements = craft.queryFunction()
@@ -916,15 +977,18 @@ $elements = ElementClass::find()
     ->trashed()
     ->all();
 ```
-
 :::
+
 
 ### `uid`
 
 Narrows the query results based on the elements’ UIDs.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch the element by its UID #}
 {% set element = craft.queryFunction()
@@ -938,8 +1002,8 @@ $element = ElementClass::find()
     ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     ->one();
 ```
-
 :::
+
 
 ### `username`
 
@@ -953,8 +1017,8 @@ Possible values include:
 | `'not foo'` | not with a username of `foo`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Get the requested username #}
 {% set requestedUsername = craft.app.request.getSegment(2) %}
@@ -974,17 +1038,20 @@ $element = ElementClass::find()
     ->username(\craft\helpers\Db::escapeParam($requestedUsername))
     ->one();
 ```
-
 :::
+
 
 ### `with`
 
 Causes the query to return matching elements eager-loaded with related elements.
 
+
+
 See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch elements eager-loaded with the "Related" field’s relations #}
 {% set elements = craft.queryFunction()
@@ -998,7 +1065,9 @@ $elements = ElementClass::find()
     ->with(['related'])
     ->all();
 ```
-
 :::
 
+
+
 <!-- END PARAMS -->
+
