@@ -199,7 +199,6 @@ Craft also provides some special format keywords that will output locale-specifi
 | `long`               | December 20, 1990           |
 | `full`               | Thursday, December 20, 1990 |
 
-
 ```twig
 {{ entry.postDate|date('short') }}
 {# Output: 12/20/1990 #}
@@ -249,7 +248,6 @@ Possible `format` values are:
 | `medium` *(default)* | Dec 20, 1990, 5:00:00 PM                       |
 | `long`               | December 20, 1990 at 5:00:00 PM PDT            |
 | `full`               | Thursday, December 20, 19909 at 5:00:00 PM PDT |
-
 
 The current application locale will be used by default. If you want to format the date and time for a different locale, use the `locale` argument:
 
@@ -517,7 +515,6 @@ the [Apple Extended Keyboard II] [1].
 ```
 
 This filter supports two arguments:
-
 - `flavor` can be `'original'` (default value), `'gfm'`(GitHub-Flavored Markdown), `'gfm-comment'` (GFM with newlines converted to `<br >`s), or `'extra'` (Markdown Extra)
 - `inlineOnly` determines whether to only parse inline elements, omitting any `<p>` tags (defaults to `false`)
 
@@ -728,7 +725,6 @@ Possible `format` values are:
 | `short`              | 5:00 PM        |
 | `medium` *(default)* | 5:00:00 PM     |
 | `long`               | 5:00:00 PM PDT |
-
 
 The current application locale will be used by default. If you want to format the date and time for a different locale, use the `locale` argument:
 
