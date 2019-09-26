@@ -32,6 +32,7 @@ To set this up, we create a new field of the Entries Field Type, give it the nam
 
 Now we can assign the ingredients to each Drink entry via the new Ingredients relation field.
 
+
 ## Templating
 
 Once we have our relations field set up, we can look at the options for outputting related elements in our templates.
@@ -65,6 +66,7 @@ You can also add any additional parameters supported by the element type:
     <li>{{ ingredient.title }}</li>
 {% endfor %}
 ```
+
 
 ### The `relatedTo` Parameter
 
