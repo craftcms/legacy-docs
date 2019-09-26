@@ -21,6 +21,7 @@ Each site has the following attributes:
 * Is Primary Site?
 * Base URL
 
+
 ### Site Groups
 
 Site Groups allow you to organize your sites together by commonality, like language or site type.
@@ -39,6 +40,7 @@ Site Language:      {{ currentSite.language }}
 Is Primary Site?:   {{ currentSite.primary }}
 Base URL:           {{ currentSite.baseUrl }}
 ```
+
 
 ### Language
 
@@ -59,6 +61,7 @@ Or as a way to automatically include the proper template for each language:
 ```
 
 where your template name would be, for example, `_share/footer-de`.
+
 
 ### Primary Site
 
