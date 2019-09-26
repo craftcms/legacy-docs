@@ -25,7 +25,7 @@ Then run the following command to generate a new migration file for your plugin 
 ```bash Plugin Migration ./craft migrate/create <migration_name> --plugin=<plugin-handle>
 
     <br />```bash Content Migration
-    ./craft migrate/create &lt;migration_name&gt;
+    ./craft migrate/create <migration_name>
     
 
 :::
