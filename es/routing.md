@@ -6,41 +6,43 @@ The checks detailed below explain how this process works. This information can h
 
 Here is how Craft handles each request:
 
+
 0. **Should Craft handle this request in the first place?**
-    
-    It’s important to keep in mind that Craft doesn’t actually get involved for *every* request that touches your server – only requests that go to your `index.php` file.
-    
-    The `.htaccess` file that [comes with Craft](https://github.com/craftcms/craft/blob/master/web/.htaccess) will redirect all requests that don’t match a directory or file on your web server over to `index.php` behind the scenes. But if you point your browser directly at a file that *does* exist (such as an image, CSS, or JavaScript file), your web server will serve that file directly without loading Craft.
+
+   It’s important to keep in mind that Craft doesn’t actually get involved for *every* request that touches your server – only requests that go to your `index.php` file.
+
+   The `.htaccess` file that [comes with Craft](https://github.com/craftcms/craft/blob/master/web/.htaccess) will redirect all requests that don’t match a directory or file on your web server over to `index.php` behind the scenes. But if you point your browser directly at a file that *does* exist (such as an image, CSS, or JavaScript file), your web server will serve that file directly without loading Craft.
 
 1. **Is it an action request?**
-    
-    Action requests either have a URL that begins with `actions/` (or whatever your <config:actionTrigger> config setting is set to), or an `action` parameter in the POST request or the query string.
-    
-    Craft routes action requests to a controller action that perform actions. Craft has system Controller actions for core actions, but plugins may also have Controllers that define their own custom actions.
-    
-    The request doesn’t necessarily end after a controller call. The controller may allow it to keep going.
+
+   Action requests either have a URL that begins with `actions/` (or whatever your <config:actionTrigger> config setting is set to), or an `action` parameter in the POST request or the query string.
+
+   Craft routes action requests to a controller action that perform actions. Craft has system Controller actions for core actions, but plugins may also have Controllers that define their own custom actions.
+
+   The request doesn’t necessarily end after a controller call. The controller may allow it to keep going.
 
 2. **Is it an element request?**
-    
-    If the URI matches an element’s URI, Craft lets the element decide how to route the request. For example, if an [entry’s](sections-and-entries.md) URI is requested, then the entry will route the request to the template specified in its section’s settings, with an `entry` variable predefined, set to the requested entry.
-    
-    ::: tip Modules and plugins can override element routes using the [EVENT_SET_ROUTE](api:craft\base\Element::EVENT_SET_ROUTE) event. :::
+
+   If the URI matches an element’s URI, Craft lets the element decide how to route the request. For example, if an [entry’s](sections-and-entries.md) URI is requested, then the entry will route the request to the template specified in its section’s settings, with an `entry` variable predefined, set to the requested entry.
+
+   ::: tip Modules and plugins can override element routes using the [EVENT_SET_ROUTE](api:craft\base\Element::EVENT_SET_ROUTE) event. :::
 
 3. **Does the URI match a route or URI rule?**
-    
-    If the URI matches any [dynamic routes](#dynamic-routes) or [URI rules](#advanced-routing-with-url-rules), the template or controller action specified by it will get loaded.
+
+   If the URI matches any [dynamic routes](#dynamic-routes) or [URI rules](#advanced-routing-with-url-rules), the template or controller action specified by it will get loaded.
 
 4. **Does the URI match a template?**
-    
-    Craft will check if the URI is a valid [template path](dev/README.md#template-paths). If it is, Craft will return the matched template.
-    
-    ::: tip If any of the URI segments begin with an underscore (e.g. `blog/_archive/index`), Craft will skip this step. :::
+
+   Craft will check if the URI is a valid [template path](dev/README.md#template-paths). If it is, Craft will return the matched template.
+
+   ::: tip If any of the URI segments begin with an underscore (e.g. `blog/_archive/index`), Craft will skip this step. :::
 
 5. **404**
-    
-    If none of the above checks are successful, Craft will throw a [NotFoundHttpException](api:yii\web\NotFoundHttpException). If [Dev Mode](config:devMode) is enabled, an error report for the exception will be shown. Otherwise, a 404 error will be returned.
-    
-    ::: tip You can customize your site’s 404 page by placing a `404.twig` template at the root of your `templates/` directory. You can test this page even if [Dev Mode](config:devMode) is enabled by going to `http://my-project.test/404`. :::
+
+   If none of the above checks are successful, Craft will throw a [NotFoundHttpException](api:yii\web\NotFoundHttpException). If [Dev Mode](config:devMode) is enabled, an error report for the exception will be shown. Otherwise, a 404 error will be returned.
+
+   ::: tip You can customize your site’s 404 page by placing a `404.twig` template at the root of your `templates/` directory. You can test this page even if [Dev Mode](config:devMode) is enabled by going to `http://my-project.test/404`. :::
+
 
 ## Dynamic Routes
 
@@ -71,6 +73,7 @@ When you point your browser to `http://my-project.test/blog/archive/2018`, it wi
 
 The value of the `year` token will also be available to the template as a variable called `year`.
 
+
 ### Available Tokens
 
 The following tokens are available to the URI setting:
@@ -84,6 +87,7 @@ The following tokens are available to the URI setting:
 * `slug` – Any string of characters, except for a forward slash (/)
 * `tag` – Any string of characters, except for a forward slash (/)
 * `year` – Four consecutive digits
+
 
 ## Advanced Routing with URL Rules
 
