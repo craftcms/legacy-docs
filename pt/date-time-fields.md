@@ -129,7 +129,7 @@ The time input can either be set to the `HH:MM` format (24-hour), or the current
 ::: tip To find out what your current locale’s date and time formats are, add this to your template:
 
 ```twig
-Date format: <code>{{ craft.app.locale.getDateFormat('short', 'php') }}</code><br>
+Date format: <code>{{ craft.app.locale.getDateFormat('short', 'php') }}</code><br >
 Time format: <code>{{ craft.app.locale.getTimeFormat('short', 'php') }}</code>
 ```
 
