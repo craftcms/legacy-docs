@@ -14,10 +14,10 @@ Tags fields have the following settings:
 On multi-site installs, the following settings will also be available (under “Advanced”):
 
 - **Relate tags from a specific site?** – Whether to only allow relations to tags from a specific site.
-    
-    If enabled, a new setting will appear where you can choose which site.
-    
-    If disabled, related tags will always be pulled from the current site.
+
+  If enabled, a new setting will appear where you can choose which site.
+
+  If disabled, related tags will always be pulled from the current site.
 
 - **Manage relations on a per-site basis** – Whether each site should get its own set of related tags.
 
@@ -45,7 +45,6 @@ Possible values include:
 | -------------- | ----------------------------------- |
 | `':empty:'`    | that don’t have any related tags.   |
 | `':notempty:'` | that have at least one related tag. |
-
 
 ```twig
 {# Fetch entries with a related tag #}
