@@ -17,14 +17,15 @@ Then, create a file that will hold your asset bundle class. This can be located 
 
 Here’s what your plugin’s structure should look like:
 
-    base_dir/
-    └── src/
-        ├── FooBundle.php
-        └── resources/
-            ├── script.js
-            ├── styles.css
-            └── ...
-    
+```
+base_dir/
+└── src/
+    ├── FooBundle.php
+    └── resources/
+        ├── script.js
+        ├── styles.css
+        └── ...
+```
 
 Use this template as a starting point for your asset bundle class:
 
