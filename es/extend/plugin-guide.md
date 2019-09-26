@@ -15,17 +15,18 @@ Before you begin working on a plugin, you need to decide on a few things:
 
 To create a plugin, create a new directory for it somewhere on your computer. A common approach is to store them in a `~/dev/` folder alongside your Craft projects:
 
-    ~/dev/
-    ├── my-project.test/
-    │   └── ...
-    └── my-plugin/
-        ├── CHANGELOG.md
-        ├── LICENSE.md
-        ├── README.md
-        ├── composer.json
-        └── src/
-            └── Plugin.php
-    
+```
+~/dev/
+├── my-project.test/
+│   └── ...
+└── my-plugin/
+    ├── CHANGELOG.md
+    ├── LICENSE.md
+    ├── README.md
+    ├── composer.json
+    └── src/
+        └── Plugin.php
+```
 
 The name of your plugin directory doesn’t matter. Just choose something that is easy to identify.
 
@@ -79,7 +80,7 @@ Replace:
 - `email@developer-website.tld` with your support email.
 - `developer/repo` with the actual GitHub account and repository names where the plugin will live.
 - `master` with the actual primary branch name of your GitHub repository.
-- `namespace\\prefix\` with your namespace prefix. (Use double-backslashes because this is JSON, and note this must end with `\`.)
+- ``namespace\\prefix\` with your namespace prefix. (Use double-backslashes because this is JSON, and note this must end with``\`.)
 - `plugin-handle` with your plugin handle.
 - `Plugin Name` with your plugin name.
 - `MIT` with `proprietary` if you plan to use [Craft License](https://craftcms.github.io/license/) (see [Choose a License](plugin-store.md#choose-a-license) on the “Publishing to the Plugin Store” page).
@@ -172,8 +173,9 @@ composer require package/name
 
 Composer’s installation log should indicate that the package was installed via a symlink:
 
-      - Installing package/name (X.Y.Z): Symlinking from ../my-plugin
-    
+```
+  - Installing package/name (X.Y.Z): Symlinking from ../my-plugin
+```
 
 ::: warning One caveat of `path` Composer repositories is that Composer may ignore `path`-based dependencies when you run `composer update`. So any time you change anything in `composer.json`, such as your plugin’s dependency requirements or its plugin information, you might need to completely remove and re-require your plugin in your project for those changes to take effect.
 
@@ -187,7 +189,6 @@ composer remove package/name
 # re-require the plugin package
 composer require package/name
 ```
-
 :::
 
 ### Packagist
