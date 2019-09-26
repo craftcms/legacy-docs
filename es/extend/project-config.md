@@ -137,7 +137,6 @@ At this point, if product types were to be added or removed from the project con
 ```php
 Craft::$app->projectConfig->processConfigChanges('productTypeGroups');
 ```
-
 :::
 
 ### Step 3: Push Changes to the Config
@@ -213,8 +212,8 @@ You can add, update, and remove items from the project config from your pluginâ€
 Consider this scenario:
 
 1. Your plugin is updated on Environment A, which includes a new migration that makes a change to the project config.
-2. The updated `composer.lock` and `project.yaml` is committed to Git.
-3. The Git commit is pulled into Environment B, where Craft must now run the new plugin migration *and* sync `project.yaml` changes.
+3. The updated `composer.lock` and `project.yaml` is committed to Git.
+4. The Git commit is pulled into Environment B, where Craft must now run the new plugin migration *and* sync `project.yaml` changes.
 
 When new plugin migrations are pending *and* `project.yaml` changes are pending, Craft will run migrations first and then sync the `project.yaml` changes.
 
@@ -248,4 +247,4 @@ Event::on(ProjectConfig::class, ProjectConfig::EVENT_REBUILD, function(RebuildCo
     // Add plugin's project config data...
    $e->config['myPlugin']['key'] = $value;
 });
-```
+``` 
