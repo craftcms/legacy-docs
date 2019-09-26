@@ -31,3 +31,4 @@ The following template can be used to provide a RSS 2.0 feed on your site. It as
     </channel>
 </rss>
 ```
+
