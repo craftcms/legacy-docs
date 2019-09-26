@@ -70,7 +70,6 @@ The following core service names have changed:
 | `templates`     | `view`           |
 | `userSession`   | `user`           |
 
-
 ## Components
 
 Component classes (element types, field types, widget types, etc.) follow a new design pattern in Craft 3.
@@ -85,6 +84,8 @@ Here’s how it works:
 - Common properties such as `$handle` are defined by a trait (e.g. <api:craft\base\FieldTrait>).
 - A base implementation of the component type is provided by an abstract base class (e.g. <api:craft\base\Field>).
 - The base class is extended by the various component classes (e.g. <api:craft\fields\PlainText>).
+
+
 
 ## Translations
 
@@ -838,7 +839,6 @@ The following Control Panel [template hooks](template-hooks.md) have been rename
 | `cp.entries.edit.right-pane`    | `cp.entries.edit.details`    |
 | `cp.users.edit.right-pane`      | `cp.users.edit.details`      |
 
-
 ## Resource Requests
 
 Craft 3 doesn’t have the concept of resource requests. See [Asset Bundles](asset-bundles.md) for information about working with front end resources.
@@ -930,6 +930,7 @@ Craft::$app->queue->push(new MyJob([
 You may need to give your plugin a migration path for Craft 2 installations, so they don’t get stranded.
 
 First you must determine whether Craft is going to consider your plugin to be an **update** or a **new installation**. If your plugin handle hasn’t changed (besides going from `UpperCamelCase` to `kebab-case`), Craft will see your new version as an **update**. But if your handle did change in a more significant way, Craft isn’t going to recognize it, and will consider it a completely new plugin.
+
 
 If the handle (basically) stayed the same, create a new [migration](migrations.md) named something like “`craft3_upgrade`”. Your upgrade code will go in its `safeUp()` method just like any other migration.
 
