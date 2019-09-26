@@ -3,17 +3,14 @@
 You can fetch entries in your templates or PHP code using **entry queries**.
 
 ::: code
-
 ```twig
 {# Create a new entry query #}
 {% set myEntryQuery = craft.entries() %}
 ```
-
 ```php
 // Create a new entry query
 $myEntryQuery = \craft\elements\Entry::find();
 ```
-
 :::
 
 Once you’ve created an entry query, you can set [parameters](#parameters) on it to narrow down the results, and then [execute it](README.md#executing-element-queries) by calling `.all()`. An array of [Entry](api:craft\elements\Entry) objects will be returned.
@@ -66,8 +63,8 @@ Possible values include:
 | a [DateTime](http://php.net/class.datetime) object | that were posted after the date represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries posted this month #}
 {% set firstDayOfMonth = date('first day of this month') %}
@@ -85,15 +82,18 @@ $entries = \craft\elements\Entry::find()
     ->after($firstDayOfMonth)
     ->all();
 ```
-
 :::
+
 
 ### `ancestorDist`
 
 Narrows the query results to only entries that are up to a certain distance away from the entry specified by [ancestorOf](#ancestorof).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch entries above this one #}
 {% set entries = craft.entries()
@@ -109,12 +109,14 @@ $entries = \craft\elements\Entry::find()
     ->ancestorDist(3)
     ->all();
 ```
-
 :::
+
 
 ### `ancestorOf`
 
 Narrows the query results to only entries that are ancestors of another entry.
+
+
 
 Possible values include:
 
@@ -124,8 +126,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | above the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries above this one #}
 {% set entries = craft.entries()
@@ -139,17 +141,22 @@ $entries = \craft\elements\Entry::find()
     ->ancestorOf($myEntry)
     ->all();
 ```
-
 :::
 
+
+
 ::: tip This can be combined with [ancestorDist](#ancestordist) if you want to limit how far away the ancestor entries can be. :::
+
 
 ### `anyStatus`
 
 Clears out the [status](#status) and [enabledForSite](#enabledforsite) parameters.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch all entries, regardless of status #}
 {% set entries = craft.entries()
@@ -163,15 +170,18 @@ $entries = \craft\elements\Entry::find()
     ->anyStatus()
     ->all();
 ```
-
 :::
+
 
 ### `asArray`
 
 Causes the query to return matching entries as arrays of data, rather than [Entry](api:craft\elements\Entry) objects.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch entries as arrays #}
 {% set entries = craft.entries()
@@ -185,8 +195,8 @@ $entries = \craft\elements\Entry::find()
     ->asArray()
     ->all();
 ```
-
 :::
+
 
 ### `authorGroup`
 
@@ -203,8 +213,8 @@ Possible values include:
 | a [UserGroup](api:craft\models\UserGroup) object | with an author in a group represented by the object.           |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries with an author in the Foo user group #}
 {% set entries = craft.entries()
@@ -218,8 +228,8 @@ $entries = \craft\elements\Entry::find()
     ->authorGroup('foo')
     ->all();
 ```
-
 :::
+
 
 ### `authorGroupId`
 
@@ -235,8 +245,8 @@ Possible values include:
 | `['not', 1, 2]` | not with an author in a group with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries with an author in a group with an ID of 1 #}
 {% set entries = craft.entries()
@@ -250,8 +260,8 @@ $entries = \craft\elements\Entry::find()
     ->authorGroupId(1)
     ->all();
 ```
-
 :::
+
 
 ### `authorId`
 
@@ -267,8 +277,8 @@ Possible values include:
 | `['not', 1, 2]` | not with an author with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries with an author with an ID of 1 #}
 {% set entries = craft.entries()
@@ -282,8 +292,8 @@ $entries = \craft\elements\Entry::find()
     ->authorId(1)
     ->all();
 ```
-
 :::
+
 
 ### `before`
 
@@ -297,8 +307,8 @@ Possible values include:
 | a [DateTime](http://php.net/class.datetime) object | that were posted before the date represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries posted before this month #}
 {% set firstDayOfMonth = date('first day of this month') %}
@@ -316,12 +326,14 @@ $entries = \craft\elements\Entry::find()
     ->before($firstDayOfMonth)
     ->all();
 ```
-
 :::
+
 
 ### `dateCreated`
 
 Narrows the query results based on the entries’ creation dates.
+
+
 
 Possible values include:
 
@@ -332,8 +344,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries created last month #}
 {% set start = date('first day of last month')|atom %}
@@ -353,12 +365,14 @@ $entries = \craft\elements\Entry::find()
     ->dateCreated(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `dateUpdated`
 
 Narrows the query results based on the entries’ last-updated dates.
+
+
 
 Possible values include:
 
@@ -369,8 +383,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries updated in the last week #}
 {% set lastWeek = date('1 week ago')|atom %}
@@ -388,15 +402,18 @@ $entries = \craft\elements\Entry::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
 ```
-
 :::
+
 
 ### `descendantDist`
 
 Narrows the query results to only entries that are up to a certain distance away from the entry specified by [descendantOf](#descendantof).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch entries below this one #}
 {% set entries = craft.entries()
@@ -412,12 +429,14 @@ $entries = \craft\elements\Entry::find()
     ->descendantDist(3)
     ->all();
 ```
-
 :::
+
 
 ### `descendantOf`
 
 Narrows the query results to only entries that are descendants of another entry.
+
+
 
 Possible values include:
 
@@ -427,8 +446,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | below the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries below this one #}
 {% set entries = craft.entries()
@@ -442,14 +461,18 @@ $entries = \craft\elements\Entry::find()
     ->descendantOf($myEntry)
     ->all();
 ```
-
 :::
 
+
+
 ::: tip This can be combined with [descendantDist](#descendantdist) if you want to limit how far away the descendant entries can be. :::
+
 
 ### `draftCreator`
 
 Narrows the query results to only drafts created by a given user.
+
+
 
 Possible values include:
 
@@ -459,8 +482,8 @@ Possible values include:
 | a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts by the current user #}
 {% set entries = craft.entries()
@@ -474,12 +497,14 @@ $entries = \craft\elements\Entry::find()
     ->draftCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `draftId`
 
 Narrows the query results based on the entries’ draft’s ID (from the `drafts` table).
+
+
 
 Possible values include:
 
@@ -488,8 +513,8 @@ Possible values include:
 | `1`   | for the draft with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a draft #}
 {% set entries = craft.entries()
@@ -503,12 +528,14 @@ $entries = \craft\elements\Entry::find()
     ->draftIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `draftOf`
 
 Narrows the query results to only drafts of a given entry.
+
+
 
 Possible values include:
 
@@ -518,8 +545,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | for the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch drafts of the entry #}
 {% set entries = craft.entries()
@@ -533,15 +560,18 @@ $entries = \craft\elements\Entry::find()
     ->draftOf($myEntry)
     ->all();
 ```
-
 :::
+
 
 ### `drafts`
 
 Narrows the query results to only drafts entries.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a draft entry #}
 {% set entries = {twig-function}
@@ -557,12 +587,14 @@ $entries = \craft\elements\Entry::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `enabledForSite`
 
 Narrows the query results based on whether the entries are enabled in the site they’re being queried in, per the [site](#site) parameter.
+
+
 
 Possible values include:
 
@@ -572,8 +604,8 @@ Possible values include:
 | `false`            | whether they are enabled or not in the site. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch all entries, including ones disabled for this site #}
 {% set entries = craft.entries()
@@ -587,8 +619,8 @@ $entries = \craft\elements\Entry::find()
     ->enabledForSite(false)
     ->all();
 ```
-
 :::
+
 
 ### `expiryDate`
 
@@ -605,8 +637,8 @@ Possible values include:
 | `['and', '>= 2020-04-04', '< 2020-05-01']` | that will expire between 2020-04-01 and 2020-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries expiring this month #}
 {% set nextMonth = date('first day of next month')|atom %}
@@ -624,15 +656,18 @@ $entries = \craft\elements\Entry::find()
     ->expiryDate("< {$nextMonth}")
     ->all();
 ```
-
 :::
+
 
 ### `fixedOrder`
 
 Causes the query results to be returned in the order specified by [id](#id).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch entries in a specific order #}
 {% set entries = craft.entries()
@@ -648,17 +683,20 @@ $entries = \craft\elements\Entry::find()
     ->fixedOrder()
     ->all();
 ```
-
 :::
+
 
 ### `hasDescendants`
 
 Narrows the query results based on whether the entries have any descendants.
 
+
+
 (This has the opposite effect of calling [leaves](#leaves).)
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch entries that have descendants #}
 {% set entries = craft.entries()
@@ -672,12 +710,14 @@ $entries = \craft\elements\Entry::find()
     ->hasDescendants()
     ->all();
 ```
-
 :::
+
 
 ### `id`
 
 Narrows the query results based on the entries’ IDs.
+
+
 
 Possible values include:
 
@@ -689,8 +729,8 @@ Possible values include:
 | `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch the entry by its ID #}
 {% set entry = craft.entries()
@@ -704,21 +744,35 @@ $entry = \craft\elements\Entry::find()
     ->id(1)
     ->one();
 ```
-
 :::
 
+
+
 ::: tip This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order. :::
+
 
 ### `ignorePlaceholders`
 
 Causes the query to return matching entries as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
+
+
+
+
+
+
+
+
+
 ### `inReverse`
 
 Causes the query results to be returned in reverse order.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch entries in reverse #}
 {% set entries = craft.entries()
@@ -732,17 +786,20 @@ $entries = \craft\elements\Entry::find()
     ->inReverse()
     ->all();
 ```
-
 :::
+
 
 ### `leaves`
 
 Narrows the query results based on whether the entries are “leaves” (entries with no descendants).
 
+
+
 (This has the opposite effect of calling [hasDescendants](#hasdescendants).)
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch entries that have no descendants #}
 {% set entries = craft.entries()
@@ -756,12 +813,14 @@ $entries = \craft\elements\Entry::find()
     ->leaves()
     ->all();
 ```
-
 :::
+
 
 ### `level`
 
 Narrows the query results based on the entries’ level within the structure.
+
+
 
 Possible values include:
 
@@ -774,8 +833,8 @@ Possible values include:
 | `['not', 1, 2]` | not with level of 1 or 2.                |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries positioned at level 3 or above #}
 {% set entries = craft.entries()
@@ -789,15 +848,16 @@ $entries = \craft\elements\Entry::find()
     ->level('>= 3')
     ->all();
 ```
-
 :::
+
 
 ### `limit`
 
 Determines the number of entries that should be returned.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch up to 10 entries  #}
 {% set entries = craft.entries()
@@ -811,12 +871,14 @@ $entries = \craft\elements\Entry::find()
     ->limit(10)
     ->all();
 ```
-
 :::
+
 
 ### `nextSiblingOf`
 
 Narrows the query results to only the entry that comes immediately after another entry.
+
+
 
 Possible values include:
 
@@ -826,8 +888,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | after the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch the next entry #}
 {% set entry = craft.entries()
@@ -841,15 +903,16 @@ $entry = \craft\elements\Entry::find()
     ->nextSiblingOf($myEntry)
     ->one();
 ```
-
 :::
+
 
 ### `offset`
 
 Determines how many entries should be skipped in the results.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all entries except for the first 3 #}
 {% set entries = craft.entries()
@@ -863,15 +926,16 @@ $entries = \craft\elements\Entry::find()
     ->offset(3)
     ->all();
 ```
-
 :::
+
 
 ### `orderBy`
 
 Determines the order that the entries should be returned in.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all entries in order of date created #}
 {% set entries = craft.entries()
@@ -885,12 +949,14 @@ $entries = \craft\elements\Entry::find()
     ->orderBy('dateCreated asc')
     ->all();
 ```
-
 :::
+
 
 ### `positionedAfter`
 
 Narrows the query results to only entries that are positioned after another entry.
+
+
 
 Possible values include:
 
@@ -900,8 +966,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | after the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries after this one #}
 {% set entries = craft.entries()
@@ -915,12 +981,14 @@ $entries = \craft\elements\Entry::find()
     ->positionedAfter($myEntry)
     ->all();
 ```
-
 :::
+
 
 ### `positionedBefore`
 
 Narrows the query results to only entries that are positioned before another entry.
+
+
 
 Possible values include:
 
@@ -930,8 +998,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | before the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries before this one #}
 {% set entries = craft.entries()
@@ -945,8 +1013,8 @@ $entries = \craft\elements\Entry::find()
     ->positionedBefore($myEntry)
     ->all();
 ```
-
 :::
+
 
 ### `postDate`
 
@@ -961,8 +1029,8 @@ Possible values include:
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that were posted between 2018-04-01 and 2018-05-01. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries posted last month #}
 {% set start = date('first day of last month')|atom %}
@@ -982,19 +1050,22 @@ $entries = \craft\elements\Entry::find()
     ->postDate(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `preferSites`
 
 If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
 
+
+
 For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique entries from Site A, or Site B if they don’t exist in Site A #}
 {% set entries = craft.entries()
@@ -1012,12 +1083,14 @@ $entries = \craft\elements\Entry::find()
     ->preferSites(['a', 'b'])
     ->all();
 ```
-
 :::
+
 
 ### `prevSiblingOf`
 
 Narrows the query results to only the entry that comes immediately before another entry.
+
+
 
 Possible values include:
 
@@ -1027,8 +1100,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | before the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch the previous entry #}
 {% set entry = craft.entries()
@@ -1042,17 +1115,20 @@ $entry = \craft\elements\Entry::find()
     ->prevSiblingOf($myEntry)
     ->one();
 ```
-
 :::
+
 
 ### `relatedTo`
 
 Narrows the query results to only entries that are related to certain other elements.
 
+
+
 See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all entries that are related to myCategory #}
 {% set entries = craft.entries()
@@ -1066,12 +1142,14 @@ $entries = \craft\elements\Entry::find()
     ->relatedTo($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `revisionCreator`
 
 Narrows the query results to only revisions created by a given user.
+
+
 
 Possible values include:
 
@@ -1081,8 +1159,8 @@ Possible values include:
 | a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions by the current user #}
 {% set entries = craft.entries()
@@ -1096,12 +1174,14 @@ $entries = \craft\elements\Entry::find()
     ->revisionCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `revisionId`
 
 Narrows the query results based on the entries’ revision’s ID (from the `revisions` table).
+
+
 
 Possible values include:
 
@@ -1110,8 +1190,8 @@ Possible values include:
 | `1`   | for the revision with an ID of 1. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch a revision #}
 {% set entries = craft.entries()
@@ -1125,12 +1205,14 @@ $entries = \craft\elements\Entry::find()
     ->revisionIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `revisionOf`
 
 Narrows the query results to only revisions of a given entry.
+
+
 
 Possible values include:
 
@@ -1140,8 +1222,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | for the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch revisions of the entry #}
 {% set entries = craft.entries()
@@ -1155,15 +1237,18 @@ $entries = \craft\elements\Entry::find()
     ->revisionOf($myEntry)
     ->all();
 ```
-
 :::
+
 
 ### `revisions`
 
 Narrows the query results to only revision entries.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a revision entry #}
 {% set entries = {twig-function}
@@ -1179,17 +1264,20 @@ $entries = \craft\elements\Entry::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `search`
 
 Narrows the query results to only entries that match a search query.
 
+
+
 See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -1209,8 +1297,8 @@ $entries = \craft\elements\Entry::find()
     ->search($searchQuery)
     ->all();
 ```
-
 :::
+
 
 ### `section`
 
@@ -1227,8 +1315,8 @@ Possible values include:
 | a [Section](api:craft\models\Section) object | in a section represented by the object.           |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries in the Foo section #}
 {% set entries = craft.entries()
@@ -1242,8 +1330,8 @@ $entries = \craft\elements\Entry::find()
     ->section('foo')
     ->all();
 ```
-
 :::
+
 
 ### `sectionId`
 
@@ -1259,8 +1347,8 @@ Possible values include:
 | `['not', 1, 2]` | not in a section with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries in the section with an ID of 1 #}
 {% set entries = craft.entries()
@@ -1274,12 +1362,14 @@ $entries = \craft\elements\Entry::find()
     ->sectionId(1)
     ->all();
 ```
-
 :::
+
 
 ### `siblingOf`
 
 Narrows the query results to only entries that are siblings of another entry.
+
+
 
 Possible values include:
 
@@ -1289,8 +1379,8 @@ Possible values include:
 | a [Entry](api:craft\elements\Entry) object | beside the entry represented by the object. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries beside this one #}
 {% set entries = craft.entries()
@@ -1304,12 +1394,14 @@ $entries = \craft\elements\Entry::find()
     ->siblingOf($myEntry)
     ->all();
 ```
-
 :::
+
 
 ### `site`
 
 Determines which site(s) the entries should be queried in.
+
+
 
 The current site will be used by default.
 
@@ -1323,11 +1415,11 @@ Possible values include:
 | a `\craft\elements\db\Site` object | from the site represented by the object.       |
 | `'*'`                                  | from any site.                                 |
 
-
 ::: tip If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this. :::
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch entries from the Foo site #}
 {% set entries = craft.entries()
@@ -1341,17 +1433,20 @@ $entries = \craft\elements\Entry::find()
     ->site('foo')
     ->all();
 ```
-
 :::
+
 
 ### `siteId`
 
 Determines which site(s) the entries should be queried in, per the site’s ID.
 
+
+
 The current site will be used by default.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch entries from the site with an ID of 1 #}
 {% set entries = craft.entries()
@@ -1365,12 +1460,14 @@ $entries = \craft\elements\Entry::find()
     ->siteId(1)
     ->all();
 ```
-
 :::
+
 
 ### `slug`
 
 Narrows the query results based on the entries’ slugs.
+
+
 
 Possible values include:
 
@@ -1385,8 +1482,8 @@ Possible values include:
 | `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Get the requested entry slug from the URL #}
 {% set requestedSlug = craft.app.request.getSegment(3) %}
@@ -1406,8 +1503,8 @@ $entry = \craft\elements\Entry::find()
     ->slug(\craft\helpers\Db::escapeParam($requestedSlug))
     ->one();
 ```
-
 :::
+
 
 ### `status`
 
@@ -1424,8 +1521,8 @@ Possible values include:
 | `['live', 'pending']` | that are live or pending.                                   |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch disabled entries #}
 {% set entries = craft.entries()
@@ -1439,12 +1536,14 @@ $entries = \craft\elements\Entry::find()
     ->status('disabled')
     ->all();
 ```
-
 :::
+
 
 ### `title`
 
 Narrows the query results based on the entries’ titles.
+
+
 
 Possible values include:
 
@@ -1459,8 +1558,8 @@ Possible values include:
 | `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries with a title that contains "Foo" #}
 {% set entries = craft.entries()
@@ -1474,15 +1573,18 @@ $entries = \craft\elements\Entry::find()
     ->title('*Foo*')
     ->all();
 ```
-
 :::
+
 
 ### `trashed`
 
 Narrows the query results to only entries that have been soft-deleted.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch trashed entries #}
 {% set entries = craft.entries()
@@ -1496,8 +1598,8 @@ $entries = \craft\elements\Entry::find()
     ->trashed()
     ->all();
 ```
-
 :::
+
 
 ### `type`
 
@@ -1514,8 +1616,8 @@ Possible values include:
 | an [EntryType](api:craft\models\EntryType) object | of a type represented by the object.           |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries in the Foo section with a Bar entry type #}
 {% set entries = craft.entries()
@@ -1531,8 +1633,8 @@ $entries = \craft\elements\Entry::find()
     ->type('bar')
     ->all();
 ```
-
 :::
+
 
 ### `typeId`
 
@@ -1548,8 +1650,8 @@ Possible values include:
 | `['not', 1, 2]` | not of a type with an ID of 1 or 2. |
 
 
-::: code
 
+::: code
 ```twig
 {# Fetch entries of the entry type with an ID of 1 #}
 {% set entries = craft.entries()
@@ -1563,15 +1665,18 @@ $entries = \craft\elements\Entry::find()
     ->typeId(1)
     ->all();
 ```
-
 :::
+
 
 ### `uid`
 
 Narrows the query results based on the entries’ UIDs.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch the entry by its UID #}
 {% set entry = craft.entries()
@@ -1585,17 +1690,20 @@ $entry = \craft\elements\Entry::find()
     ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     ->one();
 ```
-
 :::
+
 
 ### `unique`
 
 Determines whether only elements with unique IDs should be returned by the query.
 
+
+
 This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique entries across all sites #}
 {% set entries = craft.entries()
@@ -1611,12 +1719,14 @@ $entries = \craft\elements\Entry::find()
     ->unique()
     ->all();
 ```
-
 :::
+
 
 ### `uri`
 
 Narrows the query results based on the entries’ URIs.
+
+
 
 Possible values include:
 
@@ -1631,8 +1741,8 @@ Possible values include:
 | `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`. |
 
 
-::: code
 
+::: code
 ```twig
 {# Get the requested URI #}
 {% set requestedUri = craft.app.request.getPathInfo() %}
@@ -1652,17 +1762,20 @@ $entry = \craft\elements\Entry::find()
     ->uri(\craft\helpers\Db::escapeParam($requestedUri))
     ->one();
 ```
-
 :::
+
 
 ### `with`
 
 Causes the query to return matching entries eager-loaded with related elements.
 
+
+
 See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch entries eager-loaded with the "Related" field’s relations #}
 {% set entries = craft.entries()
@@ -1676,7 +1789,9 @@ $entries = \craft\elements\Entry::find()
     ->with(['related'])
     ->all();
 ```
-
 :::
 
+
+
 <!-- END PARAMS -->
+
