@@ -37,7 +37,6 @@ Specifies the name of the key the cache should use. If this is not provided, a r
 ```twig
 {% cache globally using key craft.app.request.pathInfo %}
 ```
-
 :::
 
 ::: warning If you change the template code within a `{% cache %}` that uses a custom key, any existing template caches will not automatically be purged. You will either need to assign the tag a new key, or clear your existing template caches manually using the Clear Caches tool in Settings. :::
@@ -119,19 +118,19 @@ There are also some cases where it’s *not* a good idea to use them:
 * Don’t use them to cache static text; that will be more expensive than simply outputting the text.
 * You can’t use them outside of top-level `{% block %}` tags within a template that extends another.
 * The `{% cache %}` tag will only cache HTML, so using tags like [{% css %}](css.md) and [{% js %}](js.md) inside of it doesn’t make sense because they don’t actually output HTML therefore their output won’t be cached.
-    
+
     ```twig
     {# Bad: #}
-    
+
     {% extends "_layout" %}
     {% cache %}
         {% block "content" %}
             ...
         {% endblock %}
     {% endcache %}
-    
+
     {# Good: #}
-    
+
     {% extends "_layout" %}
     {% block "content" %}
         {% cache %}
@@ -139,5 +138,6 @@ There are also some cases where it’s *not* a good idea to use them:
         {% endcache %}
     {% endblock %}
     ```
+
 
 Tip: The `{% cache %}` tag will detect if there are any ungenerated [image transform](../../image-transforms.md) URLs within it. If there are, it will hold off on caching the template until the next request, so those temporary image URLs won’t get cached.
