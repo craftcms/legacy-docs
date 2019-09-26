@@ -16,7 +16,6 @@ The `{% css %}` tag can be used to register a `<style>` tag in the page’s `<he
 {% set styles = ".content { color: #{entry.textColor}; }" %}
 {% do view.registerCss(styles) %}
 ```
-
 :::
 
 ## Parameters
