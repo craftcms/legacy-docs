@@ -688,7 +688,7 @@ The Edit Category page offers a relatively straightforward example of how it cou
 
 - URL Rules:
 
-```php
+  ```php
   'categories/<groupHandle:{handle}>/new' => 'categories/edit-category',
   'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>' => 'categories/edit-category',
   'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>/<siteHandle:{handle}>' => 'categories/edit-category',
@@ -709,6 +709,15 @@ The Edit Category page offers a relatively straightforward example of how it cou
 Here’s a simple example of the code needed to save an element programatically, which could live within an `actionSave()` controller action:
 
 ```php
+'categories/<groupHandle:{handle}>/new' => 'categories/edit-category',
+  'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>' => 'categories/edit-category',
+  'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>/<siteHandle:{handle}>' => 'categories/edit-category',
+  'categories/<groupHandle:{handle}>/new/<siteHandle:{handle}>' => 'categories/edit-category',
+```
+
+Once you’ve set up an edit page for your element type, you can add a [getCpEditUrl()](api:craft\base\ElementInterface::getCpEditUrl()) method to your element class, which will communicate your elements’ edit page URLs within the Control Panel.
+
+```php
 // Create a new product element
 $product = new Product();
 
@@ -724,7 +733,13 @@ $entry->setFieldValuesFromRequest('fields');
 $success = Craft::$app->elements->saveElement($product);
 ```
 
-Once you’ve set up an edit page for your element type, you can add a [getCpEditUrl()](api:craft\base\ElementInterface::getCpEditUrl()) method to your element class, which will communicate your elements’ edit page URLs within the Control Panel.
+## Relations
+
+### Relation Field
+
+You can give your element its own relation field by creating a new [field type](field-types.md) that extends <api:craft\fields\BaseRelationField>.
+
+That base class does most of the grunt work for you, so you can get your field up and running by implementing three simple methods:
 
 ```php
 public function getCpEditUrl()
@@ -733,13 +748,9 @@ public function getCpEditUrl()
 }
 ```
 
-## Relations
+## Reference Tags
 
-### Relation Field
-
-You can give your element its own relation field by creating a new [field type](field-types.md) that extends <api:craft\fields\BaseRelationField>.
-
-That base class does most of the grunt work for you, so you can get your field up and running by implementing three simple methods:
+If you want your elements to support reference tags (e.g. `{product:100}`), add a static `refHandle()` method to your element class that returns a unique handle that should be used for its reference tags.
 
 ```php
 <?php
@@ -767,9 +778,7 @@ class Products extends BaseRelationField
 }
 ```
 
-## Reference Tags
-
-If you want your elements to support reference tags (e.g. `{product:100}`), add a static `refHandle()` method to your element class that returns a unique handle that should be used for its reference tags.
+To make it easier for users to copy your elements’ reference tags, you may want to add a “Copy reference tag” [action](#index-page-actions) to your element’s index page.
 
 ```php
 public static function refHandle()
@@ -778,7 +787,13 @@ public static function refHandle()
 }
 ```
 
-To make it easier for users to copy your elements’ reference tags, you may want to add a “Copy reference tag” [action](#index-page-actions) to your element’s index page.
+## Eager-Loading
+
+If your element type has its own [relation field](#relation-field), it is already eager-loadable through that. And if it supports [custom fields](#custom-fields), any elements that are related to your elements through relation fields will be eager-loadable.
+
+The only case where eager-loading support is not provided for free is if your element type has any “hard-coded” relations with other elements. For example, entries have authors (User elements), but those relations are defined in an `authorId` column in the `entries` table, not a custom Users field.
+
+If your elements have any hard-coded relations to other elements, and you want to make those elements eager-loadable, add an `eagerLoadingMap()` method to your element class:
 
 ```php
 use craft\elements\actions\CopyReferenceTag;
@@ -797,13 +812,9 @@ protected static function defineActions(string $source = null): array
 }
 ```
 
-## Eager-Loading
+This function takes an of already-queried elements (the “source” elements), and an eager-loading handle. It is supposed to return a mapping of which source element IDs should eager-load which “target” element IDs.
 
-If your element type has its own [relation field](#relation-field), it is already eager-loadable through that. And if it supports [custom fields](#custom-fields), any elements that are related to your elements through relation fields will be eager-loadable.
-
-The only case where eager-loading support is not provided for free is if your element type has any “hard-coded” relations with other elements. For example, entries have authors (User elements), but those relations are defined in an `authorId` column in the `entries` table, not a custom Users field.
-
-If your elements have any hard-coded relations to other elements, and you want to make those elements eager-loadable, add an `eagerLoadingMap()` method to your element class:
+If you need to override where eager-loaded elements are stored, add a `setEagerLoadedElements()` method to your element class as well:
 
 ```php
 use craft\db\Query;
@@ -831,21 +842,5 @@ public static function eagerLoadingMap(array $sourceElements, string $handle)
     }
 
     return parent::eagerLoadingMap($sourceElements, $handle);
-}
-```
-
-This function takes an of already-queried elements (the “source” elements), and an eager-loading handle. It is supposed to return a mapping of which source element IDs should eager-load which “target” element IDs.
-
-If you need to override where eager-loaded elements are stored, add a `setEagerLoadedElements()` method to your element class as well:
-
-```php
-public function setEagerLoadedElements(string $handle, array $elements)
-{
-    if ($handle === 'author') {
-        $author = $elements[0] ?? null;
-        $this->setAuthor($author);
-    } else {
-        parent::setEagerLoadedElements($handle, $elements);
-    }
 }
 ```
