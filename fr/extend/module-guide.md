@@ -15,13 +15,14 @@ Before you begin working on a module, you need to decide on a couple things:
 
 To create a module, create a new directory for it somewhere within your Craft project, such as `modules/<ModuleID>/`. For example, if your module ID is `foo`, you might set it up like this:
 
-    my-project.test/
-    ├── modules/
-    │   └── foo/
-    │       └── Module.php
-    ├── templates/
-    └── ...
-    
+```
+my-project.test/
+├── modules/
+│   └── foo/
+│       └── Module.php
+├── templates/
+└── ...
+```
 
 ::: tip Use [pluginfactory.io](https://pluginfactory.io/) to create your module’s scaffolding with just a few clicks. :::
 
