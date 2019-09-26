@@ -86,6 +86,7 @@ return [
 
 It can also be a multi-environment config:
 
+
 ```php
 <?php
 
