@@ -35,6 +35,7 @@ For example, if you have a template located at `templates/recipes/ingredients/in
 
 If you have templates located at both `templates/recipes/ingredients.twig` *and* `templates/recipes/ingredients/index.twig`, the template path `recipes/ingredients` will match `ingredients.twig`.
 
+
 ### Hidden Templates
 
 Craft treats templates with names prefixed with an underscore, for example `recipes/_entry.twig`, as hidden templates that are not directly accessible.
