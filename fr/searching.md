@@ -31,34 +31,38 @@ Craft supports the following search syntax:
 | `body:*`                 | where the `body` field contains any value.                     |
 | `-body:*`                | where the `body` field is empty.                               |
 
-
 ## Searching for specific element attributes
 
 Assets, categories, entries, users, and tags each support their own set of additional attributes to search against:
 
 * **Assets**
-    
+
   * filename
   * extension
   * kind
+
 * **Categories**
-    
+
   * title
   * slug
+
 * **Entries**
-    
+
   * title
   * slug
+
 * **Users**
-    
+
   * username
   * firstName
   * lastName
   * fullName (firstName + lastName)
   * email
+
 * **Tags**
-    
+
   * title
+
 
 ## Templating
 
@@ -97,4 +101,4 @@ Craft does its best to keep its search indexes as up-to-date as possible, but th
 ./craft resave/entries
 ```
 
-You can specify which entries should be resaved with the `--section` and `--type` options, among others. Run `resave/entries --help` to see a full list of supported options.
+You can specify which entries should be resaved with the `--section` and `--type` options, among others. Run `resave/entries --help` to see a full list of supported options. 
