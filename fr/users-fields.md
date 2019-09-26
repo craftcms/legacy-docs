@@ -39,7 +39,6 @@ Possible values include:
 | `':empty:'`    | that don’t have any related users.   |
 | `':notempty:'` | that have at least one related user. |
 
-
 ```twig
 {# Fetch entries with a related user #}
 {% set entries = craft.entries()
