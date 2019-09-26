@@ -48,3 +48,4 @@ Then you can create a registration form on the front end, like this:
     <input type="submit" value="Register">
 </form>
 ```
+
