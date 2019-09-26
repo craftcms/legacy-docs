@@ -8,7 +8,9 @@ Craft can be downloaded with [Composer](#downloading-with-composer) or by [manua
 
 ### Downloading with Composer
 
-::: tip You should be running Composer 1.3.0 or later. You can find out your installed version of Composer by running `composer -V` from your terminal. If that outputs something lower than 1.3.0, run `composer self-update` to update your Composer installation. :::
+::: tip
+You should be running Composer 1.3.0 or later. You can find out your installed version of Composer by running `composer -V` from your terminal. If that outputs something lower than 1.3.0, run `composer self-update` to update your Composer installation.
+:::
 
 To create a new Craft project, run this command (substituting `<Path>` with the path where Composer should create the project):
 
@@ -29,37 +31,44 @@ Download the archive format you prefer to work with:
 
 Extract the archive wherever you want your new Craft project to live.
 
-::: tip If you’re on macOS, be careful not to lose the hidden files in there (`.env`, `.env.example`, `.gitignore`, and `web/.htaccess`). You can press <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> to toggle hidden file visibility in Finder. :::
+::: tip
+If you’re on macOS, be careful not to lose the hidden files in there (`.env`, `.env.example`, `.gitignore`, and `web/.htaccess`). You can press <kbd>Command</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> to toggle hidden file visibility in Finder.
+:::
 
 ### Directory Structure
 
 Once Craft’s files are in place, your project directory should have a directory structure like this:
 
-    my-project.test/
-    ├── config/
-    │   └── ...
-    ├── storage/
-    │   └── ...
-    ├── templates/
-    │   └── ...
-    ├── vendor/
-    │   └── ...
-    ├── web/
-    │   └── ...
-    ├── .env
-    ├── .env.example
-    ├── composer.json
-    ├── craft
-    └── craft.bat
-    
+```
+my-project.test/
+├── config/
+│   └── ...
+├── storage/
+│   └── ...
+├── templates/
+│   └── ...
+├── vendor/
+│   └── ...
+├── web/
+│   └── ...
+├── .env
+├── .env.example
+├── composer.json
+├── craft
+└── craft.bat
+```
 
-::: tip The `web/` folder represents your site’s webroot, and it can be renamed to whatever you want (`www/`, `public/`, `public_html/`, etc.). :::
+::: tip
+The `web/` folder represents your site’s webroot, and it can be renamed to whatever you want (`www/`, `public/`, `public_html/`, etc.).
+:::
 
 You can learn about what all these folders and files are for and how to customize them from the [Directory Structure](directory-structure.md) page.
 
 ## Step 2: Set the File Permissions
 
-::: tip If you used Composer to download Craft, you can probably safely skip this step. :::
+::: tip
+If you used Composer to download Craft, you can probably safely skip this step.
+:::
 
 For Craft to run properly, PHP needs to be able to write to the following places:
 
@@ -77,11 +86,15 @@ The exact permissions you should be setting depends on the relationship between 
 - If they’re in the same group, then use `774`.
 - If you’re not sure and like to live life on the edge, use `777`.
 
-::: warning HEY IIS FANS Make sure your site’s AppPool account has write permissions to these folders/files as well. :::
+::: warning HEY IIS FANS
+Make sure your site’s AppPool account has write permissions to these folders/files as well.
+:::
 
 ## Step 3: Set a Security Key
 
-::: tip If you used Composer to download Craft, you can probably safely skip this step. :::
+::: tip
+If you used Composer to download Craft, you can probably safely skip this step.
+:::
 
 Each Craft project should have a unique security key, which is shared between each of the environments that the project is installed on.
 
@@ -93,8 +106,7 @@ First generate a cryptographically secure key, preferably using a password gener
 
 Then open up your `.env` file (you may need to use an app like [Transmit](https://panic.com/transmit/) to do this if you’re running macOS), and find this line:
 
-      SECURITY_KEY=""
-    
+    SECURITY_KEY=""
 
 Paste your security key inside the quotes and save the file.
 
@@ -113,11 +125,10 @@ Next up, you need to create a database for your Craft project. Craft 3 supports 
 If you’re given a choice, we recommend the following database settings in most cases:
 
 - **MySQL**
-  
   - Default Character Set: `utf8`
   - Default Collation: `utf8_unicode_ci`
+
 - **PostgreSQL**
-  
   - Character Set: `UTF8`
 
 ## Step 5: Set up the Web Server
@@ -157,11 +168,13 @@ The first step of the installer is to accept the [license agreement](https://cra
 
 The second step is to enter your database connection information.
 
-::: tip If the Setup Wizard skips this step, it’s because Craft is already able to connect to your database. :::
+::: tip
+If the Setup Wizard skips this step, it’s because Craft is already able to connect to your database.
+:::
 
 ![Craft Installation Database Connection Information](./images/installation-step-2.png)
 
-The third step of the installer is to create an admin account. Don’t be one of *those people* and be sure to pick a strong password.
+The third step of the installer is to create an admin account. Don’t be one of _those people_ and be sure to pick a strong password.
 
 ![Craft Installation Create User Account](./images/installation-step-3.png)
 

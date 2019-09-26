@@ -7,7 +7,7 @@ We’ll provide two examples: The simplest possible profile form and a full-feat
 ## Simple Profile
 
 The following fields don't require any validation.
-
+ 
 - first name
 - last name
 - photo
@@ -208,7 +208,6 @@ Keep in mind that there is a custom Bio field included in this example, so if yo
 We’ll walk through the advanced form example step by step.
 
 #### Require Login
-
 ```twig
 {% requireLogin %}
 ```
@@ -224,7 +223,9 @@ Make sure the user is logged in or else the template will throw errors doing any
 
 The `<form>` tag does not have an `action=""` parameter on purpose. The hidden `name="action"` input tells Craft which controller and controller method to use.
 
-:::tip The Control Panel profile form uses Craft’s [UserController::actionSaveUser()](api:craft\controllers\UsersController#method-actionsaveuser) controller and you’re free to use it on the front end too if it suits your needs. Otherwise, you can use it as inspiration to build your own controller in a custom module or plugin. :::
+:::tip
+The Control Panel profile form uses Craft’s [UserController::actionSaveUser()](api:craft\controllers\UsersController#method-actionsaveuser) controller and you’re free to use it on the front end too if it suits your needs. Otherwise, you can use it as inspiration to build your own controller in a custom module or plugin.
+:::
 
 #### Notice
 
@@ -393,7 +394,9 @@ This field is required when the email address or password has changed. Otherwise
 
 Let’s say you added a custom field named “Bio” with a handle of `bio` to the user profile field layout under Settings → Users → Fields. Let’s also say it’s a required field. The difference here is that custom fields belong in a `fields` array with names like `field[<fieldname>]`.
 
-:::tip Handling complex custom fields, like Matrix or third-party plugin fields, can seem complicated. You might want to view the source code of a user profile form in the Control Panel to see how to handle those types of fields. :::
+:::tip
+Handling complex custom fields, like Matrix or third-party plugin fields, can seem complicated. You might want to view the source code of a user profile form in the Control Panel to see how to handle those types of fields.
+:::
 
 #### Form Submission
 

@@ -8,57 +8,61 @@ You can search for elements anywhere you see this bar:
 
 Craft supports the following search syntax:
 
-| Searching for…           | will find elements…                                            |
-| ------------------------ | -------------------------------------------------------------- |
-| `salty`                  | containing “salty”.                                            |
-| `salty dog`              | containing both “salty” and “dog”.                             |
-| `salty OR dog`           | containing either “salty” or “dog” (or both).                  |
-| `salty -dog`             | containing “salty” but not “dog”.                              |
-| `"salty dog"`            | containing the exact phrase “salty dog”.                       |
-| `*ty`                    | containing a word that ends with “ty”.                         |
-| `*alt*`                  | containing a word that contains “alt”.                         |
-| `body:salty`             | where the `body` field contains “salty”.                       |
-| `body:salty body:dog`    | where the `body` field contains both “salty” and “dog”.        |
-| `body:salty OR body:dog` | where the `body` field contains either “salty” or “dog”.       |
-| `body:salty -body:dog`   | where the `body` field contains “salty” but not “dog”.         |
-| `body:"salty dog"`       | where the `body` field contains the exact phrase “salty dog”.  |
-| `body:*ty`               | where the `body` field contains a word that ends with “ty”.    |
-| `body:*alt*`             | where the `body` field contains a word that contains “alt”.    |
-| `body::salty`            | where the `body` field is set to “salty” and nothing more.     |
-| `body::"salty dog"`      | where the `body` field is set to “salty dog” and nothing more. |
-| `body::salty*`           | where the `body` field begins with “salty”.                    |
-| `body::*dog`             | where the `body` field ends with “dog”.                        |
-| `body:*`                 | where the `body` field contains any value.                     |
-| `-body:*`                | where the `body` field is empty.                               |
-
+Searching for… | will find elements…
+-|-
+`salty` | containing “salty”.
+`salty dog` | containing both “salty” and “dog”.
+`salty OR dog` | containing either “salty” or “dog” (or both).
+`salty -dog` | containing “salty” but not “dog”.
+`"salty dog"` | containing the exact phrase “salty dog”.
+`*ty` | containing a word that ends with “ty”.
+`*alt*` | containing a word that contains “alt”.
+`body:salty` | where the `body` field contains “salty”.
+`body:salty body:dog` | where the `body` field contains both “salty” and “dog”.
+`body:salty OR body:dog` | where the `body` field contains either “salty” or “dog”.
+`body:salty -body:dog` | where the `body` field contains “salty” but not “dog”.
+`body:"salty dog"` | where the `body` field contains the exact phrase “salty dog”.
+`body:*ty` | where the `body` field contains a word that ends with “ty”.
+`body:*alt*` | where the `body` field contains a word that contains “alt”.
+`body::salty` | where the `body` field is set to “salty” and nothing more.
+`body::"salty dog"` | where the `body` field is set to “salty dog” and nothing more.
+`body::salty*` | where the `body` field begins with “salty”.
+`body::*dog` | where the `body` field ends with “dog”.
+`body:*` | where the `body` field contains any value.
+`-body:*` | where the `body` field is empty.
 
 ## Searching for specific element attributes
 
 Assets, categories, entries, users, and tags each support their own set of additional attributes to search against:
 
 * **Assets**
-    
+
   * filename
   * extension
   * kind
+
 * **Categories**
-    
+
   * title
   * slug
+
 * **Entries**
-    
+
   * title
   * slug
+
 * **Users**
-    
+
   * username
   * firstName
   * lastName
   * fullName (firstName + lastName)
   * email
+
 * **Tags**
-    
+
   * title
+
 
 ## Templating
 
@@ -97,4 +101,4 @@ Craft does its best to keep its search indexes as up-to-date as possible, but th
 ./craft resave/entries
 ```
 
-You can specify which entries should be resaved with the `--section` and `--type` options, among others. Run `resave/entries --help` to see a full list of supported options.
+You can specify which entries should be resaved with the `--section` and `--type` options, among others. Run `resave/entries --help` to see a full list of supported options. 

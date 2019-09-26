@@ -1,6 +1,6 @@
 # Image Transforms
 
-Rather than requiring that everyone upload images at a certain size, Craft lets you define “image transforms”, which set those rules on Craft’s end instead. Transforms are *non-destructive*, meaning that they have no effect on the original image that was uploaded.
+Rather than requiring that everyone upload images at a certain size, Craft lets you define “image transforms”, which set those rules on Craft’s end instead. Transforms are _non-destructive_, meaning that they have no effect on the original image that was uploaded.
 
 ## Defining Transforms from the Control Panel
 
@@ -19,7 +19,7 @@ Each transform has the following settings:
 **Mode** can be set to the following values:
 
 * **Crop** – Crops the image to the specified width and height, scaling the image up if necessary. (This is the default mode.)
-* **Fit** – Scales the image so that it is as big as possible with all dimensions fitting within the specified width and height.
+* **Fit**  – Scales the image so that it is as big as possible with all dimensions fitting within the specified width and height.
 * **Stretch** – Stretches the image to the specified width and height.
 
 If **Mode** is set to “Crop”, an additional “Default Focal Point” setting will appear, where you can define which area of the image Craft should center the crop on, for images without a [focal point](assets.md#focal-points) set. Its options include:
@@ -76,7 +76,7 @@ Then you can pass that object into your AssetFileModel’s `getUrl()`, `getWidth
 <img src="{{ asset.getUrl(thumb) }}" width="{{ asset.getWidth(thumb) }}" height="{{ asset.getHeight(thumb) }}">
 ```
 
-Note how in that example there are no quotes around “`thumb`”, like there were in the first one. That’s because in the first one, we were passing a *string* set to a CP-defined transform’s handle, whereas in this example we’re passing a *variable* referencing the ‘thumb’ object we created within the template.
+Note how in that example there are no quotes around “`thumb`”, like there were in the first one. That’s because in the first one, we were passing a _string_ set to a CP-defined transform’s handle, whereas in this example we’re passing a _variable_ referencing the ‘thumb’ object we created within the template.
 
 ### Possible Values
 

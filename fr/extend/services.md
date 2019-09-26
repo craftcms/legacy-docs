@@ -80,7 +80,9 @@ Here’s a control flow diagram for class-oriented methods:
 
 ![An example flow for a saveRecipe() method.](../images/save-component--class.png =612x1176)
 
-::: tip It’s only necessary to wrap the operation in a database transaction if the operation encompasses multiple database changes. :::
+::: tip
+It’s only necessary to wrap the operation in a database transaction if the operation encompasses multiple database changes.
+:::
 
 Here’s a complete code example of what that looks like:
 
@@ -163,3 +165,5 @@ public function saveIngredient(IngredientInterface $ingredient, $runValidation =
     return true;
 }
 ```
+
+

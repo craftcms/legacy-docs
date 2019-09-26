@@ -18,11 +18,13 @@ Once you've completed everything listed above you can continue with the upgrade 
 
 The best way to upgrade a Craft 2 site is to approach it like you’re building a new Craft 3 site. So to begin, create a new directory alongside your current project, and follow steps 1-3 in the [installation instructions](installation.md).
 
-With Craft 3 downloaded and prepped, follow these steps to complete the upgrade:
+With Craft 3 downloaded and prepped, follow these steps to complete the upgrade: 
 
 1. Configure the `.env` file in your new project with your database connection settings from your old `craft/config/db.php` file.
-    
-    ::: tip Don’t forget to set `DB_TABLE_PREFIX="craft"` if that’s what your database tables are prefixed with. :::
+
+   ::: tip
+   Don’t forget to set `DB_TABLE_PREFIX="craft"` if that’s what your database tables are prefixed with.
+   :::
 
 2. Copy any settings from your old `craft/config/general.php` file into your new project’s `config/general.php` file.
 

@@ -21,6 +21,7 @@ Each site has the following attributes:
 * Is Primary Site?
 * Base URL
 
+
 ### Site Groups
 
 Site Groups allow you to organize your sites together by commonality, like language or site type.
@@ -39,6 +40,7 @@ Site Language:      {{ currentSite.language }}
 Is Primary Site?:   {{ currentSite.primary }}
 Base URL:           {{ currentSite.baseUrl }}
 ```
+
 
 ### Language
 
@@ -60,6 +62,7 @@ Or as a way to automatically include the proper template for each language:
 
 where your template name would be, for example, `_share/footer-de`.
 
+
 ### Primary Site
 
 Craft sets the default site as the Primary site, meaning Craft will load it by default on the front end, if it is unable to determine which site to load. If you only have one site then you cannot disable it as the Primary site.
@@ -74,9 +77,13 @@ Multiple sites can share the same host name, such as `https://craftcms.com/` and
 
 If you want to create a site with a different host name, you must configure your server to handle traffic for it. The host name can either point to the same web root as your current site (e.g. `web/`), or you may want to give it its own separate web root. If you do the latter, make sure you copy your `.htaccess` and `index.php` files into the new web root.
 
-::: tip If you have multiple sites using different root domains like `https://site-a.com` and `https://site-b.com`, with the way Craft’s [license enforcements works](https://craftcms.com/support/license-enforcement), you’ll want to pick one of the domains to access the Craft Control Panel from for *all* of the sites. :::
+::: tip
+If you have multiple sites using different root domains like `https://site-a.com` and `https://site-b.com`, with the way Craft’s [license enforcements works](https://craftcms.com/support/license-enforcement), you’ll want to pick one of the domains to access the Craft Control Panel from for _all_ of the sites.
+:::
 
-::: warning Don’t ever use the `@web` alias when defining your sites’ Base URLs. It could introduce a [cache poisoning](https://www.owasp.org/index.php/Cache_Poisoning) vulnerability, and Craft won’t be able to reliably determine which site is being requested. :::
+::: warning
+Don’t ever use the `@web` alias when defining your sites’ Base URLs. It could introduce a [cache poisoning](https://www.owasp.org/index.php/Cache_Poisoning) vulnerability, and Craft won’t be able to reliably determine which site is being requested.
+:::
 
 ## Propagating Entries Across All Enabled Sites
 

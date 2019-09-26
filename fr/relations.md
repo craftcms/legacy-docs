@@ -32,6 +32,7 @@ To set this up, we create a new field of the Entries Field Type, give it the nam
 
 Now we can assign the ingredients to each Drink entry via the new Ingredients relation field.
 
+
 ## Templating
 
 Once we have our relations field set up, we can look at the options for outputting related elements in our templates.
@@ -66,6 +67,7 @@ You can also add any additional parameters supported by the element type:
 {% endfor %}
 ```
 
+
 ### The `relatedTo` Parameter
 
 Assets, Categories, Entries, Users, and Tags each support a `relatedTo` parameter, enabling all kinds of crazy things.
@@ -85,8 +87,8 @@ By doing that, Craft will return all of the elements related to the given elemen
 If you want to be a little more specific, `relatedTo` also accepts an object that contains the following properties:
 
 * `element`, `sourceElement`, or `targetElement`
-* `field` *(optional)*
-* `sourceLocale` *(optional)*
+* `field` _(optional)_
+* `sourceLocale` _(optional)_
 
 Set the first property’s key depending on what you want to get back:
 
@@ -136,4 +138,4 @@ There might be times when you need to factor multiple types of relations into th
 ]).all() %}
 ```
 
-That first argument (`'and'`) specified that the query must match *all* of the relation criteria. You can pass `'or'` instead if you want *any* of the relation criteria to match.
+That first argument (`'and'`) specified that the query must match _all_ of the relation criteria. You can pass `'or'` instead if you want _any_ of the relation criteria to match.

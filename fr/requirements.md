@@ -1,6 +1,8 @@
 # Server Requirements
 
-::: tip You can use the [Craft Server Check](https://github.com/craftcms/server-check) script to quickly find out if your server meet’s Craft’s requirements. :::
+::: tip
+You can use the [Craft Server Check](https://github.com/craftcms/server-check) script to quickly find out if your server meet’s Craft’s requirements.
+:::
 
 Craft requires the following:
 
@@ -82,4 +84,6 @@ Craft’s Control Panel requires a modern browser:
 * iOS: Safari 9.1 or later
 * Android: Chrome 4.4 or later
 
-::: tip Craft’s Control Panel browser requirements have nothing to do with your actual website. If you’re a glutton for punishment and want your website to look flawless on IE 6, that’s your choice. :::
+::: tip
+Craft’s Control Panel browser requirements have nothing to do with your actual website. If you’re a glutton for punishment and want your website to look flawless on IE 6, that’s your choice.
+:::

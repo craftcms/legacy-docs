@@ -10,13 +10,13 @@ The `{% css %}` tag can be used to register a `<style>` tag in the page’s `<he
 {% endcss %}
 ```
 
-::: tip The tag calls <api:yii\web\View::registerCss()> under the hood, which can also be accessed via the global `view` variable.
+::: tip
+The tag calls <api:yii\web\View::registerCss()> under the hood, which can also be accessed via the global `view` variable.
 
 ```twig
 {% set styles = ".content { color: #{entry.textColor}; }" %}
 {% do view.registerCss(styles) %}
 ```
-
 :::
 
 ## Parameters

@@ -11,16 +11,21 @@ All plugins in the Plugin Store must have one of two licenses:
 
 Create a `LICENSE.md` file at the root of your plugin’s repository, and paste in the license text, beginning with a copyright notice.
 
-    Copyright © <YourName>
-    
+```
+Copyright © <YourName>
+```
 
-::: tip If you are going with the Craft License, don’t forget to change the `license` value in your `composer.json` file from `MIT` to `proprietary`. :::
+::: tip
+If you are going with the Craft License, don’t forget to change the `license` value in your `composer.json` file from `MIT` to `proprietary`.
+::: 
 
 ## Registering your Plugin
 
 To register your plugin, first make sure it’s published to a public GitHub repository. Then create a Craft ID account at [id.craftcms.com](https://id.craftcms.com), and connect it to your GitHub account.
 
-::: warning If your plugins are published to a GitHub organization account, make sure that the organization is checked when authenticating your GitHub account. :::
+::: warning
+If your plugins are published to a GitHub organization account, make sure that the organization is checked when authenticating your GitHub account.
+:::
 
 From your Craft ID account, go to Plugins → “Add a plugin”, and click the “Select” button next to your plugin’s repository. You will then be able to edit its description, screenshots, and other details.
 
@@ -28,23 +33,26 @@ From your Craft ID account, go to Plugins → “Add a plugin”, and click the 
 
 If you wish to sell your plugin, choose a price point that makes sense. Here are some suggested price ranges to consider:
 
-| Price Range | Example Use Cases                                      |
-| ----------- | ------------------------------------------------------ |
-| $10-$29     | Lightweight “plug and play” utilities and integrations |
-| $49-$99     | Complex field types and integrations                   |
-| $149-$249   | Plugins that add significant new system functionality  |
-| $499-$999   | Major or highly niche applications                     |
-
+| Price Range | Example Use Cases
+| ----------- | ------------------------------------------------------
+| $10-$29     | Lightweight “plug and play” utilities and integrations
+| $49-$99     | Complex field types and integrations
+| $149-$249   | Plugins that add significant new system functionality
+| $499-$999   | Major or highly niche applications
 
 You will also be required to pick a Renewal Price, which is the annual fee the Plugin Store will charge customers who wish to continue installing new updates, after the first year. Pick a Renewal Price that is around 20-50% of the initial Price. For example, if you are charging $99 for your plugin, your Renewal Price should be between $19-$49.
 
-::: warning If you initially submit your plugin as free, you will not be allowed to change it to commercial later. You can, however, give it a commercial [edition](plugin-editions.md) that offers extended functionality, as long as you don’t remove crucial functionality from the free edition. :::
+::: warning
+If you initially submit your plugin as free, you will not be allowed to change it to commercial later. You can, however, give it a commercial [edition](plugin-editions.md) that offers extended functionality, as long as you don’t remove crucial functionality from the free edition.
+:::
 
 ### Submit for Approval
 
 Once you’re ready to submit the plugin, click the “Submit for approval” button. Once your plugin is approved, it will become visible on [plugins.craftcms.com](https://plugins.craftcms.com/). It won’t necessarily be available in the in-app Plugin Store yet, though, unless your plugin already has at least one [release](#plugin-releases).
 
-::: tip You might want to register your plugin with [Packagist](https://packagist.org/) in addition to the Plugin Store, so that people can install and update your plugin from the command line. But Packagist isn’t a requirement for the Plugin Store. :::
+::: tip
+You might want to register your plugin with [Packagist](https://packagist.org/) in addition to the Plugin Store, so that people can install and update your plugin from the command line. But Packagist isn’t a requirement for the Plugin Store.
+:::
 
 ## Plugin Releases
 

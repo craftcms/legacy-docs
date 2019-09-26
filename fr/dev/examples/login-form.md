@@ -36,3 +36,4 @@ By default, users will be redirected based on your `postLoginRedirect` config se
 ```twig
 {{ redirectInput('some/custom/path') }}
 ```
+

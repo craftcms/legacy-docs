@@ -2,7 +2,9 @@
 
 Modules and plugins can add soft delete support to their components by following this guide.
 
-::: tip All element types support soft deletes out of the box. See [Element Types](element-types.md#restore-action) for information on how to make them restorable. :::
+::: tip
+All element types support soft deletes out of the box. See [Element Types](element-types.md#restore-action) for information on how to make them restorable.
+:::
 
 ## Prepare the Database Table
 
@@ -36,7 +38,7 @@ Table rows that have been soft-deleted should only stick around as long as the <
 
 Rather than check for stale rows on every request, we can make this a part of Craft’s [garbage collection](../gc.md) routines.
 
-<api:craft\services\Gc> will fire a `run` event each time that it is running. You can tap into that from your module/plugin’s `init()` method.
+<api:craft\services\Gc> will fire a `run` event each time that it is running. You can tap into that from your module/plugin’s `init()` method. 
 
 ```php
 use craft\services\Gc;
@@ -45,16 +47,18 @@ use yii\base\Event;
 public function init()
 {
     paren::init();
-
+    
     Event::on(Gc::class, Gc::EVENT_RUN, function() {
         Craft::$app->gc->hardDelete('{{%tablename}}');
     }
 }
 ```
 
-[hardDelete()](api:craft\services\Gc::hardDelete()) method will delete any rows with a `dateDeleted` value set to a timestamp that’s older than the <config:softDeleteDuration> config setting.
+[hardDelete()](api:craft\services\Gc::hardDelete()) method will delete any rows with a `dateDeleted` value set to a timestamp that’s older than the <config:softDeleteDuration> config setting. 
 
-::: tip If you need to check multiple tables for stale rows, you can pass an array of table names into [hardDelete()](api:craft\services\Gc::hardDelete()) instead. :::
+::: tip
+If you need to check multiple tables for stale rows, you can pass an array of table names into [hardDelete()](api:craft\services\Gc::hardDelete()) instead.
+:::
 
 ## Update the Active Record Class
 
@@ -67,7 +71,7 @@ use craft\db\SoftDeleteTrait;
 class MyRecord extends ActiveRecord
 {
     use SoftDeleteTrait;
-
+    
     // ...
 }
 ```
@@ -122,47 +126,47 @@ public static function find()
 Check your code for any database queries that involve your component’s table. They will need to be updated as well.
 
 - When selecting data from your table, make sure that you’re ignoring rows with a `dateDeleted` value.
-    
-    ```php{4}
-    $results = (new \craft\db\Query())
+
+  ```php{4}
+  $results = (new \craft\db\Query())
       ->select(['...'])
       ->from(['{{%tableName}}'])
       ->where(['dateDeleted' => null])
       ->all();
-    ```
+  ```
 
 - When deleting rows from your table using your Active Record class, call its new `softDelete()` method rather than [delete()](api:yii\db\ActiveRecord::delete()).
-    
-    ```php
-    $record->softDelete();
-    ```
+
+  ```php
+  $record->softDelete();
+  ```
 
 - When deleting rows from your table using a query command, call <api:craft\db\Command::softDelete()> rather than [delete()](api:yii\db\Command::delete()).
-    
-    ```php
-    \Craft::$app->db->createCommand()
+
+  ```php
+  \Craft::$app->db->createCommand()
       ->softDelete('{{%tablename}}', ['id' => $id])
       ->execute(); 
-    ```
+  ```
 
 ## Restoring Soft-Deleted Rows
 
 There are two ways to restore soft-deleted rows that haven’t been hard-deleted by garbage collection yet:
 
 - With your Active Record class, by calling its `restore()` method.
-    
-    ```php
-    $record = MyRecord::findTrashed()
-        ->where(['id' => $id])
-        ->one();
-    
-    $record->restore();
-    ```
+
+  ```php
+  $record = MyRecord::findTrashed()
+      ->where(['id' => $id])
+      ->one();
+
+  $record->restore();
+  ```
 
 - With a query command, by calling <api:craft\db\Command::restore()>.
-    
-    ```php
-    \Craft::$app->db->createCommand()
+
+  ```php
+  \Craft::$app->db->createCommand()
       ->restore('{{%tablename}}', ['id' => $id])
       ->execute();
-    ```
+  ```

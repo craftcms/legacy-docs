@@ -2,7 +2,9 @@
 
 Modules and plugins can provide custom translation categories, for use by Yii’s [Message Translations](https://www.yiiframework.com/doc/guide/2.0/en/tutorial-i18n#message-translation) feature.
 
-::: tip See [Static Message Translations](../static-translations.md) for more details on how message translations work. :::
+::: tip
+See [Static Message Translations](../static-translations.md) for more details on how message translations work.
+:::
 
 Translation categories can be added programmatically by adding a new translation source onto the <api:yii\i18n\I18N::$translations> array.
 
@@ -46,9 +48,11 @@ return [
 
 Plugins get a custom translation category registered automatically, named after the plugin handle. Plugins can provide translation files within a `translations/` folder in their base source folder.
 
-    src/
-    ├── Plugin.php
-    ├── ...
-    └── translations/
-        └── de/
-            └── plugin-handle.php
+```
+src/
+├── Plugin.php
+├── ...
+└── translations/
+    └── de/
+        └── plugin-handle.php
+```

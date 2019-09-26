@@ -32,8 +32,8 @@ Each item within the [navItems](api:craft\events\RegisterCpNavItemsEvent::$navIt
 - `url` – The URL that the nav item should link to. (It will be run through <api:craft\helpers\UrlHelper::cpUrl()>.)
 - `label` – The user-facing nav item label.
 - `icon` – The path to the icon SVG that should be used. (It can begin with an alias.)
-- `badgeCount` *(optional)* – The badge count that should be displayed in the nav item.
-- `subnav` *(optional)* – An array of subnav items that should be visible when your section is accessed. (See [Subnavs](#subnavs).)
+- `badgeCount` _(optional)_ – The badge count that should be displayed in the nav item.
+- `subnav` _(optional)_ – An array of subnav items that should be visible when your section is accessed. (See [Subnavs](#subnavs).)
 
 ## Subnavs
 
@@ -43,7 +43,7 @@ If your section has a sub-navigation, each subnav item within your `subnav` arra
 'subnav' => [
     'foo' => ['label' => 'Foo', 'url' => 'section-url/foo'],
     'bar' => ['label' => 'Bar', 'url' => 'section-url/bar'],
-
+    
     // A subnav can also have it's own badge count by adding the optional `badgeCount` key:
     'baz' => ['label' => 'Baz', 'url' => 'section-url/baz', 'badgeCount' => 5],
 ],
@@ -92,7 +92,9 @@ If you do this, Craft will automatically add a new [user permission](user-permis
 
 Clicking on a plugin’s section will take the user to `/admin/plugin-handle`, which will attempt to load an `index.html` or `index.twig` template within the plugin’s [template root](template-roots.md) (its `templates/` folder within its base source folder).
 
-::: tip See [Control Panel Templates](cp-templates.md) for more information about developing Control Panel templates. :::
+::: tip
+See [Control Panel Templates](cp-templates.md) for more information about developing Control Panel templates.
+:::
 
 Alternatively, you can route `/admin/plugin-handle` requests to a controller action (or a different template) by registering a Control Panel route from your plugin’s `init()` method:
 

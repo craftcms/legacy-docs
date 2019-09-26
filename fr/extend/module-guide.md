@@ -6,24 +6,29 @@
 
 Before you begin working on a module, you need to decide on a couple things:
 
-- **Namespace** – The root namespace that your module’s classes will live in. (See the [PSR-4](https://www.php-fig.org/psr/psr-4/) autoloading specification for details.) Note that this should *not* begin with `craft`; use something that identifies you (the developer), or the project.
+- **Namespace** – The root namespace that your module’s classes will live in. (See the [PSR-4](https://www.php-fig.org/psr/psr-4/) autoloading specification for details.) Note that this should *not* begin with `craft\`; use something that identifies you (the developer), or the project.
 - **Module ID** – Something that uniquely identifies your plugin within your project. (Module IDs must begin with a letter and contain only lowercase letters, numbers, and dashes. They should be `kebab-cased`.)
 
-::: warning When choosing a module ID, try to avoid names that will conflict with Craft’s core [controllers](https://github.com/craftcms/cms/tree/develop/src/controllers) (e.g. `app` would conflict with `AppController.php`), as well as any installed plugin handles. Otherwise bad things will happen. :::
+::: warning
+When choosing a module ID, try to avoid names that will conflict with Craft’s core [controllers](https://github.com/craftcms/cms/tree/develop/src/controllers) (e.g. `app` would conflict with `AppController.php`), as well as any installed plugin handles. Otherwise bad things will happen.
+:::
 
 ## Set up the basic file structure
 
 To create a module, create a new directory for it somewhere within your Craft project, such as `modules/<ModuleID>/`. For example, if your module ID is `foo`, you might set it up like this:
 
-    my-project.test/
-    ├── modules/
-    │   └── foo/
-    │       └── Module.php
-    ├── templates/
-    └── ...
-    
+```
+my-project.test/
+├── modules/
+│   └── foo/
+│       └── Module.php
+├── templates/
+└── ...
+```
 
-::: tip Use [pluginfactory.io](https://pluginfactory.io/) to create your module’s scaffolding with just a few clicks. :::
+::: tip
+Use [pluginfactory.io](https://pluginfactory.io/) to create your module’s scaffolding with just a few clicks.
+:::
 
 ## Set up class autoloading
 
@@ -64,7 +69,9 @@ return [
 ];
 ```
 
-::: tip If your module doesn’t need to get loaded on every request, you can remove its ID from the `bootstrap` array. :::
+::: tip
+If your module doesn’t need to get loaded on every request, you can remove its ID from the `bootstrap` array.
+:::
 
 ## The Module class
 
@@ -92,7 +99,7 @@ class Module extends \yii\base\Module
 }
 ```
 
-Replace `bar` with your module’s actual namespace, and `'@bar'` with an [alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases) name based on your actual namespace (with any ``s converted to `/`s).
+Replace `bar` with your module’s actual namespace, and `'@bar'` with an [alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases) name based on your actual namespace (with any `\`s converted to `/`s). 
 
 ## Further Reading
 

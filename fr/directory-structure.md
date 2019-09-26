@@ -6,7 +6,9 @@ When you download a fresh copy of Craft 3, your project will have the following 
 
 Holds all of your Craft and plugin [configuration files](config/README.md), as well as your `license.key` file.
 
-::: tip You can customize the name and location of this folder by setting the [CRAFT_CONFIG_PATH](config/php-constants.md#craft-config-path) PHP constant in `web/index.php`. :::
+::: tip
+You can customize the name and location of this folder by setting the [CRAFT_CONFIG_PATH](config/php-constants.md#craft-config-path) PHP constant in `web/index.php`.
+:::
 
 ### `modules/`
 
@@ -22,9 +24,9 @@ Some of the folders you might find in there include:
 - `logs/` – Stores Craft’s logs and PHP error logs.
 - `rebrand/` – Stores the custom Login Page Logo and Site Icon files, if you’ve uploaded them.
 - `runtime/` – Pretty much everything in here is there for caching and logging purposes. Nothing that Craft couldn’t live without, if the folder happened to get deleted.
-    
-    For the curious, here are the types of things you will find in `storage/runtime/` (though this is not a comprehensive list):
-    
+
+  For the curious, here are the types of things you will find in `storage/runtime/` (though this is not a comprehensive list):
+
   - `assets/` – Stores image thumbnails, resized file icons, and copies of images stored on remote asset volumes, to save Craft an HTTP request when it needs the images to generate new thumbnails or transforms.
   - `cache/` – Stores data caches.
   - `compiled_classes/` – Stores some dynamically-defined PHP classes.
@@ -33,25 +35,33 @@ Some of the folders you might find in there include:
   - `temp/` – Stores temp files.
   - `validation.key` – A randomly-generated, cryptographically secure key that is used for hashing and validating data between requests.
 
-::: tip You can customize the name and location of this folder by setting the [CRAFT_STORAGE_PATH](config/php-constants.md#craft-storage-path) PHP constant in `web/index.php`. :::
+::: tip
+You can customize the name and location of this folder by setting the [CRAFT_STORAGE_PATH](config/php-constants.md#craft-storage-path) PHP constant in `web/index.php`.
+:::
 
 ### `templates/`
 
 Your front-end Twig templates go in here. Any local site assets, such as images, CSS, and JS that should be statically served, should live in the [web](directory-structure.md#web) folder.
 
-::: tip You can customize the name and location of this folder by setting the [CRAFT_TEMPLATES_PATH](config/php-constants.md#craft-templates-path) PHP constant in `web/index.php`. :::
+::: tip
+You can customize the name and location of this folder by setting the [CRAFT_TEMPLATES_PATH](config/php-constants.md#craft-templates-path) PHP constant in `web/index.php`.
+:::
 
 ### `vendor/`
 
 This is where all of your Composer dependencies go, including Craft itself, and any plugins you’ve installed via Composer.
 
-::: tip You can customize the name and location of this folder by changing the [CRAFT_VENDOR_PATH](config/php-constants.md#craft-vendor-path) PHP constant in `web/index.php`. :::
+::: tip
+You can customize the name and location of this folder by changing the [CRAFT_VENDOR_PATH](config/php-constants.md#craft-vendor-path) PHP constant in `web/index.php`.
+:::
 
 ### `web/`
 
 This directory represents your server’s webroot. The public `index.php` file lives here and this is where any of the local site images, CSS, and JS that is statically served should live.
 
-::: tip You can customize the name and location of this folder. If you move it so it’s no longer living alongside the other Craft folders, make sure to update the [CRAFT_BASE_PATH](config/php-constants.md#craft-vendor-path) PHP constant in `<Webroot>/index.php`. :::
+::: tip
+You can customize the name and location of this folder. If you move it so it’s no longer living alongside the other Craft folders, make sure to update the [CRAFT_BASE_PATH](config/php-constants.md#craft-vendor-path) PHP constant in `<Webroot>/index.php`.
+:::
 
 ### `.env`
 

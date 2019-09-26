@@ -14,15 +14,14 @@ When [querying for elements](dev/element-queries/README.md) that have a Date/Tim
 
 Possible values include:
 
-| Value                                            | Fetches elements…                                                |
-| ------------------------------------------------ | ---------------------------------------------------------------- |
-| `':empty:'`                                      | that don’t have a selected date.                                 |
-| `':notempty:'`                                   | that have a selected date.                                       |
-| `'>= 2018-04-01'`                             | that have a date selected on or after 2018-04-01.                |
-| `'< 2018-05-01'`                              | that have a date selected before 2018-05-01                      |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that have a date selected between 2018-04-01 and 2018-05-01.     |
-| `['or', '< 2018-04-04', '> 2018-05-01']`   | that have a date selected before 2018-04-01 or after 2018-05-01. |
-
+| Value | Fetches elements…
+| - | -
+| `':empty:'` | that don’t have a selected date.
+| `':notempty:'` | that have a selected date.
+| `'>= 2018-04-01'` | that have a date selected on or after 2018-04-01.
+| `'< 2018-05-01'` | that have a date selected before 2018-05-01
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that have a date selected between 2018-04-01 and 2018-05-01.
+| `['or', '< 2018-04-04', '> 2018-05-01']` | that have a date selected before 2018-04-01 or after 2018-05-01.
 
 ```twig
 {# Fetch entries with with a selected date in the next month #}
@@ -34,7 +33,9 @@ Possible values include:
     .all() %}
 ```
 
-::: tip The [atom](dev/filters.md#atom) filter converts a date to an ISO-8601 timestamp. :::
+::: tip
+The [atom](dev/filters.md#atom) filter converts a date to an ISO-8601 timestamp.
+:::
 
 ### Working with Date/Time Field Data
 
@@ -86,7 +87,9 @@ If you want the user to be able to select a time as well, use a `datetime-local`
 <input type="datetime-local" name="fields[<FieldHandle>]" value="{{ currentValue }}">
 ```
 
-::: tip The [HTML5Forms.js](https://github.com/zoltan-dulac/html5Forms.js) polyfill can be used to implement `date` and `datetime-local` inputs [while we wait](https://caniuse.com/#feat=input-datetime) for better browser support. :::
+::: tip
+The [HTML5Forms.js](https://github.com/zoltan-dulac/html5Forms.js) polyfill can be used to implement `date` and `datetime-local` inputs [while we wait](https://caniuse.com/#feat=input-datetime) for better browser support.
+:::
 
 #### Customizing the Timezone
 
@@ -126,11 +129,13 @@ The date input can either be set to the `YYYY-MM-DD` format, or the current loca
 
 The time input can either be set to the `HH:MM` format (24-hour), or the current locale’s short time format.
 
-::: tip To find out what your current locale’s date and time formats are, add this to your template:
+::: tip
+To find out what your current locale’s date and time formats are, add this to your template:
 
 ```twig
 Date format: <code>{{ craft.app.locale.getDateFormat('short', 'php') }}</code><br>
 Time format: <code>{{ craft.app.locale.getTimeFormat('short', 'php') }}</code>
 ```
 
-Then refer to PHP’s [date()](http://php.net/manual/en/function.date.php) function docs to see what each of the format letters mean. :::
+Then refer to PHP’s [date()](http://php.net/manual/en/function.date.php) function docs to see what each of the format letters mean.
+:::

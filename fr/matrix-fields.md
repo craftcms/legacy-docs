@@ -33,11 +33,10 @@ When [querying for elements](dev/element-queries/README.md) that have a Matrix f
 
 Possible values include:
 
-| Value          | Fetches elements…                    |
-| -------------- | ------------------------------------ |
-| `':empty:'`    | that don’t have any Matrix blocks.   |
-| `':notempty:'` | that have at least one Matrix block. |
-
+| Value | Fetches elements…
+| - | -
+| `':empty:'` | that don’t have any Matrix blocks.
+| `':notempty:'` | that have at least one Matrix block.
 
 ```twig
 {# Fetch entries with a Matrix block #}
@@ -114,6 +113,7 @@ You can pass multiple block types if you want:
 {% endfor %}
 ```
 
+
 ### Adjusting the limit
 
 By default, your Matrix field will return the first 100 blocks. You can change that by overriding the `limit` parameter.
@@ -128,6 +128,7 @@ If you think you might have more that 100 blocks, and you want all of them to be
 {% for block in entry.myMatrixField.limit(null) %}
 ```
 
+
 ### Getting the total number of blocks
 
 You can get the total number of blocks using the [length filter](https://twig.symfony.com/doc/filters/length.html):
@@ -135,6 +136,7 @@ You can get the total number of blocks using the [length filter](https://twig.sy
 ```twig
 {{ entry.myMatrixField|length }}
 ```
+
 
 ## See Also
 

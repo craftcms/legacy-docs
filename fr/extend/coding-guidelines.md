@@ -18,12 +18,12 @@ Do your best to follow these guidelines when writing code for Craft and Craft pl
 ## Best Practices
 
 - Declare method argument types whenever possible.
-  
-        php
-        public function foo(Entry $entry, array $settings)
+
+    ```php
+    public function foo(Entry $entry, array $settings)
+    ```
 
 - Use strict comparison operators (`===` and `!==`) whenever possible.
-
 - Use `$foo === null`/`$bar !== null` rather than `is_null($foo)`/`!is_null($bar)`.
 - Use `(int)$foo`/`(float)$bar` rather than `intval($foo)`/`floatval($bar)`.
 - Always pass `true`/`false` to the third argument of [in_array()](http://php.net/manual/en/function.in-array.php) to indicate whether the check should be type-strict (and make it `true` whenever possible).
@@ -42,15 +42,15 @@ Do your best to follow these guidelines when writing code for Craft and Craft pl
 - Use `$str === ''` rather than `strlen($str) === 0` when checking if a string is empty.
 - Avoid using `array_merge()` within loops when possible.
 - Unset variables created by reference in foreach-loops after the loop is finished.
-  
-        php
-        foreach ($array as &$value) {
-            // ...
-        }
-        unset($value);
+
+    ```php
+    foreach ($array as &$value) {
+        // ...
+    }
+    unset($value);
+    ```
 
 - Use `implode()` rather than `join()`.
-
 - Use `in_array()` rather than `array_search(...) !== false` when the position of the needle isn’t needed.
 - Don’t use a `switch` statement when a single `if` condition will suffice.
 - Use single quotes (`'`) whenever double quotes (`"`) aren’t needed.
@@ -58,14 +58,16 @@ Do your best to follow these guidelines when writing code for Craft and Craft pl
 - Use shortcut regex patterns (`\d`, `\D`, `\w`, `\W`, etc.) whenever possible.
 - Use the `DIRECTORY_SEPARATOR` constant rather than `'/'` when defining file paths.
 
-::: tip The [Php Inspections (EA Extended)](https://plugins.jetbrains.com/idea/plugin/7622-php-inspections-ea-extended-) PhpStorm plugin can help you locate and fix these sorts of best practice issues. :::
+::: tip
+The [Php Inspections (EA Extended)](https://plugins.jetbrains.com/idea/plugin/7622-php-inspections-ea-extended-) PhpStorm plugin can help you locate and fix these sorts of best practice issues.
+:::
 
 ## Namespaces & Class Names
 
 - Follow the [PSR-4](https://www.php-fig.org/psr/psr-4/) specification, where a class’s file location can be inferred by its fully qualified name, given a known base namespace mapped to a base path.
 - Namespaces should be all-lowercase.
 - Class names should be `StudlyCase`.
-- Only first party code should use the `craft` and `pixelandtonic` namespace roots. Third party plugins should use a namespace root that refers to the vendor name and plugin name (e.g. `acme\myplugin`).
+- Only first party code should use the `craft\` and `pixelandtonic\` namespace roots. Third party plugins should use a namespace root that refers to the vendor name and plugin name (e.g. `acme\myplugin\`).
 
 ## Method Names
 
@@ -82,8 +84,8 @@ Getter methods that **accept one or more arguments** (regardless of whether they
 
 Static methods should generally not start with `get`.
 
-- `className()`
-- `displayName()`
+  - `className()`
+  - `displayName()`
 
 ## Type Declarations
 
@@ -102,7 +104,9 @@ If an argument accepts two types and one of them is `null`, the argument should 
 public function foo(string $bar = null)
 ```
 
-::: tip Do this even if there are required arguments following the argument that accepts `null`. This is the only way to enforce an argument type while also allowing `null` in PHP. :::
+::: tip
+Do this even if there are required arguments following the argument that accepts `null`. This is the only way to enforce an argument type while also allowing `null` in PHP.
+:::
 
 ### Return Types
 
@@ -243,17 +247,17 @@ $this->requireAcceptsJson();
 ## DB Queries
 
 - Always wrap table names with `{{%` and `}}` (e.g. `{{%entries}}`) so it gets properly quoted and the table prefix gets inserted.
-- Use the `['col1', 'col2']` syntax with `select()` and `groupBy()` instead of `'col1, col2'`, even if only referencing a single column
+- Use the `['col1', 'col2']` syntax with `select()` and `groupBy()` instead of `'col1, col2'`,  even if only referencing a single column
 - Use the `['{{%tablename}}']` syntax with `from()` instead of `'{{%tablename}}'`.
 - Use the `['col1' => SORT_ASC, 'col2' => SORT_DESC]` syntax with `orderBy()` instead of `'col1, col2 desc'`.
 
 ### Conditions
-
 - Always use Yii’s [declarative condition syntax](api:yii\db\QueryInterface::where()) when possible, as it will automatically quote table/column names and values for you.
-- For consistency, use: 
-  - `['col' => $values]` instead of `['in', 'col', $values]`
-  - `['col' => $value]` instead of `['=', 'col', $value]`
-  - `['like', 'col', 'value']` instead of `['like', 'col', '%value%', false]` *(unless the `%` is only needed on one side of `value`)*
+- For consistency, use:
+  -  `['col' => $values]`  instead of `['in', 'col', $values]`
+  - `['col' => $value]`  instead of `['=', 'col', $value]`
+  - `['like', 'col', 'value']`  instead of `['like', 'col', '%value%', false]`
+    *(unless the `%` is only needed on one side of `value`)*
 - If searching for `NULL`, use the `['col' => null]` syntax.
 - If searching for `NOT NULL`, use the `['not', ['col' => null]]` syntax.
 - If you cannot use the declarative condition syntax (e.g. the condition is referencing another table/column name rather than a value, as is often the case with joins), make sure you’ve quoted all column names, and any values that you aren’t 100% confident are safe should be added as query params.

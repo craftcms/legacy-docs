@@ -86,6 +86,7 @@ return [
 
 It can also be a multi-environment config:
 
+
 ```php
 <?php
 
@@ -99,7 +100,9 @@ return [
 ];
 ```
 
-::: warning The config file cannot contain any keys that are not defined in the plugin’s settings model. :::
+::: warning
+The config file cannot contain any keys that are not defined in the plugin’s settings model.
+:::
 
 ## Settings Pages
 

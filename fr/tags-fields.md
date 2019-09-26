@@ -14,10 +14,10 @@ Tags fields have the following settings:
 On multi-site installs, the following settings will also be available (under “Advanced”):
 
 - **Relate tags from a specific site?** – Whether to only allow relations to tags from a specific site.
-    
-    If enabled, a new setting will appear where you can choose which site.
-    
-    If disabled, related tags will always be pulled from the current site.
+
+  If enabled, a new setting will appear where you can choose which site.
+
+  If disabled, related tags will always be pulled from the current site.
 
 - **Manage relations on a per-site basis** – Whether each site should get its own set of related tags.
 
@@ -27,7 +27,9 @@ Tags fields list all of the currently-related tags, with a text input to add new
 
 As you type into the text input, the Tags field will search through the existing tags that belong to the field’s tag group (per its Source setting), and suggest tags in a menu below the text input. If an exact match is not found, the first option in the menu will create a new tag named after the input value.
 
-::: tip By default you won’t be able to create multiple tags that are too similar in name. You can change that behavior by enabling the <config:allowSimilarTags> config setting. :::
+::: tip
+By default you won’t be able to create multiple tags that are too similar in name. You can change that behavior by enabling the <config:allowSimilarTags> config setting.
+:::
 
 ### Inline Tag Editing
 
@@ -41,11 +43,10 @@ When [querying for elements](dev/element-queries/README.md) that have a Tags fie
 
 Possible values include:
 
-| Value          | Fetches elements…                   |
-| -------------- | ----------------------------------- |
-| `':empty:'`    | that don’t have any related tags.   |
-| `':notempty:'` | that have at least one related tag. |
-
+| Value | Fetches elements…
+| - | -
+| `':empty:'` | that don’t have any related tags.
+| `':notempty:'` | that have at least one related tag.
 
 ```twig
 {# Fetch entries with a related tag #}

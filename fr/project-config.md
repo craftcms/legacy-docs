@@ -20,7 +20,9 @@ Craft stores the following settings in the project config:
 - Tag groups
 - User settings and user groups
 
-::: tip Plugins can store additional things in the project config as well. See [Supporting Project Config](extend/project-config.md) to learn how. :::
+::: tip
+Plugins can store additional things in the project config as well. See [Supporting Project Config](extend/project-config.md) to learn how.
+:::
 
 ## Enabling the Project Config File
 
@@ -55,7 +57,9 @@ When Craft detects that `project.yaml` has changed, it will ensure that the vers
 
 If there’s a discrepancy, you will need to fix that before Craft can begin syncing the file’s changes into the loaded project config. The only practical way to do that is by running `composer install`, as access to the Control Panel will be denied until the discrepancy is resolved.
 
-::: tip To avoid downtime on production, you should ensure that `composer install` is built into your deployment workflow. :::
+::: tip
+To avoid downtime on production, you should ensure that `composer install` is built into your deployment workflow.
+:::
 
 ### Sensitive Information Could Be Saved in `project.yaml`
 
@@ -66,7 +70,8 @@ Some of your system components may have required sensitive information in their 
 
 To prevent those values from being saved into your `project.yaml` file, make sure that you are setting those fields to environment variables. See [Environmental Configuration](config/environments.md) for more information.
 
-::: tip If you’re overriding volume settings with `config/volumes.php`, you can set sensitive values to the environment variable name rather than calling [getenv()](http://php.net/manual/en/function.getenv.php) to avoid the real values being saved to `project.yaml`.
+::: tip
+If you’re overriding volume settings with `config/volumes.php`, you can set sensitive values to the environment variable name rather than calling [getenv()](http://php.net/manual/en/function.getenv.php) to avoid the real values being saved to `project.yaml`.
 
 ```php
 // Bad:
@@ -76,7 +81,8 @@ To prevent those values from being saved into your `project.yaml` file, make sur
 'secret' => '$SECRET_ACCESS_KEY',
 ```
 
-Once you’ve made that change, re-save your volume in the Control Panel so your `project.yaml` file gets updated with the environment variable name. :::
+Once you’ve made that change, re-save your volume in the Control Panel so your `project.yaml` file gets updated with the environment variable name.
+:::
 
 ### Production Changes May Be Forgotten
 
@@ -108,4 +114,4 @@ If any settings managed by the project config are modified elsewhere in the data
 
 ```bash
 ./craft project-config/rebuild
-```
+``` 

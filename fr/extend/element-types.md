@@ -94,7 +94,9 @@ if (!$this->db->tableExists('{{%products}}')) {
 }
 ```
 
-::: tip If you’re adding this as an update to an existing plugin, you will need to create a new normal migration as well, and copy the same code into it. :::
+::: tip
+If you’re adding this as an update to an existing plugin, you will need to create a new normal migration as well, and copy the same code into it.
+:::
 
 Install the plugin now, so your database table will be created.
 
@@ -124,7 +126,9 @@ public function afterSave(bool $isNew)
 }
 ```
 
-::: tip `afterSave()` gets called by <api:craft\services\Elements::saveElement()>, after the main element rows in the `elements`, `elements_sites`, and `content` tables have been saved, and the element has been assigned an `id` and `uid` (if new). :::
+::: tip
+`afterSave()` gets called by <api:craft\services\Elements::saveElement()>, after the main element rows in the `elements`, `elements_sites`, and `content` tables have been saved, and the element has been assigned an `id` and `uid` (if new).
+:::
 
 ### Element Query Class
 
@@ -342,7 +346,7 @@ $product->fieldLayoutId = $productType->fieldLayoutId;
 \Craft::$app->elements->saveElement($product);
 ```
 
-If the `$fieldLayoutId` property is set, <api:craft\services\Elements::saveElement()> will store it in the `elements.fieldLayoutId` column in the database, and your elements will be re-populated with the values when they are fetched down the road.
+If the `$fieldLayoutId`  property is set, <api:craft\services\Elements::saveElement()> will store it in the `elements.fieldLayoutId` column in the database, and your elements will be re-populated with the values when they are fetched down the road.
 
 Alternatively, you can override the `getFieldLayout()` method, and fetch/return the field layout yourself. This might be preferable if your element type only has a single field layout (like user accounts).
 
@@ -379,7 +383,9 @@ public function getSupportedSites(): array
 
 The values in the array returned by `getSupportedSites()` can either be integers (site IDs) or an array with a `siteId` key and optionally an `enabledbyDefault` key (boolean) indicating whether the element should be enabled by default for that site.
 
-::: tip Elements that support multiple sites will have their `afterSave()` method called multiple times on save – once for each site that the element supports. You can tell whether it’s being called for the originally-submitted site versus a propagated site by checking `$this->propagating`. :::
+::: tip
+Elements that support multiple sites will have their `afterSave()` method called multiple times on save – once for each site that the element supports. You can tell whether it’s being called for the originally-submitted site versus a propagated site by checking `$this->propagating`.
+:::
 
 ## Statuses
 
@@ -534,7 +540,9 @@ protected static function defineTableAttributes(): array
 }
 ```
 
-::: tip The first attribute you list here is a special case. It defines the header for the first column in the table view, which is the only one admins can’t remove. Its values will come from your elements’ <api:craft\base\ElementInterface::getUiLabel()> method. :::
+::: tip
+The first attribute you list here is a special case. It defines the header for the first column in the table view, which is the only one admins can’t remove. Its values will come from your elements’ <api:craft\base\ElementInterface::getUiLabel()> method.
+:::
 
 If it’s a big list, you can also limit which columns should be visible by default for new [sources](#sources) by adding a protected `defineDefaultTableAttributes()` method to your element class:
 
@@ -688,7 +696,7 @@ The Edit Category page offers a relatively straightforward example of how it cou
 
 - URL Rules:
 
-```php
+  ```php
   'categories/<groupHandle:{handle}>/new' => 'categories/edit-category',
   'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>' => 'categories/edit-category',
   'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>/<siteHandle:{handle}>' => 'categories/edit-category',

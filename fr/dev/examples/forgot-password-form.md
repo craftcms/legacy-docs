@@ -24,4 +24,6 @@ You can create a Forgot Password form using the following code:
 </form>
 ```
 
-::: tip Craft doesn’t ever automatically create links to your Forgot Password page – only your own templates will link to it – so you don’t need to set any config settings with the path to this page, unlike other pages in the password-reset flow (e.g. <config:setPasswordPath> and <config:setPasswordSuccessPath>). :::
+::: tip
+Craft doesn’t ever automatically create links to your Forgot Password page – only your own templates will link to it – so you don’t need to set any config settings with the path to this page, unlike other pages in the password-reset flow (e.g. <config:setPasswordPath> and <config:setPasswordSuccessPath>).
+:::

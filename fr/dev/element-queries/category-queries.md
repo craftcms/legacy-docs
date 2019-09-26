@@ -3,22 +3,21 @@
 You can fetch categories in your templates or PHP code using **category queries**.
 
 ::: code
-
 ```twig
 {# Create a new category query #}
 {% set myCategoryQuery = craft.categories() %}
 ```
-
 ```php
 // Create a new category query
 $myCategoryQuery = \craft\elements\Category::find();
 ```
-
 :::
 
 Once you’ve created a category query, you can set [parameters](#parameters) on it to narrow down the results, and then [execute it](README.md#executing-element-queries) by calling `.all()`. An array of [Category](api:craft\elements\Category) objects will be returned.
 
-::: tip See [Introduction to Element Queries](README.md) to learn about how element queries work. :::
+::: tip
+See [Introduction to Element Queries](README.md) to learn about how element queries work.
+:::
 
 ## Example
 
@@ -62,8 +61,11 @@ Category queries support the following parameters:
 
 Narrows the query results to only categories that are up to a certain distance away from the category specified by [ancestorOf](#ancestorof).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch categories above this one #}
 {% set categories = craft.categories()
@@ -79,23 +81,25 @@ $categories = \craft\elements\Category::find()
     ->ancestorDist(3)
     ->all();
 ```
-
 :::
+
 
 ### `ancestorOf`
 
 Narrows the query results to only categories that are ancestors of another category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches categories…                           |
-| -------------------------------------------------- | --------------------------------------------- |
-| `1`                                                | above the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | above the category represented by the object. |
+| Value | Fetches categories…
+| - | -
+| `1` | above the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | above the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories above this one #}
 {% set categories = craft.categories()
@@ -109,17 +113,24 @@ $categories = \craft\elements\Category::find()
     ->ancestorOf($myCategory)
     ->all();
 ```
-
 :::
 
-::: tip This can be combined with [ancestorDist](#ancestordist) if you want to limit how far away the ancestor categories can be. :::
+
+
+::: tip
+This can be combined with [ancestorDist](#ancestordist) if you want to limit how far away the ancestor categories can be.
+:::
+
 
 ### `anyStatus`
 
 Clears out the [status](#status) and [enabledForSite](#enabledforsite) parameters.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch all categories, regardless of status #}
 {% set categories = craft.categories()
@@ -133,15 +144,18 @@ $categories = \craft\elements\Category::find()
     ->anyStatus()
     ->all();
 ```
-
 :::
+
 
 ### `asArray`
 
 Causes the query to return matching categories as arrays of data, rather than [Category](api:craft\elements\Category) objects.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch categories as arrays #}
 {% set categories = craft.categories()
@@ -155,24 +169,26 @@ $categories = \craft\elements\Category::find()
     ->asArray()
     ->all();
 ```
-
 :::
+
 
 ### `dateCreated`
 
 Narrows the query results based on the categories’ creation dates.
 
+
+
 Possible values include:
 
-| Value                                            | Fetches categories…                                  |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
-| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
+| Value | Fetches categories…
+| - | -
+| `'>= 2018-04-01'` | that were created on or after 2018-04-01.
+| `'< 2018-05-01'` | that were created before 2018-05-01
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories created last month #}
 {% set start = date('first day of last month')|atom %}
@@ -192,24 +208,26 @@ $categories = \craft\elements\Category::find()
     ->dateCreated(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `dateUpdated`
 
 Narrows the query results based on the categories’ last-updated dates.
 
+
+
 Possible values include:
 
-| Value                                            | Fetches categories…                                  |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
-| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
+| Value | Fetches categories…
+| - | -
+| `'>= 2018-04-01'` | that were updated on or after 2018-04-01.
+| `'< 2018-05-01'` | that were updated before 2018-05-01
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories updated in the last week #}
 {% set lastWeek = date('1 week ago')|atom %}
@@ -227,15 +245,18 @@ $categories = \craft\elements\Category::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
 ```
-
 :::
+
 
 ### `descendantDist`
 
 Narrows the query results to only categories that are up to a certain distance away from the category specified by [descendantOf](#descendantof).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch categories below this one #}
 {% set categories = craft.categories()
@@ -251,23 +272,25 @@ $categories = \craft\elements\Category::find()
     ->descendantDist(3)
     ->all();
 ```
-
 :::
+
 
 ### `descendantOf`
 
 Narrows the query results to only categories that are descendants of another category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches categories…                           |
-| -------------------------------------------------- | --------------------------------------------- |
-| `1`                                                | below the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | below the category represented by the object. |
+| Value | Fetches categories…
+| - | -
+| `1` | below the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | below the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories below this one #}
 {% set categories = craft.categories()
@@ -281,25 +304,31 @@ $categories = \craft\elements\Category::find()
     ->descendantOf($myCategory)
     ->all();
 ```
-
 :::
 
-::: tip This can be combined with [descendantDist](#descendantdist) if you want to limit how far away the descendant categories can be. :::
+
+
+::: tip
+This can be combined with [descendantDist](#descendantdist) if you want to limit how far away the descendant categories can be.
+:::
+
 
 ### `draftCreator`
 
 Narrows the query results to only drafts created by a given user.
 
+
+
 Possible values include:
 
-| Value                                  | Fetches drafts…                        |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
+| Value | Fetches drafts…
+| - | -
+| `1` | created by the user with an ID of 1.
+| a `\craft\elements\db\User` object | by the user represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch drafts by the current user #}
 {% set categories = craft.categories()
@@ -313,22 +342,24 @@ $categories = \craft\elements\Category::find()
     ->draftCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `draftId`
 
 Narrows the query results based on the categories’ draft’s ID (from the `drafts` table).
 
+
+
 Possible values include:
 
-| Value | Fetches drafts…                |
-| ----- | ------------------------------ |
-| `1`   | for the draft with an ID of 1. |
+| Value | Fetches drafts…
+| - | -
+| `1` | for the draft with an ID of 1.
+
 
 
 ::: code
-
 ```twig
 {# Fetch a draft #}
 {% set categories = craft.categories()
@@ -342,23 +373,25 @@ $categories = \craft\elements\Category::find()
     ->draftIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `draftOf`
 
 Narrows the query results to only drafts of a given category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches drafts…                             |
-| -------------------------------------------------- | ------------------------------------------- |
-| `1`                                                | for the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | for the category represented by the object. |
+| Value | Fetches drafts…
+| - | -
+| `1` | for the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | for the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch drafts of the category #}
 {% set categories = craft.categories()
@@ -372,15 +405,18 @@ $categories = \craft\elements\Category::find()
     ->draftOf($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `drafts`
 
 Narrows the query results to only drafts categories.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a draft category #}
 {% set categories = {twig-function}
@@ -396,23 +432,25 @@ $categories = \craft\elements\Category::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `enabledForSite`
 
 Narrows the query results based on whether the categories are enabled in the site they’re being queried in, per the [site](#site) parameter.
 
+
+
 Possible values include:
 
-| Value              | Fetches categories…                          |
-| ------------------ | -------------------------------------------- |
-| `true` *(default)* | that are enabled in the site.                |
-| `false`            | whether they are enabled or not in the site. |
+| Value | Fetches categories…
+| - | -
+| `true` _(default)_ | that are enabled in the site.
+| `false` | whether they are enabled or not in the site.
+
 
 
 ::: code
-
 ```twig
 {# Fetch all categories, including ones disabled for this site #}
 {% set categories = craft.categories()
@@ -426,15 +464,18 @@ $categories = \craft\elements\Category::find()
     ->enabledForSite(false)
     ->all();
 ```
-
 :::
+
 
 ### `fixedOrder`
 
 Causes the query results to be returned in the order specified by [id](#id).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch categories in a specific order #}
 {% set categories = craft.categories()
@@ -450,8 +491,8 @@ $categories = \craft\elements\Category::find()
     ->fixedOrder()
     ->all();
 ```
-
 :::
+
 
 ### `group`
 
@@ -459,17 +500,17 @@ Narrows the query results based on the category groups the categories belong to.
 
 Possible values include:
 
-| Value                                                      | Fetches categories…                             |
-| ---------------------------------------------------------- | ----------------------------------------------- |
-| `'foo'`                                                    | in a group with a handle of `foo`.              |
-| `'not foo'`                                                | not in a group with a handle of `foo`.          |
-| `['foo', 'bar']`                                           | in a group with a handle of `foo` or `bar`.     |
-| `['not', 'foo', 'bar']`                                    | not in a group with a handle of `foo` or `bar`. |
-| a [CategoryGroup](api:craft\models\CategoryGroup) object | in a group represented by the object.           |
+| Value | Fetches categories…
+| - | -
+| `'foo'` | in a group with a handle of `foo`.
+| `'not foo'` | not in a group with a handle of `foo`.
+| `['foo', 'bar']` | in a group with a handle of `foo` or `bar`.
+| `['not', 'foo', 'bar']` | not in a group with a handle of `foo` or `bar`.
+| a [CategoryGroup](api:craft\models\CategoryGroup) object | in a group represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories in the Foo group #}
 {% set categories = craft.categories()
@@ -483,8 +524,8 @@ $categories = \craft\elements\Category::find()
     ->group('foo')
     ->all();
 ```
-
 :::
+
 
 ### `groupId`
 
@@ -492,16 +533,16 @@ Narrows the query results based on the category groups the categories belong to,
 
 Possible values include:
 
-| Value           | Fetches categories…                  |
-| --------------- | ------------------------------------ |
-| `1`             | in a group with an ID of 1.          |
-| `'not 1'`       | not in a group with an ID of 1.      |
-| `[1, 2]`        | in a group with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
+| Value | Fetches categories…
+| - | -
+| `1` | in a group with an ID of 1.
+| `'not 1'` | not in a group with an ID of 1.
+| `[1, 2]` | in a group with an ID of 1 or 2.
+| `['not', 1, 2]` | not in a group with an ID of 1 or 2.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories in the group with an ID of 1 #}
 {% set categories = craft.categories()
@@ -515,17 +556,20 @@ $categories = \craft\elements\Category::find()
     ->groupId(1)
     ->all();
 ```
-
 :::
+
 
 ### `hasDescendants`
 
 Narrows the query results based on whether the categories have any descendants.
 
+
+
 (This has the opposite effect of calling [leaves](#leaves).)
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch categories that have descendants #}
 {% set categories = craft.categories()
@@ -539,25 +583,27 @@ $categories = \craft\elements\Category::find()
     ->hasDescendants()
     ->all();
 ```
-
 :::
+
 
 ### `id`
 
 Narrows the query results based on the categories’ IDs.
 
+
+
 Possible values include:
 
-| Value           | Fetches categories…       |
-| --------------- | ------------------------- |
-| `1`             | with an ID of 1.          |
-| `'not 1'`       | not with an ID of 1.      |
-| `[1, 2]`        | with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not with an ID of 1 or 2. |
+| Value | Fetches categories…
+| - | -
+| `1` | with an ID of 1.
+| `'not 1'` | not with an ID of 1.
+| `[1, 2]` | with an ID of 1 or 2.
+| `['not', 1, 2]` | not with an ID of 1 or 2.
+
 
 
 ::: code
-
 ```twig
 {# Fetch the category by its ID #}
 {% set category = craft.categories()
@@ -571,21 +617,38 @@ $category = \craft\elements\Category::find()
     ->id(1)
     ->one();
 ```
-
 :::
 
-::: tip This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order. :::
+
+
+::: tip
+This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order.
+:::
+
 
 ### `ignorePlaceholders`
 
-Causes the query to return matching categories as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+Causes the query to return matching categories as they are stored in the database, ignoring matching placeholder
+elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+
+
+
+
+
+
+
+
+
 
 ### `inReverse`
 
 Causes the query results to be returned in reverse order.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch categories in reverse #}
 {% set categories = craft.categories()
@@ -599,17 +662,20 @@ $categories = \craft\elements\Category::find()
     ->inReverse()
     ->all();
 ```
-
 :::
+
 
 ### `leaves`
 
 Narrows the query results based on whether the categories are “leaves” (categories with no descendants).
 
+
+
 (This has the opposite effect of calling [hasDescendants](#hasdescendants).)
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch categories that have no descendants #}
 {% set categories = craft.categories()
@@ -623,26 +689,28 @@ $categories = \craft\elements\Category::find()
     ->leaves()
     ->all();
 ```
-
 :::
+
 
 ### `level`
 
 Narrows the query results based on the categories’ level within the structure.
 
+
+
 Possible values include:
 
-| Value           | Fetches categories…                      |
-| --------------- | ---------------------------------------- |
-| `1`             | with a level of 1.                       |
-| `'not 1'`       | not with a level of 1.                   |
-| `'>= 3'`     | with a level greater than or equal to 3. |
-| `[1, 2]`        | with a level of 1 or 2                   |
-| `['not', 1, 2]` | not with level of 1 or 2.                |
+| Value | Fetches categories…
+| - | -
+| `1` | with a level of 1.
+| `'not 1'` | not with a level of 1.
+| `'>= 3'` | with a level greater than or equal to 3.
+| `[1, 2]` | with a level of 1 or 2
+| `['not', 1, 2]` | not with level of 1 or 2.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories positioned at level 3 or above #}
 {% set categories = craft.categories()
@@ -656,15 +724,16 @@ $categories = \craft\elements\Category::find()
     ->level('>= 3')
     ->all();
 ```
-
 :::
+
 
 ### `limit`
 
 Determines the number of categories that should be returned.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch up to 10 categories  #}
 {% set categories = craft.categories()
@@ -678,23 +747,25 @@ $categories = \craft\elements\Category::find()
     ->limit(10)
     ->all();
 ```
-
 :::
+
 
 ### `nextSiblingOf`
 
 Narrows the query results to only the category that comes immediately after another category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches the category…                         |
-| -------------------------------------------------- | --------------------------------------------- |
-| `1`                                                | after the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | after the category represented by the object. |
+| Value | Fetches the category…
+| - | -
+| `1` | after the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | after the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch the next category #}
 {% set category = craft.categories()
@@ -708,15 +779,16 @@ $category = \craft\elements\Category::find()
     ->nextSiblingOf($myCategory)
     ->one();
 ```
-
 :::
+
 
 ### `offset`
 
 Determines how many categories should be skipped in the results.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all categories except for the first 3 #}
 {% set categories = craft.categories()
@@ -730,15 +802,16 @@ $categories = \craft\elements\Category::find()
     ->offset(3)
     ->all();
 ```
-
 :::
+
 
 ### `orderBy`
 
 Determines the order that the categories should be returned in.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all categories in order of date created #}
 {% set categories = craft.categories()
@@ -752,23 +825,25 @@ $categories = \craft\elements\Category::find()
     ->orderBy('dateCreated asc')
     ->all();
 ```
-
 :::
+
 
 ### `positionedAfter`
 
 Narrows the query results to only categories that are positioned after another category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches categories…                           |
-| -------------------------------------------------- | --------------------------------------------- |
-| `1`                                                | after the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | after the category represented by the object. |
+| Value | Fetches categories…
+| - | -
+| `1` | after the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | after the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories after this one #}
 {% set categories = craft.categories()
@@ -782,23 +857,25 @@ $categories = \craft\elements\Category::find()
     ->positionedAfter($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `positionedBefore`
 
 Narrows the query results to only categories that are positioned before another category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches categories…                            |
-| -------------------------------------------------- | ---------------------------------------------- |
-| `1`                                                | before the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | before the category represented by the object. |
+| Value | Fetches categories…
+| - | -
+| `1` | before the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | before the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories before this one #}
 {% set categories = craft.categories()
@@ -812,19 +889,24 @@ $categories = \craft\elements\Category::find()
     ->positionedBefore($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `preferSites`
 
 If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
 
-For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
+
+
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C,
+and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned
+for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique categories from Site A, or Site B if they don’t exist in Site A #}
 {% set categories = craft.categories()
@@ -842,23 +924,25 @@ $categories = \craft\elements\Category::find()
     ->preferSites(['a', 'b'])
     ->all();
 ```
-
 :::
+
 
 ### `prevSiblingOf`
 
 Narrows the query results to only the category that comes immediately before another category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches the category…                          |
-| -------------------------------------------------- | ---------------------------------------------- |
-| `1`                                                | before the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | before the category represented by the object. |
+| Value | Fetches the category…
+| - | -
+| `1` | before the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | before the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch the previous category #}
 {% set category = craft.categories()
@@ -872,17 +956,20 @@ $category = \craft\elements\Category::find()
     ->prevSiblingOf($myCategory)
     ->one();
 ```
-
 :::
+
 
 ### `relatedTo`
 
 Narrows the query results to only categories that are related to certain other elements.
 
+
+
 See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all categories that are related to myCategory #}
 {% set categories = craft.categories()
@@ -896,23 +983,25 @@ $categories = \craft\elements\Category::find()
     ->relatedTo($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `revisionCreator`
 
 Narrows the query results to only revisions created by a given user.
 
+
+
 Possible values include:
 
-| Value                                  | Fetches revisions…                     |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
+| Value | Fetches revisions…
+| - | -
+| `1` | created by the user with an ID of 1.
+| a `\craft\elements\db\User` object | by the user represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch revisions by the current user #}
 {% set categories = craft.categories()
@@ -926,22 +1015,24 @@ $categories = \craft\elements\Category::find()
     ->revisionCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `revisionId`
 
 Narrows the query results based on the categories’ revision’s ID (from the `revisions` table).
 
+
+
 Possible values include:
 
-| Value | Fetches revisions…                |
-| ----- | --------------------------------- |
-| `1`   | for the revision with an ID of 1. |
+| Value | Fetches revisions…
+| - | -
+| `1` | for the revision with an ID of 1.
+
 
 
 ::: code
-
 ```twig
 {# Fetch a revision #}
 {% set categories = craft.categories()
@@ -955,23 +1046,25 @@ $categories = \craft\elements\Category::find()
     ->revisionIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `revisionOf`
 
 Narrows the query results to only revisions of a given category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches revisions…                          |
-| -------------------------------------------------- | ------------------------------------------- |
-| `1`                                                | for the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | for the category represented by the object. |
+| Value | Fetches revisions…
+| - | -
+| `1` | for the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | for the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch revisions of the category #}
 {% set categories = craft.categories()
@@ -985,15 +1078,18 @@ $categories = \craft\elements\Category::find()
     ->revisionOf($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `revisions`
 
 Narrows the query results to only revision categories.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a revision category #}
 {% set categories = {twig-function}
@@ -1009,17 +1105,20 @@ $categories = \craft\elements\Category::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `search`
 
 Narrows the query results to only categories that match a search query.
 
+
+
 See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -1039,23 +1138,25 @@ $categories = \craft\elements\Category::find()
     ->search($searchQuery)
     ->all();
 ```
-
 :::
+
 
 ### `siblingOf`
 
 Narrows the query results to only categories that are siblings of another category.
 
+
+
 Possible values include:
 
-| Value                                              | Fetches categories…                            |
-| -------------------------------------------------- | ---------------------------------------------- |
-| `1`                                                | beside the category with an ID of 1.           |
-| a [Category](api:craft\elements\Category) object | beside the category represented by the object. |
+| Value | Fetches categories…
+| - | -
+| `1` | beside the category with an ID of 1.
+| a [Category](api:craft\elements\Category) object | beside the category represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories beside this one #}
 {% set categories = craft.categories()
@@ -1069,30 +1170,35 @@ $categories = \craft\elements\Category::find()
     ->siblingOf($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `site`
 
 Determines which site(s) the categories should be queried in.
 
+
+
 The current site will be used by default.
 
 Possible values include:
 
-| Value                                  | Fetches categories…                            |
-| -------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                | from the site with a handle of `foo`.          |
-| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
-| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
-| a `\craft\elements\db\Site` object | from the site represented by the object.       |
-| `'*'`                                  | from any site.                                 |
+| Value | Fetches categories…
+| - | -
+| `'foo'` | from the site with a handle of `foo`.
+| `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
+| `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
+| a `\craft\elements\db\Site` object | from the site represented by the object.
+| `'*'` | from any site.
+
+::: tip
+If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you
+only want unique elements to be returned, use [unique](#unique) in conjunction with this.
+:::
 
 
-::: tip If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this. :::
 
 ::: code
-
 ```twig
 {# Fetch categories from the Foo site #}
 {% set categories = craft.categories()
@@ -1106,17 +1212,20 @@ $categories = \craft\elements\Category::find()
     ->site('foo')
     ->all();
 ```
-
 :::
+
 
 ### `siteId`
 
 Determines which site(s) the categories should be queried in, per the site’s ID.
 
+
+
 The current site will be used by default.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch categories from the site with an ID of 1 #}
 {% set categories = craft.categories()
@@ -1130,28 +1239,30 @@ $categories = \craft\elements\Category::find()
     ->siteId(1)
     ->all();
 ```
-
 :::
+
 
 ### `slug`
 
 Narrows the query results based on the categories’ slugs.
 
+
+
 Possible values include:
 
-| Value                       | Fetches categories…                              |
-| --------------------------- | ------------------------------------------------ |
-| `'foo'`                     | with a slug of `foo`.                            |
-| `'foo*'`                    | with a slug that begins with `foo`.              |
-| `'*foo'`                    | with a slug that ends with `foo`.                |
-| `'*foo*'`                   | with a slug that contains `foo`.                 |
-| `'not *foo*'`               | with a slug that doesn’t contain `foo`.          |
-| `['*foo*', '*bar*']`        | with a slug that contains `foo` or `bar`.        |
-| `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`. |
+| Value | Fetches categories…
+| - | -
+| `'foo'` | with a slug of `foo`.
+| `'foo*'` | with a slug that begins with `foo`.
+| `'*foo'` | with a slug that ends with `foo`.
+| `'*foo*'` | with a slug that contains `foo`.
+| `'not *foo*'` | with a slug that doesn’t contain `foo`.
+| `['*foo*', '*bar*']` | with a slug that contains `foo` or `bar`.
+| `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`.
+
 
 
 ::: code
-
 ```twig
 {# Get the requested category slug from the URL #}
 {% set requestedSlug = craft.app.request.getSegment(3) %}
@@ -1171,23 +1282,25 @@ $category = \craft\elements\Category::find()
     ->slug(\craft\helpers\Db::escapeParam($requestedSlug))
     ->one();
 ```
-
 :::
+
 
 ### `status`
 
 Narrows the query results based on the categories’ statuses.
 
+
+
 Possible values include:
 
-| Value                   | Fetches categories… |
-| ----------------------- | ------------------- |
-| `'enabled'` *(default)* | that are enabled.   |
-| `'disabled'`            | that are disabled.  |
+| Value | Fetches categories…
+| - | -
+| `'enabled'`  _(default)_ | that are enabled.
+| `'disabled'` | that are disabled.
+
 
 
 ::: code
-
 ```twig
 {# Fetch disabled categories #}
 {% set categories = craft.categories()
@@ -1201,28 +1314,30 @@ $categories = \craft\elements\Category::find()
     ->status('disabled')
     ->all();
 ```
-
 :::
+
 
 ### `title`
 
 Narrows the query results based on the categories’ titles.
 
+
+
 Possible values include:
 
-| Value                       | Fetches categories…                               |
-| --------------------------- | ------------------------------------------------- |
-| `'Foo'`                     | with a title of `Foo`.                            |
-| `'Foo*'`                    | with a title that begins with `Foo`.              |
-| `'*Foo'`                    | with a title that ends with `Foo`.                |
-| `'*Foo*'`                   | with a title that contains `Foo`.                 |
-| `'not *Foo*'`               | with a title that doesn’t contain `Foo`.          |
-| `['*Foo*', '*Bar*']`        | with a title that contains `Foo` or `Bar`.        |
-| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`. |
+| Value | Fetches categories…
+| - | -
+| `'Foo'` | with a title of `Foo`.
+| `'Foo*'` | with a title that begins with `Foo`.
+| `'*Foo'` | with a title that ends with `Foo`.
+| `'*Foo*'` | with a title that contains `Foo`.
+| `'not *Foo*'` | with a title that doesn’t contain `Foo`.
+| `['*Foo*', '*Bar*']` | with a title that contains `Foo` or `Bar`.
+| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`.
+
 
 
 ::: code
-
 ```twig
 {# Fetch categories with a title that contains "Foo" #}
 {% set categories = craft.categories()
@@ -1236,15 +1351,18 @@ $categories = \craft\elements\Category::find()
     ->title('*Foo*')
     ->all();
 ```
-
 :::
+
 
 ### `trashed`
 
 Narrows the query results to only categories that have been soft-deleted.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch trashed categories #}
 {% set categories = craft.categories()
@@ -1258,15 +1376,18 @@ $categories = \craft\elements\Category::find()
     ->trashed()
     ->all();
 ```
-
 :::
+
 
 ### `uid`
 
 Narrows the query results based on the categories’ UIDs.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch the category by its UID #}
 {% set category = craft.categories()
@@ -1280,17 +1401,21 @@ $category = \craft\elements\Category::find()
     ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     ->one();
 ```
-
 :::
+
 
 ### `unique`
 
 Determines whether only elements with unique IDs should be returned by the query.
 
-This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
+
+
+This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not
+desired.
+
+
 
 ::: code
-
 ```twig
 {# Fetch unique categories across all sites #}
 {% set categories = craft.categories()
@@ -1306,28 +1431,30 @@ $categories = \craft\elements\Category::find()
     ->unique()
     ->all();
 ```
-
 :::
+
 
 ### `uri`
 
 Narrows the query results based on the categories’ URIs.
 
+
+
 Possible values include:
 
-| Value                       | Fetches categories…                             |
-| --------------------------- | ----------------------------------------------- |
-| `'foo'`                     | with a URI of `foo`.                            |
-| `'foo*'`                    | with a URI that begins with `foo`.              |
-| `'*foo'`                    | with a URI that ends with `foo`.                |
-| `'*foo*'`                   | with a URI that contains `foo`.                 |
-| `'not *foo*'`               | with a URI that doesn’t contain `foo`.          |
-| `['*foo*', '*bar*']`        | with a URI that contains `foo` or `bar`.        |
-| `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`. |
+| Value | Fetches categories…
+| - | -
+| `'foo'` | with a URI of `foo`.
+| `'foo*'` | with a URI that begins with `foo`.
+| `'*foo'` | with a URI that ends with `foo`.
+| `'*foo*'` | with a URI that contains `foo`.
+| `'not *foo*'` | with a URI that doesn’t contain `foo`.
+| `['*foo*', '*bar*']` | with a URI that contains `foo` or `bar`.
+| `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`.
+
 
 
 ::: code
-
 ```twig
 {# Get the requested URI #}
 {% set requestedUri = craft.app.request.getPathInfo() %}
@@ -1347,17 +1474,20 @@ $category = \craft\elements\Category::find()
     ->uri(\craft\helpers\Db::escapeParam($requestedUri))
     ->one();
 ```
-
 :::
+
 
 ### `with`
 
 Causes the query to return matching categories eager-loaded with related elements.
 
+
+
 See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch categories eager-loaded with the "Related" field’s relations #}
 {% set categories = craft.categories()
@@ -1371,7 +1501,8 @@ $categories = \craft\elements\Category::find()
     ->with(['related'])
     ->all();
 ```
-
 :::
+
+
 
 <!-- END PARAMS -->

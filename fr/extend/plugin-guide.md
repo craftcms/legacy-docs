@@ -6,8 +6,8 @@
 
 Before you begin working on a plugin, you need to decide on a few things:
 
-- **Package name** – Used to name your Composer package for the plugin. (See Composer’s [documentation](https://getcomposer.org/doc/04-schema.md#name) for details.) We recommend prefixing the second segment (after the `/`) with `craft-`, to help identify that this is a Craft plugin. For example, `pixelandtonic/craft-recipes`.
-- **Namespace** – The root namespace that your plugin’s classes will live in. (See the [PSR-4](https://www.php-fig.org/psr/psr-4/) autoloading specification for details.) Note that this should *not* begin with `craft`; use something that identifies you, the developer.
+- **Package name** – Used to name your Composer package for the plugin. (See Composer’s [documentation][package name] for details.) We recommend prefixing the second segment (after the `/`) with `craft-`, to help identify that this is a Craft plugin. For example, `pixelandtonic/craft-recipes`.
+- **Namespace** – The root namespace that your plugin’s classes will live in. (See the [PSR-4] autoloading specification for details.) Note that this should *not* begin with `craft\`; use something that identifies you, the developer.
 - **Plugin handle** – Something that uniquely identifies your plugin within the Craft ecosystem. (Plugin handles must begin with a letter and contain only lowercase letters, numbers, and dashes. They should be `kebab-cased`.)
 - **Plugin name** – What your plugin will be called within the Control Panel.
 
@@ -15,21 +15,24 @@ Before you begin working on a plugin, you need to decide on a few things:
 
 To create a plugin, create a new directory for it somewhere on your computer. A common approach is to store them in a `~/dev/` folder alongside your Craft projects:
 
-    ~/dev/
-    ├── my-project.test/
-    │   └── ...
-    └── my-plugin/
-        ├── CHANGELOG.md
-        ├── LICENSE.md
-        ├── README.md
-        ├── composer.json
-        └── src/
-            └── Plugin.php
-    
+```
+~/dev/
+├── my-project.test/
+│   └── ...
+└── my-plugin/
+    ├── CHANGELOG.md
+    ├── LICENSE.md
+    ├── README.md
+    ├── composer.json
+    └── src/
+        └── Plugin.php
+```
 
 The name of your plugin directory doesn’t matter. Just choose something that is easy to identify.
 
-::: tip Use [pluginfactory.io](https://pluginfactory.io/) to create your plugin’s scaffolding with just a few clicks. :::
+::: tip
+Use [pluginfactory.io](https://pluginfactory.io/) to create your plugin’s scaffolding with just a few clicks.
+:::
 
 ## composer.json
 
@@ -79,7 +82,7 @@ Replace:
 - `email@developer-website.tld` with your support email.
 - `developer/repo` with the actual GitHub account and repository names where the plugin will live.
 - `master` with the actual primary branch name of your GitHub repository.
-- `namespace\\prefix\` with your namespace prefix. (Use double-backslashes because this is JSON, and note this must end with `\`.)
+- `namespace\\prefix\\` with your namespace prefix. (Use double-backslashes because this is JSON, and note this must end with `\\`.)
 - `plugin-handle` with your plugin handle.
 - `Plugin Name` with your plugin name.
 - `MIT` with `proprietary` if you plan to use [Craft License](https://craftcms.github.io/license/) (see [Choose a License](plugin-store.md#choose-a-license) on the “Publishing to the Plugin Store” page).
@@ -88,9 +91,9 @@ If you’d prefer to release your plugin with the [Craft license](https://craftc
 
 Here’s a full list of the properties that can go in that `extra` object:
 
-- `handle` – The plugin handle *(required)*.
+- `handle` – The plugin handle _(required)_.
 - `class` – The [Plugin class](#the-plugin-class) name. If not set, the installer will look for a `Plugin.php` file at each of the `autoload` path roots.
-- `basePath` – The base path to your plugin’s source files. This can begin with one of your `autoload` namespaces, formatted as a [Yii alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases) (e.g. `@vendorname/foo`). If not set, the directory that contains your primary Plugin class will be used.
+- `basePath` – The base path to your plugin’s source files. This can begin with one of your `autoload` namespaces, formatted as a [Yii alias] (e.g. `@vendorname/foo`). If not set, the directory that contains your primary Plugin class will be used.
 - `name` – The plugin name. If not set, the package name (sans vendor prefix) will be used.
 - `version` - The plugin version. If not set, the current package version will be used.
 - `schemaVersion` – The plugin schema version.
@@ -102,11 +105,15 @@ Here’s a full list of the properties that can go in that `extra` object:
 - `sourceLanguage` – The plugin’s source language (defaults to `en-US`).
 - `hasSettings` – Whether the plugin has settings (should be `true` or `false`).
 - `hasCpSection` – Whether the plugin has its own section in the Control Panel (should be `true` or `false`).
-- `components` – Object defining any [component configs](https://www.yiiframework.com/doc/guide/2.0/en/structure-application-components) that should be present on the plugin.
+- `components` – Object defining any [component configs] that should be present on the plugin.
 
-::: tip While not strictly required by Composer, we recommend you explicitly set the `version` in your `composer.json` because it makes a couple things easier on you when developing the plugin. Don’t forget to keep it updated though! :::
+::: tip
+While not strictly required by Composer, we recommend you explicitly set the `version` in your `composer.json` because it makes a couple things easier on you when developing the plugin. Don’t forget to keep it updated though!
+:::
 
-::: warning If you’re updating a Craft 2 plugin, make sure to remove the `composer/installers` dependency if it has one. :::
+::: warning
+If you’re updating a Craft 2 plugin, make sure to remove the `composer/installers` dependency if it has one.
+:::
 
 ## The Plugin Class
 
@@ -137,7 +144,7 @@ To get Craft to see your plugin, you will need to install it as a Composer depen
 
 ### Path Repository
 
-During development, the easiest way to work on your plugin is with a [path repository](https://getcomposer.org/doc/05-repositories.md#path), which will tell Composer to symlink your plugin into the `vendor/` folder right alongside other dependencies.
+During development, the easiest way to work on your plugin is with a [path repository][path], which will tell Composer to symlink your plugin into the `vendor/` folder right alongside other dependencies.
 
 To set it up, open your Craft project’s `composer.json` file and make the following changes:
 
@@ -158,7 +165,9 @@ To set it up, open your Craft project’s `composer.json` file and make the foll
 }
 ```
 
-::: tip Set the `url` value to the absolute or relative path to your plugin’s source directory. (The `../my-plugin` example value assumes that the plugin lives in a folder alongside the project’s folder.) :::
+::: tip
+Set the `url` value to the absolute or relative path to your plugin’s source directory. (The `../my-plugin` example value assumes that the plugin lives in a folder alongside the project’s folder.)
+:::
 
 In your terminal, go to your Craft project and tell Composer to require your plugin. (Use the same package name you gave your plugin in its `composer.json` file.)
 
@@ -172,10 +181,12 @@ composer require package/name
 
 Composer’s installation log should indicate that the package was installed via a symlink:
 
-      - Installing package/name (X.Y.Z): Symlinking from ../my-plugin
-    
+```
+  - Installing package/name (X.Y.Z): Symlinking from ../my-plugin
+```
 
-::: warning One caveat of `path` Composer repositories is that Composer may ignore `path`-based dependencies when you run `composer update`. So any time you change anything in `composer.json`, such as your plugin’s dependency requirements or its plugin information, you might need to completely remove and re-require your plugin in your project for those changes to take effect.
+::: warning
+One caveat of `path` Composer repositories is that Composer may ignore `path`-based dependencies when you run `composer update`. So any time you change anything in `composer.json`, such as your plugin’s dependency requirements or its plugin information, you might need to completely remove and re-require your plugin in your project for those changes to take effect.
 
 ```bash
 # go to the project directory
@@ -187,7 +198,6 @@ composer remove package/name
 # re-require the plugin package
 composer require package/name
 ```
-
 :::
 
 ### Packagist
@@ -211,3 +221,15 @@ Plugins can provide an icon, which will be visible on the Settings → Plugins p
 Plugin icons must be square SVG files, saved as `icon.svg` at the root of your plugin’s source directory (e.g `src/`).
 
 If your plugin has a [Control Panel section](cp-section.md), you can also give its global nav item a custom icon by saving an `icon-mask.svg` file in the root of your plugin’s source directory. Note that this icon cannot contain strokes, and will always be displayed in a solid color (respecting alpha transparency).
+
+[Yii Modules]: https://www.yiiframework.com/doc/guide/2.0/en/structure-modules
+[models]: https://www.yiiframework.com/doc/guide/2.0/en/structure-models
+[active record classes]: https://www.yiiframework.com/doc/guide/2.0/en/db-active-record
+[controllers]: https://www.yiiframework.com/doc/guide/2.0/en/structure-controllers
+[application components]: https://www.yiiframework.com/doc/guide/2.0/en/structure-application-components
+[package name]: https://getcomposer.org/doc/04-schema.md#name
+[two hardest things]: https://twitter.com/codinghorror/status/506010907021828096
+[PSR-4]: https://www.php-fig.org/psr/psr-4/
+[Yii alias]: https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases
+[component configs]: https://www.yiiframework.com/doc/guide/2.0/en/structure-application-components
+[path]: https://getcomposer.org/doc/05-repositories.md#path

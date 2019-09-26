@@ -1,6 +1,8 @@
 # Plugins
 
-::: tip If you’re looking for plugin *development* documentation, check out the [Extending Craft](extend/README.md) section. :::
+::: tip
+If you’re looking for plugin _development_ documentation, check out the [Extending Craft](extend/README.md) section.
+:::
 
 Plugins extend Craft’s core functionality. They can introduce new Dashboard widgets, field types, Control Panel sections, Twig templating features, workflow actions, and more.
 
@@ -26,7 +28,7 @@ Commercial plugins can be installed as a trial by clicking the “Try” button,
 
 ## Buying Commercial Plugins
 
-If you have tried a commercial plugin and are ready to buy it, return to the Plugin Store and click on the Cart icon in the header area. You should see your plugin listed in the “Active Trials” section of the Cart modal. Click the “Add to cart” button to add the plugin to your cart, and then proceed with checkout.
+If you have tried a commercial plugin and are ready to buy it, return to the Plugin Store and click on the Cart icon in the header area. You should see your plugin listed in the “Active Trials” section of the Cart modal. Click the “Add to cart” button  to add the plugin to your cart, and then proceed with checkout.
 
 Once you’ve completed the checkout process, your plugin installation will automatically become licensed.
 

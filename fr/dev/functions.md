@@ -349,7 +349,7 @@ Randomizes the order of the elements within an array.
 
 ## `siteUrl`
 
-Similar to [url()](#url-path-params-scheme-mustshowscriptname), except *only* for creating URLs to pages on your site.
+Similar to [url()](#url-path-params-scheme-mustshowscriptname), except _only_ for creating URLs to pages on your site.
 
 ```twig
 <a href="{{ siteUrl('company/contact') }}">Contact Us</a>
@@ -372,7 +372,7 @@ You can pass the following things into it:
 
 - An SVG file path.
 
-```twig
+  ```twig
   {{ svg('@webroot/icons/lemon.svg') }}
   ```
 
@@ -464,11 +464,10 @@ The `url()` function has the following arguments:
 * **`scheme`** – Which scheme the URL should use (`'http'` or `'https'`). The default value depends on whether the current request is served over SSL or not. If not, then the scheme in your Site URL will be used; if so, then `https` will be used.
 * **`mustShowScriptName`** – If this is set to `true`, then the URL returned will include “index.php”, disregarding the <config:omitScriptNameInUrls> config setting. (This can be useful if the URL will be used by POST requests over Ajax, where the URL will not be shown in the browser’s address bar, and you want to avoid a possible collision with your site’s .htaccess file redirect.)
 
-::: tip You can use the `url()` function for appending query string parameters and/or enforcing a scheme on an absolute URL:
-
+::: tip
+You can use the `url()` function for appending query string parameters and/or enforcing a scheme on an absolute URL:
 ```twig
 {{ url('http://my-project.com', 'foo=1', 'https') }}
 {# Outputs: "https://my-project.com?foo=1" #}
 ```
-
 :::

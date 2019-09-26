@@ -4,7 +4,9 @@ Craft’s templating system isn’t the only way to get your content out of Craf
 
 If you want to use Craft as a “headless” CMS, meaning it acts as a content API instead of (or in addition to) a regular website, there are a few ways you can go about it.
 
-::: tip Check out CraftQuest’s [Headless Craft CMS](https://craftquest.io/courses/headless-craft) course to learn more about using Craft as a headless CMS. :::
+::: tip
+Check out CraftQuest’s [Headless Craft CMS](https://craftquest.io/courses/headless-craft) course to learn more about using Craft as a headless CMS.
+:::
 
 ## GraphQL API
 

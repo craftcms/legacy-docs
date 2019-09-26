@@ -6,16 +6,16 @@ Some settings should be defined on a per-environment basis. For example, when de
 
 Some settings in the Control Panel can be set to environment variables (like the ones defined in your `.env` file):
 
-- General Settings 
+- General Settings
   - **System Name**
-- Sites 
+- Sites
   - **Base URL**
-- Sections 
+- Sections
   - **Preview Target URIs**
-- Asset Volumes 
+- Asset Volumes
   - **Base URL**
   - **File System Path** (Local)
-- Email 
+- Email
   - **System Email Address**
   - **Sender Name**
   - **HTML Email Template**
@@ -30,7 +30,9 @@ To set these settings to an environment variable, type `$` followed by the envir
 
 Only the environment variable’s name will be stored in your database or project config, so this is a great way to set setting values that may change per-environment, or contain sensitive information.
 
-::: tip Plugins can add support for environment variables and aliases in their settings as well. See [Environmental Settings](../extend/environmental-settings.md) to learn how. :::
+::: tip
+Plugins can add support for environment variables and aliases in their settings as well. See [Environmental Settings](../extend/environmental-settings.md) to learn how.
+:::
 
 ### Using Aliases in Control Panel Settings
 
@@ -42,7 +44,6 @@ For example, you can define a `ROOT_URL` environment variable that is set to the
 # -- .env --
 ROOT_URL="http://my-project.test"
 ```
-
 Then create a `@rootUrl` alias that references it:
 
 ```php
@@ -50,9 +51,9 @@ Then create a `@rootUrl` alias that references it:
 'aliases' => [
     '@rootUrl' => getenv('ROOT_URL'),
 ],
-```
+``` 
 
-Then you could go into your User Photos volume’s settings (for example) and set its Base URL to `@rootUrl/images/user-photos`.
+Then you could go into your User Photos volume’s settings (for example) and set its Base URL to `@rootUrl/images/user-photos`.  
 
 ## Config Files
 

@@ -3,22 +3,21 @@
 You can fetch assets in your templates or PHP code using **asset queries**.
 
 ::: code
-
 ```twig
 {# Create a new asset query #}
 {% set myAssetQuery = craft.assets() %}
 ```
-
 ```php
 // Create a new asset query
 $myAssetQuery = \craft\elements\Asset::find();
 ```
-
 :::
 
 Once you’ve created an asset query, you can set [parameters](#parameters) on it to narrow down the results, and then [execute it](README.md#executing-element-queries) by calling `.all()`. An array of [Asset](api:craft\elements\Asset) objects will be returned.
 
-::: tip See [Introduction to Element Queries](README.md) to learn about how element queries work. :::
+::: tip
+See [Introduction to Element Queries](README.md) to learn about how element queries work.
+:::
 
 ## Example
 
@@ -56,8 +55,11 @@ Asset queries support the following parameters:
 
 Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch all assets, regardless of status #}
 {% set assets = craft.assets()
@@ -71,15 +73,18 @@ $assets = \craft\elements\Asset::find()
     ->anyStatus()
     ->all();
 ```
-
 :::
+
 
 ### `asArray`
 
 Causes the query to return matching assets as arrays of data, rather than [Asset](api:craft\elements\Asset) objects.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch assets as arrays #}
 {% set assets = craft.assets()
@@ -93,24 +98,26 @@ $assets = \craft\elements\Asset::find()
     ->asArray()
     ->all();
 ```
-
 :::
+
 
 ### `dateCreated`
 
 Narrows the query results based on the assets’ creation dates.
 
+
+
 Possible values include:
 
-| Value                                            | Fetches assets…                                      |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
-| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
+| Value | Fetches assets…
+| - | -
+| `'>= 2018-04-01'` | that were created on or after 2018-04-01.
+| `'< 2018-05-01'` | that were created before 2018-05-01
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01.
+
 
 
 ::: code
-
 ```twig
 {# Fetch assets created last month #}
 {% set start = date('first day of last month')|atom %}
@@ -130,8 +137,8 @@ $assets = \craft\elements\Asset::find()
     ->dateCreated(['and', ">= {$start}", "< {$end}"])
     ->all();
 ```
-
 :::
+
 
 ### `dateModified`
 
@@ -139,15 +146,15 @@ Narrows the query results based on the assets’ files’ last-modified dates.
 
 Possible values include:
 
-| Value                                            | Fetches assets…                                       |
-| ------------------------------------------------ | ----------------------------------------------------- |
-| `'>= 2018-04-01'`                             | that were modified on or after 2018-04-01.            |
-| `'< 2018-05-01'`                              | that were modified before 2018-05-01                  |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were modified between 2018-04-01 and 2018-05-01. |
+| Value | Fetches assets…
+| - | -
+| `'>= 2018-04-01'` | that were modified on or after 2018-04-01.
+| `'< 2018-05-01'` | that were modified before 2018-05-01
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were modified between 2018-04-01 and 2018-05-01.
+
 
 
 ::: code
-
 ```twig
 {# Fetch assets modified in the last month #}
 {% set start = date('30 days ago')|atom %}
@@ -165,24 +172,26 @@ $assets = \craft\elements\Asset::find()
     ->dateModified(">= {$start}")
     ->all();
 ```
-
 :::
+
 
 ### `dateUpdated`
 
 Narrows the query results based on the assets’ last-updated dates.
 
+
+
 Possible values include:
 
-| Value                                            | Fetches assets…                                      |
-| ------------------------------------------------ | ---------------------------------------------------- |
-| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
-| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
+| Value | Fetches assets…
+| - | -
+| `'>= 2018-04-01'` | that were updated on or after 2018-04-01.
+| `'< 2018-05-01'` | that were updated before 2018-05-01
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01.
+
 
 
 ::: code
-
 ```twig
 {# Fetch assets updated in the last week #}
 {% set lastWeek = date('1 week ago')|atom %}
@@ -200,23 +209,25 @@ $assets = \craft\elements\Asset::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
 ```
-
 :::
+
 
 ### `draftCreator`
 
 Narrows the query results to only drafts created by a given user.
 
+
+
 Possible values include:
 
-| Value                                  | Fetches drafts…                        |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
+| Value | Fetches drafts…
+| - | -
+| `1` | created by the user with an ID of 1.
+| a `\craft\elements\db\User` object | by the user represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch drafts by the current user #}
 {% set assets = craft.assets()
@@ -230,22 +241,24 @@ $assets = \craft\elements\Asset::find()
     ->draftCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `draftId`
 
 Narrows the query results based on the assets’ draft’s ID (from the `drafts` table).
 
+
+
 Possible values include:
 
-| Value | Fetches drafts…                |
-| ----- | ------------------------------ |
-| `1`   | for the draft with an ID of 1. |
+| Value | Fetches drafts…
+| - | -
+| `1` | for the draft with an ID of 1.
+
 
 
 ::: code
-
 ```twig
 {# Fetch a draft #}
 {% set assets = craft.assets()
@@ -259,23 +272,25 @@ $assets = \craft\elements\Asset::find()
     ->draftIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `draftOf`
 
 Narrows the query results to only drafts of a given asset.
 
+
+
 Possible values include:
 
-| Value                                        | Fetches drafts…                          |
-| -------------------------------------------- | ---------------------------------------- |
-| `1`                                          | for the asset with an ID of 1.           |
-| a [Asset](api:craft\elements\Asset) object | for the asset represented by the object. |
+| Value | Fetches drafts…
+| - | -
+| `1` | for the asset with an ID of 1.
+| a [Asset](api:craft\elements\Asset) object | for the asset represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch drafts of the asset #}
 {% set assets = craft.assets()
@@ -289,15 +304,18 @@ $assets = \craft\elements\Asset::find()
     ->draftOf($myAsset)
     ->all();
 ```
-
 :::
+
 
 ### `drafts`
 
 Narrows the query results to only drafts assets.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a draft asset #}
 {% set assets = {twig-function}
@@ -313,8 +331,8 @@ $assets = \craft\elements\Asset::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `filename`
 
@@ -322,19 +340,19 @@ Narrows the query results based on the assets’ filenames.
 
 Possible values include:
 
-| Value                       | Fetches assets…                                      |
-| --------------------------- | ---------------------------------------------------- |
-| `'foo.jpg'`                 | with a filename of `foo.jpg`.                        |
-| `'foo*'`                    | with a filename that begins with `foo`.              |
-| `'*.jpg'`                   | with a filename that ends with `.jpg`.               |
-| `'*foo*'`                   | with a filename that contains `foo`.                 |
-| `'not *foo*'`               | with a filename that doesn’t contain `foo`.          |
-| `['*foo*', '*bar*']`        | with a filename that contains `foo` or `bar`.        |
-| `['not', '*foo*', '*bar*']` | with a filename that doesn’t contain `foo` or `bar`. |
+| Value | Fetches assets…
+| - | -
+| `'foo.jpg'` | with a filename of `foo.jpg`.
+| `'foo*'` | with a filename that begins with `foo`.
+| `'*.jpg'` | with a filename that ends with `.jpg`.
+| `'*foo*'` | with a filename that contains `foo`.
+| `'not *foo*'` | with a filename that doesn’t contain `foo`.
+| `['*foo*', '*bar*']` | with a filename that contains `foo` or `bar`.
+| `['not', '*foo*', '*bar*']` | with a filename that doesn’t contain `foo` or `bar`.
+
 
 
 ::: code
-
 ```twig
 {# Fetch all the hi-res images #}
 {% set assets = craft.assets()
@@ -348,15 +366,18 @@ $assets = \craft\elements\Asset::find()
     ->filename('*@2x*')
     ->all();
 ```
-
 :::
+
 
 ### `fixedOrder`
 
 Causes the query results to be returned in the order specified by [id](#id).
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch assets in a specific order #}
 {% set assets = craft.assets()
@@ -372,8 +393,8 @@ $assets = \craft\elements\Asset::find()
     ->fixedOrder()
     ->all();
 ```
-
 :::
+
 
 ### `folderId`
 
@@ -381,16 +402,16 @@ Narrows the query results based on the folders the assets belong to, per the fol
 
 Possible values include:
 
-| Value           | Fetches categories…                   |
-| --------------- | ------------------------------------- |
-| `1`             | in a folder with an ID of 1.          |
-| `'not 1'`       | not in a folder with an ID of 1.      |
-| `[1, 2]`        | in a folder with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not in a folder with an ID of 1 or 2. |
+| Value | Fetches categories…
+| - | -
+| `1` | in a folder with an ID of 1.
+| `'not 1'` | not in a folder with an ID of 1.
+| `[1, 2]` | in a folder with an ID of 1 or 2.
+| `['not', 1, 2]` | not in a folder with an ID of 1 or 2.
+
 
 
 ::: code
-
 ```twig
 {# Fetch assets in the folder with an ID of 1 #}
 {% set assets = craft.assets()
@@ -404,26 +425,28 @@ $assets = \craft\elements\Asset::find()
     ->folderId(1)
     ->all();
 ```
-
 :::
 
-::: tip This can be combined with [includeSubfolders](#includesubfolders) if you want to include assets in all the subfolders of a certain folder. :::
 
+
+::: tip
+This can be combined with [includeSubfolders](#includesubfolders) if you want to include assets in all the subfolders of a certain folder.
+:::
 ### `height`
 
 Narrows the query results based on the assets’ image heights.
 
 Possible values include:
 
-| Value                         | Fetches assets…                      |
-| ----------------------------- | ------------------------------------ |
-| `100`                         | with a height of 100.                |
-| `'>= 100'`                 | with a height of at least 100.       |
-| `['>= 100', '<= 1000']` | with a height between 100 and 1,000. |
+| Value | Fetches assets…
+| - | -
+| `100` | with a height of 100.
+| `'>= 100'` | with a height of at least 100.
+| `['>= 100', '<= 1000']` | with a height between 100 and 1,000.
+
 
 
 ::: code
-
 ```twig
 {# Fetch XL images #}
 {% set assets = craft.assets()
@@ -439,25 +462,27 @@ $assets = \craft\elements\Asset::find()
     ->height('>= 1000')
     ->all();
 ```
-
 :::
+
 
 ### `id`
 
 Narrows the query results based on the assets’ IDs.
 
+
+
 Possible values include:
 
-| Value           | Fetches assets…           |
-| --------------- | ------------------------- |
-| `1`             | with an ID of 1.          |
-| `'not 1'`       | not with an ID of 1.      |
-| `[1, 2]`        | with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not with an ID of 1 or 2. |
+| Value | Fetches assets…
+| - | -
+| `1` | with an ID of 1.
+| `'not 1'` | not with an ID of 1.
+| `[1, 2]` | with an ID of 1 or 2.
+| `['not', 1, 2]` | not with an ID of 1 or 2.
+
 
 
 ::: code
-
 ```twig
 {# Fetch the asset by its ID #}
 {% set asset = craft.assets()
@@ -471,21 +496,38 @@ $asset = \craft\elements\Asset::find()
     ->id(1)
     ->one();
 ```
-
 :::
 
-::: tip This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order. :::
+
+
+::: tip
+This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order.
+:::
+
 
 ### `ignorePlaceholders`
 
-Causes the query to return matching assets as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+Causes the query to return matching assets as they are stored in the database, ignoring matching placeholder
+elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+
+
+
+
+
+
+
+
+
 
 ### `inReverse`
 
 Causes the query results to be returned in reverse order.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch assets in reverse #}
 {% set assets = craft.assets()
@@ -499,15 +541,16 @@ $assets = \craft\elements\Asset::find()
     ->inReverse()
     ->all();
 ```
-
 :::
+
 
 ### `includeSubfolders`
 
 Broadens the query results to include assets from any of the subfolders of the folder specified by [folderId](#folderid).
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch assets in the folder with an ID of 1 (including its subfolders) #}
 {% set assets = craft.assets()
@@ -523,17 +566,18 @@ $assets = \craft\elements\Asset::find()
     ->includeSubfolders()
     ->all();
 ```
-
 :::
 
-::: warning This will only work if [folderId](#folderid) was set to a single folder ID. :::
 
+
+::: warning
+This will only work if [folderId](#folderid) was set to a single folder ID.
+:::
 ### `kind`
 
 Narrows the query results based on the assets’ file kinds.
 
 Supported file kinds:
-
 - `access`
 - `audio`
 - `compressed`
@@ -556,16 +600,16 @@ Supported file kinds:
 
 Possible values include:
 
-| Value                     | Fetches assets…                           |
-| ------------------------- | ----------------------------------------- |
-| `'image'`                 | with a file kind of `image`.              |
-| `'not image'`             | not with a file kind of `image`..         |
-| `['image', 'pdf']`        | with a file kind of `image` or `pdf`.     |
-| `['not', 'image', 'pdf']` | not with a file kind of `image` or `pdf`. |
+| Value | Fetches assets…
+| - | -
+| `'image'` | with a file kind of `image`.
+| `'not image'` | not with a file kind of `image`..
+| `['image', 'pdf']` | with a file kind of `image` or `pdf`.
+| `['not', 'image', 'pdf']` | not with a file kind of `image` or `pdf`.
+
 
 
 ::: code
-
 ```twig
 {# Fetch all the images #}
 {% set assets = craft.assets()
@@ -579,15 +623,16 @@ $assets = \craft\elements\Asset::find()
     ->kind('image')
     ->all();
 ```
-
 :::
+
 
 ### `limit`
 
 Determines the number of assets that should be returned.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch up to 10 assets  #}
 {% set assets = craft.assets()
@@ -601,15 +646,16 @@ $assets = \craft\elements\Asset::find()
     ->limit(10)
     ->all();
 ```
-
 :::
+
 
 ### `offset`
 
 Determines how many assets should be skipped in the results.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all assets except for the first 3 #}
 {% set assets = craft.assets()
@@ -623,15 +669,16 @@ $assets = \craft\elements\Asset::find()
     ->offset(3)
     ->all();
 ```
-
 :::
+
 
 ### `orderBy`
 
 Determines the order that the assets should be returned in.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all assets in order of date created #}
 {% set assets = craft.assets()
@@ -645,19 +692,24 @@ $assets = \craft\elements\Asset::find()
     ->orderBy('dateCreated asc')
     ->all();
 ```
-
 :::
+
 
 ### `preferSites`
 
 If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
 
-For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
+
+
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C,
+and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned
+for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch unique assets from Site A, or Site B if they don’t exist in Site A #}
 {% set assets = craft.assets()
@@ -675,17 +727,20 @@ $assets = \craft\elements\Asset::find()
     ->preferSites(['a', 'b'])
     ->all();
 ```
-
 :::
+
 
 ### `relatedTo`
 
 Narrows the query results to only assets that are related to certain other elements.
 
+
+
 See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch all assets that are related to myCategory #}
 {% set assets = craft.assets()
@@ -699,23 +754,25 @@ $assets = \craft\elements\Asset::find()
     ->relatedTo($myCategory)
     ->all();
 ```
-
 :::
+
 
 ### `revisionCreator`
 
 Narrows the query results to only revisions created by a given user.
 
+
+
 Possible values include:
 
-| Value                                  | Fetches revisions…                     |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
+| Value | Fetches revisions…
+| - | -
+| `1` | created by the user with an ID of 1.
+| a `\craft\elements\db\User` object | by the user represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch revisions by the current user #}
 {% set assets = craft.assets()
@@ -729,22 +786,24 @@ $assets = \craft\elements\Asset::find()
     ->revisionCreator(Craft::$app->user->identity)
     ->all();
 ```
-
 :::
+
 
 ### `revisionId`
 
 Narrows the query results based on the assets’ revision’s ID (from the `revisions` table).
 
+
+
 Possible values include:
 
-| Value | Fetches revisions…                |
-| ----- | --------------------------------- |
-| `1`   | for the revision with an ID of 1. |
+| Value | Fetches revisions…
+| - | -
+| `1` | for the revision with an ID of 1.
+
 
 
 ::: code
-
 ```twig
 {# Fetch a revision #}
 {% set assets = craft.assets()
@@ -758,23 +817,25 @@ $assets = \craft\elements\Asset::find()
     ->revisionIf(10)
     ->all();
 ```
-
 :::
+
 
 ### `revisionOf`
 
 Narrows the query results to only revisions of a given asset.
 
+
+
 Possible values include:
 
-| Value                                        | Fetches revisions…                       |
-| -------------------------------------------- | ---------------------------------------- |
-| `1`                                          | for the asset with an ID of 1.           |
-| a [Asset](api:craft\elements\Asset) object | for the asset represented by the object. |
+| Value | Fetches revisions…
+| - | -
+| `1` | for the asset with an ID of 1.
+| a [Asset](api:craft\elements\Asset) object | for the asset represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch revisions of the asset #}
 {% set assets = craft.assets()
@@ -788,15 +849,18 @@ $assets = \craft\elements\Asset::find()
     ->revisionOf($myAsset)
     ->all();
 ```
-
 :::
+
 
 ### `revisions`
 
 Narrows the query results to only revision assets.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch a revision asset #}
 {% set assets = {twig-function}
@@ -812,17 +876,20 @@ $assets = \craft\elements\Asset::find()
     ->id(123)
     ->one();
 ```
-
 :::
+
 
 ### `search`
 
 Narrows the query results to only assets that match a search query.
 
+
+
 See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -842,30 +909,35 @@ $assets = \craft\elements\Asset::find()
     ->search($searchQuery)
     ->all();
 ```
-
 :::
+
 
 ### `site`
 
 Determines which site(s) the assets should be queried in.
 
+
+
 The current site will be used by default.
 
 Possible values include:
 
-| Value                                  | Fetches assets…                                |
-| -------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                | from the site with a handle of `foo`.          |
-| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
-| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
-| a `\craft\elements\db\Site` object | from the site represented by the object.       |
-| `'*'`                                  | from any site.                                 |
+| Value | Fetches assets…
+| - | -
+| `'foo'` | from the site with a handle of `foo`.
+| `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
+| `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
+| a `\craft\elements\db\Site` object | from the site represented by the object.
+| `'*'` | from any site.
+
+::: tip
+If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you
+only want unique elements to be returned, use [unique](#unique) in conjunction with this.
+:::
 
 
-::: tip If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this. :::
 
 ::: code
-
 ```twig
 {# Fetch assets from the Foo site #}
 {% set assets = craft.assets()
@@ -879,17 +951,20 @@ $assets = \craft\elements\Asset::find()
     ->site('foo')
     ->all();
 ```
-
 :::
+
 
 ### `siteId`
 
 Determines which site(s) the assets should be queried in, per the site’s ID.
 
+
+
 The current site will be used by default.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch assets from the site with an ID of 1 #}
 {% set assets = craft.assets()
@@ -903,8 +978,8 @@ $assets = \craft\elements\Asset::find()
     ->siteId(1)
     ->all();
 ```
-
 :::
+
 
 ### `size`
 
@@ -912,15 +987,15 @@ Narrows the query results based on the assets’ file sizes (in bytes).
 
 Possible values include:
 
-| Value                            | Fetches assets…                                 |
-| -------------------------------- | ----------------------------------------------- |
-| `1000`                           | with a size of 1,000 bytes (1KB).               |
-| `'< 1000000'`                 | with a size of less than 1,000,000 bytes (1MB). |
-| `['>= 1000', '< 1000000']` | with a size between 1KB and 1MB.                |
+| Value | Fetches assets…
+| - | -
+| `1000` | with a size of 1,000 bytes (1KB).
+| `'< 1000000'` | with a size of less than 1,000,000 bytes (1MB).
+| `['>= 1000', '< 1000000']` | with a size between 1KB and 1MB.
+
 
 
 ::: code
-
 ```twig
 {# Fetch assets that are smaller than 1KB #}
 {% set assets = craft.assets()
@@ -934,28 +1009,30 @@ $assets = \craft\elements\Asset::find()
     ->size('< 1000')
     ->all();
 ```
-
 :::
+
 
 ### `title`
 
 Narrows the query results based on the assets’ titles.
 
+
+
 Possible values include:
 
-| Value                       | Fetches assets…                                   |
-| --------------------------- | ------------------------------------------------- |
-| `'Foo'`                     | with a title of `Foo`.                            |
-| `'Foo*'`                    | with a title that begins with `Foo`.              |
-| `'*Foo'`                    | with a title that ends with `Foo`.                |
-| `'*Foo*'`                   | with a title that contains `Foo`.                 |
-| `'not *Foo*'`               | with a title that doesn’t contain `Foo`.          |
-| `['*Foo*', '*Bar*']`        | with a title that contains `Foo` or `Bar`.        |
-| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`. |
+| Value | Fetches assets…
+| - | -
+| `'Foo'` | with a title of `Foo`.
+| `'Foo*'` | with a title that begins with `Foo`.
+| `'*Foo'` | with a title that ends with `Foo`.
+| `'*Foo*'` | with a title that contains `Foo`.
+| `'not *Foo*'` | with a title that doesn’t contain `Foo`.
+| `['*Foo*', '*Bar*']` | with a title that contains `Foo` or `Bar`.
+| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`.
+
 
 
 ::: code
-
 ```twig
 {# Fetch assets with a title that contains "Foo" #}
 {% set assets = craft.assets()
@@ -969,15 +1046,18 @@ $assets = \craft\elements\Asset::find()
     ->title('*Foo*')
     ->all();
 ```
-
 :::
+
 
 ### `trashed`
 
 Narrows the query results to only assets that have been soft-deleted.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch trashed assets #}
 {% set assets = craft.assets()
@@ -991,15 +1071,18 @@ $assets = \craft\elements\Asset::find()
     ->trashed()
     ->all();
 ```
-
 :::
+
 
 ### `uid`
 
 Narrows the query results based on the assets’ UIDs.
 
-::: code
 
+
+
+
+::: code
 ```twig
 {# Fetch the asset by its UID #}
 {% set asset = craft.assets()
@@ -1013,17 +1096,21 @@ $asset = \craft\elements\Asset::find()
     ->uid('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     ->one();
 ```
-
 :::
+
 
 ### `unique`
 
 Determines whether only elements with unique IDs should be returned by the query.
 
-This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
+
+
+This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not
+desired.
+
+
 
 ::: code
-
 ```twig
 {# Fetch unique assets across all sites #}
 {% set assets = craft.assets()
@@ -1039,8 +1126,8 @@ $assets = \craft\elements\Asset::find()
     ->unique()
     ->all();
 ```
-
 :::
+
 
 ### `volume`
 
@@ -1048,17 +1135,17 @@ Narrows the query results based on the volume the assets belong to.
 
 Possible values include:
 
-| Value                                      | Fetches categories…                              |
-| ------------------------------------------ | ------------------------------------------------ |
-| `'foo'`                                    | in a volume with a handle of `foo`.              |
-| `'not foo'`                                | not in a volume with a handle of `foo`.          |
-| `['foo', 'bar']`                           | in a volume with a handle of `foo` or `bar`.     |
-| `['not', 'foo', 'bar']`                    | not in a volume with a handle of `foo` or `bar`. |
-| a [Volume](api:craft\base\Volume) object | in a volume represented by the object.           |
+| Value | Fetches categories…
+| - | -
+| `'foo'` | in a volume with a handle of `foo`.
+| `'not foo'` | not in a volume with a handle of `foo`.
+| `['foo', 'bar']` | in a volume with a handle of `foo` or `bar`.
+| `['not', 'foo', 'bar']` | not in a volume with a handle of `foo` or `bar`.
+| a [Volume](api:craft\base\Volume) object | in a volume represented by the object.
+
 
 
 ::: code
-
 ```twig
 {# Fetch assets in the Foo volume #}
 {% set assets = craft.assets()
@@ -1072,8 +1159,8 @@ $assets = \craft\elements\Asset::find()
     ->volume('foo')
     ->all();
 ```
-
 :::
+
 
 ### `volumeId`
 
@@ -1081,16 +1168,16 @@ Narrows the query results based on the volumes the assets belong to, per the vol
 
 Possible values include:
 
-| Value           | Fetches categories…                   |
-| --------------- | ------------------------------------- |
-| `1`             | in a volume with an ID of 1.          |
-| `'not 1'`       | not in a volume with an ID of 1.      |
-| `[1, 2]`        | in a volume with an ID of 1 or 2.     |
-| `['not', 1, 2]` | not in a volume with an ID of 1 or 2. |
+| Value | Fetches categories…
+| - | -
+| `1` | in a volume with an ID of 1.
+| `'not 1'` | not in a volume with an ID of 1.
+| `[1, 2]` | in a volume with an ID of 1 or 2.
+| `['not', 1, 2]` | not in a volume with an ID of 1 or 2.
+
 
 
 ::: code
-
 ```twig
 {# Fetch assets in the volume with an ID of 1 #}
 {% set assets = craft.assets()
@@ -1104,8 +1191,8 @@ $assets = \craft\elements\Asset::find()
     ->volumeId(1)
     ->all();
 ```
-
 :::
+
 
 ### `width`
 
@@ -1113,15 +1200,15 @@ Narrows the query results based on the assets’ image widths.
 
 Possible values include:
 
-| Value                         | Fetches assets…                     |
-| ----------------------------- | ----------------------------------- |
-| `100`                         | with a width of 100.                |
-| `'>= 100'`                 | with a width of at least 100.       |
-| `['>= 100', '<= 1000']` | with a width between 100 and 1,000. |
+| Value | Fetches assets…
+| - | -
+| `100` | with a width of 100.
+| `'>= 100'` | with a width of at least 100.
+| `['>= 100', '<= 1000']` | with a width between 100 and 1,000.
+
 
 
 ::: code
-
 ```twig
 {# Fetch XL images #}
 {% set assets = craft.assets()
@@ -1137,17 +1224,20 @@ $assets = \craft\elements\Asset::find()
     ->width('>= 1000')
     ->all();
 ```
-
 :::
+
 
 ### `with`
 
 Causes the query to return matching assets eager-loaded with related elements.
 
+
+
 See [Eager-Loading Elements](https://docs.craftcms.com/v3/dev/eager-loading-elements.html) for a full explanation of how to work with this parameter.
 
-::: code
 
+
+::: code
 ```twig
 {# Fetch assets eager-loaded with the "Related" field’s relations #}
 {% set assets = craft.assets()
@@ -1161,17 +1251,19 @@ $assets = \craft\elements\Asset::find()
     ->with(['related'])
     ->all();
 ```
-
 :::
+
 
 ### `withTransforms`
 
 Causes the query to return matching assets eager-loaded with image transform indexes.
 
-This can improve performance when displaying several image transforms at once, if the transforms have already been generated.
+This can improve performance when displaying several image transforms at once, if the transforms
+have already been generated.
+
+
 
 ::: code
-
 ```twig
 {# Fetch assets with the 'thumbnail' and 'hiResThumbnail' transform data preloaded #}
 {% set assets = craft.assets()
@@ -1187,7 +1279,8 @@ $assets = \craft\elements\Asset::find()
     ->withTransforms(['thumbnail', 'hiResThumbnail'])
     ->all();
 ```
-
 :::
+
+
 
 <!-- END PARAMS -->

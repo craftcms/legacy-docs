@@ -2,6 +2,7 @@
 
 This tag helps create a hierarchical navigation menu for entries in a [Structure section](../../sections-and-entries.md#section-types) or a [Category Group](../../categories.md).
 
+
 ```twig
 {% set entries = craft.entries.section('pages').all() %}
 
@@ -39,4 +40,4 @@ To show the children of the current element in the loop, use the `{% children %}
 
 If you want to show some additional HTML surrounding the children, but only in the event that the element actually has children, wrap your `{% children %}` tag with `{% ifchildren %}` and `{% endifchildren %}` tags.
 
-Tip: The `{% nav %}` tag should *only* be used in times when you want to show elements in a hierarchy, and you want the DOM to express that hierarchy. If you want to loop through elements linearly, use Twig’s [for](https://twig.symfony.com/doc/tags/for.html) tag instead.
+Tip: The `{% nav %}` tag should _only_ be used in times when you want to show elements in a hierarchy, and you want the DOM to express that hierarchy. If you want to loop through elements linearly, use Twig’s [for](https://twig.symfony.com/doc/tags/for.html) tag instead.

@@ -11,7 +11,6 @@ Working with element queries consists of three steps:
 Here’s what a typical element query might look like:
 
 ::: code
-
 ```twig
 {# Create an entry query and set some parameters on it #}
 {% set entryQuery = craft.entries()
@@ -22,7 +21,6 @@ Here’s what a typical element query might look like:
 {# Execute the query and get the results #}
 {% set entries = entryQuery.all() %}
 ```
-
 ```php
 use craft\elements\Entry;
 
@@ -35,7 +33,6 @@ $entryQuery = Entry::find()
 // Execute the query and get the results
 $entries = $entryQuery->all();
 ```
-
 :::
 
 Each type of element has its own function for creating element queries, and they each have their own parameters you can set. See the individual element query pages for more details on working with them:
@@ -48,7 +45,9 @@ Each type of element has its own function for creating element queries, and they
 - [Tag Queries](tag-queries.md)
 - [User Queries](user-queries.md)
 
-::: tip Most custom fields support element query parameters as well, named after the field handles. :::
+::: tip
+Most custom fields support element query parameters as well, named after the field handles.
+:::
 
 ## Executing Element Queries
 
@@ -59,14 +58,12 @@ Once you’ve defined your parameters on the query, there are multiple functions
 Most of the time, you just want to get the elements that you’re querying for. You do that with the `all()` function.
 
 ::: code
-
 ```twig
 {% set entries = craft.entries()
     .section('news')
     .limit(10)
     .all() %}
 ```
-
 ```php
 use craft\elements\Entry;
 
@@ -75,7 +72,6 @@ $entries = Entry::find()
     ->limit(10)
     ->all();
 ```
-
 :::
 
 ### `one()`
@@ -83,14 +79,12 @@ $entries = Entry::find()
 If you only need a single element, call `one()` instead of `all()`. It will either return the element or `null` if no matching element exists.
 
 ::: code
-
 ```twig
 {% set entry = craft.entries()
     .section('news')
     .slug('hello-world')
     .one() %}
 ```
-
 ```php
 use craft\elements\Entry;
 
@@ -99,7 +93,6 @@ $entry = Entry::find()
     ->slug('hello-world')
     ->one();
 ```
-
 :::
 
 ### `exists()`
@@ -107,14 +100,12 @@ $entry = Entry::find()
 If you just need to check if any elements exist that match the element query, you can call `exists()`, which will return either `true` or `false`.
 
 ::: code
-
 ```twig
 {% set exists = craft.entries()
     .section('news')
     .slug('hello-world')
     .exists() %}
 ```
-
 ```php
 use craft\elements\Entry;
 
@@ -123,7 +114,6 @@ $exists = Entry::find()
     ->slug('hello-world')
     ->exists();
 ```
-
 :::
 
 ### `count()`
@@ -131,13 +121,11 @@ $exists = Entry::find()
 If you want to know how many elements match your element query, you can call `count()`.
 
 ::: code
-
 ```twig
 {% set count = craft.entries()
     .section('news')
     .count() %}
 ```
-
 ```php
 use craft\elements\Entry;
 
@@ -145,23 +133,22 @@ $count = Entry::find()
     ->section('news')
     ->count();
 ```
-
 :::
 
-::: tip The `limit` and `offset` parameters will be ignored when you call `count()`. :::
+::: tip
+The `limit` and `offset` parameters will be ignored when you call `count()`.
+:::
 
 ### `ids()`
 
 If you just want a list of matching element IDs, you can call `ids()`.
 
 ::: code
-
 ```twig
 {% set entryIds = craft.entries()
     .section('news')
     .ids() %}
 ```
-
 ```php
 use craft\elements\Entry;
 
@@ -169,7 +156,6 @@ $entryIds = Entry::find()
     ->section('news')
     ->ids();
 ```
-
 :::
 
 ## Advanced Element Queries
@@ -212,7 +198,8 @@ Element queries are specialized [query builders](https://www.yiiframework.com/do
 - [min()](api:yii\db\Query::min())
 - [max()](api:yii\db\Query::max())
 
-::: tip When customizing an element query, you can call [getRawSql()](api:craft\db\Query::getRawSql()) to get the full SQL that is going to be executed by the query, so you have a better idea of what to modify.
+::: tip
+When customizing an element query, you can call [getRawSql()](api:craft\db\Query::getRawSql()) to get the full SQL that is going to be executed by the query, so you have a better idea of what to modify.
 
 ```twig
 {{ dump(query.getRawSql()) }}

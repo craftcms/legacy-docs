@@ -20,11 +20,15 @@ This tag makes it easy to paginate query results across multiple pages.
 {% if pageInfo.nextUrl %}<a href="{{ pageInfo.nextUrl }}">Next Page</a>{% endif %}
 ```
 
-Paginated URLs will be identical to the first page’s URL, except that “/p_X_” will be appended to the end (where *X* is the page number), e.g. `http://my-project.test/news/p2`.
+Paginated URLs will be identical to the first page’s URL, except that “/p_X_” will be appended to the end (where _X_ is the page number), e.g. `http://my-project.test/news/p2`.
 
-::: tip You can use the <config:pageTrigger> config setting to customize what comes before the actual page number in your URLs. For example you could set it to `'page/'`, and your paginated URLs would start looking like `http://my-project.test/news/page/2`. :::
+::: tip
+You can use the <config:pageTrigger> config setting to customize what comes before the actual page number in your URLs. For example you could set it to `'page/'`, and your paginated URLs would start looking like `http://my-project.test/news/page/2`.
+:::
 
-::: warning Only a single `{% paginate %}` tag should be used per request. :::
+::: warning
+Only a single `{% paginate %}` tag should be used per request.
+:::
 
 ## Parameters
 
@@ -34,7 +38,9 @@ The `{% paginate %}` tag has the following parameters:
 
 The first thing you pass into the `{% paginate %}` tag is a query object (such as an [element query](../element-queries/README.md)), which defines all of the results that should be paginated. Use the `limit` parameter to define how many results should show up per page (100 by default).
 
-::: warning This parameter needs to be an actual query object, not an array of pre-fetched results. So don’t call `all()` on the query before passing it in. :::
+::: warning
+This parameter needs to be an actual query object, not an array of pre-fetched results. So don’t call `all()` on the query before passing it in.
+:::
 
 ### `as`
 
@@ -48,7 +54,9 @@ Here’s what they get set to:
 * `pageInfo` gets set to a <api:craft\web\twig\variables\Paginate> object, which provides info about the current page, and some helper methods for creating links to other pages. (See [below](#the-pageInfo-variable) for more info.)
 * `pageEntries` gets set to an array of the results (e.g. the elements) that belong to the current page.
 
-::: tip If you only specify one variable name here, the `pageInfo` variable will be called `paginate` by default for backwards compatibility. :::
+::: tip
+If you only specify one variable name here, the `pageInfo` variable will be called `paginate` by default for backwards compatibility.
+:::
 
 ## Showing the results
 
@@ -84,6 +92,7 @@ The `pageInfo` variable (or whatever you’ve called it) provides the following 
 * **`pageInfo.getPrevUrls( [dist] )`** – Returns an array of URLs to the previous pages, with keys set to the page numbers. The URLs are returned in ascending order. You can optionally pass in the maximum distance away from the current page the function should go.
 * **`pageInfo.getNextUrls( [dist] )`** – Returns an array of URLs to the next pages, with keys set to the page numbers. The URLs are returned in ascending order. You can optionally pass in the maximum distance away from the current page the function should go.
 * **`pageInfo.getRangeUrls( start, end )`** – Returns an array of URLs to pages in a given range of page numbers, with keys set to the page numbers.
+
 
 ## Navigation examples
 

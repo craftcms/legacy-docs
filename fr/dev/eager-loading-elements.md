@@ -18,7 +18,7 @@ For example, here’s a template that loops through a list of entries, and displ
 {% endfor %}
 ```
 
-This illustrates an *N+1* query problem: In addition to the query executed to fetch the entries, an additional query will be executed for *each* entry, to find its related asset. So the number of queries needed will be *N* (the number of entries) *+ 1* (the initial entries query). If there are 50 entries, this innocent-looking template code will cost the page 51 queries.
+This illustrates an _N+1_ query problem: In addition to the query executed to fetch the entries, an additional query will be executed for _each_ entry, to find its related asset. So the number of queries needed will be _N_ (the number of entries) _+ 1_ (the initial entries query). If there are 50 entries, this innocent-looking template code will cost the page 51 queries.
 
 All hope is not lost, though. You can solve this with **eager-loading**, using the `with` criteria parameter.
 
@@ -57,9 +57,10 @@ Take a look at how we assigned the `image` variable in our examples, before and 
 {% set image = entry.assetsField[0] ?? null %}
 ```
 
-When the assets *aren’t* eager-loaded, `entry.assetsField` gives you an [asset query](element-queries/asset-queries.md) that is preconfigured to return the related assets.
+When the assets _aren’t_ eager-loaded, `entry.assetsField` gives you an [asset query](element-queries/asset-queries.md) that is preconfigured to return the related assets.
 
-However when the assets *are* eager-loaded, `entry.assetsField` gets overwritten with an array of the eager-loaded assets. So `one()`, `all()`, and other element query methods are not available. Instead you must stick to the standard array syntaxes. In our example, we’re grabbing the first asset with `entry.assetsField[0]`, and we’re using Twig’s *null-coalescing operator* (`??`) to define a default value (`null`) in case there is no related asset.
+However when the assets _are_ eager-loaded, `entry.assetsField` gets overwritten with an array of the eager-loaded assets. So `one()`, `all()`, and other element query methods are not available. Instead you must stick to the standard array syntaxes. In our example, we’re grabbing the first asset with `entry.assetsField[0]`, and we’re using Twig’s _null-coalescing operator_ (`??`) to define a default value (`null`) in case there is no related asset.
+
 
 ### Eager-Loading Multiple Sets of Elements
 
@@ -88,9 +89,11 @@ If you have multiple sets of elements you wish to eager-load off of the top list
 {% endfor %}
 ```
 
+
+
 ### Eager-Loading Nested Sets of Elements
 
-It’s also possible to load *nested* sets of elements, using this syntax:
+It’s also possible to load _nested_ sets of elements, using this syntax:
 
 ```twig
 {% set entries = craft.entries()
@@ -160,7 +163,7 @@ This applies if the Matrix blocks themselves are being eager-loaded, too.
 
 ## Eager-Loading Image Transform Indexes
 
-Another *N+1* problem occurs when looping through a set of assets, and applying image transforms to each of them. For each transform, Craft needs to execute a query to see if the transform already exists.
+Another _N+1_ problem occurs when looping through a set of assets, and applying image transforms to each of them. For each transform, Craft needs to execute a query to see if the transform already exists.
 
 This problem can be solved with the `withTransforms` asset criteria parameter:
 

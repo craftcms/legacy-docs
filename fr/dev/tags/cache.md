@@ -32,15 +32,17 @@ Specifies the name of the key the cache should use. If this is not provided, a r
 {% cache using key "page-header" %}
 ```
 
-::: tip You can combine this parameter with [globally](#globally) to cache templates on a per-page basis, without letting any query string variables get included in the path:
+::: tip
+You can combine this parameter with [globally](#globally) to cache templates on a per-page basis, without letting any query string variables get included in the path:
 
 ```twig
 {% cache globally using key craft.app.request.pathInfo %}
 ```
-
 :::
 
-::: warning If you change the template code within a `{% cache %}` that uses a custom key, any existing template caches will not automatically be purged. You will either need to assign the tag a new key, or clear your existing template caches manually using the Clear Caches tool in Settings. :::
+::: warning
+If you change the template code within a `{% cache %}` that uses a custom key, any existing template caches will not automatically be purged. You will either need to assign the tag a new key, or clear your existing template caches manually using the Clear Caches tool in Settings.
+:::
 
 ### `for`
 
@@ -74,7 +76,9 @@ A [DateTime](http://php.net/manual/en/class.datetime.php) object defining when t
 {% cache until entry.eventDate %}
 ```
 
-::: tip You can only use [for](#for) ***or*** [until](#until) in a single `{% cache %}` tag. :::
+::: tip
+You can only use [for](#for) **_or_** [until](#until) in a single `{% cache %}` tag.
+:::
 
 ### `if`
 
@@ -94,13 +98,15 @@ Prevents the `{% cache %}` tag from activating if a certain condition is met.
 {% cache unless currentUser %}
 ```
 
-::: tip You can only use [if](#if) ***or*** [unless](#unless) in a single `{% cache %}` tag. :::
+::: tip
+You can only use [if](#if) **_or_** [unless](#unless) in a single `{% cache %}` tag.
+:::
 
 ## Cache clearing
 
 Your caches will automatically clear when any elements (entries, assets, etc.) within the tags are saved or deleted.
 
-If you have any element *queries* within the tags (e.g. a `craft.entries`), and you create a new element that should be returned by one of the queries, Craft will also be able to figure that out and clear the cache.
+If you have any element _queries_ within the tags (e.g. a `craft.entries`), and you create a new element that should be returned by one of the queries, Craft will also be able to figure that out and clear the cache.
 
 You can also manually clear all of your template caches from the Settings page, using the “Clear Caches” tool.
 
@@ -114,24 +120,24 @@ Here are some examples of when to use them:
 * A Matrix field loop, where some of the blocks have relational fields on them, adding their own additional database queries to the page
 * Whenever you’re pulling in data from another site
 
-There are also some cases where it’s *not* a good idea to use them:
+There are also some cases where it’s _not_ a good idea to use them:
 
 * Don’t use them to cache static text; that will be more expensive than simply outputting the text.
 * You can’t use them outside of top-level `{% block %}` tags within a template that extends another.
 * The `{% cache %}` tag will only cache HTML, so using tags like [{% css %}](css.md) and [{% js %}](js.md) inside of it doesn’t make sense because they don’t actually output HTML therefore their output won’t be cached.
-    
+
     ```twig
     {# Bad: #}
-    
+
     {% extends "_layout" %}
     {% cache %}
         {% block "content" %}
             ...
         {% endblock %}
     {% endcache %}
-    
+
     {# Good: #}
-    
+
     {% extends "_layout" %}
     {% block "content" %}
         {% cache %}
@@ -139,5 +145,6 @@ There are also some cases where it’s *not* a good idea to use them:
         {% endcache %}
     {% endblock %}
     ```
+
 
 Tip: The `{% cache %}` tag will detect if there are any ungenerated [image transform](../../image-transforms.md) URLs within it. If there are, it will hold off on caching the template until the next request, so those temporary image URLs won’t get cached.

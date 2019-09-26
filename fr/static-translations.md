@@ -15,7 +15,6 @@ To do that, Craft employs Yii’s [Message Translations](https://www.yiiframewor
 The first step is to run all of your static messages through the translator. If you’re working on a template, use the [translate](dev/filters.md#translate-or-t) filter (`|t`). If you’re working in PHP code, use [Craft::t()](api:yii\BaseYii::t()).
 
 ::: code
-
 ```twig
 {# old #}
 <a href="/contact">Contact us</a>
@@ -23,7 +22,6 @@ The first step is to run all of your static messages through the translator. If 
 {# new #}
 <a href="/contact">{{ 'Contact us'|t }}</a>
 ```
-
 ```php
 // old
 echo 'Contact us';
@@ -31,7 +29,6 @@ echo 'Contact us';
 // new
 echo Craft::t('site', 'Contact us');
 ```
-
 :::
 
 ## Provide the Translations
@@ -42,13 +39,14 @@ To do that, create a new folder in your project’s base directory called `trans
 
 For example, if you want to translate your project’s messages into German, this is what your project’s directory structure should look like:
 
-    my-project.test/
-    ├── config/
-    ├── ...
-    └── translations/
-        └── de/
-            └── site.php
-    
+```
+my-project.test/
+├── config/
+├── ...
+└── translations/
+    └── de/
+        └── site.php
+```
 
 Now open `site.php` in a text editor, and have it return an array that maps the source messages to their translated messages.
 
@@ -60,7 +58,7 @@ return [
 ];
 ```
 
-Now, when Craft is processing the message translation for a German site, “Contact us” will be replaced with “Kontaktiere uns”.
+Now, when Craft is processing the message translation for a German site, “Contact us” will be replaced with  “Kontaktiere uns”.
 
 ### Message Parameters
 
@@ -77,17 +75,14 @@ return [
 To replace the placeholder values with dynamic values when translating the message, pass the `params` argument when using the [translate](dev/filters.md#translate-or-t) filter or calling [Craft::t()](api:yii\BaseYii::t()):
 
 ::: code
-
 ```twig
 <a href="/contact">{{ 'Welcome back, {name}'|t(params = {
     name: currentUser.friendlyName,
 }) }}</a>
 ```
-
 ```php
 echo Craft::t('site', 'Welcome back, {name}', [
     'name' => Craft::$app->user->identity->friendlyName,
 ]);
 ```
-
 :::

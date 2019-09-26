@@ -17,14 +17,15 @@ Then, create a file that will hold your asset bundle class. This can be located 
 
 Here’s what your plugin’s structure should look like:
 
-    base_dir/
-    └── src/
-        ├── FooBundle.php
-        └── resources/
-            ├── script.js
-            ├── styles.css
-            └── ...
-    
+```
+base_dir/
+└── src/
+    ├── FooBundle.php
+    └── resources/
+        ├── script.js
+        ├── styles.css
+        └── ...
+```
 
 Use this template as a starting point for your asset bundle class:
 
@@ -62,7 +63,9 @@ class MyPluginAsset extends AssetBundle
 }
 ```
 
-::: tip `@ns/prefix` is a placeholder for your plugin’s auto-generated [Yii alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases), which will be based on your plugin’s root namespace. It represents the path to your plugin’s `src/` directory. :::
+::: tip
+`@ns/prefix` is a placeholder for your plugin’s auto-generated [Yii alias], which will be based on your plugin’s root namespace. It represents the path to your plugin’s `src/` directory.
+:::
 
 ### Registering the Asset Bundle
 
@@ -105,4 +108,8 @@ For example, if you had a bunch of icon SVG files in an `icons/` folder within y
 $url = \Craft::$app->assetManager->getPublishedUrl('@ns/prefix/icons', true, 'shaker.svg');
 ```
 
-::: tip `@ns/prefix` is a placeholder for your plugin’s auto-generated [Yii alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases), which will be based on your plugin’s root namespace. It represents the path to your plugin’s `src/` directory. :::
+::: tip
+`@ns/prefix` is a placeholder for your plugin’s auto-generated [Yii alias], which will be based on your plugin’s root namespace. It represents the path to your plugin’s `src/` directory.
+:::
+
+[Yii alias]: https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases

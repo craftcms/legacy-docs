@@ -10,7 +10,9 @@ A <api:craft\web\twig\variables\CraftVariable> object, which provides access poi
 
 A reference to the main <api:craft\web\Application> instance (the thing you get when you type `Craft::$app` in PHP code) is also available to templates via `craft.app`.
 
-::: warning Accessing things via `craft.app` is considered advanced. There are more security implications than other Twig-specific variables and functions, and your templates will be more susceptible to breaking changes during major Craft version bumps. :::
+::: warning
+Accessing things via `craft.app` is considered advanced. There are more security implications than other Twig-specific variables and functions, and your templates will be more susceptible to breaking changes during major Craft version bumps.
+:::
 
 ```twig
 {% set field = craft.app.fields.getFieldByHandle('body') %}
@@ -68,7 +70,7 @@ The URL to your site’s login page, based on the <config:loginPath> config sett
 
 ## `logoutUrl`
 
-The URL Craft uses to log users out, based on the <config:logoutPath> config setting. Note that Craft will automatically redirect users to your homepage after going here; there’s no such thing as a “logout *page*”.
+The URL Craft uses to log users out, based on the <config:logoutPath> config setting. Note that Craft will automatically redirect users to your homepage after going here; there’s no such thing as a “logout _page_”.
 
 ```twig
 {% if currentUser %}

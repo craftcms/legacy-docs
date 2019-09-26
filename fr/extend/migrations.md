@@ -10,7 +10,9 @@ For the most part, migrations in Craft work similarly to [Yii’s implementation
 
 ## Creating Migrations
 
-::: tip If your Craft install is running from a Vagrant box, you will need to SSH into the box to run these commands. :::
+::: tip
+If your Craft install is running from a Vagrant box, you will need to SSH into the box to run these commands.
+:::
 
 To create a new migration for your plugin or project, open up your terminal and go to your Craft project:
 
@@ -22,11 +24,13 @@ Then run the following command to generate a new migration file for your plugin 
 
 ::: code
 
-```bash Plugin Migration ./craft migrate/create <migration_name> --plugin=<plugin-handle>
+```bash Plugin Migration
+./craft migrate/create <migration_name> --plugin=<plugin-handle>
+```
 
-    <br />```bash Content Migration
-    ./craft migrate/create &lt;migration_name&gt;
-    
+```bash Content Migration
+./craft migrate/create <migration_name>
+```
 
 :::
 
@@ -36,9 +40,11 @@ If this is a plugin migration, increase your plugin’s [schema version](api:cra
 
 ### What Goes Inside
 
-Migration classes contain methods: [safeUp()](api:yii\db\Migration::safeUp()) and [safeDown()](api:yii\db\Migration::safeDown()). `safeUp()` is run when your migration is *applied*, and `safeDown()` is run when your migration is *reverted*.
+Migration classes contain methods: [safeUp()](api:yii\db\Migration::safeUp()) and [safeDown()](api:yii\db\Migration::safeDown()). `safeUp()` is run when your migration is _applied_, and `safeDown()` is run when your migration is _reverted_.
 
-::: tip You can usually ignore the `safeDown()` method, as Craft doesn’t have a way to revert migrations from the Control Panel. :::
+::: tip
+You can usually ignore the `safeDown()` method, as Craft doesn’t have a way to revert migrations from the Control Panel.
+:::
 
 You have full access to [Craft’s API](https://docs.craftcms.com/api/v3/) from your `safeUp()` method, but plugin migrations should try to avoid calling the plugin’s own API here. As your plugin’s database schema changes over time, so will your API’s assumptions about the schema. If an old migration calls a service method that relies on database changes that haven’t been applied yet, it will result in a SQL error. So in general you should execute all SQL queries directly from your own migration class. It may feel like you’re duplicating code, but it will be more future-proof.
 
@@ -56,9 +62,12 @@ $this->db->createCommand()
 $this->insert('{{%tablename}}', $rows);
 ```
 
-::: warning The <api:api:yii\db\Migration::insert()>, [batchInsert()](api:craft\db\Migration::batchInsert()), and [update()](api:yii\db\Migration::update()) migration methods will automatically insert/update data in the `dateCreated`, `dateUpdated`, `uid` table columns in addition to whatever you specified in the `$columns` argument. If the table you’re working with does’t have those columns, make sure you pass `false` to the `$includeAuditColumns` argument so you don’t get a SQL error. :::
+::: warning
+The <api:api:yii\db\Migration::insert()>, [batchInsert()](api:craft\db\Migration::batchInsert()), and [update()](api:yii\db\Migration::update()) migration methods will automatically insert/update data in the `dateCreated`, `dateUpdated`, `uid` table columns in addition to whatever you specified in the `$columns` argument. If the table you’re working with does’t have those columns, make sure you pass `false` to the `$includeAuditColumns` argument so you don’t get a SQL error.
+:::
 
-::: tip <api:craft\db\Migration> doesn’t have a method for *selecting* data, so you will still need to go through Yii’s [Query Builder](https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder) for that.
+::: tip
+<api:craft\db\Migration> doesn’t have a method for _selecting_ data, so you will still need to go through Yii’s [Query Builder](https://www.yiiframework.com/doc/guide/2.0/en/db-query-builder) for that.
 
 ```php
 use craft\db\Query;
@@ -67,7 +76,6 @@ $result = (new Query())
     // ...
     ->all();
 ```
-
 :::
 
 ### Logging
@@ -86,11 +94,13 @@ You can have Craft apply your new migration from the terminal:
 
 ::: code
 
-```bash Plugin Migration ./craft migrate/up --plugin=<plugin-handle>
+```bash Plugin Migration
+./craft migrate/up --plugin=<plugin-handle>
+```
 
-    <br />```bash Content Migration
-    ./craft migrate/up
-    
+```bash Content Migration
+./craft migrate/up
+```
 
 :::
 
@@ -134,7 +144,9 @@ You can give your plugin an install migration with the `migrate/create` command 
 
 When a plugin has an Install migration, its `safeUp()` method will be called when the plugin is installed, and its `safeDown()` method will be called when the plugin is uninstalled (invoked by the plugin’s [install()](api:craft\base\Plugin::install()) and [uninstall()](api:craft\base\Plugin::uninstall()) methods).
 
-::: tip It is *not* a plugin’s responsibility to manage its row in the `plugins` database table. Craft takes care of that for you. :::
+::: tip
+It is *not* a plugin’s responsibility to manage its row in the `plugins` database table. Craft takes care of that for you.
+:::
 
 ### Setting Default Project Config Data
 

@@ -4,7 +4,9 @@ You can customize Craft’s entire [Yii application configuration](https://www.y
 
 You can also customize Craft’s application configuration for only web requests or console requests from `config/app.web.php` and `config/app.console.php`.
 
-::: tip Craft’s default configuration is defined by [src/config/app.php](https://github.com/craftcms/cms/blob/master/src/config/app.php), [app.web.php](https://github.com/craftcms/cms/blob/master/src/config/app.web.php), and [app.console.php](https://github.com/craftcms/cms/blob/master/src/config/app.console.php). Refer to these files when you need to override existing application components. :::
+::: tip
+Craft’s default configuration is defined by [src/config/app.php](https://github.com/craftcms/cms/blob/master/src/config/app.php), [app.web.php](https://github.com/craftcms/cms/blob/master/src/config/app.web.php), and [app.console.php](https://github.com/craftcms/cms/blob/master/src/config/app.console.php). Refer to these files when you need to override existing application components.
+:::
 
 [[toc]]
 
@@ -96,7 +98,9 @@ return [
 ];
 ```
 
-::: tip The `session` component **must** be configured with the <api:craft\behaviors\SessionBehavior> behavior, which adds methods to the component that the system relies on. :::
+::: tip
+The `session` component **must** be configured with the <api:craft\behaviors\SessionBehavior> behavior, which adds methods to the component that the system relies on.
+:::
 
 ## Mailer Component
 
@@ -129,7 +133,9 @@ return [
 ];
 ```
 
-::: tip Any changes you make to the Mailer component from `config/app.php` will not be reflected when testing email settings from Settings → Email. :::
+::: tip
+Any changes you make to the Mailer component from `config/app.php` will not be reflected when testing email settings from Settings → Email.
+:::
 
 ## Queue Component
 
@@ -150,9 +156,13 @@ return [
 
 Available drivers are listed in the [Yii2 Queue Extension documentation](https://github.com/yiisoft/yii2-queue/tree/master/docs/guide).
 
-::: warning Only drivers that implement <api:craft\queue\QueueInterface> will be visible within the Control Panel. :::
+::: warning
+Only drivers that implement <api:craft\queue\QueueInterface> will be visible within the Control Panel.
+:::
 
-::: tip If your queue driver supplies its own worker, set the <config:runQueueAutomatically> config setting to `false` in `config/general.php`. :::
+::: tip
+If your queue driver supplies its own worker, set the <config:runQueueAutomatically> config setting to `false` in `config/general.php`.
+:::
 
 ## Modules
 

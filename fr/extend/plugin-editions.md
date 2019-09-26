@@ -6,7 +6,9 @@ The Plugin Store will soon add **limited** support for multi-edition plugins, wh
 - Plugins’ active edition is recorded in the [project config](../project-config.md).
 - Plugins can implement feature toggles by checking their active edition.
 
-::: warning Not every plugin can or should support editions. [Contact](https://craftcms.com/contact) Pixel & Tonic before you begin adding edition support to make sure it will be allowed for your plugin. :::
+::: warning
+Not every plugin can or should support editions. [Contact](https://craftcms.com/contact) Pixel & Tonic before you begin adding edition support to make sure it will be allowed for your plugin.
+:::
 
 ## Define the Editions
 
@@ -59,15 +61,24 @@ if (Plugin::getInstance()->is(Plugin::EDITION_PRO) {
 The following operators are also supported:
 
 Operator | Tests if the active edition is ____ the given edition
+- | -
+`<` or `lt` | …less than…
+`<=` or `le` | …less than or equal to…
+`>` or `gt` | …greater than…
+`>=` or `ge` | …greater than or equal to…
+`==` or `eq` | …equal to… (same as default behavior)
+`!=`, `<>`, or `ne` | …not equal to…
 
-- | - `<` or `lt` | …less than… `<=` or `le` | …less than or equal to… `>` or `gt` | …greater than… `>=` or `ge` | …greater than or equal to… `==` or `eq` | …equal to… (same as default behavior) `!=`, `<>`, or `ne` | …not equal to…
-
-::: tip Changing editions should always be a lossless operation; no plugin data should change as a result of the edition change. Editions can change back and forth at any time, and plugins should have no problem rolling with it. :::
+::: tip
+Changing editions should always be a lossless operation; no plugin data should change as a result of the edition change. Editions can change back and forth at any time, and plugins should have no problem rolling with it.
+:::
 
 ## Testing
 
 You can toggle the active edition by changing the `plugins.<plugin-handle>.edition` property in `config/project.yaml`.
 
-::: tip If you don’t have a `config/project.yaml` file, you need to enable the <config:useProjectConfigFile> config setting. :::
+::: tip
+If you don’t have a `config/project.yaml` file, you need to enable the <config:useProjectConfigFile> config setting.
+:::
 
 After changing the value to a valid edition handle (one returned by your plugin’s `editions()` method), Craft will prompt you to sync your `project.yaml` changes into the loaded project config. Once that’s done, your plugin’s active edition will be set to the new edition, and feature toggles should start behaving accordingly.

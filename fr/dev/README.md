@@ -6,7 +6,9 @@ Templates are files that live within your `templates/` folder. The structure of 
 
 Craft uses [Twig](https://twig.symfony.com/) to parse your templates. Twig is elegant, powerful, and blazing fast. If you’re new to Twig, be sure to read the [Twig Primer](twig-primer.md) to familiarize yourself with its syntax.
 
-::: tip PHP code isn’t allowed in your templates, but Craft provides various ways to [extend Twig](../extend/extending-twig.md) to suit your needs. :::
+::: tip
+PHP code isn’t allowed in your templates, but Craft provides various ways to [extend Twig](../extend/extending-twig.md) to suit your needs.
+:::
 
 ## Template Paths
 
@@ -35,6 +37,7 @@ For example, if you have a template located at `templates/recipes/ingredients/in
 
 If you have templates located at both `templates/recipes/ingredients.twig` *and* `templates/recipes/ingredients/index.twig`, the template path `recipes/ingredients` will match `ingredients.twig`.
 
+
 ### Hidden Templates
 
 Craft treats templates with names prefixed with an underscore, for example `recipes/_entry.twig`, as hidden templates that are not directly accessible.
@@ -51,4 +54,4 @@ If you’re running multiple sites with Craft, you can create site-specific subf
 
 For example, if you want to create a special template welcoming your German customers, but there’s no need for it on your English site, then you could save it in `templates/de/welcome.twig`. That template would be available from `http://example.de/welcome`.
 
-Craft will look for localized templates *before* it looks for templates in the normal location, so you can use them to override non-localized templates. See our [Localization Guide](../localization.md) for more details.
+Craft will look for localized templates _before_ it looks for templates in the normal location, so you can use them to override non-localized templates. See our [Localization Guide](../localization.md) for more details.

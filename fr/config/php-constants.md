@@ -51,7 +51,7 @@ Can be set to `false` to prevent Craft from setting PHP’s [log_errors](http://
 ```php
 // Don't send PHP error logs to storage/logs/phperrors.log
 define('CRAFT_LOG_PHP_ERRORS', false);
-```
+``` 
 
 ### `CRAFT_SITE`
 
@@ -66,7 +66,9 @@ define('CRAFT_SITE', 'de');
 
 The path to the [storage/](../directory-structure.md#storage) folder. (It is assumed to live within the base directory by default.)
 
-::: tip Make sure you set this to a valid folder path, otherwise it will be ignored. :::
+::: tip
+Make sure you set this to a valid folder path, otherwise it will be ignored.
+:::
 
 ### `CRAFT_TEMPLATES_PATH`
 

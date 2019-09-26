@@ -102,7 +102,7 @@ With Craft Pro, your sections will have a “Preview Targets” setting, where y
 
 Each preview target has Name and a URI. Give each of your targets a clear name that authors will understand, such as “Homepage” or “Blog Index”. Set the URI to the actual URI you want to load when the target is selected.
 
-The URI is a mini Twig template (just like Entry URI Formats), so you can make it dynamic if you need to. For example, if you are creating an “Archive” preview target, where the URI needs to include the year the entry was published, you can enter `archive/{postDate|date('Y')}`.
+The URI is a mini Twig template (just like Entry URI Formats), so you can make it dynamic if you need to. For example, if you are creating an “Archive” preview target, where the URI needs to include the year the entry was published, you can enter `archive/{postDate|date('Y')}`.  
 
 ![A section’s Preview Targets setting.](./images/preview-targets.png)
 
@@ -113,6 +113,7 @@ When an author is editing an entry from a section with custom preview targets, t
 ![An entry’s Share menu with 3 custom preview targets.](./images/share-with-targets.png =294x)
 
 The targets will also be available within Live Preview.
+
 
 ## Entry Types
 
@@ -137,10 +138,10 @@ The Title Format is a full-blown Twig template, and it will get parsed whenever 
 
 The entry is passed to this template as a variable named `object`. You can reference the entry’s [properties](api:craft\elements\Entry#public-properties) in two ways:
 
-* `{{ object.property }}` *(normal Twig syntax)*
-* `{property}` *(shortcut syntax)*
+* `{{ object.property }}` _(normal Twig syntax)_
+* `{property}` _(shortcut syntax)_
 
-*Note that the shortcut syntax only has one set of curly braces*.
+_Note that the shortcut syntax only has one set of curly braces_.
 
 If Craft finds any of these in your Title Format, it will replace the `{` with `{{object.` and the `}` with `}}`, before passing the template off to Twig for parsing.
 
