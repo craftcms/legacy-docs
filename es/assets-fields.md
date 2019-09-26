@@ -7,17 +7,17 @@ Assets fields allow you to relate [assets](assets.md) to other elements.
 Assets fields have the following settings:
 
 - **Restrict uploads to a single folder?** – Whether file uploads/relations should be constrained to a single folder.
-    
-    If enabled, the following setting will be visible:
-    
+
+  If enabled, the following setting will be visible:
+
   - **Upload Location** – The location that files dragged directly onto the field should be saved in.
-    
-    If disabled, the following settings will be visible:
-    
+
+  If disabled, the following settings will be visible:
+
   - **Sources** – Which asset volumes (or other asset index sources) the field should be able to relate assets from.
   - **Default Upload Location** – The default location that files dragged directly onto the field should be saved in.
-- **Restrict allowed file types?** Whether the field should only be able to upload/relate files of a certain type(s).
 
+- **Restrict allowed file types?** Whether the field should only be able to upload/relate files of a certain type(s).
 - **Limit** – The maximum number of assets that can be related with the field at once. (Default is no limit.)
 - **View Mode** – How the field should appear for authors.
 - **Selection Label** – The label that should be used on the field’s selection button.
@@ -27,10 +27,10 @@ Assets fields have the following settings:
 On multi-site installs, the following settings will also be available (under “Advanced”):
 
 - **Relate assets from a specific site?** – Whether to only allow relations to assets from a specific site.
-    
-    If enabled, a new setting will appear where you can choose which site.
-    
-    If disabled, related assets will always be pulled from the current site.
+
+  If enabled, a new setting will appear where you can choose which site.
+
+  If disabled, related assets will always be pulled from the current site.
 
 - **Manage relations on a per-site basis** – Whether each site should get its own set of related assets.
 
@@ -68,7 +68,6 @@ Possible values include:
 | -------------- | ------------------------------------- |
 | `':empty:'`    | that don’t have any related assets.   |
 | `':notempty:'` | that have at least one related asset. |
-
 
 ```twig
 {# Fetch entries with a related asset #}
