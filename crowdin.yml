@@ -14,5 +14,6 @@ files:
       - /pt/
       - /ru/
       - /zh/
+      - /ja/
     translation: /%two_letters_code%/%original_path%/%file_name%.md
     type: md
