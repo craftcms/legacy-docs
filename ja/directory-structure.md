@@ -6,9 +6,7 @@ Craft 3 の新しいコピーをダウンロードすると、プロジェクト
 
 すべての Craft とプラグインの[設定ファイル](config/README.md)と `license.key` ファイルを保持します。
 
-::: tip
-`web/index.php` に [CRAFT_CONFIG_PATH](config/php-constants.md#craft-config-path) PHP 定数を設定すると、このフォルダの名前や場所をカスタマイズできます。
-:::
+::: tip `web/index.php` に [CRAFT_CONFIG_PATH](config/php-constants.md#craft-config-path) PHP 定数を設定すると、このフォルダの名前や場所をカスタマイズできます。 :::
 
 ### `modules/`
 
@@ -21,49 +19,39 @@ Craft 3 の新しいコピーをダウンロードすると、プロジェクト
 そこにはいくつかのフォルダが含まれます。
 
 - `backups/` – Craft のアップデートやデータベースバックアップユーティリティの実行時に生成される、データベースのバックアップを保管します。
-
 - `logs/` – Craft のログや PHP エラーログを保管します。
-
 - `rebrand/` – アップロードしてある場合、カスタムログインページのロゴとサイトアイコンファイルを保管します。
-
 - `runtime/` – ここにあるすべては、おおよそキャッシングやロギングを目的とするものです。もしフォルダが削除されたとしても、Craft の稼働に影響はありません。
 
-   興味がある方のために、（包括的なリストではありませんが）`storage/runtime/` で確認できるものを掲載します。
-   - `assets/` – 新しいサムネイルやトランスフォームの生成にあたり画像が必要なときに Craft の HTTP リクエストを節約する目的で、画像サムネイル、リサイズされたファイルのアイコン、リモートアセットボリュームに保存された画像のコピーを保管します。
-   - `cache/` – データキャッシュを蓄積します。
-   - `compiled_classes/` – いくつかの動的に定義された PHP クラスを保管します。
-   - `compiled_templates/` – コンパイル済みのテンプレートを保管します。
-   - `mutex/` – ファイルロックデータを保管します。
-   - `temp/` – 一時ファイルを保管します。
-   - `validation.key` – リクエスト間のハッシングやデータ検証に使われる、ランダムに生成され、暗号的に安全な鍵です。
+  興味がある方のために、（包括的なリストではありませんが）`storage/runtime/` で確認できるものを掲載します。
 
-::: tip
-`web/index.php` に [CRAFT_STORAGE_PATH](config/php-constants.md#craft-storage-path) PHP 定数を設定すると、このフォルダの名前や場所をカスタマイズできます。
-:::
+  - `assets/` – 新しいサムネイルやトランスフォームの生成にあたり画像が必要なときに Craft の HTTP リクエストを節約する目的で、画像サムネイル、リサイズされたファイルのアイコン、リモートアセットボリュームに保存された画像のコピーを保管します。
+  - `cache/` – データキャッシュを蓄積します。
+  - `compiled_classes/` – いくつかの動的に定義された PHP クラスを保管します。
+  - `compiled_templates/` – コンパイル済みのテンプレートを保管します。
+  - `mutex/` – ファイルロックデータを保管します。
+  - `temp/` – 一時ファイルを保管します。
+  - `validation.key` – リクエスト間のハッシングやデータ検証に使われる、ランダムに生成され、暗号的に安全な鍵です。
+
+::: tip `web/index.php` に [CRAFT_STORAGE_PATH](config/php-constants.md#craft-storage-path) PHP 定数を設定すると、このフォルダの名前や場所をカスタマイズできます。 :::
 
 ### `templates/`
 
 フロントエンド向けのテンプレートがここに入ります。静的に配信する画像、CSS、JS などのローカルサイトのアセットは、[web](directory-structure.md#web) フォルダに保存します。
 
-::: tip
-`web/index.php` に [CRAFT_TEMPLATES_PATH](config/php-constants.md#craft-templates-path) PHP 定数を設定すると、このフォルダの名前や場所をカスタマイズできます。
-:::
+::: tip `web/index.php` に [CRAFT_TEMPLATES_PATH](config/php-constants.md#craft-templates-path) PHP 定数を設定すると、このフォルダの名前や場所をカスタマイズできます。 :::
 
 ### `vendor/`
 
 これは Composer で依存関係にあるすべてのもので、Craft 自身や Composer 経由でインストールしたすべてのプラグインが含まれます。
 
-::: tip
-`web/index.php` の [CRAFT_VENDOR_PATH](config/php-constants.md#craft-vendor-path) PHP 定数を変更すると、このフォルダの名前や場所をカスタマイズできます。
-:::
+::: tip `web/index.php` の [CRAFT_VENDOR_PATH](config/php-constants.md#craft-vendor-path) PHP 定数を変更すると、このフォルダの名前や場所をカスタマイズできます。 :::
 
 ### `web/`
 
 このディレクトリはサーバーのウェブルートを表します。パブリックの `index.php` ファイルがここにあり、静的に配信されるローカルサイトの画像、CSS、JS などがあります。
 
-::: tip
-このフォルダの名前や場所をカスタマイズできます。もし、他の Craft フォルダと並んでいる状態から移動するならば、`<Webroot>/index.php` の [CRAFT_BASE_PATH](config/php-constants.md#craft-vendor-path) PHP 定数を確実に更新してください。
-:::
+::: tip このフォルダの名前や場所をカスタマイズできます。もし、他の Craft フォルダと並んでいる状態から移動するならば、`<Webroot>/index.php` の [CRAFT_BASE_PATH](config/php-constants.md#craft-vendor-path) PHP 定数を確実に更新してください。 :::
 
 ### `.env`
 
@@ -92,4 +80,3 @@ Craft 3 の新しいコピーをダウンロードすると、プロジェクト
 ### `craft.bat`
 
 これは `craft` 実行可能プログラムの Windows コマンドプロンプト向けラッパーです。
-
