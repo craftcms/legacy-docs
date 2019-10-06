@@ -10,11 +10,11 @@ Before you begin, make sure that you are running Craft 3.3 or later, and you’v
 
 The first step to adding a GraphQL API to your project is to set up a public endpoint for it.
 
-To do that, create a [URL rule](routing.md#advanced-routing-with-url-rules) from `config/routes.php` that points to the `graphql/api` controller action. For example, the following URL rule would cause `/api` requests to route to the GraphQL API:
+To do that, create a [URL rule](routing.md#advanced-routing-with-url-rules) from `config/routes.php` that points to the `graphql/api` controller action. For example, the following URL rule would cause `/gql` requests to route to the GraphQL API:
 
 ```php
 return [
-    'api' => 'graphql/api',
+    'gql' => 'graphql/api',
     // ...
 ];
 ```
