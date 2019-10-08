@@ -54,21 +54,21 @@ Some settings and functions in Craft support [Yii aliases](https://www.yiiframew
 
 The following aliases are available out of the box:
 
-| Alias | Description
-| ----- | -----------
-| `@app` | The path to `vendor/craftcms/cms/src/`
-| `@config` | The path to your `config/` folder
-| `@contentMigrations` | The path to your `migrations/` folder
-| `@craft` | The path to `vendor/craftcms/cms/src/`
-| `@lib` | The path to `vendor/craftcms/cms/lib/`
-| `@root` | The root project path (same as the [CRAFT_BASE_PATH](php-constants.md#craft-base-path) PHP constant)
-| `@runtime` | The path to your `storage/runtime/` folder
-| `@storage` | The path to your `storage/` folder
-| `@templates` | The path to your `templates/` folder
-| `@translations` | The path to your `translations/` folder
-| `@vendor` | The path to your `vendor/` folder
-| `@web` | The URL to the folder that contains the `index.php` file that was loaded for the request
-| `@webroot` | The path to the folder that contains the `index.php` file that was loaded for the request
+| Alias                | Description                                                                                            |
+| -------------------- | ------------------------------------------------------------------------------------------------------ |
+| `@app`               | The path to `vendor/craftcms/cms/src/`                                                                 |
+| `@config`            | The path to your `config/` folder                                                                      |
+| `@contentMigrations` | The path to your `migrations/` folder                                                                  |
+| `@craft`             | The path to `vendor/craftcms/cms/src/`                                                                 |
+| `@lib`               | The path to `vendor/craftcms/cms/lib/`                                                                 |
+| `@root`              | The root project path (same as the [CRAFT_BASE_PATH](php-constants.md#craft-base-path) PHP constant) |
+| `@runtime`           | The path to your `storage/runtime/` folder                                                             |
+| `@storage`           | The path to your `storage/` folder                                                                     |
+| `@templates`         | The path to your `templates/` folder                                                                   |
+| `@translations`      | The path to your `translations/` folder                                                                |
+| `@vendor`            | The path to your `vendor/` folder                                                                      |
+| `@web`               | The URL to the folder that contains the `index.php` file that was loaded for the request               |
+| `@webroot`           | The path to the folder that contains the `index.php` file that was loaded for the request              |
 
 You can define additional custom aliases using the <config:aliases> config setting. For example, you may wish to create aliases that define the base URL and base path that your asset volumes will live in.
 
