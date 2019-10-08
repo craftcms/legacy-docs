@@ -21,6 +21,7 @@ return [
         'cache' => [
             'class' => yii\caching\ApcCache::class,
             'useApcu' => true,
+            'keyPrefix' => 'a_unique_key',
         ],
     ],
 ];
@@ -49,6 +50,7 @@ return [
                     'weight' => 1,
                 ],
             ],
+            'keyPrefix' => 'a_unique_key',
         ],
     ],
 ];
@@ -71,6 +73,7 @@ return [
         'cache' => [
             'class' => yii\redis\Cache::class,
             'defaultDuration' => 86400,
+            'keyPrefix' => 'a_unique_key',
         ],
     ],
 ];
@@ -167,4 +170,3 @@ return [
 ## モジュール
 
 `config/app.php` からカスタム Yii モジュールを登録し bootstrap することもできます。詳細については、[モジュールの構築方法](../extend/module-guide.md)を参照してください。
-
