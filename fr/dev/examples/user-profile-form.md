@@ -7,7 +7,7 @@ We’ll provide two examples: The simplest possible profile form and a full-feat
 ## Simple Profile
 
 The following fields don't require any validation.
- 
+
 - first name
 - last name
 - photo
@@ -148,7 +148,7 @@ Keep in mind that there is a custom Bio field included in this example, so if yo
   {% if not craft.app.config.general.useEmailAsUsername %}
     {% set error = formUser.getFirstError('username')  %}
     {% set class = error ? 'has-error' : '' %}
-    <div class="group {{  class }}">
+    <div class="group {{ class }}">
       <label for="username">Username <span class="error-symbol">&#9888;</span></label>
       <p class="instruction">If left blank, this will become the email address.</p>
 
@@ -159,7 +159,7 @@ Keep in mind that there is a custom Bio field included in this example, so if yo
 
   {% set error = formUser.getFirstError('email')  %}
   {% set class = error ? 'has-error' : '' %}
-  <div class="group {{  class }}">
+  <div class="group {{ class }}">
     <label for="email">Email <span class="error-symbol">&#9888;</span></label>
 
     {% if craft.app.projectConfig.get('users.requireEmailVerification') %}
@@ -167,7 +167,7 @@ Keep in mind that there is a custom Bio field included in this example, so if yo
     {% endif %}
 
     <p class="error-message">{{ error }}</p>
-    <input type="text" id="email" name="email" value="{{ formUser.email }}">
+    <input type="text" id="email" name="email" value="{{ formUser.unverifiedEmail ?? formUser.email }}">
   </div>
 
   {% set error = formUser.getFirstError('newPassword')  %}
@@ -316,7 +316,7 @@ If a user photo exists, we’ll show it and include a checkbox for the option to
 {% if not craft.app.config.general.useEmailAsUsername %}
   {% set error = formUser.getFirstError('username')  %}
   {% set class = error ? 'has-error' : '' %}
-  <div class="group {{  class }}">
+  <div class="group {{ class }}">
     <label for="username">Username <span class="error-symbol">&#9888;</span></label>
     <p class="instruction">If left blank, this will become the email address.</p>
 
@@ -337,7 +337,7 @@ You’ll find styles in the [Extras](#extras) section to show and hide HTML elem
 ```twig
 {% set error = formUser.getFirstError('email')  %}
 {% set class = error ? 'has-error' : '' %}
-<div class="group {{  class }}">
+<div class="group {{ class }}">
   <label for="email">Email <span class="error-symbol">&#9888;</span></label>
 
   {% if craft.app.projectConfig.get('users.requireEmailVerification') %}
@@ -345,7 +345,7 @@ You’ll find styles in the [Extras](#extras) section to show and hide HTML elem
   {% endif %}
 
   <p class="error-message">{{ error }}</p>
-  <input type="text" id="email" name="email" value="{{ formUser.email }}">
+  <input type="text" id="email" name="email" value="{{ formUser.unverifiedEmail ?? formUser.email }}">
 </div>
 ```
 
