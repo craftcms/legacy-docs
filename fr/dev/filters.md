@@ -195,7 +195,7 @@ Craft also provides some special format keywords that will output locale-specifi
 | Format               | Example                     |
 | -------------------- | --------------------------- |
 | `short`              | 12/20/1990                  |
-| `medium` _(default)_ | Dec 20, 1990                |
+| `medium` *(default)* | Dec 20, 1990                |
 | `long`               | December 20, 1990           |
 | `full`               | Thursday, December 20, 1990 |
 
@@ -245,7 +245,7 @@ Possible `format` values are:
 | Format               | Example                                        |
 | -------------------- | ---------------------------------------------- |
 | `short`              | 12/20/1990, 5:00 PM                            |
-| `medium` _(default)_ | Dec 20, 1990, 5:00:00 PM                       |
+| `medium` *(default)* | Dec 20, 1990, 5:00:00 PM                       |
 | `long`               | December 20, 1990 at 5:00:00 PM PDT            |
 | `full`               | Thursday, December 20, 19909 at 5:00:00 PM PDT |
 
@@ -442,7 +442,7 @@ This works similarly to Twig’s core [`json_encode`](https://twig.symfony.com/d
 
 ## `json_decode`
 
-JSON-decodes a string into an array  by passing it through <api:yii\helpers\Json::decode()>.
+JSON-decodes a string into an array by passing it through <api:yii\helpers\Json::decode()>.
 
 ```twig
 {% set arr = '[1, 2, 3]'|json_decode %}
@@ -723,7 +723,7 @@ Possible `format` values are:
 | Format               | Example        |
 | -------------------- | -------------- |
 | `short`              | 5:00 PM        |
-| `medium` _(default)_ | 5:00:00 PM     |
+| `medium` *(default)* | 5:00:00 PM     |
 | `long`               | 5:00:00 PM PDT |
 
 The current application locale will be used by default. If you want to format the date and time for a different locale, use the `locale` argument:
