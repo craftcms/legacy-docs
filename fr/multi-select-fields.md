@@ -16,10 +16,10 @@ When [querying for elements](dev/element-queries/README.md) that have a Multi-se
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'*"foo"*'` | with a `foo` option selected.
-| `'not *"foo"*'` | without a `foo` option selected.
+| Value           | Fetches elements…                |
+| --------------- | -------------------------------- |
+| `'*"foo"*'`     | with a `foo` option selected.    |
+| `'not *"foo"*'` | without a `foo` option selected. |
 
 ```twig
 {# Fetch entries with the 'foo' option selected #}
