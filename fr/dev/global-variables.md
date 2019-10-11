@@ -70,7 +70,7 @@ The URL to your site’s login page, based on the <config:loginPath> config sett
 
 ## `logoutUrl`
 
-The URL Craft uses to log users out, based on the <config:logoutPath> config setting. Note that Craft will automatically redirect users to your homepage after going here; there’s no such thing as a “logout _page_”.
+The URL Craft uses to log users out, based on the <config:logoutPath> config setting. Note that Craft will automatically redirect users to your homepage after going here; there’s no such thing as a “logout *page*”.
 
 ```twig
 {% if currentUser %}
