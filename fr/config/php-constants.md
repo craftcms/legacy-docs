@@ -51,7 +51,7 @@ Can be set to `false` to prevent Craft from setting PHP’s [log_errors](http://
 ```php
 // Don't send PHP error logs to storage/logs/phperrors.log
 define('CRAFT_LOG_PHP_ERRORS', false);
-``` 
+```
 
 ### `CRAFT_SITE`
 
