@@ -39,37 +39,42 @@ Here’s the full list of config settings that Craft supports:
 ### `actionTrigger`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'actions'`
+`'actions'`
 
 Defined by
+:
 
-:   [GeneralConfig::$actionTrigger](api:craft\config\GeneralConfig::$actionTrigger)
+[GeneralConfig::$actionTrigger](api:craft\config\GeneralConfig::$actionTrigger)
 
 
 
-The URI segment Craft should look for when determining if the current request should first be routed to a
-controller action.
+The URI segment Craft should look for when determining if the current request should first be routed to a controller action.
 
 
 
 ### `activateAccountSuccessPath`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `''`
+`''`
 
 Defined by
+:
 
-:   [GeneralConfig::$activateAccountSuccessPath](api:craft\config\GeneralConfig::$activateAccountSuccessPath)
+[GeneralConfig::$activateAccountSuccessPath](api:craft\config\GeneralConfig::$activateAccountSuccessPath)
 
 
 
@@ -82,16 +87,19 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `addTrailingSlashesToUrls`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$addTrailingSlashesToUrls](api:craft\config\GeneralConfig::$addTrailingSlashesToUrls)
+[GeneralConfig::$addTrailingSlashesToUrls](api:craft\config\GeneralConfig::$addTrailingSlashesToUrls)
 
 
 
@@ -102,16 +110,19 @@ Whether auto-generated URLs should have trailing slashes.
 ### `aliases`
 
 Allowed types
+:
 
-:   [array](http://php.net/language.types.array)
+[array](http://php.net/language.types.array)
 
 Default value
+:
 
-:   `[]`
+`[]`
 
 Defined by
+:
 
-:   [GeneralConfig::$aliases](api:craft\config\GeneralConfig::$aliases)
+[GeneralConfig::$aliases](api:craft\config\GeneralConfig::$aliases)
 
 
 
@@ -122,26 +133,27 @@ Any custom Yii [aliases](https://www.yiiframework.com/doc/guide/2.0/en/concept-a
 ### `allowAdminChanges`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$allowAdminChanges](api:craft\config\GeneralConfig::$allowAdminChanges)
+[GeneralConfig::$allowAdminChanges](api:craft\config\GeneralConfig::$allowAdminChanges)
 
 
 
 Whether admins should be allowed to make administrative changes to the system.
 
-If this is disabled, the Settings and Plugin Store sections will be hidden,
-the Craft edition and Craft/plugin versions will be locked, and the project config will become read-only.
+If this is disabled, the Settings and Plugin Store sections will be hidden, the Craft edition and Craft/plugin versions will be locked, and the project config will become read-only.
 
-Therefore you should only disable this in production environments when [useProjectConfigFile](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#useprojectconfigfile) is enabled,
-and you have a deployment workflow that runs `composer install` automatically on deploy.
+Therefore you should only disable this in production environments when [useProjectConfigFile](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#useprojectconfigfile) is enabled, and you have a deployment workflow that runs `composer install` automatically on deploy.
 
 ::: warning
 Don’t disable this setting until **all** environments have been updated to Craft 3.1.0 or later.
@@ -152,16 +164,19 @@ Don’t disable this setting until **all** environments have been updated to Cra
 ### `allowSimilarTags`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$allowSimilarTags](api:craft\config\GeneralConfig::$allowSimilarTags)
+[GeneralConfig::$allowSimilarTags](api:craft\config\GeneralConfig::$allowSimilarTags)
 
 
 
@@ -172,16 +187,19 @@ Whether users should be allowed to create similarly-named tags.
 ### `allowUpdates`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$allowUpdates](api:craft\config\GeneralConfig::$allowUpdates)
+[GeneralConfig::$allowUpdates](api:craft\config\GeneralConfig::$allowUpdates)
 
 
 
@@ -194,16 +212,19 @@ This setting will automatically be disabled if [allowAdminChanges](https://docs.
 ### `allowUppercaseInSlug`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$allowUppercaseInSlug](api:craft\config\GeneralConfig::$allowUppercaseInSlug)
+[GeneralConfig::$allowUppercaseInSlug](api:craft\config\GeneralConfig::$allowUppercaseInSlug)
 
 
 
@@ -214,16 +235,19 @@ Whether uppercase letters should be allowed in slugs.
 ### `allowedFileExtensions`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)[]
+[string](http://php.net/language.types.string)[]
 
 Default value
+:
 
-:   `['7z', 'aiff', 'asf', 'avi', 'bmp', 'csv', 'doc', 'docx', 'fla', 'flv', 'gif', 'gz', 'gzip', 'htm', 'html', 'jp2', 'jpeg', 'jpg', 'jpx', 'js', 'json', 'm2t', 'mid', 'mov', 'mp3', 'mp4', 'm4a', 'm4v', 'mpc', 'mpeg', 'mpg', 'ods', 'odt', 'ogg', 'ogv', 'pdf', 'png', 'potx', 'pps', 'ppsm', 'ppsx', 'ppt', 'pptm', 'pptx', 'ppz', 'pxd', 'qt', 'ram', 'rar', 'rm', 'rmi', 'rmvb', 'rtf', 'sdc', 'sitd', 'svg', 'swf', 'sxc', 'sxw', 'tar', 'tgz', 'tif', 'tiff', 'txt', 'vob', 'vsd', 'wav', 'webm', 'webp', 'wma', 'wmv', 'xls', 'xlsx', 'zip']`
+`['7z', 'aiff', 'asf', 'avi', 'bmp', 'csv', 'doc', 'docx', 'fla', 'flv', 'gif', 'gz', 'gzip', 'htm', 'html', 'jp2', 'jpeg', 'jpg', 'jpx', 'js', 'json', 'm2t', 'mid', 'mov', 'mp3', 'mp4', 'm4a', 'm4v', 'mpc', 'mpeg', 'mpg', 'ods', 'odt', 'ogg', 'ogv', 'pdf', 'png', 'potx', 'pps', 'ppsm', 'ppsx', 'ppt', 'pptm', 'pptx', 'ppz', 'pxd', 'qt', 'ram', 'rar', 'rm', 'rmi', 'rmvb', 'rtf', 'sdc', 'sitd', 'svg', 'swf', 'sxc', 'sxw', 'tar', 'tgz', 'tif', 'tiff', 'txt', 'vob', 'vsd', 'wav', 'webm', 'webp', 'wma', 'wmv', 'xls', 'xlsx', 'zip']`
 
 Defined by
+:
 
-:   [GeneralConfig::$allowedFileExtensions](api:craft\config\GeneralConfig::$allowedFileExtensions)
+[GeneralConfig::$allowedFileExtensions](api:craft\config\GeneralConfig::$allowedFileExtensions)
 
 
 
@@ -234,44 +258,48 @@ The file extensions Craft should allow when a user is uploading files.
 ### `autoLoginAfterAccountActivation`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$autoLoginAfterAccountActivation](api:craft\config\GeneralConfig::$autoLoginAfterAccountActivation)
+[GeneralConfig::$autoLoginAfterAccountActivation](api:craft\config\GeneralConfig::$autoLoginAfterAccountActivation)
 
 
 
-Whether users should automatically be logged in after activating their account or resetting
-their password.
+Whether users should automatically be logged in after activating their account or resetting their password.
 
 
 
 ### `backupCommand`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$backupCommand](api:craft\config\GeneralConfig::$backupCommand)
+[GeneralConfig::$backupCommand](api:craft\config\GeneralConfig::$backupCommand)
 
 
 
 The shell command that Craft should execute to create a database backup.
 
-By default Craft will run `mysqldump` or `pg_dump`, provided that those libraries are in the `$PATH`
-variable for the user the web server  is running as.
+By default Craft will run `mysqldump` or `pg_dump`, provided that those libraries are in the `$PATH` variable for the user the web server is running as.
 
 There are several tokens you can use that Craft will swap out at runtime:
 
@@ -289,16 +317,19 @@ This can also be set to `false` to disable database backups completely.
 ### `backupOnUpdate`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$backupOnUpdate](api:craft\config\GeneralConfig::$backupOnUpdate)
+[GeneralConfig::$backupOnUpdate](api:craft\config\GeneralConfig::$backupOnUpdate)
 
 
 
@@ -309,16 +340,19 @@ Whether Craft should create a database backup before applying a new system updat
 ### `baseCpUrl`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$baseCpUrl](api:craft\config\GeneralConfig::$baseCpUrl)
+[GeneralConfig::$baseCpUrl](api:craft\config\GeneralConfig::$baseCpUrl)
 
 
 
@@ -335,44 +369,46 @@ The base CP URL should **not** include the [CP trigger word](https://docs.craftc
 ### `blowfishHashCost`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer)
+[integer](http://php.net/language.types.integer)
 
 Default value
+:
 
-:   `13`
+`13`
 
 Defined by
+:
 
-:   [GeneralConfig::$blowfishHashCost](api:craft\config\GeneralConfig::$blowfishHashCost)
+[GeneralConfig::$blowfishHashCost](api:craft\config\GeneralConfig::$blowfishHashCost)
 
 
 
-The higher the cost value, the longer it takes to generate a password hash and to verify against it. Therefore,
-higher cost slows down a brute-force attack.
+The higher the cost value, the longer it takes to generate a password hash and to verify against it. Therefore, higher cost slows down a brute-force attack.
 
-For best protection against brute force attacks, set it to the highest value that is tolerable on production
-servers.
+For best protection against brute force attacks, set it to the highest value that is tolerable on production servers.
 
-The time taken to compute the hash doubles for every increment by one for this value.
-For example, if the hash takes 1 second to compute when the value is 14 then the compute time varies as
-2^(value - 14) seconds.
+The time taken to compute the hash doubles for every increment by one for this value. For example, if the hash takes 1 second to compute when the value is 14 then the compute time varies as 2^(value - 14) seconds.
 
 
 
 ### `cacheDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `86400`
+`86400`
 
 Defined by
+:
 
-:   [GeneralConfig::$cacheDuration](api:craft\config\GeneralConfig::$cacheDuration)
+[GeneralConfig::$cacheDuration](api:craft\config\GeneralConfig::$cacheDuration)
 
 
 
@@ -387,16 +423,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `cacheElementQueries`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$cacheElementQueries](api:craft\config\GeneralConfig::$cacheElementQueries)
+[GeneralConfig::$cacheElementQueries](api:craft\config\GeneralConfig::$cacheElementQueries)
 
 
 
@@ -407,16 +446,19 @@ Whether Craft should cache element queries that fall inside `{% cache %}` tags.
 ### `convertFilenamesToAscii`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$convertFilenamesToAscii](api:craft\config\GeneralConfig::$convertFilenamesToAscii)
+[GeneralConfig::$convertFilenamesToAscii](api:craft\config\GeneralConfig::$convertFilenamesToAscii)
 
 
 
@@ -427,21 +469,23 @@ Whether uploaded filenames with non-ASCII characters should be converted to ASCI
 ### `cooldownDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `300`
+`300`
 
 Defined by
+:
 
-:   [GeneralConfig::$cooldownDuration](api:craft\config\GeneralConfig::$cooldownDuration)
+[GeneralConfig::$cooldownDuration](api:craft\config\GeneralConfig::$cooldownDuration)
 
 
 
-The amount of time a user must wait before re-attempting to log in after their account is locked due to too many
-failed login attempts.
+The amount of time a user must wait before re-attempting to log in after their account is locked due to too many failed login attempts.
 
 Set to `0` to keep the account locked indefinitely, requiring an admin to manually unlock the account.
 
@@ -452,37 +496,42 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `cpTrigger`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'admin'`
+`'admin'`
 
 Defined by
+:
 
-:   [GeneralConfig::$cpTrigger](api:craft\config\GeneralConfig::$cpTrigger)
+[GeneralConfig::$cpTrigger](api:craft\config\GeneralConfig::$cpTrigger)
 
 
 
-The URI segment Craft should look for when determining if the current request should route to the Control Panel rather than
-the front-end website.
+The URI segment Craft should look for when determining if the current request should route to the Control Panel rather than the front-end website.
 
 
 
 ### `csrfTokenName`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'CRAFT_CSRF_TOKEN'`
+`'CRAFT_CSRF_TOKEN'`
 
 Defined by
+:
 
-:   [GeneralConfig::$csrfTokenName](api:craft\config\GeneralConfig::$csrfTokenName)
+[GeneralConfig::$csrfTokenName](api:craft\config\GeneralConfig::$csrfTokenName)
 
 
 
@@ -493,38 +542,42 @@ The name of CSRF token used for CSRF validation if [enableCsrfProtection](https:
 ### `defaultCookieDomain`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `''`
+`''`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultCookieDomain](api:craft\config\GeneralConfig::$defaultCookieDomain)
+[GeneralConfig::$defaultCookieDomain](api:craft\config\GeneralConfig::$defaultCookieDomain)
 
 
 
-The domain that cookies generated by Craft should be created for. If blank, it will be left
-up to the browser to determine which domain to use (almost always the current). If you want the cookies to work
-for all subdomains, for example, you could set this to `'.domain.com'`.
+The domain that cookies generated by Craft should be created for. If blank, it will be left up to the browser to determine which domain to use (almost always the current). If you want the cookies to work for all subdomains, for example, you could set this to `'.domain.com'`.
 
 
 
 ### `defaultCpLanguage`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultCpLanguage](api:craft\config\GeneralConfig::$defaultCpLanguage)
+[GeneralConfig::$defaultCpLanguage](api:craft\config\GeneralConfig::$defaultCpLanguage)
 
 
 
@@ -535,16 +588,19 @@ The default language the Control Panel should use for users who haven’t set a 
 ### `defaultDirMode`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `0775`
+`0775`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultDirMode](api:craft\config\GeneralConfig::$defaultDirMode)
+[GeneralConfig::$defaultDirMode](api:craft\config\GeneralConfig::$defaultDirMode)
 
 
 
@@ -557,16 +613,19 @@ If set to `null`, the permission will be determined by the current environment.
 ### `defaultFileMode`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer), [null](http://php.net/language.types.null)
+[integer](http://php.net/language.types.integer), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultFileMode](api:craft\config\GeneralConfig::$defaultFileMode)
+[GeneralConfig::$defaultFileMode](api:craft\config\GeneralConfig::$defaultFileMode)
 
 
 
@@ -579,37 +638,42 @@ If set to `null`, the permission will be determined by the current environment.
 ### `defaultImageQuality`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer)
+[integer](http://php.net/language.types.integer)
 
 Default value
+:
 
-:   `82`
+`82`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultImageQuality](api:craft\config\GeneralConfig::$defaultImageQuality)
+[GeneralConfig::$defaultImageQuality](api:craft\config\GeneralConfig::$defaultImageQuality)
 
 
 
-The quality level Craft will use when saving JPG and PNG files. Ranges from 0 (worst quality, smallest file) to
-100 (best quality, biggest file).
+The quality level Craft will use when saving JPG and PNG files. Ranges from 0 (worst quality, smallest file) to 100 (best quality, biggest file).
 
 
 
 ### `defaultSearchTermOptions`
 
 Allowed types
+:
 
-:   [array](http://php.net/language.types.array)
+[array](http://php.net/language.types.array)
 
 Default value
+:
 
-:   `[]`
+`[]`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultSearchTermOptions](api:craft\config\GeneralConfig::$defaultSearchTermOptions)
+[GeneralConfig::$defaultSearchTermOptions](api:craft\config\GeneralConfig::$defaultSearchTermOptions)
 
 
 
@@ -628,16 +692,19 @@ Options include:
 ### `defaultTemplateExtensions`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)[]
+[string](http://php.net/language.types.string)[]
 
 Default value
+:
 
-:   `['html', 'twig']`
+`['html', 'twig']`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultTemplateExtensions](api:craft\config\GeneralConfig::$defaultTemplateExtensions)
+[GeneralConfig::$defaultTemplateExtensions](api:craft\config\GeneralConfig::$defaultTemplateExtensions)
 
 
 
@@ -648,16 +715,19 @@ The template file extensions Craft will look for when matching a template path t
 ### `defaultTokenDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `86400`
+`86400`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultTokenDuration](api:craft\config\GeneralConfig::$defaultTokenDuration)
+[GeneralConfig::$defaultTokenDuration](api:craft\config\GeneralConfig::$defaultTokenDuration)
 
 
 
@@ -670,16 +740,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `defaultWeekStartDay`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer)
+[integer](http://php.net/language.types.integer)
 
 Default value
+:
 
-:   `1`
+`1`
 
 Defined by
+:
 
-:   [GeneralConfig::$defaultWeekStartDay](api:craft\config\GeneralConfig::$defaultWeekStartDay)
+[GeneralConfig::$defaultWeekStartDay](api:craft\config\GeneralConfig::$defaultWeekStartDay)
 
 
 
@@ -700,41 +773,44 @@ This should be set to one of the following integers:
 ### `deferPublicRegistrationPassword`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$deferPublicRegistrationPassword](api:craft\config\GeneralConfig::$deferPublicRegistrationPassword)
+[GeneralConfig::$deferPublicRegistrationPassword](api:craft\config\GeneralConfig::$deferPublicRegistrationPassword)
 
 
 
-By default, Craft will require a 'password' field to be submitted on front-end, public
-user registrations. Setting this to `true` will no longer require it on the initial registration form.
+By default, Craft will require a 'password' field to be submitted on front-end, public user registrations. Setting this to `true` will no longer require it on the initial registration form.
 
-If you have email verification enabled, new users will set their password once they've clicked on the
-verification link in the email. If you don't, the only way they can set their password is to go
-through your "forgot password" workflow.
+If you have email verification enabled, new users will set their password once they've clicked on the verification link in the email. If you don't, the only way they can set their password is to go through your "forgot password" workflow.
 
 
 
 ### `devMode`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$devMode](api:craft\config\GeneralConfig::$devMode)
+[GeneralConfig::$devMode](api:craft\config\GeneralConfig::$devMode)
 
 
 
@@ -745,22 +821,23 @@ Whether the system should run in [Dev Mode](https://craftcms.com/support/dev-mod
 ### `disabledPlugins`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)[]
+[string](http://php.net/language.types.string)[]
 
 Default value
+:
 
-:   `[]`
+`[]`
 
 Defined by
+:
 
-:   [GeneralConfig::$disabledPlugins](api:craft\config\GeneralConfig::$disabledPlugins)
+[GeneralConfig::$disabledPlugins](api:craft\config\GeneralConfig::$disabledPlugins)
 
 
 
 Array of plugin handles that should be disabled, regardless of what the project config says.
-
-
 
 ```php
 'dev' => [
@@ -771,16 +848,19 @@ Array of plugin handles that should be disabled, regardless of what the project 
 ### `elevatedSessionDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `300`
+`300`
 
 Defined by
+:
 
-:   [GeneralConfig::$elevatedSessionDuration](api:craft\config\GeneralConfig::$elevatedSessionDuration)
+[GeneralConfig::$elevatedSessionDuration](api:craft\config\GeneralConfig::$elevatedSessionDuration)
 
 
 
@@ -795,39 +875,42 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `enableCsrfCookie`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$enableCsrfCookie](api:craft\config\GeneralConfig::$enableCsrfCookie)
+[GeneralConfig::$enableCsrfCookie](api:craft\config\GeneralConfig::$enableCsrfCookie)
 
 
 
-Whether to use a cookie to persist the CSRF token if [enableCsrfProtection](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#enablecsrfprotection) is enabled. If false, the CSRF token
-will be stored in session under the `csrfTokenName` config setting name. Note that while storing CSRF tokens in
-session increases security, it requires starting a session for every page that a CSRF token is need, which may
-degrade site performance.
+Whether to use a cookie to persist the CSRF token if [enableCsrfProtection](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#enablecsrfprotection) is enabled. If false, the CSRF token will be stored in session under the `csrfTokenName` config setting name. Note that while storing CSRF tokens in session increases security, it requires starting a session for every page that a CSRF token is need, which may degrade site performance.
 
 
 
 ### `enableCsrfProtection`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$enableCsrfProtection](api:craft\config\GeneralConfig::$enableCsrfProtection)
+[GeneralConfig::$enableCsrfProtection](api:craft\config\GeneralConfig::$enableCsrfProtection)
 
 
 
@@ -838,16 +921,19 @@ Whether to enable CSRF protection via hidden form inputs for all forms submitted
 ### `enableGql`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$enableGql](api:craft\config\GeneralConfig::$enableGql)
+[GeneralConfig::$enableGql](api:craft\config\GeneralConfig::$enableGql)
 
 
 
@@ -860,16 +946,19 @@ Note that the GraphQL API is only available for Craft Pro.
 ### `enableTemplateCaching`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$enableTemplateCaching](api:craft\config\GeneralConfig::$enableTemplateCaching)
+[GeneralConfig::$enableTemplateCaching](api:craft\config\GeneralConfig::$enableTemplateCaching)
 
 
 
@@ -880,21 +969,23 @@ Whether to enable Craft's template `{% cache %}` tag on a global basis.
 ### `errorTemplatePrefix`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `''`
+`''`
 
 Defined by
+:
 
-:   [GeneralConfig::$errorTemplatePrefix](api:craft\config\GeneralConfig::$errorTemplatePrefix)
+[GeneralConfig::$errorTemplatePrefix](api:craft\config\GeneralConfig::$errorTemplatePrefix)
 
 
 
-The prefix that should be prepended to HTTP error status codes when determining the path to look for an error’s
-template.
+The prefix that should be prepended to HTTP error status codes when determining the path to look for an error’s template.
 
 If set to `'_'`, then your site’s 404 template would live at `templates/_404.html`, for example.
 
@@ -903,16 +994,19 @@ If set to `'_'`, then your site’s 404 template would live at `templates/_404.h
 ### `extraAllowedFileExtensions`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)[], [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string)[], [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$extraAllowedFileExtensions](api:craft\config\GeneralConfig::$extraAllowedFileExtensions)
+[GeneralConfig::$extraAllowedFileExtensions](api:craft\config\GeneralConfig::$extraAllowedFileExtensions)
 
 
 
@@ -923,44 +1017,48 @@ List of file extensions that will be merged into the [allowedFileExtensions](htt
 ### `extraAppLocales`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)[], [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string)[], [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$extraAppLocales](api:craft\config\GeneralConfig::$extraAppLocales)
+[GeneralConfig::$extraAppLocales](api:craft\config\GeneralConfig::$extraAppLocales)
 
 
 
 List of extra locale IDs that the application should support, and users should be able to select as their Preferred Language.
 
-Only use this setting if your server has the Intl PHP extension, or if you’ve saved the corresponding
-[locale data](https://github.com/craftcms/locales) into your `config/locales/` folder.
+Only use this setting if your server has the Intl PHP extension, or if you’ve saved the corresponding [locale data](https://github.com/craftcms/locales) into your `config/locales/` folder.
 
 
 
 ### `extraFileKinds`
 
 Allowed types
+:
 
-:   [array](http://php.net/language.types.array)
+[array](http://php.net/language.types.array)
 
 Default value
+:
 
-:   `[]`
+`[]`
 
 Defined by
+:
 
-:   [GeneralConfig::$extraFileKinds](api:craft\config\GeneralConfig::$extraFileKinds)
+[GeneralConfig::$extraFileKinds](api:craft\config\GeneralConfig::$extraFileKinds)
 
 
 
-List of additional file kinds Craft should support. This array
-will get merged with the one defined in `\craft\config\craft\helpers\Assets::_buildFileKinds()`.
+List of additional file kinds Craft should support. This array will get merged with the one defined in `\craft\config\craft\helpers\Assets::_buildFileKinds()`.
 
 ```php
 'extraFileKinds' => [
@@ -977,8 +1075,7 @@ will get merged with the one defined in `\craft\config\craft\helpers\Assets::_bu
 ```
 
 ::: tip
-File extensions listed here won’t immediately be allowed to be uploaded. You will also need to list them with
-the [extraAllowedFileExtensions](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#extraallowedfileextensions) config setting.
+File extensions listed here won’t immediately be allowed to be uploaded. You will also need to list them with the [extraAllowedFileExtensions](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#extraallowedfileextensions) config setting.
 :::
 
 
@@ -986,16 +1083,19 @@ the [extraAllowedFileExtensions](https://docs.craftcms.com/api/v3/craft-config-g
 ### `filenameWordSeparator`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [boolean](http://php.net/language.types.boolean)
+[string](http://php.net/language.types.string), [boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `'-'`
+`'-'`
 
 Defined by
+:
 
-:   [GeneralConfig::$filenameWordSeparator](api:craft\config\GeneralConfig::$filenameWordSeparator)
+[GeneralConfig::$filenameWordSeparator](api:craft\config\GeneralConfig::$filenameWordSeparator)
 
 
 
@@ -1006,16 +1106,19 @@ The string to use to separate words when uploading Assets. If set to `false`, sp
 ### `generateTransformsBeforePageLoad`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$generateTransformsBeforePageLoad](api:craft\config\GeneralConfig::$generateTransformsBeforePageLoad)
+[GeneralConfig::$generateTransformsBeforePageLoad](api:craft\config\GeneralConfig::$generateTransformsBeforePageLoad)
 
 
 
@@ -1026,21 +1129,23 @@ Whether images transforms should be generated before page load.
 ### `headlessMode`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$headlessMode](api:craft\config\GeneralConfig::$headlessMode)
+[GeneralConfig::$headlessMode](api:craft\config\GeneralConfig::$headlessMode)
 
 
 
-Bool Whether the system should run in Headless Mode, which
-optimizes the system and Control Panel for headless CMS implementations.
+Bool Whether the system should run in Headless Mode, which optimizes the system and Control Panel for headless CMS implementations.
 
 When this is enabled, the following changes will take place:
 
@@ -1048,66 +1153,72 @@ When this is enabled, the following changes will take place:
 - Template route management will be hidden.
 - Front-end routing will skip checks for element and template requests.
 - Front-end responses will be JSON-formatted rather than HTML by default.
-- Twig will be configured to escape unsafe strings for JavaScript/JSON
-  rather than HTML by default for front-end requests.
+- Twig will be configured to escape unsafe strings for JavaScript/JSON rather than HTML by default for front-end requests.
 
 
 
 ### `imageDriver`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `self::IMAGE_DRIVER_AUTO`
+`self::IMAGE_DRIVER_AUTO`
 
 Defined by
+:
 
-:   [GeneralConfig::$imageDriver](api:craft\config\GeneralConfig::$imageDriver)
+[GeneralConfig::$imageDriver](api:craft\config\GeneralConfig::$imageDriver)
 
 
 
-The image driver Craft should use to cleanse and transform images. By default Craft will auto-detect if ImageMagick is installed and fallback to GD if not. You can explicitly set
-either `'imagick'` or `'gd'` here to override that behavior.
+The image driver Craft should use to cleanse and transform images. By default Craft will auto-detect if ImageMagick is installed and fallback to GD if not. You can explicitly set either `'imagick'` or `'gd'` here to override that behavior.
 
 
 
 ### `indexTemplateFilenames`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)[]
+[string](http://php.net/language.types.string)[]
 
 Default value
+:
 
-:   `['index']`
+`['index']`
 
 Defined by
+:
 
-:   [GeneralConfig::$indexTemplateFilenames](api:craft\config\GeneralConfig::$indexTemplateFilenames)
+[GeneralConfig::$indexTemplateFilenames](api:craft\config\GeneralConfig::$indexTemplateFilenames)
 
 
 
-The template filenames Craft will look for within a directory to represent the directory’s “index” template when
-matching a template path to a file on the front end.
+The template filenames Craft will look for within a directory to represent the directory’s “index” template when matching a template path to a file on the front end.
 
 
 
 ### `invalidLoginWindowDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `3600`
+`3600`
 
 Defined by
+:
 
-:   [GeneralConfig::$invalidLoginWindowDuration](api:craft\config\GeneralConfig::$invalidLoginWindowDuration)
+[GeneralConfig::$invalidLoginWindowDuration](api:craft\config\GeneralConfig::$invalidLoginWindowDuration)
 
 
 
@@ -1120,21 +1231,23 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `invalidUserTokenPath`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `''`
+`''`
 
 Defined by
+:
 
-:   [GeneralConfig::$invalidUserTokenPath](api:craft\config\GeneralConfig::$invalidUserTokenPath)
+[GeneralConfig::$invalidUserTokenPath](api:craft\config\GeneralConfig::$invalidUserTokenPath)
 
 
 
-The URI Craft should redirect to when user token validation fails. A token is used on things like setting and
-resetting user account passwords. Note that this only affects front-end site requests.
+The URI Craft should redirect to when user token validation fails. A token is used on things like setting and resetting user account passwords. Note that this only affects front-end site requests.
 
 See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
 
@@ -1143,16 +1256,19 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `ipHeaders`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)[], [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string)[], [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$ipHeaders](api:craft\config\GeneralConfig::$ipHeaders)
+[GeneralConfig::$ipHeaders](api:craft\config\GeneralConfig::$ipHeaders)
 
 
 
@@ -1167,37 +1283,42 @@ If not set, the default [craft\web\Request::$ipHeaders](https://docs.craftcms.co
 ### `isSystemLive`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean), [null](http://php.net/language.types.null)
+[boolean](http://php.net/language.types.boolean), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$isSystemLive](api:craft\config\GeneralConfig::$isSystemLive)
+[GeneralConfig::$isSystemLive](api:craft\config\GeneralConfig::$isSystemLive)
 
 
 
-Whether the site is currently live. If set to `true` or `false`, it will take precedence over the
-System Status setting in Settings → General.
+Whether the site is currently live. If set to `true` or `false`, it will take precedence over the System Status setting in Settings → General.
 
 
 
 ### `limitAutoSlugsToAscii`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$limitAutoSlugsToAscii](api:craft\config\GeneralConfig::$limitAutoSlugsToAscii)
+[GeneralConfig::$limitAutoSlugsToAscii](api:craft\config\GeneralConfig::$limitAutoSlugsToAscii)
 
 
 
@@ -1212,16 +1333,19 @@ This only affects the JavaScript auto-generated slugs. Non-ASCII characters can 
 ### `loginPath`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `'login'`
+`'login'`
 
 Defined by
+:
 
-:   [GeneralConfig::$loginPath](api:craft\config\GeneralConfig::$loginPath)
+[GeneralConfig::$loginPath](api:craft\config\GeneralConfig::$loginPath)
 
 
 
@@ -1234,16 +1358,19 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `logoutPath`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `'logout'`
+`'logout'`
 
 Defined by
+:
 
-:   [GeneralConfig::$logoutPath](api:craft\config\GeneralConfig::$logoutPath)
+[GeneralConfig::$logoutPath](api:craft\config\GeneralConfig::$logoutPath)
 
 
 
@@ -1256,58 +1383,65 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `maxCachedCloudImageSize`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer)
+[integer](http://php.net/language.types.integer)
 
 Default value
+:
 
-:   `2000`
+`2000`
 
 Defined by
+:
 
-:   [GeneralConfig::$maxCachedCloudImageSize](api:craft\config\GeneralConfig::$maxCachedCloudImageSize)
+[GeneralConfig::$maxCachedCloudImageSize](api:craft\config\GeneralConfig::$maxCachedCloudImageSize)
 
 
 
-The maximum dimension size to use when caching images from external sources to use in transforms. Set to `0` to
-never cache them.
+The maximum dimension size to use when caching images from external sources to use in transforms. Set to `0` to never cache them.
 
 
 
 ### `maxInvalidLogins`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer)
+[integer](http://php.net/language.types.integer)
 
 Default value
+:
 
-:   `5`
+`5`
 
 Defined by
+:
 
-:   [GeneralConfig::$maxInvalidLogins](api:craft\config\GeneralConfig::$maxInvalidLogins)
+[GeneralConfig::$maxInvalidLogins](api:craft\config\GeneralConfig::$maxInvalidLogins)
 
 
 
-The number of invalid login attempts Craft will allow within the specified duration before the account gets
-locked.
+The number of invalid login attempts Craft will allow within the specified duration before the account gets locked.
 
 
 
 ### `maxRevisions`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer), [null](http://php.net/language.types.null)
+[integer](http://php.net/language.types.integer), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `50`
+`50`
 
 Defined by
+:
 
-:   [GeneralConfig::$maxRevisions](api:craft\config\GeneralConfig::$maxRevisions)
+[GeneralConfig::$maxRevisions](api:craft\config\GeneralConfig::$maxRevisions)
 
 
 
@@ -1320,16 +1454,19 @@ Set to `0` if you want to store an unlimited number of revisions.
 ### `maxSlugIncrement`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer)
+[integer](http://php.net/language.types.integer)
 
 Default value
+:
 
-:   `100`
+`100`
 
 Defined by
+:
 
-:   [GeneralConfig::$maxSlugIncrement](api:craft\config\GeneralConfig::$maxSlugIncrement)
+[GeneralConfig::$maxSlugIncrement](api:craft\config\GeneralConfig::$maxSlugIncrement)
 
 
 
@@ -1340,16 +1477,19 @@ The highest number Craft will tack onto a slug in order to make it unique before
 ### `maxUploadFileSize`
 
 Allowed types
+:
 
-:   [integer](http://php.net/language.types.integer), [string](http://php.net/language.types.string)
+[integer](http://php.net/language.types.integer), [string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `16777216`
+`16777216`
 
 Defined by
+:
 
-:   [GeneralConfig::$maxUploadFileSize](api:craft\config\GeneralConfig::$maxUploadFileSize)
+[GeneralConfig::$maxUploadFileSize](api:craft\config\GeneralConfig::$maxUploadFileSize)
 
 
 
@@ -1362,23 +1502,25 @@ See [craft\helpers\ConfigHelper::sizeInBytes()](https://docs.craftcms.com/api/v3
 ### `omitScriptNameInUrls`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$omitScriptNameInUrls](api:craft\config\GeneralConfig::$omitScriptNameInUrls)
+[GeneralConfig::$omitScriptNameInUrls](api:craft\config\GeneralConfig::$omitScriptNameInUrls)
 
 
 
 Whether generated URLs should omit `index.php` (e.g. `http://domain.com/path` instead of `http://domain.com/index.php/path`)
 
-This can only be possible if your server is configured to redirect would-be 404's to `index.php`, for example, with
-the redirect found in the `.htaccess` file that came with Craft:
+This can only be possible if your server is configured to redirect would-be 404's to `index.php`, for example, with the redirect found in the `.htaccess` file that came with Craft:
 
 ```
 RewriteEngine On
@@ -1392,54 +1534,56 @@ RewriteRule (.+) /index.php?p= [QSA,L]
 ### `optimizeImageFilesize`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$optimizeImageFilesize](api:craft\config\GeneralConfig::$optimizeImageFilesize)
+[GeneralConfig::$optimizeImageFilesize](api:craft\config\GeneralConfig::$optimizeImageFilesize)
 
 
 
-Whether Craft should optimize images for reduced file sizes without noticeably reducing image quality.
-(Only supported when ImageMagick is used.)
+Whether Craft should optimize images for reduced file sizes without noticeably reducing image quality. (Only supported when ImageMagick is used.)
 
 
 
 ### `pageTrigger`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'p'`
+`'p'`
 
 Defined by
+:
 
-:   [GeneralConfig::$pageTrigger](api:craft\config\GeneralConfig::$pageTrigger)
+[GeneralConfig::$pageTrigger](api:craft\config\GeneralConfig::$pageTrigger)
 
 
 
-The string preceding a number which Craft will look for when determining if the current request is for a
-particular page in a paginated list of pages.
+The string preceding a number which Craft will look for when determining if the current request is for a particular page in a paginated list of pages.
 
-Example Value | Example URI
-------------- | -----------
-`p` | `/news/p5`
-`page` | `/news/page5`
-`page/` | `/news/page/5`
-`?page` | `/news?page=5`
+| Example Value | Example URI    |
+| ------------- | -------------- |
+| `p`           | `/news/p5`     |
+| `page`        | `/news/page5`  |
+| `page/`       | `/news/page/5` |
+| `?page`       | `/news?page=5` |
 
 ::: tip
-If you want to set this to `?p` (e.g. `/news?p=5`), you will need to change your [pathParam](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#pathparam) setting as well,
-which is set to `p` by default, and if your server is running Apache, you will need to update the redirect code
-in your `.htaccess` file to match your new `pathParam` value.
+If you want to set this to `?p` (e.g. `/news?p=5`), you will need to change your [pathParam](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#pathparam) setting as well, which is set to `p` by default, and if your server is running Apache, you will need to update the redirect code in your `.htaccess` file to match your new `pathParam` value.
 :::
 
 
@@ -1447,24 +1591,26 @@ in your `.htaccess` file to match your new `pathParam` value.
 ### `pathParam`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'p'`
+`'p'`
 
 Defined by
+:
 
-:   [GeneralConfig::$pathParam](api:craft\config\GeneralConfig::$pathParam)
+[GeneralConfig::$pathParam](api:craft\config\GeneralConfig::$pathParam)
 
 
 
 The query string param that Craft will check when determining the request's path.
 
 ::: tip
-If you change this and your server is running Apache, don’t forget to update the redirect code in your
-`.htaccess` file to match the new value.
+If you change this and your server is running Apache, don’t forget to update the redirect code in your `.htaccess` file to match the new value.
 :::
 
 
@@ -1472,21 +1618,23 @@ If you change this and your server is running Apache, don’t forget to update t
 ### `phpMaxMemoryLimit`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$phpMaxMemoryLimit](api:craft\config\GeneralConfig::$phpMaxMemoryLimit)
+[GeneralConfig::$phpMaxMemoryLimit](api:craft\config\GeneralConfig::$phpMaxMemoryLimit)
 
 
 
-The maximum amount of memory Craft will try to reserve during memory intensive operations such as zipping,
-unzipping and updating. Defaults to an empty string, which means it will use as much memory as it possibly can.
+The maximum amount of memory Craft will try to reserve during memory intensive operations such as zipping, unzipping and updating. Defaults to an empty string, which means it will use as much memory as it possibly can.
 
 See <http://php.net/manual/en/faq.using.php#faq.using.shorthandbytes> for a list of acceptable values.
 
@@ -1495,16 +1643,19 @@ See <http://php.net/manual/en/faq.using.php#faq.using.shorthandbytes> for a list
 ### `phpSessionName`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'CraftSessionId'`
+`'CraftSessionId'`
 
 Defined by
+:
 
-:   [GeneralConfig::$phpSessionName](api:craft\config\GeneralConfig::$phpSessionName)
+[GeneralConfig::$phpSessionName](api:craft\config\GeneralConfig::$phpSessionName)
 
 
 
@@ -1515,23 +1666,25 @@ The name of the PHP session cookie.
 ### `postCpLoginRedirect`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `'dashboard'`
+`'dashboard'`
 
 Defined by
+:
 
-:   [GeneralConfig::$postCpLoginRedirect](api:craft\config\GeneralConfig::$postCpLoginRedirect)
+[GeneralConfig::$postCpLoginRedirect](api:craft\config\GeneralConfig::$postCpLoginRedirect)
 
 
 
 The path that users should be redirected to after logging in from the Control Panel.
 
-This setting will also come into effect if the user visits the CP’s Login page (`/admin/login`)
-or the CP’s root URL (/admin) when they are already logged in.
+This setting will also come into effect if the user visits the CP’s Login page (`/admin/login`) or the CP’s root URL (/admin) when they are already logged in.
 
 See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
 
@@ -1540,23 +1693,25 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `postLoginRedirect`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `''`
+`''`
 
 Defined by
+:
 
-:   [GeneralConfig::$postLoginRedirect](api:craft\config\GeneralConfig::$postLoginRedirect)
+[GeneralConfig::$postLoginRedirect](api:craft\config\GeneralConfig::$postLoginRedirect)
 
 
 
 The path that users should be redirected to after logging in from the front-end site.
 
-This setting will also come into effect if the user visits the Login page (as specified by the loginPath config
-setting) when they are already logged in.
+This setting will also come into effect if the user visits the Login page (as specified by the loginPath config setting) when they are already logged in.
 
 See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
 
@@ -1565,16 +1720,19 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `postLogoutRedirect`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `''`
+`''`
 
 Defined by
+:
 
-:   [GeneralConfig::$postLogoutRedirect](api:craft\config\GeneralConfig::$postLogoutRedirect)
+[GeneralConfig::$postLogoutRedirect](api:craft\config\GeneralConfig::$postLogoutRedirect)
 
 
 
@@ -1587,39 +1745,44 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `preserveCmykColorspace`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$preserveCmykColorspace](api:craft\config\GeneralConfig::$preserveCmykColorspace)
+[GeneralConfig::$preserveCmykColorspace](api:craft\config\GeneralConfig::$preserveCmykColorspace)
 
 
 
 Whether CMYK should be preserved as the colorspace when when manipulating images.
 
-Setting this to `true` will prevent Craft from transforming CMYK images to sRGB, but on some ImageMagick versions can cause color
-distortion in the image. This will only have effect if ImageMagick is in use.
+Setting this to `true` will prevent Craft from transforming CMYK images to sRGB, but on some ImageMagick versions can cause color distortion in the image. This will only have effect if ImageMagick is in use.
 
 
 
 ### `preserveExifData`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$preserveExifData](api:craft\config\GeneralConfig::$preserveExifData)
+[GeneralConfig::$preserveExifData](api:craft\config\GeneralConfig::$preserveExifData)
 
 
 
@@ -1634,67 +1797,71 @@ This will only have effect if ImageMagick is in use.
 ### `preserveImageColorProfiles`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$preserveImageColorProfiles](api:craft\config\GeneralConfig::$preserveImageColorProfiles)
+[GeneralConfig::$preserveImageColorProfiles](api:craft\config\GeneralConfig::$preserveImageColorProfiles)
 
 
 
 Whether the embedded Image Color Profile (ICC) should be preserved when manipulating images.
 
-Setting this to `false` will reduce the image size a little bit, but on some ImageMagick versions can cause images to be saved with
-an incorrect gamma value, which causes the images to become very dark. This will only have effect if ImageMagick is in use.
+Setting this to `false` will reduce the image size a little bit, but on some ImageMagick versions can cause images to be saved with an incorrect gamma value, which causes the images to become very dark. This will only have effect if ImageMagick is in use.
 
 
 
 ### `preventUserEnumeration`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$preventUserEnumeration](api:craft\config\GeneralConfig::$preventUserEnumeration)
+[GeneralConfig::$preventUserEnumeration](api:craft\config\GeneralConfig::$preventUserEnumeration)
 
 
 
-When set to `false` and you go through the "forgot password" workflow on the Control Panel login page, for example,
-you get distinct messages saying if the username/email didn't exist or the email was successfully sent and to check
-your email for further instructions. This can allow for username/email enumeration based on the response. If set
-`true`, you will always get a successful response even if there was an error making it difficult to enumerate users.
+When set to `false` and you go through the "forgot password" workflow on the Control Panel login page, for example, you get distinct messages saying if the username/email didn't exist or the email was successfully sent and to check your email for further instructions. This can allow for username/email enumeration based on the response. If set `true`, you will always get a successful response even if there was an error making it difficult to enumerate users.
 
 
 
 ### `privateTemplateTrigger`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'_'`
+`'_'`
 
 Defined by
+:
 
-:   [GeneralConfig::$privateTemplateTrigger](api:craft\config\GeneralConfig::$privateTemplateTrigger)
+[GeneralConfig::$privateTemplateTrigger](api:craft\config\GeneralConfig::$privateTemplateTrigger)
 
 
 
-The template path segment prefix that should be used to identify "private" templates (templates that aren't
-directly accessible via a matching URL).
+The template path segment prefix that should be used to identify "private" templates (templates that aren't directly accessible via a matching URL).
 
 Set to an empty value to disable public template routing.
 
@@ -1703,16 +1870,19 @@ Set to an empty value to disable public template routing.
 ### `purgePendingUsersDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$purgePendingUsersDuration](api:craft\config\GeneralConfig::$purgePendingUsersDuration)
+[GeneralConfig::$purgePendingUsersDuration](api:craft\config\GeneralConfig::$purgePendingUsersDuration)
 
 
 
@@ -1729,16 +1899,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `purgeStaleUserSessionDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `7776000`
+`7776000`
 
 Defined by
+:
 
-:   [GeneralConfig::$purgeStaleUserSessionDuration](api:craft\config\GeneralConfig::$purgeStaleUserSessionDuration)
+[GeneralConfig::$purgeStaleUserSessionDuration](api:craft\config\GeneralConfig::$purgeStaleUserSessionDuration)
 
 
 
@@ -1753,16 +1926,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `purgeUnsavedDraftsDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `2592000`
+`2592000`
 
 Defined by
+:
 
-:   [GeneralConfig::$purgeUnsavedDraftsDuration](api:craft\config\GeneralConfig::$purgeUnsavedDraftsDuration)
+[GeneralConfig::$purgeUnsavedDraftsDuration](api:craft\config\GeneralConfig::$purgeUnsavedDraftsDuration)
 
 
 
@@ -1777,16 +1953,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `rememberUsernameDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `31536000`
+`31536000`
 
 Defined by
+:
 
-:   [GeneralConfig::$rememberUsernameDuration](api:craft\config\GeneralConfig::$rememberUsernameDuration)
+[GeneralConfig::$rememberUsernameDuration](api:craft\config\GeneralConfig::$rememberUsernameDuration)
 
 
 
@@ -1801,16 +1980,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `rememberedUserSessionDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `1209600`
+`1209600`
 
 Defined by
+:
 
-:   [GeneralConfig::$rememberedUserSessionDuration](api:craft\config\GeneralConfig::$rememberedUserSessionDuration)
+[GeneralConfig::$rememberedUserSessionDuration](api:craft\config\GeneralConfig::$rememberedUserSessionDuration)
 
 
 
@@ -1825,16 +2007,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `requireMatchingUserAgentForSession`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$requireMatchingUserAgentForSession](api:craft\config\GeneralConfig::$requireMatchingUserAgentForSession)
+[GeneralConfig::$requireMatchingUserAgentForSession](api:craft\config\GeneralConfig::$requireMatchingUserAgentForSession)
 
 
 
@@ -1845,37 +2030,42 @@ Whether Craft should require a matching user agent string when restoring a user 
 ### `requireUserAgentAndIpForSession`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$requireUserAgentAndIpForSession](api:craft\config\GeneralConfig::$requireUserAgentAndIpForSession)
+[GeneralConfig::$requireUserAgentAndIpForSession](api:craft\config\GeneralConfig::$requireUserAgentAndIpForSession)
 
 
 
-Whether Craft should require the existence of a user agent string and IP address when creating a new user
-session.
+Whether Craft should require the existence of a user agent string and IP address when creating a new user session.
 
 
 
 ### `resourceBasePath`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'@webroot/cpresources'`
+`'@webroot/cpresources'`
 
 Defined by
+:
 
-:   [GeneralConfig::$resourceBasePath](api:craft\config\GeneralConfig::$resourceBasePath)
+[GeneralConfig::$resourceBasePath](api:craft\config\GeneralConfig::$resourceBasePath)
 
 
 
@@ -1886,16 +2076,19 @@ The path to the root directory that should store published CP resources.
 ### `resourceBaseUrl`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'@web/cpresources'`
+`'@web/cpresources'`
 
 Defined by
+:
 
-:   [GeneralConfig::$resourceBaseUrl](api:craft\config\GeneralConfig::$resourceBaseUrl)
+[GeneralConfig::$resourceBaseUrl](api:craft\config\GeneralConfig::$resourceBaseUrl)
 
 
 
@@ -1906,23 +2099,25 @@ The URL to the root directory that should store published CP resources.
 ### `restoreCommand`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$restoreCommand](api:craft\config\GeneralConfig::$restoreCommand)
+[GeneralConfig::$restoreCommand](api:craft\config\GeneralConfig::$restoreCommand)
 
 
 
 The shell command that Craft should execute to restore a database backup.
 
-By default Craft will run `mysql` or `psql`, provided that those libraries are in the `$PATH`
-variable for the user the web server  is running as.
+By default Craft will run `mysql` or `psql`, provided that those libraries are in the `$PATH` variable for the user the web server is running as.
 
 There are several tokens you can use that Craft will swap out at runtime:
 
@@ -1940,16 +2135,19 @@ This can also be set to `false` to disable database restores completely.
 ### `rotateImagesOnUploadByExifData`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$rotateImagesOnUploadByExifData](api:craft\config\GeneralConfig::$rotateImagesOnUploadByExifData)
+[GeneralConfig::$rotateImagesOnUploadByExifData](api:craft\config\GeneralConfig::$rotateImagesOnUploadByExifData)
 
 
 
@@ -1960,23 +2158,25 @@ Whether Craft should rotate images according to their EXIF data on upload.
 ### `runQueueAutomatically`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$runQueueAutomatically](api:craft\config\GeneralConfig::$runQueueAutomatically)
+[GeneralConfig::$runQueueAutomatically](api:craft\config\GeneralConfig::$runQueueAutomatically)
 
 
 
 Whether Craft should run pending queue jobs automatically over HTTP requests.
 
-This setting should be disabled for servers running Win32, or with Apache’s mod_deflate/mod_gzip installed,
-where PHP’s [flush()](http://php.net/manual/en/function.flush.php) method won’t work.
+This setting should be disabled for servers running Win32, or with Apache’s mod_deflate/mod_gzip installed, where PHP’s [flush()](http://php.net/manual/en/function.flush.php) method won’t work.
 
 If disabled, an alternate queue runner *must* be set up separately.
 
@@ -1991,20 +2191,24 @@ Here is an example of how you would setup a queue runner from a cron job that ra
 ### `sameSiteCookieValue`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$sameSiteCookieValue](api:craft\config\GeneralConfig::$sameSiteCookieValue)
+[GeneralConfig::$sameSiteCookieValue](api:craft\config\GeneralConfig::$sameSiteCookieValue)
 
 Since
+:
 
-:   3.1.33
+3.1.33
 
 
 
@@ -2021,16 +2225,19 @@ This setting requires PHP 7.3 or later.
 ### `sanitizeSvgUploads`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$sanitizeSvgUploads](api:craft\config\GeneralConfig::$sanitizeSvgUploads)
+[GeneralConfig::$sanitizeSvgUploads](api:craft\config\GeneralConfig::$sanitizeSvgUploads)
 
 
 
@@ -2043,16 +2250,19 @@ This should definitely be enabled if you are accepting SVG uploads from untruste
 ### `secureHeaders`
 
 Allowed types
+:
 
-:   [array](http://php.net/language.types.array), [null](http://php.net/language.types.null)
+[array](http://php.net/language.types.array), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$secureHeaders](api:craft\config\GeneralConfig::$secureHeaders)
+[GeneralConfig::$secureHeaders](api:craft\config\GeneralConfig::$secureHeaders)
 
 
 
@@ -2067,16 +2277,19 @@ If not set, the default [yii\web\Request::$secureHeaders](https://www.yiiframewo
 ### `secureProtocolHeaders`
 
 Allowed types
+:
 
-:   [array](http://php.net/language.types.array), [null](http://php.net/language.types.null)
+[array](http://php.net/language.types.array), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$secureProtocolHeaders](api:craft\config\GeneralConfig::$secureProtocolHeaders)
+[GeneralConfig::$secureProtocolHeaders](api:craft\config\GeneralConfig::$secureProtocolHeaders)
 
 
 
@@ -2091,40 +2304,44 @@ If not set, the default [yii\web\Request::$secureProtocolHeaders](https://www.yi
 ### `securityKey`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$securityKey](api:craft\config\GeneralConfig::$securityKey)
+[GeneralConfig::$securityKey](api:craft\config\GeneralConfig::$securityKey)
 
 
 
-A private, random, cryptographically-secure key that is used for hashing and encrypting
-data in [craft\services\Security](api:craft\services\Security).
+A private, random, cryptographically-secure key that is used for hashing and encrypting data in [craft\services\Security](api:craft\services\Security).
 
-This value should be the same across all environments. Note that if this key ever changes, any data that
-was encrypted with it will be inaccessible.
+This value should be the same across all environments. Note that if this key ever changes, any data that was encrypted with it will be inaccessible.
 
 
 
 ### `sendPoweredByHeader`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$sendPoweredByHeader](api:craft\config\GeneralConfig::$sendPoweredByHeader)
+[GeneralConfig::$sendPoweredByHeader](api:craft\config\GeneralConfig::$sendPoweredByHeader)
 
 
 
@@ -2135,16 +2352,19 @@ Whether an `X-Powered-By: Craft CMS` header should be sent, helping services lik
 ### `setPasswordPath`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `'setpassword'`
+`'setpassword'`
 
 Defined by
+:
 
-:   [GeneralConfig::$setPasswordPath](api:craft\config\GeneralConfig::$setPasswordPath)
+[GeneralConfig::$setPasswordPath](api:craft\config\GeneralConfig::$setPasswordPath)
 
 
 
@@ -2157,16 +2377,19 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `setPasswordSuccessPath`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `''`
+`''`
 
 Defined by
+:
 
-:   [GeneralConfig::$setPasswordSuccessPath](api:craft\config\GeneralConfig::$setPasswordSuccessPath)
+[GeneralConfig::$setPasswordSuccessPath](api:craft\config\GeneralConfig::$setPasswordSuccessPath)
 
 
 
@@ -2179,16 +2402,19 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 ### `siteName`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [string](http://php.net/language.types.string)[]
+[string](http://php.net/language.types.string), [string](http://php.net/language.types.string)[]
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$siteName](api:craft\config\GeneralConfig::$siteName)
+[GeneralConfig::$siteName](api:craft\config\GeneralConfig::$siteName)
 
 
 
@@ -2201,16 +2427,19 @@ This can be set to a string, which will override the primary site’s name only,
 ### `siteUrl`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [string](http://php.net/language.types.string)[]
+[string](http://php.net/language.types.string), [string](http://php.net/language.types.string)[]
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$siteUrl](api:craft\config\GeneralConfig::$siteUrl)
+[GeneralConfig::$siteUrl](api:craft\config\GeneralConfig::$siteUrl)
 
 
 
@@ -2232,16 +2461,19 @@ The URL(s) must begin with either `http://`, `https://`, `//` (protocol-relative
 ### `slugWordSeparator`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'-'`
+`'-'`
 
 Defined by
+:
 
-:   [GeneralConfig::$slugWordSeparator](api:craft\config\GeneralConfig::$slugWordSeparator)
+[GeneralConfig::$slugWordSeparator](api:craft\config\GeneralConfig::$slugWordSeparator)
 
 
 
@@ -2252,16 +2484,19 @@ The character(s) that should be used to separate words in slugs.
 ### `softDeleteDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `2592000`
+`2592000`
 
 Defined by
+:
 
-:   [GeneralConfig::$softDeleteDuration](api:craft\config\GeneralConfig::$softDeleteDuration)
+[GeneralConfig::$softDeleteDuration](api:craft\config\GeneralConfig::$softDeleteDuration)
 
 
 
@@ -2276,16 +2511,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `storeUserIps`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$storeUserIps](api:craft\config\GeneralConfig::$storeUserIps)
+[GeneralConfig::$storeUserIps](api:craft\config\GeneralConfig::$storeUserIps)
 
 
 
@@ -2296,21 +2534,23 @@ Whether user IP addresses should be stored/logged by the system.
 ### `testToEmailAddress`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [array](http://php.net/language.types.array), [false](http://php.net/language.types.boolean), [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string), [array](http://php.net/language.types.array), [false](http://php.net/language.types.boolean), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$testToEmailAddress](api:craft\config\GeneralConfig::$testToEmailAddress)
+[GeneralConfig::$testToEmailAddress](api:craft\config\GeneralConfig::$testToEmailAddress)
 
 
 
-Configures Craft to send all system emails to a single email address, or an array of email addresses for testing
-purposes.
+Configures Craft to send all system emails to a single email address, or an array of email addresses for testing purposes.
 
 By default the recipient name(s) will be “Test Recipient”, but you can customize that by setting the value with the format `['email@address.com' => 'Name']`.
 
@@ -2319,16 +2559,19 @@ By default the recipient name(s) will be “Test Recipient”, but you can custo
 ### `timezone`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$timezone](api:craft\config\GeneralConfig::$timezone)
+[GeneralConfig::$timezone](api:craft\config\GeneralConfig::$timezone)
 
 
 
@@ -2341,16 +2584,19 @@ This can be set to one of PHP’s [supported timezones](http://php.net/manual/en
 ### `tokenParam`
 
 Allowed types
+:
 
-:   [string](http://php.net/language.types.string)
+[string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'token'`
+`'token'`
 
 Defined by
+:
 
-:   [GeneralConfig::$tokenParam](api:craft\config\GeneralConfig::$tokenParam)
+[GeneralConfig::$tokenParam](api:craft\config\GeneralConfig::$tokenParam)
 
 
 
@@ -2361,16 +2607,19 @@ The query string parameter name that Craft tokens should be set to.
 ### `transformGifs`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$transformGifs](api:craft\config\GeneralConfig::$transformGifs)
+[GeneralConfig::$transformGifs](api:craft\config\GeneralConfig::$transformGifs)
 
 
 
@@ -2381,37 +2630,42 @@ Whether GIF files should be cleansed/transformed.
 ### `translationDebugOutput`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$translationDebugOutput](api:craft\config\GeneralConfig::$translationDebugOutput)
+[GeneralConfig::$translationDebugOutput](api:craft\config\GeneralConfig::$translationDebugOutput)
 
 
 
-Whether translated messages should be wrapped in special characters, to help find any strings that are not
-being run through `Craft::t()` or the `|translate` filter.
+Whether translated messages should be wrapped in special characters, to help find any strings that are not being run through `Craft::t()` or the `|translate` filter.
 
 
 
 ### `trustedHosts`
 
 Allowed types
+:
 
-:   [array](http://php.net/language.types.array)
+[array](http://php.net/language.types.array)
 
 Default value
+:
 
-:   `['any']`
+`['any']`
 
 Defined by
+:
 
-:   [GeneralConfig::$trustedHosts](api:craft\config\GeneralConfig::$trustedHosts)
+[GeneralConfig::$trustedHosts](api:craft\config\GeneralConfig::$trustedHosts)
 
 
 
@@ -2426,16 +2680,19 @@ By default, all hosts are trusted.
 ### `useCompressedJs`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `true`
+`true`
 
 Defined by
+:
 
-:   [GeneralConfig::$useCompressedJs](api:craft\config\GeneralConfig::$useCompressedJs)
+[GeneralConfig::$useCompressedJs](api:craft\config\GeneralConfig::$useCompressedJs)
 
 
 
@@ -2446,16 +2703,19 @@ Whether Craft should use compressed JavaScript files whenever possible.
 ### `useEmailAsUsername`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$useEmailAsUsername](api:craft\config\GeneralConfig::$useEmailAsUsername)
+[GeneralConfig::$useEmailAsUsername](api:craft\config\GeneralConfig::$useEmailAsUsername)
 
 
 
@@ -2466,16 +2726,19 @@ Whether Craft should set users’ usernames to their email addresses, rather tha
 ### `useFileLocks`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean), [null](http://php.net/language.types.null)
+[boolean](http://php.net/language.types.boolean), [null](http://php.net/language.types.null)
 
 Default value
+:
 
-:   `null`
+`null`
 
 Defined by
+:
 
-:   [GeneralConfig::$useFileLocks](api:craft\config\GeneralConfig::$useFileLocks)
+[GeneralConfig::$useFileLocks](api:craft\config\GeneralConfig::$useFileLocks)
 
 
 
@@ -2483,24 +2746,26 @@ Whether to grab an exclusive lock on a file when writing to it by using the `LOC
 
 Some file systems, such as NFS, do not support exclusive file locking.
 
-If not set to `true` or `false`, Craft will automatically try to detect if the underlying file system supports exclusive file
-locking and cache the results.
+If not set to `true` or `false`, Craft will automatically try to detect if the underlying file system supports exclusive file locking and cache the results.
 
 
 
 ### `usePathInfo`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$usePathInfo](api:craft\config\GeneralConfig::$usePathInfo)
+[GeneralConfig::$usePathInfo](api:craft\config\GeneralConfig::$usePathInfo)
 
 
 
@@ -2513,28 +2778,28 @@ Note that this setting only takes effect if [omitScriptNameInUrls](https://docs.
 ### `useProjectConfigFile`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 Default value
+:
 
-:   `false`
+`false`
 
 Defined by
+:
 
-:   [GeneralConfig::$useProjectConfigFile](api:craft\config\GeneralConfig::$useProjectConfigFile)
+[GeneralConfig::$useProjectConfigFile](api:craft\config\GeneralConfig::$useProjectConfigFile)
 
 
 
 Whether the project config should be saved out to `config/project.yaml`.
 
-If set to `true`, a hard copy of your system’s project config will be saved in `config/project.yaml`,
-and any changes to `config/project.yaml` will be applied back to the system, making it possible for
-multiple environments to share the same project config despite having separate databases.
+If set to `true`, a hard copy of your system’s project config will be saved in `config/project.yaml`, and any changes to `config/project.yaml` will be applied back to the system, making it possible for multiple environments to share the same project config despite having separate databases.
 
 ::: warning
-Make sure you’ve read the entire [Project Config](https://docs.craftcms.com/v3/project-config.html)
-documentation, and carefully follow the “Enabling the Project Config File” steps when enabling this setting.
+Make sure you’ve read the entire [Project Config](https://docs.craftcms.com/v3/project-config.html) documentation, and carefully follow the “Enabling the Project Config File” steps when enabling this setting.
 :::
 
 
@@ -2542,46 +2807,48 @@ documentation, and carefully follow the “Enabling the Project Config File” s
 ### `useSecureCookies`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean), [string](http://php.net/language.types.string)
+[boolean](http://php.net/language.types.boolean), [string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'auto'`
+`'auto'`
 
 Defined by
+:
 
-:   [GeneralConfig::$useSecureCookies](api:craft\config\GeneralConfig::$useSecureCookies)
+[GeneralConfig::$useSecureCookies](api:craft\config\GeneralConfig::$useSecureCookies)
 
 
 
 Whether Craft will set the "secure" flag when saving cookies when using `Craft::cookieConfig() to create a cookie`.
 
-Valid values are `true`, `false`, and `'auto'`. Defaults to `'auto'`, which will set the secure flag if the page
-you're currently accessing is over `https://`. `true` will always set the flag, regardless of protocol and `false`
-will never automatically set the flag.
+Valid values are `true`, `false`, and `'auto'`. Defaults to `'auto'`, which will set the secure flag if the page you're currently accessing is over `https://`. `true` will always set the flag, regardless of protocol and `false` will never automatically set the flag.
 
 
 
 ### `useSslOnTokenizedUrls`
 
 Allowed types
+:
 
-:   [boolean](http://php.net/language.types.boolean), [string](http://php.net/language.types.string)
+[boolean](http://php.net/language.types.boolean), [string](http://php.net/language.types.string)
 
 Default value
+:
 
-:   `'auto'`
+`'auto'`
 
 Defined by
+:
 
-:   [GeneralConfig::$useSslOnTokenizedUrls](api:craft\config\GeneralConfig::$useSslOnTokenizedUrls)
+[GeneralConfig::$useSslOnTokenizedUrls](api:craft\config\GeneralConfig::$useSslOnTokenizedUrls)
 
 
 
-Determines what protocol/schema Craft will use when generating tokenized URLs. If set to `'auto'`,
-Craft will check the siteUrl and the protocol of the current request and if either of them are https
-will use `https` in the tokenized URL. If not, will use `http`.
+Determines what protocol/schema Craft will use when generating tokenized URLs. If set to `'auto'`, Craft will check the siteUrl and the protocol of the current request and if either of them are https will use `https` in the tokenized URL. If not, will use `http`.
 
 If set to `false`, the Craft will always use `http`. If set to `true`, then, Craft will always use `https`.
 
@@ -2590,23 +2857,25 @@ If set to `false`, the Craft will always use `http`. If set to `true`, then, Cra
 ### `userSessionDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `3600`
+`3600`
 
 Defined by
+:
 
-:   [GeneralConfig::$userSessionDuration](api:craft\config\GeneralConfig::$userSessionDuration)
+[GeneralConfig::$userSessionDuration](api:craft\config\GeneralConfig::$userSessionDuration)
 
 
 
 The amount of time before a user will get logged out due to inactivity.
 
-Set to `0` if you want users to stay logged in as long as their browser is open rather than a predetermined
-amount of time.
+Set to `0` if you want users to stay logged in as long as their browser is open rather than a predetermined amount of time.
 
 See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-durationinseconds) for a list of supported value types.
 
@@ -2615,16 +2884,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `verificationCodeDuration`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `86400`
+`86400`
 
 Defined by
+:
 
-:   [GeneralConfig::$verificationCodeDuration](api:craft\config\GeneralConfig::$verificationCodeDuration)
+[GeneralConfig::$verificationCodeDuration](api:craft\config\GeneralConfig::$verificationCodeDuration)
 
 
 
@@ -2637,16 +2909,19 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 ### `verifyEmailSuccessPath`
 
 Allowed types
+:
 
-:   `mixed`
+`mixed`
 
 Default value
+:
 
-:   `''`
+`''`
 
 Defined by
+:
 
-:   [GeneralConfig::$verifyEmailSuccessPath](api:craft\config\GeneralConfig::$verifyEmailSuccessPath)
+[GeneralConfig::$verifyEmailSuccessPath](api:craft\config\GeneralConfig::$verifyEmailSuccessPath)
 
 
 
@@ -2658,3 +2933,4 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 
 
 <!-- END SETTINGS -->
+
