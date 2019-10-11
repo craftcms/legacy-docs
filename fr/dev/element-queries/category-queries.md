@@ -92,10 +92,10 @@ Narrows the query results to only categories that are ancestors of another categ
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `1` | above the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | above the category represented by the object.
+| Value                                              | Fetches categories…                           |
+| -------------------------------------------------- | --------------------------------------------- |
+| `1`                                                | above the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | above the category represented by the object. |
 
 
 
@@ -180,11 +180,11 @@ Narrows the query results based on the categories’ creation dates.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `'>= 2018-04-01'` | that were created on or after 2018-04-01.
-| `'< 2018-05-01'` | that were created before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches categories…                                  |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -219,11 +219,11 @@ Narrows the query results based on the categories’ last-updated dates.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `'>= 2018-04-01'` | that were updated on or after 2018-04-01.
-| `'< 2018-05-01'` | that were updated before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches categories…                                  |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -283,10 +283,10 @@ Narrows the query results to only categories that are descendants of another cat
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `1` | below the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | below the category represented by the object.
+| Value                                              | Fetches categories…                           |
+| -------------------------------------------------- | --------------------------------------------- |
+| `1`                                                | below the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | below the category represented by the object. |
 
 
 
@@ -321,10 +321,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | by the user represented by the object.
+| Value                                  | Fetches drafts…                        |
+| -------------------------------------- | -------------------------------------- |
+| `1`                                    | created by the user with an ID of 1.   |
+| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
 
@@ -353,9 +353,9 @@ Narrows the query results based on the categories’ draft’s ID (from the `dra
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the draft with an ID of 1.
+| Value | Fetches drafts…                |
+| ----- | ------------------------------ |
+| `1`   | for the draft with an ID of 1. |
 
 
 
@@ -384,10 +384,10 @@ Narrows the query results to only drafts of a given category.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | for the category represented by the object.
+| Value                                              | Fetches drafts…                             |
+| -------------------------------------------------- | ------------------------------------------- |
+| `1`                                                | for the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | for the category represented by the object. |
 
 
 
@@ -443,10 +443,10 @@ Narrows the query results based on whether the categories are enabled in the sit
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `true` _(default)_ | that are enabled in the site.
-| `false` | whether they are enabled or not in the site.
+| Value              | Fetches categories…                          |
+| ------------------ | -------------------------------------------- |
+| `true` *(default)* | that are enabled in the site.                |
+| `false`            | whether they are enabled or not in the site. |
 
 
 
@@ -500,13 +500,13 @@ Narrows the query results based on the category groups the categories belong to.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `'foo'` | in a group with a handle of `foo`.
-| `'not foo'` | not in a group with a handle of `foo`.
-| `['foo', 'bar']` | in a group with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not in a group with a handle of `foo` or `bar`.
-| a [CategoryGroup](api:craft\models\CategoryGroup) object | in a group represented by the object.
+| Value                                                      | Fetches categories…                             |
+| ---------------------------------------------------------- | ----------------------------------------------- |
+| `'foo'`                                                    | in a group with a handle of `foo`.              |
+| `'not foo'`                                                | not in a group with a handle of `foo`.          |
+| `['foo', 'bar']`                                           | in a group with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                                    | not in a group with a handle of `foo` or `bar`. |
+| a [CategoryGroup](api:craft\models\CategoryGroup) object | in a group represented by the object.           |
 
 
 
@@ -533,12 +533,12 @@ Narrows the query results based on the category groups the categories belong to,
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `1` | in a group with an ID of 1.
-| `'not 1'` | not in a group with an ID of 1.
-| `[1, 2]` | in a group with an ID of 1 or 2.
-| `['not', 1, 2]` | not in a group with an ID of 1 or 2.
+| Value           | Fetches categories…                  |
+| --------------- | ------------------------------------ |
+| `1`             | in a group with an ID of 1.          |
+| `'not 1'`       | not in a group with an ID of 1.      |
+| `[1, 2]`        | in a group with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
 
 
 
@@ -594,12 +594,12 @@ Narrows the query results based on the categories’ IDs.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `1` | with an ID of 1.
-| `'not 1'` | not with an ID of 1.
-| `[1, 2]` | with an ID of 1 or 2.
-| `['not', 1, 2]` | not with an ID of 1 or 2.
+| Value           | Fetches categories…       |
+| --------------- | ------------------------- |
+| `1`             | with an ID of 1.          |
+| `'not 1'`       | not with an ID of 1.      |
+| `[1, 2]`        | with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
 
@@ -628,8 +628,7 @@ This can be combined with [fixedOrder](#fixedorder) if you want the results to b
 
 ### `ignorePlaceholders`
 
-Causes the query to return matching categories as they are stored in the database, ignoring matching placeholder
-elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+Causes the query to return matching categories as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 
 
@@ -700,13 +699,13 @@ Narrows the query results based on the categories’ level within the structure.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `1` | with a level of 1.
-| `'not 1'` | not with a level of 1.
-| `'>= 3'` | with a level greater than or equal to 3.
-| `[1, 2]` | with a level of 1 or 2
-| `['not', 1, 2]` | not with level of 1 or 2.
+| Value           | Fetches categories…                      |
+| --------------- | ---------------------------------------- |
+| `1`             | with a level of 1.                       |
+| `'not 1'`       | not with a level of 1.                   |
+| `'>= 3'`     | with a level greater than or equal to 3. |
+| `[1, 2]`        | with a level of 1 or 2                   |
+| `['not', 1, 2]` | not with level of 1 or 2.                |
 
 
 
@@ -758,10 +757,10 @@ Narrows the query results to only the category that comes immediately after anot
 
 Possible values include:
 
-| Value | Fetches the category…
-| - | -
-| `1` | after the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | after the category represented by the object.
+| Value                                              | Fetches the category…                         |
+| -------------------------------------------------- | --------------------------------------------- |
+| `1`                                                | after the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | after the category represented by the object. |
 
 
 
@@ -836,10 +835,10 @@ Narrows the query results to only categories that are positioned after another c
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `1` | after the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | after the category represented by the object.
+| Value                                              | Fetches categories…                           |
+| -------------------------------------------------- | --------------------------------------------- |
+| `1`                                                | after the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | after the category represented by the object. |
 
 
 
@@ -868,10 +867,10 @@ Narrows the query results to only categories that are positioned before another 
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `1` | before the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | before the category represented by the object.
+| Value                                              | Fetches categories…                            |
+| -------------------------------------------------- | ---------------------------------------------- |
+| `1`                                                | before the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | before the category represented by the object. |
 
 
 
@@ -898,9 +897,7 @@ If [unique](#unique) is set, this determines which site should be selected when 
 
 
 
-For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C,
-and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned
-for Site B.
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
@@ -935,10 +932,10 @@ Narrows the query results to only the category that comes immediately before ano
 
 Possible values include:
 
-| Value | Fetches the category…
-| - | -
-| `1` | before the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | before the category represented by the object.
+| Value                                              | Fetches the category…                          |
+| -------------------------------------------------- | ---------------------------------------------- |
+| `1`                                                | before the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | before the category represented by the object. |
 
 
 
@@ -994,10 +991,10 @@ Narrows the query results to only revisions created by a given user.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | by the user represented by the object.
+| Value                                  | Fetches revisions…                     |
+| -------------------------------------- | -------------------------------------- |
+| `1`                                    | created by the user with an ID of 1.   |
+| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
 
@@ -1026,9 +1023,9 @@ Narrows the query results based on the categories’ revision’s ID (from the `
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the revision with an ID of 1.
+| Value | Fetches revisions…                |
+| ----- | --------------------------------- |
+| `1`   | for the revision with an ID of 1. |
 
 
 
@@ -1057,10 +1054,10 @@ Narrows the query results to only revisions of a given category.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | for the category represented by the object.
+| Value                                              | Fetches revisions…                          |
+| -------------------------------------------------- | ------------------------------------------- |
+| `1`                                                | for the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | for the category represented by the object. |
 
 
 
@@ -1149,10 +1146,10 @@ Narrows the query results to only categories that are siblings of another catego
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `1` | beside the category with an ID of 1.
-| a [Category](api:craft\elements\Category) object | beside the category represented by the object.
+| Value                                              | Fetches categories…                            |
+| -------------------------------------------------- | ---------------------------------------------- |
+| `1`                                                | beside the category with an ID of 1.           |
+| a [Category](api:craft\elements\Category) object | beside the category represented by the object. |
 
 
 
@@ -1183,17 +1180,16 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `'foo'` | from the site with a handle of `foo`.
-| `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
-| a `\craft\elements\db\Site` object | from the site represented by the object.
-| `'*'` | from any site.
+| Value                                  | Fetches categories…                            |
+| -------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
+| a `\craft\elements\db\Site` object | from the site represented by the object.       |
+| `'*'`                                  | from any site.                                 |
 
 ::: tip
-If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you
-only want unique elements to be returned, use [unique](#unique) in conjunction with this.
+If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
 :::
 
 
@@ -1250,15 +1246,15 @@ Narrows the query results based on the categories’ slugs.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `'foo'` | with a slug of `foo`.
-| `'foo*'` | with a slug that begins with `foo`.
-| `'*foo'` | with a slug that ends with `foo`.
-| `'*foo*'` | with a slug that contains `foo`.
-| `'not *foo*'` | with a slug that doesn’t contain `foo`.
-| `['*foo*', '*bar*']` | with a slug that contains `foo` or `bar`.
-| `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`.
+| Value                       | Fetches categories…                              |
+| --------------------------- | ------------------------------------------------ |
+| `'foo'`                     | with a slug of `foo`.                            |
+| `'foo*'`                    | with a slug that begins with `foo`.              |
+| `'*foo'`                    | with a slug that ends with `foo`.                |
+| `'*foo*'`                   | with a slug that contains `foo`.                 |
+| `'not *foo*'`               | with a slug that doesn’t contain `foo`.          |
+| `['*foo*', '*bar*']`        | with a slug that contains `foo` or `bar`.        |
+| `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`. |
 
 
 
@@ -1293,10 +1289,10 @@ Narrows the query results based on the categories’ statuses.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `'enabled'`  _(default)_ | that are enabled.
-| `'disabled'` | that are disabled.
+| Value                   | Fetches categories… |
+| ----------------------- | ------------------- |
+| `'enabled'` *(default)* | that are enabled.   |
+| `'disabled'`            | that are disabled.  |
 
 
 
@@ -1325,15 +1321,15 @@ Narrows the query results based on the categories’ titles.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `'Foo'` | with a title of `Foo`.
-| `'Foo*'` | with a title that begins with `Foo`.
-| `'*Foo'` | with a title that ends with `Foo`.
-| `'*Foo*'` | with a title that contains `Foo`.
-| `'not *Foo*'` | with a title that doesn’t contain `Foo`.
-| `['*Foo*', '*Bar*']` | with a title that contains `Foo` or `Bar`.
-| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`.
+| Value                       | Fetches categories…                               |
+| --------------------------- | ------------------------------------------------- |
+| `'Foo'`                     | with a title of `Foo`.                            |
+| `'Foo*'`                    | with a title that begins with `Foo`.              |
+| `'*Foo'`                    | with a title that ends with `Foo`.                |
+| `'*Foo*'`                   | with a title that contains `Foo`.                 |
+| `'not *Foo*'`               | with a title that doesn’t contain `Foo`.          |
+| `['*Foo*', '*Bar*']`        | with a title that contains `Foo` or `Bar`.        |
+| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`. |
 
 
 
@@ -1410,8 +1406,7 @@ Determines whether only elements with unique IDs should be returned by the query
 
 
 
-This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not
-desired.
+This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
 
 
 
@@ -1442,15 +1437,15 @@ Narrows the query results based on the categories’ URIs.
 
 Possible values include:
 
-| Value | Fetches categories…
-| - | -
-| `'foo'` | with a URI of `foo`.
-| `'foo*'` | with a URI that begins with `foo`.
-| `'*foo'` | with a URI that ends with `foo`.
-| `'*foo*'` | with a URI that contains `foo`.
-| `'not *foo*'` | with a URI that doesn’t contain `foo`.
-| `['*foo*', '*bar*']` | with a URI that contains `foo` or `bar`.
-| `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`.
+| Value                       | Fetches categories…                             |
+| --------------------------- | ----------------------------------------------- |
+| `'foo'`                     | with a URI of `foo`.                            |
+| `'foo*'`                    | with a URI that begins with `foo`.              |
+| `'*foo'`                    | with a URI that ends with `foo`.                |
+| `'*foo*'`                   | with a URI that contains `foo`.                 |
+| `'not *foo*'`               | with a URI that doesn’t contain `foo`.          |
+| `['*foo*', '*bar*']`        | with a URI that contains `foo` or `bar`.        |
+| `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`. |
 
 
 
@@ -1506,3 +1501,4 @@ $categories = \craft\elements\Category::find()
 
 
 <!-- END PARAMS -->
+
