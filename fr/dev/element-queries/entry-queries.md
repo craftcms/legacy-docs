@@ -59,10 +59,10 @@ Narrows the query results to only entries that were posted on or after a certain
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'2018-04-01'` | that were posted after 2018-04-01.
-| a [DateTime](http://php.net/class.datetime) object | that were posted after the date represented by the object.
+| Value                                              | Fetches entries…                                           |
+| -------------------------------------------------- | ---------------------------------------------------------- |
+| `'2018-04-01'`                                     | that were posted after 2018-04-01.                         |
+| a [DateTime](http://php.net/class.datetime) object | that were posted after the date represented by the object. |
 
 
 
@@ -122,10 +122,10 @@ Narrows the query results to only entries that are ancestors of another entry.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | above the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | above the entry represented by the object.
+| Value                                        | Fetches entries…                           |
+| -------------------------------------------- | ------------------------------------------ |
+| `1`                                          | above the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | above the entry represented by the object. |
 
 
 
@@ -208,13 +208,13 @@ Narrows the query results based on the user group the entries’ authors belong 
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'foo'` | with an author in a group with a handle of `foo`.
-| `'not foo'` | not with an author in a group with a handle of `foo`.
-| `['foo', 'bar']` | with an author in a group with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not with an author in a group with a handle of `foo` or `bar`.
-| a [UserGroup](api:craft\models\UserGroup) object | with an author in a group represented by the object.
+| Value                                              | Fetches entries…                                               |
+| -------------------------------------------------- | -------------------------------------------------------------- |
+| `'foo'`                                            | with an author in a group with a handle of `foo`.              |
+| `'not foo'`                                        | not with an author in a group with a handle of `foo`.          |
+| `['foo', 'bar']`                                   | with an author in a group with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                            | not with an author in a group with a handle of `foo` or `bar`. |
+| a [UserGroup](api:craft\models\UserGroup) object | with an author in a group represented by the object.           |
 
 
 
@@ -241,12 +241,12 @@ Narrows the query results based on the user group the entries’ authors belong 
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | with an author in a group with an ID of 1.
-| `'not 1'` | not with an author in a group with an ID of 1.
-| `[1, 2]` | with an author in a group with an ID of 1 or 2.
-| `['not', 1, 2]` | not with an author in a group with an ID of 1 or 2.
+| Value           | Fetches entries…                                    |
+| --------------- | --------------------------------------------------- |
+| `1`             | with an author in a group with an ID of 1.          |
+| `'not 1'`       | not with an author in a group with an ID of 1.      |
+| `[1, 2]`        | with an author in a group with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an author in a group with an ID of 1 or 2. |
 
 
 
@@ -273,12 +273,12 @@ Narrows the query results based on the entries’ authors.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | with an author with an ID of 1.
-| `'not 1'` | not with an author with an ID of 1.
-| `[1, 2]` | with an author with an ID of 1 or 2.
-| `['not', 1, 2]` | not with an author with an ID of 1 or 2.
+| Value           | Fetches entries…                         |
+| --------------- | ---------------------------------------- |
+| `1`             | with an author with an ID of 1.          |
+| `'not 1'`       | not with an author with an ID of 1.      |
+| `[1, 2]`        | with an author with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an author with an ID of 1 or 2. |
 
 
 
@@ -305,10 +305,10 @@ Narrows the query results to only entries that were posted before a certain date
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'2018-04-01'` | that were posted before 2018-04-01.
-| a [DateTime](http://php.net/class.datetime) object | that were posted before the date represented by the object.
+| Value                                              | Fetches entries…                                            |
+| -------------------------------------------------- | ----------------------------------------------------------- |
+| `'2018-04-01'`                                     | that were posted before 2018-04-01.                         |
+| a [DateTime](http://php.net/class.datetime) object | that were posted before the date represented by the object. |
 
 
 
@@ -341,11 +341,11 @@ Narrows the query results based on the entries’ creation dates.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'>= 2018-04-01'` | that were created on or after 2018-04-01.
-| `'< 2018-05-01'` | that were created before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches entries…                                     |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -380,11 +380,11 @@ Narrows the query results based on the entries’ last-updated dates.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'>= 2018-04-01'` | that were updated on or after 2018-04-01.
-| `'< 2018-05-01'` | that were updated before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches entries…                                     |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -444,10 +444,10 @@ Narrows the query results to only entries that are descendants of another entry.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | below the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | below the entry represented by the object.
+| Value                                        | Fetches entries…                           |
+| -------------------------------------------- | ------------------------------------------ |
+| `1`                                          | below the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | below the entry represented by the object. |
 
 
 
@@ -482,10 +482,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | by the user represented by the object.
+| Value                                  | Fetches drafts…                        |
+| -------------------------------------- | -------------------------------------- |
+| `1`                                    | created by the user with an ID of 1.   |
+| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
 
@@ -514,9 +514,9 @@ Narrows the query results based on the entries’ draft’s ID (from the `drafts
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the draft with an ID of 1.
+| Value | Fetches drafts…                |
+| ----- | ------------------------------ |
+| `1`   | for the draft with an ID of 1. |
 
 
 
@@ -545,10 +545,10 @@ Narrows the query results to only drafts of a given entry.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | for the entry represented by the object.
+| Value                                        | Fetches drafts…                          |
+| -------------------------------------------- | ---------------------------------------- |
+| `1`                                          | for the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | for the entry represented by the object. |
 
 
 
@@ -604,10 +604,10 @@ Narrows the query results based on whether the entries are enabled in the site t
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `true` _(default)_ | that are enabled in the site.
-| `false` | whether they are enabled or not in the site.
+| Value              | Fetches entries…                             |
+| ------------------ | -------------------------------------------- |
+| `true` *(default)* | that are enabled in the site.                |
+| `false`            | whether they are enabled or not in the site. |
 
 
 
@@ -634,13 +634,13 @@ Narrows the query results based on the entries’ expiry dates.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `':empty:'` | that don’t have an expiry date.
-| `':notempty:'` | that have an expiry date.
-| `'>= 2020-04-01'` | that will expire on or after 2020-04-01.
-| `'< 2020-05-01'` | that will expire before 2020-05-01
-| `['and', '>= 2020-04-04', '< 2020-05-01']` | that will expire between 2020-04-01 and 2020-05-01.
+| Value                                            | Fetches entries…                                    |
+| ------------------------------------------------ | --------------------------------------------------- |
+| `':empty:'`                                      | that don’t have an expiry date.                     |
+| `':notempty:'`                                   | that have an expiry date.                           |
+| `'>= 2020-04-01'`                             | that will expire on or after 2020-04-01.            |
+| `'< 2020-05-01'`                              | that will expire before 2020-05-01                  |
+| `['and', '>= 2020-04-04', '< 2020-05-01']` | that will expire between 2020-04-01 and 2020-05-01. |
 
 
 
@@ -727,12 +727,12 @@ Narrows the query results based on the entries’ IDs.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | with an ID of 1.
-| `'not 1'` | not with an ID of 1.
-| `[1, 2]` | with an ID of 1 or 2.
-| `['not', 1, 2]` | not with an ID of 1 or 2.
+| Value           | Fetches entries…          |
+| --------------- | ------------------------- |
+| `1`             | with an ID of 1.          |
+| `'not 1'`       | not with an ID of 1.      |
+| `[1, 2]`        | with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
 
@@ -761,8 +761,7 @@ This can be combined with [fixedOrder](#fixedorder) if you want the results to b
 
 ### `ignorePlaceholders`
 
-Causes the query to return matching entries as they are stored in the database, ignoring matching placeholder
-elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+Causes the query to return matching entries as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 
 
@@ -833,13 +832,13 @@ Narrows the query results based on the entries’ level within the structure.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | with a level of 1.
-| `'not 1'` | not with a level of 1.
-| `'>= 3'` | with a level greater than or equal to 3.
-| `[1, 2]` | with a level of 1 or 2
-| `['not', 1, 2]` | not with level of 1 or 2.
+| Value           | Fetches entries…                         |
+| --------------- | ---------------------------------------- |
+| `1`             | with a level of 1.                       |
+| `'not 1'`       | not with a level of 1.                   |
+| `'>= 3'`     | with a level greater than or equal to 3. |
+| `[1, 2]`        | with a level of 1 or 2                   |
+| `['not', 1, 2]` | not with level of 1 or 2.                |
 
 
 
@@ -891,10 +890,10 @@ Narrows the query results to only the entry that comes immediately after another
 
 Possible values include:
 
-| Value | Fetches the entry…
-| - | -
-| `1` | after the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | after the entry represented by the object.
+| Value                                        | Fetches the entry…                         |
+| -------------------------------------------- | ------------------------------------------ |
+| `1`                                          | after the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | after the entry represented by the object. |
 
 
 
@@ -969,10 +968,10 @@ Narrows the query results to only entries that are positioned after another entr
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | after the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | after the entry represented by the object.
+| Value                                        | Fetches entries…                           |
+| -------------------------------------------- | ------------------------------------------ |
+| `1`                                          | after the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | after the entry represented by the object. |
 
 
 
@@ -1001,10 +1000,10 @@ Narrows the query results to only entries that are positioned before another ent
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | before the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | before the entry represented by the object.
+| Value                                        | Fetches entries…                            |
+| -------------------------------------------- | ------------------------------------------- |
+| `1`                                          | before the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | before the entry represented by the object. |
 
 
 
@@ -1031,11 +1030,11 @@ Narrows the query results based on the entries’ post dates.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'>= 2018-04-01'` | that were posted on or after 2018-04-01.
-| `'< 2018-05-01'` | that were posted before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were posted between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches entries…                                    |
+| ------------------------------------------------ | --------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were posted on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were posted before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were posted between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -1068,9 +1067,7 @@ If [unique](#unique) is set, this determines which site should be selected when 
 
 
 
-For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C,
-and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned
-for Site B.
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
@@ -1105,10 +1102,10 @@ Narrows the query results to only the entry that comes immediately before anothe
 
 Possible values include:
 
-| Value | Fetches the entry…
-| - | -
-| `1` | before the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | before the entry represented by the object.
+| Value                                        | Fetches the entry…                          |
+| -------------------------------------------- | ------------------------------------------- |
+| `1`                                          | before the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | before the entry represented by the object. |
 
 
 
@@ -1164,10 +1161,10 @@ Narrows the query results to only revisions created by a given user.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | by the user represented by the object.
+| Value                                  | Fetches revisions…                     |
+| -------------------------------------- | -------------------------------------- |
+| `1`                                    | created by the user with an ID of 1.   |
+| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
 
@@ -1196,9 +1193,9 @@ Narrows the query results based on the entries’ revision’s ID (from the `rev
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the revision with an ID of 1.
+| Value | Fetches revisions…                |
+| ----- | --------------------------------- |
+| `1`   | for the revision with an ID of 1. |
 
 
 
@@ -1227,10 +1224,10 @@ Narrows the query results to only revisions of a given entry.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | for the entry represented by the object.
+| Value                                        | Fetches revisions…                       |
+| -------------------------------------------- | ---------------------------------------- |
+| `1`                                          | for the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | for the entry represented by the object. |
 
 
 
@@ -1317,13 +1314,13 @@ Narrows the query results based on the sections the entries belong to.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'foo'` | in a section with a handle of `foo`.
-| `'not foo'` | not in a section with a handle of `foo`.
-| `['foo', 'bar']` | in a section with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not in a section with a handle of `foo` or `bar`.
-| a [Section](api:craft\models\Section) object | in a section represented by the object.
+| Value                                          | Fetches entries…                                  |
+| ---------------------------------------------- | ------------------------------------------------- |
+| `'foo'`                                        | in a section with a handle of `foo`.              |
+| `'not foo'`                                    | not in a section with a handle of `foo`.          |
+| `['foo', 'bar']`                               | in a section with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                        | not in a section with a handle of `foo` or `bar`. |
+| a [Section](api:craft\models\Section) object | in a section represented by the object.           |
 
 
 
@@ -1350,12 +1347,12 @@ Narrows the query results based on the sections the entries belong to, per the s
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | in a section with an ID of 1.
-| `'not 1'` | not in a section with an ID of 1.
-| `[1, 2]` | in a section with an ID of 1 or 2.
-| `['not', 1, 2]` | not in a section with an ID of 1 or 2.
+| Value           | Fetches entries…                       |
+| --------------- | -------------------------------------- |
+| `1`             | in a section with an ID of 1.          |
+| `'not 1'`       | not in a section with an ID of 1.      |
+| `[1, 2]`        | in a section with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not in a section with an ID of 1 or 2. |
 
 
 
@@ -1384,10 +1381,10 @@ Narrows the query results to only entries that are siblings of another entry.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | beside the entry with an ID of 1.
-| a [Entry](api:craft\elements\Entry) object | beside the entry represented by the object.
+| Value                                        | Fetches entries…                            |
+| -------------------------------------------- | ------------------------------------------- |
+| `1`                                          | beside the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | beside the entry represented by the object. |
 
 
 
@@ -1418,17 +1415,16 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'foo'` | from the site with a handle of `foo`.
-| `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
-| a `\craft\elements\db\Site` object | from the site represented by the object.
-| `'*'` | from any site.
+| Value                                  | Fetches entries…                               |
+| -------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
+| a `\craft\elements\db\Site` object | from the site represented by the object.       |
+| `'*'`                                  | from any site.                                 |
 
 ::: tip
-If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you
-only want unique elements to be returned, use [unique](#unique) in conjunction with this.
+If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
 :::
 
 
@@ -1485,15 +1481,15 @@ Narrows the query results based on the entries’ slugs.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'foo'` | with a slug of `foo`.
-| `'foo*'` | with a slug that begins with `foo`.
-| `'*foo'` | with a slug that ends with `foo`.
-| `'*foo*'` | with a slug that contains `foo`.
-| `'not *foo*'` | with a slug that doesn’t contain `foo`.
-| `['*foo*', '*bar*']` | with a slug that contains `foo` or `bar`.
-| `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`.
+| Value                       | Fetches entries…                                 |
+| --------------------------- | ------------------------------------------------ |
+| `'foo'`                     | with a slug of `foo`.                            |
+| `'foo*'`                    | with a slug that begins with `foo`.              |
+| `'*foo'`                    | with a slug that ends with `foo`.                |
+| `'*foo*'`                   | with a slug that contains `foo`.                 |
+| `'not *foo*'`               | with a slug that doesn’t contain `foo`.          |
+| `['*foo*', '*bar*']`        | with a slug that contains `foo` or `bar`.        |
+| `['not', '*foo*', '*bar*']` | with a slug that doesn’t contain `foo` or `bar`. |
 
 
 
@@ -1526,13 +1522,13 @@ Narrows the query results based on the entries’ statuses.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'live'` _(default)_ | that are live.
-| `'pending'` | that are pending (enabled with a Post Date in the future).
-| `'expired'` | that are expired (enabled with an Expiry Date in the past).
-| `'disabled'` | that are disabled.
-| `['live', 'pending']` | that are live or pending.
+| Value                 | Fetches entries…                                            |
+| --------------------- | ----------------------------------------------------------- |
+| `'live'` *(default)*  | that are live.                                              |
+| `'pending'`           | that are pending (enabled with a Post Date in the future).  |
+| `'expired'`           | that are expired (enabled with an Expiry Date in the past). |
+| `'disabled'`          | that are disabled.                                          |
+| `['live', 'pending']` | that are live or pending.                                   |
 
 
 
@@ -1561,15 +1557,15 @@ Narrows the query results based on the entries’ titles.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'Foo'` | with a title of `Foo`.
-| `'Foo*'` | with a title that begins with `Foo`.
-| `'*Foo'` | with a title that ends with `Foo`.
-| `'*Foo*'` | with a title that contains `Foo`.
-| `'not *Foo*'` | with a title that doesn’t contain `Foo`.
-| `['*Foo*', '*Bar*']` | with a title that contains `Foo` or `Bar`.
-| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`.
+| Value                       | Fetches entries…                                  |
+| --------------------------- | ------------------------------------------------- |
+| `'Foo'`                     | with a title of `Foo`.                            |
+| `'Foo*'`                    | with a title that begins with `Foo`.              |
+| `'*Foo'`                    | with a title that ends with `Foo`.                |
+| `'*Foo*'`                   | with a title that contains `Foo`.                 |
+| `'not *Foo*'`               | with a title that doesn’t contain `Foo`.          |
+| `['*Foo*', '*Bar*']`        | with a title that contains `Foo` or `Bar`.        |
+| `['not', '*Foo*', '*Bar*']` | with a title that doesn’t contain `Foo` or `Bar`. |
 
 
 
@@ -1621,13 +1617,13 @@ Narrows the query results based on the entries’ entry types.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'foo'` | of a type with a handle of `foo`.
-| `'not foo'` | not of a type with a handle of `foo`.
-| `['foo', 'bar']` | of a type with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not of a type with a handle of `foo` or `bar`.
-| an [EntryType](api:craft\models\EntryType) object | of a type represented by the object.
+| Value                                               | Fetches entries…                               |
+| --------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                             | of a type with a handle of `foo`.              |
+| `'not foo'`                                         | not of a type with a handle of `foo`.          |
+| `['foo', 'bar']`                                    | of a type with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                             | not of a type with a handle of `foo` or `bar`. |
+| an [EntryType](api:craft\models\EntryType) object | of a type represented by the object.           |
 
 
 
@@ -1656,12 +1652,12 @@ Narrows the query results based on the entries’ entry types, per the types’ 
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `1` | of a type with an ID of 1.
-| `'not 1'` | not of a type with an ID of 1.
-| `[1, 2]` | of a type with an ID of 1 or 2.
-| `['not', 1, 2]` | not of a type with an ID of 1 or 2.
+| Value           | Fetches entries…                    |
+| --------------- | ----------------------------------- |
+| `1`             | of a type with an ID of 1.          |
+| `'not 1'`       | not of a type with an ID of 1.      |
+| `[1, 2]`        | of a type with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not of a type with an ID of 1 or 2. |
 
 
 
@@ -1713,8 +1709,7 @@ Determines whether only elements with unique IDs should be returned by the query
 
 
 
-This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not
-desired.
+This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
 
 
 
@@ -1745,15 +1740,15 @@ Narrows the query results based on the entries’ URIs.
 
 Possible values include:
 
-| Value | Fetches entries…
-| - | -
-| `'foo'` | with a URI of `foo`.
-| `'foo*'` | with a URI that begins with `foo`.
-| `'*foo'` | with a URI that ends with `foo`.
-| `'*foo*'` | with a URI that contains `foo`.
-| `'not *foo*'` | with a URI that doesn’t contain `foo`.
-| `['*foo*', '*bar*']` | with a URI that contains `foo` or `bar`.
-| `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`.
+| Value                       | Fetches entries…                                |
+| --------------------------- | ----------------------------------------------- |
+| `'foo'`                     | with a URI of `foo`.                            |
+| `'foo*'`                    | with a URI that begins with `foo`.              |
+| `'*foo'`                    | with a URI that ends with `foo`.                |
+| `'*foo*'`                   | with a URI that contains `foo`.                 |
+| `'not *foo*'`               | with a URI that doesn’t contain `foo`.          |
+| `['*foo*', '*bar*']`        | with a URI that contains `foo` or `bar`.        |
+| `['not', '*foo*', '*bar*']` | with a URI that doesn’t contain `foo` or `bar`. |
 
 
 
@@ -1809,3 +1804,4 @@ $entries = \craft\elements\Entry::find()
 
 
 <!-- END PARAMS -->
+
