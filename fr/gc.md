@@ -3,7 +3,7 @@
 Craft occasionally runs a few garbage collection routines to remove stale data, including:
 
 - Purge any expired pending user accounts (per the <config:purgePendingUsersDuration> config setting).
-- Hard delete expired soft-deleted rows (per the <config:softDeleteDuration> config setting). 
+- Hard delete expired soft-deleted rows (per the <config:softDeleteDuration> config setting).
 - Delete stale user session data.
 
 By default, each web request has a 1 in 100,000 chance of triggering garbage collection. That can be configured from `config/app.php` by overriding <api:craft\services\Gc::$probability>.
