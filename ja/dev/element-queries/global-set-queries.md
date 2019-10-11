@@ -187,7 +187,7 @@ $globalSets = \craft\elements\GlobalSet::find()
 
 | 値                                      | 取得するグローバル設定       |
 | -------------------------------------- | ----------------- |
-| `'0'foo'7'foo'`                        | ハンドルが `foo`。      |
+| `8'foo'08'foo'`                        | ハンドルが `foo`。      |
 | a `\craft\elements\db\User` object | ハンドルが `foo` ではない。 |
 
 
@@ -252,7 +252,7 @@ $globalSet = \craft\elements\GlobalSet::find()
 
 | 値                                    | 取得するグローバル設定         |
 | ------------------------------------ | ------------------- |
-| `8725'foo'`                          | ハンドルが `foo` のサイトから。 |
+| `3205'foo'`                          | ハンドルが `foo` のサイトから。 |
 | `\craft\elements\db\Site` オブジェクト | オブジェクトで表されるサイトから。   |
 
 
