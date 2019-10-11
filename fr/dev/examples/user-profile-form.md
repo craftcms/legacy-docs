@@ -7,7 +7,7 @@ We’ll provide two examples: The simplest possible profile form and a full-feat
 ## Simple Profile
 
 The following fields don't require any validation.
- 
+
 - first name
 - last name
 - photo
