@@ -70,25 +70,44 @@ Craft のいくつかの設定やファンクションでは、基本ファイ�
 | `@web`               | リクエストのために読み込まれた `index.php` ファイルを含むフォルダの URL                                    |
 | `@webroot`           | リクエストのために読み込まれた `index.php` ファイルを含むフォルダのパス                                      |
 
-コンフィグ設定 <config:aliases> を利用して、追加の独自エイリアスを定義することができます。例えば、アセットボリュームが存在するベース URL とベースパスを定義するエイリアスを作成したいかもしれません。
+You can override these default aliases with the <config:aliases> config setting if needed. It’s recommended to override the `@web` alias if you plan on using it, to avoid a cache poisoning vulnerability.
 
 ```php
 'aliases' => [
-    '@assetBaseUrl' => 'http://my-project.com/assets',
-    '@assetBasePath' => '/path/to/web/assets',
+    '@web' => 'http://my-project.com',
+];
+```
+
+If your webroot is something besides `web/`, `public/`, `public_html/`, or `html/`, or it’s not located alongside your `craft` executable, you will also need to override the `@webroot` alias, so it can be defined properly for console commands.
+
+```php
+'aliases' => [
+    '@web' => 'http://my-project.com',
+    '@webroot' => __DIR__ . '/path/to/webroot',
+];
+```
+
+You can define additional custom aliases using the <config:aliases> config setting as well. For example, you may wish to create aliases that define the base URL and base path that your asset volumes will live in.
+
+```php
+'aliases' => [
+    '@web' => 'http://my-project.com',
+    '@webroot' => __DIR__ . '/path/to/webroot',
+    '@assetBaseUrl' => '@web/assets',
+    '@assetBasePath' => '@webroot/assets',
 ],
 ```
 
-これらを利用して、アセットボリュームのベース URL やファイルシステムのパス設定を記入しはじめることができます。例：`@assetBaseUrl/user-photos` と `@assetBasePath/user-photos`
+With those in place, you could begin your asset volumes’ Base URL and File System Path settings with them, e.g. `@assetBaseUrl/user-photos` and `@assetBasePath/user-photos`.
 
-必要であれば、`.env` ファイルや環境設定のどこかで、環境変数のエイリアス値をセットすることができます。
+If you’d like, you can set the alias values with environment variables, either from your `.env` file or somewhere in your environment’s configuration:
 
 ```bash
 ASSETS_BASE_URL=http://my-project.com/assets
-ASSETS_BASE_PATH=/path/to/web/assets
+ASSETS_BASE_PATH=/path/to/webroot/assets
 ```
 
-[getenv()](http://php.net/manual/en/function.getenv.php) を使用して、エイリアスの定義にセットすることができます。
+Then you can pull them into the alias definitions using [getenv()](http://php.net/manual/en/function.getenv.php):
 
 ```php
 'aliases' => [
@@ -98,11 +117,11 @@ ASSETS_BASE_PATH=/path/to/web/assets
 ```
 
 ::: tip
-設定でエイリアスを参照する場合、URL やパスに追加のセグメントを付加することができます。例えば、`@assetBaseUrl/user-photos` をボリュームのベース URL  にセットできます。
+When referencing aliases in your settings, you can append additional segments onto the URL or path. For example, you can set a volume’s base URL to `@assetBaseUrl/user-photos`.
 :::
 
 ::: tip
-[alias()](../dev/functions.html#alias-string) ファンクションに渡すことによって、テンプレート内でエイリアスをパースできます。
+You can parse aliases in your templates by passing them to the [alias()](../dev/functions.html#alias-string) function:
 
 ```twig
 {{ alias('@assetBaseUrl') }}
@@ -111,12 +130,12 @@ ASSETS_BASE_PATH=/path/to/web/assets
 
 ## URL ルール
 
-`config/routes.php` にカスタムの [URL ルール](https://www.yiiframework.com/doc/guide/2.0/en/runtime-routing#url-rules) を定義することができます。詳細については、[ルーティング](../routing.md) を参照してください。
+You can define custom [URL rules](https://www.yiiframework.com/doc/guide/2.0/en/runtime-routing#url-rules) in `config/routes.php`. See [Routing](../routing.md) for more details.
 
 ## PHP 定数
 
-`web/index.php` に特定の [PHP 定数](php-constants.md) を定義することで、システムファイルパスやアクティブな環境などのコア設定を設定できます。
+You can configure core settings like system file paths and the active environment by defining certain [PHP constants](php-constants.md) in `web/index.php`.
 
 ## アプリケーション設定
 
-`config/app.php` から、コンポーネント設定を上書きしたり新しいモジュールやコンポーネントを追加するような Craft の [アプリケーション設定](app.md) をカスタマイズできます。
+You can customize Craft’s [application configuration](app.md) from `config/app.php`, such as overriding component configs, or adding new modules and components.
