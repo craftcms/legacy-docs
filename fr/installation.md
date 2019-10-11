@@ -86,8 +86,8 @@ The exact permissions you should be setting depends on the relationship between 
 - If they’re in the same group, then use `774`.
 - If you’re not sure and like to live life on the edge, use `777`.
 
-::: warning HEY IIS FANS
-Make sure your site’s AppPool account has write permissions to these folders/files as well.
+::: warning
+HEY IIS FANS Make sure your site’s AppPool account has write permissions to these folders/files as well.
 :::
 
 ## Step 3: Set a Security Key
@@ -174,7 +174,7 @@ If the Setup Wizard skips this step, it’s because Craft is already able to con
 
 ![Craft Installation Database Connection Information](./images/installation-step-2.png)
 
-The third step of the installer is to create an admin account. Don’t be one of _those people_ and be sure to pick a strong password.
+The third step of the installer is to create an admin account. Don’t be one of *those people* and be sure to pick a strong password.
 
 ![Craft Installation Create User Account](./images/installation-step-3.png)
 
