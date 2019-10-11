@@ -90,7 +90,7 @@ Amazon S3、Rackspace Cloud Files、および、Google Cloud Storage のサポ�
 - パターンの名前付けされたパラメータは、正規表現のサブパターン（`(?P<ParamName>RegExp)`）ではなく、フォーマット（`<ParamName:RegExp>`）を使用して定義する必要があります。
 - 名前付けされていないパラメータ（例：`([^\/]+)`）は、もはや許可されません。新しい名前付けされたパラメータ構文（`<ParamName:RegExp>`）に変換しなければなりません。
 - コントローラーアクションのルーティングは、`action` キーを持つ配列（`['action' => 'action/path']`）ではなく、文字列（`'action/path'`）として定義する必要があります。
-- テンプレートのルーティングは、文字列（`'template/path'`）ではなく、`template` キーを持つ配列（`['template' => 'template/path']`）として定義する必要があります。
+- Template routes should be defined as an array with a `template` key (`['template' => 'template/path']`) rather than a string (`'template/path'`).
 
 ```php
 // Old:
