@@ -18,7 +18,7 @@ Immediately after typing “`{% redirect`”, you need to tell the tag where to 
 
 ### The Status Code
 
-By default, redirects will have `302` status codes, which tells the browser that the requested URL has only been moved to the redirected URL _temporarily_.
+By default, redirects will have `302` status codes, which tells the browser that the requested URL has only been moved to the redirected URL *temporarily*.
 
 You can customize which status code accompanies your redirect response by typing it right after the URL. For example, the following code would return a `301` redirect (permanent):
 
