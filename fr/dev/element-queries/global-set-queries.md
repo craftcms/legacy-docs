@@ -42,7 +42,7 @@ We can load a global set from the primary site and display its content by doing 
 ```
 
 ::: tip
-All global sets are already available as global variables to Twig templates. So you only need to fetch them through  `craft.globalSets()` if you need to access their content for a different site than the current site.
+All global sets are already available as global variables to Twig templates. So you only need to fetch them through `craft.globalSets()` if you need to access their content for a different site than the current site.
 :::
 
 ## Parameters
@@ -109,11 +109,11 @@ Narrows the query results based on the global sets’ creation dates.
 
 Possible values include:
 
-| Value | Fetches global sets…
-| - | -
-| `'>= 2018-04-01'` | that were created on or after 2018-04-01.
-| `'< 2018-05-01'` | that were created before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches global sets…                                 |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -148,11 +148,11 @@ Narrows the query results based on the global sets’ last-updated dates.
 
 Possible values include:
 
-| Value | Fetches global sets…
-| - | -
-| `'>= 2018-04-01'` | that were updated on or after 2018-04-01.
-| `'< 2018-05-01'` | that were updated before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches global sets…                                 |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -185,10 +185,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | by the user represented by the object.
+| Value                                  | Fetches drafts…                        |
+| -------------------------------------- | -------------------------------------- |
+| `1`                                    | created by the user with an ID of 1.   |
+| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
 
@@ -217,9 +217,9 @@ Narrows the query results based on the global sets’ draft’s ID (from the `dr
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the draft with an ID of 1.
+| Value | Fetches drafts…                |
+| ----- | ------------------------------ |
+| `1`   | for the draft with an ID of 1. |
 
 
 
@@ -248,10 +248,10 @@ Narrows the query results to only drafts of a given global set.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the global set with an ID of 1.
-| a [GlobalSet](api:craft\elements\GlobalSet) object | for the global set represented by the object.
+| Value                                                | Fetches drafts…                               |
+| ---------------------------------------------------- | --------------------------------------------- |
+| `1`                                                  | for the global set with an ID of 1.           |
+| a [GlobalSet](api:craft\elements\GlobalSet) object | for the global set represented by the object. |
 
 
 
@@ -332,12 +332,12 @@ Narrows the query results based on the global sets’ handles.
 
 Possible values include:
 
-| Value | Fetches global sets…
-| - | -
-| `'foo'` | with a handle of `foo`.
-| `'not foo'` | not with a handle of `foo`.
-| `['foo', 'bar']` | with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not with a handle of `foo` or `bar`.
+| Value                   | Fetches global sets…                 |
+| ----------------------- | ------------------------------------ |
+| `'foo'`                 | with a handle of `foo`.              |
+| `'not foo'`             | not with a handle of `foo`.          |
+| `['foo', 'bar']`        | with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']` | not with a handle of `foo` or `bar`. |
 
 
 
@@ -366,12 +366,12 @@ Narrows the query results based on the global sets’ IDs.
 
 Possible values include:
 
-| Value | Fetches global sets…
-| - | -
-| `1` | with an ID of 1.
-| `'not 1'` | not with an ID of 1.
-| `[1, 2]` | with an ID of 1 or 2.
-| `['not', 1, 2]` | not with an ID of 1 or 2.
+| Value           | Fetches global sets…      |
+| --------------- | ------------------------- |
+| `1`             | with an ID of 1.          |
+| `'not 1'`       | not with an ID of 1.      |
+| `[1, 2]`        | with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
 
@@ -400,8 +400,7 @@ This can be combined with [fixedOrder](#fixedorder) if you want the results to b
 
 ### `ignorePlaceholders`
 
-Causes the query to return matching global sets as they are stored in the database, ignoring matching placeholder
-elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+Causes the query to return matching global sets as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 
 
@@ -512,9 +511,7 @@ If [unique](#unique) is set, this determines which site should be selected when 
 
 
 
-For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C,
-and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned
-for Site B.
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
@@ -576,10 +573,10 @@ Narrows the query results to only revisions created by a given user.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | by the user represented by the object.
+| Value                                  | Fetches revisions…                     |
+| -------------------------------------- | -------------------------------------- |
+| `1`                                    | created by the user with an ID of 1.   |
+| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
 
@@ -608,9 +605,9 @@ Narrows the query results based on the global sets’ revision’s ID (from the 
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the revision with an ID of 1.
+| Value | Fetches revisions…                |
+| ----- | --------------------------------- |
+| `1`   | for the revision with an ID of 1. |
 
 
 
@@ -639,10 +636,10 @@ Narrows the query results to only revisions of a given global set.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the global set with an ID of 1.
-| a [GlobalSet](api:craft\elements\GlobalSet) object | for the global set represented by the object.
+| Value                                                | Fetches revisions…                            |
+| ---------------------------------------------------- | --------------------------------------------- |
+| `1`                                                  | for the global set with an ID of 1.           |
+| a [GlobalSet](api:craft\elements\GlobalSet) object | for the global set represented by the object. |
 
 
 
@@ -733,17 +730,16 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value | Fetches global sets…
-| - | -
-| `'foo'` | from the site with a handle of `foo`.
-| `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
-| a `\craft\elements\db\Site` object | from the site represented by the object.
-| `'*'` | from any site.
+| Value                                  | Fetches global sets…                           |
+| -------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
+| a `\craft\elements\db\Site` object | from the site represented by the object.       |
+| `'*'`                                  | from any site.                                 |
 
 ::: tip
-If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you
-only want unique elements to be returned, use [unique](#unique) in conjunction with this.
+If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
 :::
 
 
@@ -848,8 +844,7 @@ Determines whether only elements with unique IDs should be returned by the query
 
 
 
-This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not
-desired.
+This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
 
 
 
@@ -901,3 +896,4 @@ $globalSets = \craft\elements\GlobalSet::find()
 
 
 <!-- END PARAMS -->
+
