@@ -571,7 +571,7 @@ New:
 
 ### `action` パラメータ
 
-いくつかのコントローラーアクションはリネームされました。
+`action` params must be rewritten in `kebab-case` rather than `camelCase`.
 
 ```twig
 Old:
