@@ -21,7 +21,7 @@ If you think something is missing, please [create an issue](https://github.com/c
 - Craft is now built on Yii 2.
 - The main application instance is available via `Craft::$app` now, rather than `craft()`.
 - Plugins must now have a `composer.json` file that defines some basic info about the plugin.
-- Plugins now get their own root namespace, rather than sharing a `Craft\` namespace with all of Craft and other plugins, and all Craft and plugin code must follow the [PSR-4](https://www.php-fig.org/psr/psr-4/) specification.
+- Plugins now get their own root namespace, rather than sharing a `Craft` namespace with all of Craft and other plugins, and all Craft and plugin code must follow the [PSR-4](https://www.php-fig.org/psr/psr-4/) specification.
 - Plugins are now an extension of [Yii modules](https://www.yiiframework.com/doc/guide/2.0/en/structure-modules).
 
 ## Changelogs
@@ -64,13 +64,13 @@ Relevant sections:
 
 The following core service names have changed:
 
-| Old             | New
-| --------------- | ----------------
-| `assetSources`  | `volumes`
-| `email`         | `mailer`
-| `templateCache` | `templateCaches`
-| `templates`     | `view`
-| `userSession`   | `user`
+| Old             | New              |
+| --------------- | ---------------- |
+| `assetSources`  | `volumes`        |
+| `email`         | `mailer`         |
+| `templateCache` | `templateCaches` |
+| `templates`     | `view`           |
+| `userSession`   | `user`           |
 
 ## Components
 
@@ -185,7 +185,7 @@ $tablePrefix = Craft::$app->config->db->tablePrefix;
 
 - `IOHelper` has been replaced with <api:craft\helpers\FileHelper>, which extends Yii’s <api:yii\helpers\BaseFileHelper>.
 - Directory paths returned by <api:craft\helpers\FileHelper> and <api:craft\services\Path> methods no longer include a trailing slash.
-- File system paths in Craft now use the `DIRECTORY_SEPARATOR` PHP constant (which is set to either `/` or `\` depending on the environment) rather than hard-coded forward slashes (`/`).
+- File system paths in Craft now use the `DIRECTORY_SEPARATOR` PHP constant (which is set to either `/` or `` depending on the environment) rather than hard-coded forward slashes (`/`).
 
 ## Events
 
@@ -322,8 +322,8 @@ public function getResourcePath($path)
 }
 ```
 
-::: warning NOTE
-There is no direct Craft 3 equivalent for this hook, which allowed plugins to handle resource requests, because the concept of resource requests has been removed in Craft 3. See [Asset Bundles](asset-bundles.md) to learn how plugins can serve resources in Craft 3.
+::: warning
+NOTE There is no direct Craft 3 equivalent for this hook, which allowed plugins to handle resource requests, because the concept of resource requests has been removed in Craft 3. See [Asset Bundles](asset-bundles.md) to learn how plugins can serve resources in Craft 3.
 :::
 
 #### `modifyCpNav`
@@ -714,8 +714,8 @@ public function getTableAttributesForSource($elementType, $sourceKey)
 }
 ```
 
-::: warning NOTE
-There is no direct Craft 3 equivalent for this hook, which allowed plugins to completely change the table attributes for an element type right before the element index view was rendered. The closest thing in Craft 3 is the <api:craft\base\Element::EVENT_REGISTER_TABLE_ATTRIBUTES> event, which can be used to change the available table attributes for an element type when an admin is customizing the element index sources.
+::: warning
+NOTE There is no direct Craft 3 equivalent for this hook, which allowed plugins to completely change the table attributes for an element type right before the element index view was rendered. The closest thing in Craft 3 is the <api:craft\base\Element::EVENT_REGISTER_TABLE_ATTRIBUTES> event, which can be used to change the available table attributes for an element type when an admin is customizing the element index sources.
 :::
 
 ## Template Variables
@@ -841,11 +841,11 @@ Additionally, any `<div class="pane">`s you had should generally lose their `pan
 
 The following Control Panel [template hooks](template-hooks.md) have been renamed:
 
-| Old                              | New
-| -------------------------------- | ----------------------------
-| `cp.categories.edit.right-pane`  | `cp.categories.edit.details`
-| `cp.entries.edit.right-pane`     | `cp.entries.edit.details`
-| `cp.users.edit.right-pane`       | `cp.users.edit.details`
+| Old                             | New                          |
+| ------------------------------- | ---------------------------- |
+| `cp.categories.edit.right-pane` | `cp.categories.edit.details` |
+| `cp.entries.edit.right-pane`    | `cp.entries.edit.details`    |
+| `cp.users.edit.right-pane`      | `cp.users.edit.details`      |
 
 ## Resource Requests
 
