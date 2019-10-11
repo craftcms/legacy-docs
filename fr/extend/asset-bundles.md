@@ -64,7 +64,7 @@ class MyPluginAsset extends AssetBundle
 ```
 
 ::: tip
-`@ns/prefix` is a placeholder for your plugin’s auto-generated [Yii alias], which will be based on your plugin’s root namespace. It represents the path to your plugin’s `src/` directory.
+`@ns/prefix` is a placeholder for your plugin’s auto-generated [Yii alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases), which will be based on your plugin’s root namespace. It represents the path to your plugin’s `src/` directory.
 :::
 
 ### Registering the Asset Bundle
@@ -109,7 +109,5 @@ $url = \Craft::$app->assetManager->getPublishedUrl('@ns/prefix/icons', true, 'sh
 ```
 
 ::: tip
-`@ns/prefix` is a placeholder for your plugin’s auto-generated [Yii alias], which will be based on your plugin’s root namespace. It represents the path to your plugin’s `src/` directory.
+`@ns/prefix` is a placeholder for your plugin’s auto-generated [Yii alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases), which will be based on your plugin’s root namespace. It represents the path to your plugin’s `src/` directory.
 :::
-
-[Yii alias]: https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases
