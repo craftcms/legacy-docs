@@ -156,11 +156,11 @@ Narrows the query results based on the elements’ creation dates.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'>= 2018-04-01'` | that were created on or after 2018-04-01.
-| `'< 2018-05-01'` | that were created before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches elements…                                    |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -195,11 +195,11 @@ Narrows the query results based on the elements’ last-updated dates.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'>= 2018-04-01'` | that were updated on or after 2018-04-01.
-| `'< 2018-05-01'` | that were updated before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches elements…                                    |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -232,10 +232,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a [craft\elements\User](api:craft\elements\User) object | by the user represented by the object.
+| Value                                                       | Fetches drafts…                        |
+| ----------------------------------------------------------- | -------------------------------------- |
+| `1`                                                         | created by the user with an ID of 1.   |
+| a [craft\elements\User](api:craft\elements\User) object | by the user represented by the object. |
 
 
 
@@ -264,9 +264,9 @@ Narrows the query results based on the elements’ draft’s ID (from the `draft
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the draft with an ID of 1.
+| Value | Fetches drafts…                |
+| ----- | ------------------------------ |
+| `1`   | for the draft with an ID of 1. |
 
 
 
@@ -295,10 +295,10 @@ Narrows the query results to only drafts of a given element.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the element with an ID of 1.
-| a ElementClass object | for the element represented by the object.
+| Value                 | Fetches drafts…                            |
+| --------------------- | ------------------------------------------ |
+| `1`                   | for the element with an ID of 1.           |
+| a ElementClass object | for the element represented by the object. |
 
 
 
@@ -352,11 +352,11 @@ Narrows the query results based on the users’ email addresses.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'foo@bar.baz'` | with an email of `foo@bar.baz`.
-| `'not foo@bar.baz'` | not with an email of `foo@bar.baz`.
-| `'*@bar.baz'` | with an email that ends with `@bar.baz`.
+| Value               | Fetches elements…                        |
+| ------------------- | ---------------------------------------- |
+| `'foo@bar.baz'`     | with an email of `foo@bar.baz`.          |
+| `'not foo@bar.baz'` | not with an email of `foo@bar.baz`.      |
+| `'*@bar.baz'`       | with an email that ends with `@bar.baz`. |
 
 
 
@@ -383,10 +383,10 @@ Narrows the query results based on the users’ first names.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'Jane'` | with a first name of `Jane`.
-| `'not Jane'` | not with a first name of `Jane`.
+| Value        | Fetches elements…                |
+| ------------ | -------------------------------- |
+| `'Jane'`     | with a first name of `Jane`.     |
+| `'not Jane'` | not with a first name of `Jane`. |
 
 
 
@@ -440,13 +440,13 @@ Narrows the query results based on the user group the users belong to.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'foo'` | in a group with a handle of `foo`.
-| `'not foo'` | not in a group with a handle of `foo`.
-| `['foo', 'bar']` | in a group with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not in a group with a handle of `foo` or `bar`.
-| a [UserGroup](api:craft\models\UserGroup) object | in a group represented by the object.
+| Value                                              | Fetches elements…                               |
+| -------------------------------------------------- | ----------------------------------------------- |
+| `'foo'`                                            | in a group with a handle of `foo`.              |
+| `'not foo'`                                        | not in a group with a handle of `foo`.          |
+| `['foo', 'bar']`                                   | in a group with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                            | not in a group with a handle of `foo` or `bar`. |
+| a [UserGroup](api:craft\models\UserGroup) object | in a group represented by the object.           |
 
 
 
@@ -473,12 +473,12 @@ Narrows the query results based on the user group the users belong to, per the g
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `1` | in a group with an ID of 1.
-| `'not 1'` | not in a group with an ID of 1.
-| `[1, 2]` | in a group with an ID of 1 or 2.
-| `['not', 1, 2]` | not in a group with an ID of 1 or 2.
+| Value           | Fetches elements…                    |
+| --------------- | ------------------------------------ |
+| `1`             | in a group with an ID of 1.          |
+| `'not 1'`       | not in a group with an ID of 1.      |
+| `[1, 2]`        | in a group with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
 
 
 
@@ -507,12 +507,12 @@ Narrows the query results based on the elements’ IDs.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `1` | with an ID of 1.
-| `'not 1'` | not with an ID of 1.
-| `[1, 2]` | with an ID of 1 or 2.
-| `['not', 1, 2]` | not with an ID of 1 or 2.
+| Value           | Fetches elements…         |
+| --------------- | ------------------------- |
+| `1`             | with an ID of 1.          |
+| `'not 1'`       | not with an ID of 1.      |
+| `[1, 2]`        | with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
 
@@ -541,8 +541,7 @@ This can be combined with [fixedOrder](#fixedorder) if you want the results to b
 
 ### `ignorePlaceholders`
 
-Causes the query to return matching elements as they are stored in the database, ignoring matching placeholder
-elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+Causes the query to return matching elements as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 
 
@@ -584,11 +583,11 @@ Narrows the query results based on the users’ last login dates.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'>= 2018-04-01'` | that last logged-in on or after 2018-04-01.
-| `'< 2018-05-01'` | that last logged-in before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that last logged-in between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches elements…                                      |
+| ------------------------------------------------ | ------------------------------------------------------ |
+| `'>= 2018-04-01'`                             | that last logged-in on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that last logged-in before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that last logged-in between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -619,10 +618,10 @@ Narrows the query results based on the users’ last names.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'Doe'` | with a last name of `Doe`.
-| `'not Doe'` | not with a last name of `Doe`.
+| Value       | Fetches elements…              |
+| ----------- | ------------------------------ |
+| `'Doe'`     | with a last name of `Doe`.     |
+| `'not Doe'` | not with a last name of `Doe`. |
 
 
 
@@ -718,9 +717,7 @@ If [unique()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.ht
 
 
 
-For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C,
-and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned
-for Site B.
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
@@ -782,10 +779,10 @@ Narrows the query results to only revisions created by a given user.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a [craft\elements\User](api:craft\elements\User) object | by the user represented by the object.
+| Value                                                       | Fetches revisions…                     |
+| ----------------------------------------------------------- | -------------------------------------- |
+| `1`                                                         | created by the user with an ID of 1.   |
+| a [craft\elements\User](api:craft\elements\User) object | by the user represented by the object. |
 
 
 
@@ -814,9 +811,9 @@ Narrows the query results based on the elements’ revision’s ID (from the `re
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the revision with an ID of 1.
+| Value | Fetches revisions…                |
+| ----- | --------------------------------- |
+| `1`   | for the revision with an ID of 1. |
 
 
 
@@ -845,10 +842,10 @@ Narrows the query results to only revisions of a given element.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the element with an ID of 1.
-| a ElementClass object | for the element represented by the object.
+| Value                 | Fetches revisions…                         |
+| --------------------- | ------------------------------------------ |
+| `1`                   | for the element with an ID of 1.           |
+| a ElementClass object | for the element represented by the object. |
 
 
 
@@ -935,13 +932,13 @@ Narrows the query results based on the elements’ statuses.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'active'` _(default)_ | with active accounts.
-| `'suspended'` | with suspended accounts.
-| `'pending'` | with accounts that are still pending activation.
-| `'locked'` | with locked accounts (regardless of whether they’re active or suspended).
-| `['active', 'suspended']` | with active or suspended accounts.
+| Value                     | Fetches elements…                                                         |
+| ------------------------- | ------------------------------------------------------------------------- |
+| `'active'` *(default)*    | with active accounts.                                                     |
+| `'suspended'`             | with suspended accounts.                                                  |
+| `'pending'`               | with accounts that are still pending activation.                          |
+| `'locked'`                | with locked accounts (regardless of whether they’re active or suspended). |
+| `['active', 'suspended']` | with active or suspended accounts.                                        |
 
 
 
@@ -1018,10 +1015,10 @@ Narrows the query results based on the users’ usernames.
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'foo'` | with a username of `foo`.
-| `'not foo'` | not with a username of `foo`.
+| Value       | Fetches elements…             |
+| ----------- | ----------------------------- |
+| `'foo'`     | with a username of `foo`.     |
+| `'not foo'` | not with a username of `foo`. |
 
 
 
@@ -1077,3 +1074,4 @@ $elements = ElementClass::find()
 
 
 <!-- END PARAMS -->
+
