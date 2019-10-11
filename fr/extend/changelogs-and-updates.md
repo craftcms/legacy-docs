@@ -65,6 +65,7 @@ If you have any reference-style links in your release notes, you will need to de
 
 ## 2.0.0 - 2017-01-31
 ### Added
+
 - New [superFoo] config setting
 
 [superFoo]: https://docs.foo.com/config#superFoo
