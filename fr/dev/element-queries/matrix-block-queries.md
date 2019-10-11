@@ -112,11 +112,11 @@ Narrows the query results based on the Matrix blocks’ creation dates.
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `'>= 2018-04-01'` | that were created on or after 2018-04-01.
-| `'< 2018-05-01'` | that were created before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches Matrix blocks…                               |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -151,11 +151,11 @@ Narrows the query results based on the Matrix blocks’ last-updated dates.
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `'>= 2018-04-01'` | that were updated on or after 2018-04-01.
-| `'< 2018-05-01'` | that were updated before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01.
+| Value                                            | Fetches Matrix blocks…                               |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -188,10 +188,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | by the user represented by the object.
+| Value                                  | Fetches drafts…                        |
+| -------------------------------------- | -------------------------------------- |
+| `1`                                    | created by the user with an ID of 1.   |
+| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
 
@@ -220,9 +220,9 @@ Narrows the query results based on the Matrix blocks’ draft’s ID (from the `
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the draft with an ID of 1.
+| Value | Fetches drafts…                |
+| ----- | ------------------------------ |
+| `1`   | for the draft with an ID of 1. |
 
 
 
@@ -251,10 +251,10 @@ Narrows the query results to only drafts of a given Matrix block.
 
 Possible values include:
 
-| Value | Fetches drafts…
-| - | -
-| `1` | for the Matrix block with an ID of 1.
-| a [MatrixBlock](api:craft\elements\MatrixBlock) object | for the Matrix block represented by the object.
+| Value                                                    | Fetches drafts…                                 |
+| -------------------------------------------------------- | ----------------------------------------------- |
+| `1`                                                      | for the Matrix block with an ID of 1.           |
+| a [MatrixBlock](api:craft\elements\MatrixBlock) object | for the Matrix block represented by the object. |
 
 
 
@@ -308,12 +308,12 @@ Narrows the query results based on the field the Matrix blocks belong to, per th
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `1` | in a field with an ID of 1.
-| `'not 1'` | not in a field with an ID of 1.
-| `[1, 2]` | in a field with an ID of 1 or 2.
-| `['not', 1, 2]` | not in a field with an ID of 1 or 2.
+| Value           | Fetches Matrix blocks…               |
+| --------------- | ------------------------------------ |
+| `1`             | in a field with an ID of 1.          |
+| `'not 1'`       | not in a field with an ID of 1.      |
+| `[1, 2]`        | in a field with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not in a field with an ID of 1 or 2. |
 
 
 
@@ -369,12 +369,12 @@ Narrows the query results based on the Matrix blocks’ IDs.
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `1` | with an ID of 1.
-| `'not 1'` | not with an ID of 1.
-| `[1, 2]` | with an ID of 1 or 2.
-| `['not', 1, 2]` | not with an ID of 1 or 2.
+| Value           | Fetches Matrix blocks…    |
+| --------------- | ------------------------- |
+| `1`             | with an ID of 1.          |
+| `'not 1'`       | not with an ID of 1.      |
+| `[1, 2]`        | with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
 
@@ -403,8 +403,7 @@ This can be combined with [fixedOrder](#fixedorder) if you want the results to b
 
 ### `ignorePlaceholders`
 
-Causes the query to return matching Matrix blocks as they are stored in the database, ignoring matching placeholder
-elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
+Causes the query to return matching Matrix blocks as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 
 
@@ -538,12 +537,12 @@ Narrows the query results based on the owner element of the Matrix blocks, per t
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `1` | created for an element with an ID of 1.
-| `'not 1'` | not created for an element with an ID of 1.
-| `[1, 2]` | created for an element with an ID of 1 or 2.
-| `['not', 1, 2]` | not created for an element with an ID of 1 or 2.
+| Value           | Fetches Matrix blocks…                           |
+| --------------- | ------------------------------------------------ |
+| `1`             | created for an element with an ID of 1.          |
+| `'not 1'`       | not created for an element with an ID of 1.      |
+| `[1, 2]`        | created for an element with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not created for an element with an ID of 1 or 2. |
 
 
 
@@ -570,9 +569,7 @@ If [unique](#unique) is set, this determines which site should be selected when 
 
 
 
-For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C,
-and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned
-for Site B.
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
 
 If this isn’t set, then preference goes to the current site.
 
@@ -634,10 +631,10 @@ Narrows the query results to only revisions created by a given user.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | by the user represented by the object.
+| Value                                  | Fetches revisions…                     |
+| -------------------------------------- | -------------------------------------- |
+| `1`                                    | created by the user with an ID of 1.   |
+| a `\craft\elements\db\User` object | by the user represented by the object. |
 
 
 
@@ -666,9 +663,9 @@ Narrows the query results based on the Matrix blocks’ revision’s ID (from th
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the revision with an ID of 1.
+| Value | Fetches revisions…                |
+| ----- | --------------------------------- |
+| `1`   | for the revision with an ID of 1. |
 
 
 
@@ -697,10 +694,10 @@ Narrows the query results to only revisions of a given Matrix block.
 
 Possible values include:
 
-| Value | Fetches revisions…
-| - | -
-| `1` | for the Matrix block with an ID of 1.
-| a [MatrixBlock](api:craft\elements\MatrixBlock) object | for the Matrix block represented by the object.
+| Value                                                    | Fetches revisions…                              |
+| -------------------------------------------------------- | ----------------------------------------------- |
+| `1`                                                      | for the Matrix block with an ID of 1.           |
+| a [MatrixBlock](api:craft\elements\MatrixBlock) object | for the Matrix block represented by the object. |
 
 
 
@@ -791,17 +788,16 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `'foo'` | from the site with a handle of `foo`.
-| `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
-| a `\craft\elements\db\Site` object | from the site represented by the object.
-| `'*'` | from any site.
+| Value                                  | Fetches Matrix blocks…                         |
+| -------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
+| a `\craft\elements\db\Site` object | from the site represented by the object.       |
+| `'*'`                                  | from any site.                                 |
 
 ::: tip
-If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you
-only want unique elements to be returned, use [unique](#unique) in conjunction with this.
+If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
 :::
 
 
@@ -858,10 +854,10 @@ Narrows the query results based on the Matrix blocks’ statuses.
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `'enabled'`  _(default)_ | that are enabled.
-| `'disabled'` | that are disabled.
+| Value                   | Fetches Matrix blocks… |
+| ----------------------- | ---------------------- |
+| `'enabled'` *(default)* | that are enabled.      |
+| `'disabled'`            | that are disabled.     |
 
 
 
@@ -913,13 +909,13 @@ Narrows the query results based on the Matrix blocks’ block types.
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `'foo'` | of a type with a handle of `foo`.
-| `'not foo'` | not of a type with a handle of `foo`.
-| `['foo', 'bar']` | of a type with a handle of `foo` or `bar`.
-| `['not', 'foo', 'bar']` | not of a type with a handle of `foo` or `bar`.
-| an [MatrixBlockType](api:craft\models\MatrixBlockType) object | of a type represented by the object.
+| Value                                                           | Fetches Matrix blocks…                         |
+| --------------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                         | of a type with a handle of `foo`.              |
+| `'not foo'`                                                     | not of a type with a handle of `foo`.          |
+| `['foo', 'bar']`                                                | of a type with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                                         | not of a type with a handle of `foo` or `bar`. |
+| an [MatrixBlockType](api:craft\models\MatrixBlockType) object | of a type represented by the object.           |
 
 
 
@@ -946,12 +942,12 @@ Narrows the query results based on the Matrix blocks’ block types, per the typ
 
 Possible values include:
 
-| Value | Fetches Matrix blocks…
-| - | -
-| `1` | of a type with an ID of 1.
-| `'not 1'` | not of a type with an ID of 1.
-| `[1, 2]` | of a type with an ID of 1 or 2.
-| `['not', 1, 2]` | not of a type with an ID of 1 or 2.
+| Value           | Fetches Matrix blocks…              |
+| --------------- | ----------------------------------- |
+| `1`             | of a type with an ID of 1.          |
+| `'not 1'`       | not of a type with an ID of 1.      |
+| `[1, 2]`        | of a type with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not of a type with an ID of 1 or 2. |
 
 
 
@@ -1003,8 +999,7 @@ Determines whether only elements with unique IDs should be returned by the query
 
 
 
-This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not
-desired.
+This should be used when querying elements from multiple sites at the same time, if “duplicate” results is not desired.
 
 
 
@@ -1056,3 +1051,4 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 
 
 <!-- END PARAMS -->
+
