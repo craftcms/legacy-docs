@@ -58,7 +58,7 @@ return [
 ];
 ```
 
-Now, when Craft is processing the message translation for a German site, “Contact us” will be replaced with  “Kontaktiere uns”.
+Now, when Craft is processing the message translation for a German site, “Contact us” will be replaced with “Kontaktiere uns”.
 
 ### Message Parameters
 
