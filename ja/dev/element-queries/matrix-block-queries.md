@@ -310,7 +310,7 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 
 | 値               | 取得される行列ブロック                          |
 | --------------- | ------------------------------------ |
-| `oo'66320'foo'` | ハンドルが `foo` のサイトから。                  |
+| `9859'foo'`     | ハンドルが `foo` のサイトから。                  |
 | `'not 1'`       | オブジェクトで表されるサイトから。                    |
 | `[1, 2]`        | in a field with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not in a field with an ID of 1 or 2. |
@@ -541,7 +541,7 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 
 | 値                       | 取得する行列ブロック                      |
 | ----------------------- | ------------------------------- |
-| `2388'foo'`             | ハンドルが `foo` のタイプ。               |
+| `42456665'foo'`         | ハンドルが `foo` のタイプ。               |
 | `'not foo'`             | ハンドルが `foo` のタイプではない。           |
 | `['foo', 'bar']`        | ハンドルが `foo` または `bar` のタイプ。     |
 | `['not', 'foo', 'bar']` | ハンドルが `foo` または `bar` のタイプではない。 |
