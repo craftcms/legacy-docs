@@ -51,9 +51,9 @@ Then create a `@rootUrl` alias that references it:
 'aliases' => [
     '@rootUrl' => getenv('ROOT_URL'),
 ],
-``` 
+```
 
-Then you could go into your User Photos volume’s settings (for example) and set its Base URL to `@rootUrl/images/user-photos`.  
+Then you could go into your User Photos volume’s settings (for example) and set its Base URL to `@rootUrl/images/user-photos`.
 
 ## Config Files
 

@@ -44,7 +44,7 @@ Craft comes with the following built-in field types:
 If you’re running a multi-site Craft installation, most of your fields will have a “Translation Method” setting (depending on their type).
 
 Fields can have the following translation method:
-	
+
 - **Not translatable** – The field will have the same value across all sites.
 - **Translate for each site** – The field can have a different value for each site.
 - **Translate for each site group** – The field can have a different value for each site group.
@@ -77,4 +77,4 @@ Once a field is selected, a gear icon will appear beside it. Clicking on it will
 
 Clicking “Make required” will add an asterisk (`*`) beside the field’s name, indicating that it’s now required. Subsequent gear icon clicks will reveal a new “Make not required” option which does as you’d expect.
 
-Field layouts for entry types have another feature: they let you define the  content tabs that contain the fields. You can create as many content tabs as you want, and use them to organize similar fields together. Each content tab will get its own gear icon allowing you to rename or delete it.
+Field layouts for entry types have another feature: they let you define the content tabs that contain the fields. You can create as many content tabs as you want, and use them to organize similar fields together. Each content tab will get its own gear icon allowing you to rename or delete it.

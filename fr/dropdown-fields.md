@@ -16,12 +16,12 @@ When [querying for elements](dev/element-queries/README.md) that have a Dropdown
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'foo'` | with a `foo` option selected.
-| `'not foo'` | without a `foo` option selected.
-| `['foo', 'bar']` | with either a `foo` or `bar` option selected.
-| `['not', 'foo', 'bar']` | without either a `foo` or `bar` option selected.
+| Value                   | Fetches elements…                                |
+| ----------------------- | ------------------------------------------------ |
+| `'foo'`                 | with a `foo` option selected.                    |
+| `'not foo'`             | without a `foo` option selected.                 |
+| `['foo', 'bar']`        | with either a `foo` or `bar` option selected.    |
+| `['not', 'foo', 'bar']` | without either a `foo` or `bar` option selected. |
 
 ```twig
 {# Fetch entries with the 'foo' option selected #}

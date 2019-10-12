@@ -41,7 +41,7 @@ Subfolder paths defined by the “Upload Location” and “Default Upload Locat
 Any properties supported by the source element (the element that has the Assets field) can be used here.
 
 ::: tip
-If you are creating the Assets field within a [Matrix field](matrix-fields.md), the source element is going to be the Matrix block, _not_ the element that the Matrix field is being created on.
+If you are creating the Assets field within a [Matrix field](matrix-fields.md), the source element is going to be the Matrix block, *not* the element that the Matrix field is being created on.
 
 So if your Matrix field is attached to an entry, and you want to output the entry ID in your dynamic subfolder path, use `owner.id` rather than `id`.
 :::
@@ -68,10 +68,10 @@ When [querying for elements](dev/element-queries/README.md) that have an Assets 
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `':empty:'` | that don’t have any related assets.
-| `':notempty:'` | that have at least one related asset.
+| Value          | Fetches elements…                     |
+| -------------- | ------------------------------------- |
+| `':empty:'`    | that don’t have any related assets.   |
+| `':notempty:'` | that have at least one related asset. |
 
 ```twig
 {# Fetch entries with a related asset #}

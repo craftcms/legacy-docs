@@ -40,10 +40,10 @@ When [querying for elements](dev/element-queries/README.md) that have an Entries
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `':empty:'` | that don’t have any related entries.
-| `':notempty:'` | that have at least one related entry.
+| Value          | Fetches elements…                     |
+| -------------- | ------------------------------------- |
+| `':empty:'`    | that don’t have any related entries.  |
+| `':notempty:'` | that have at least one related entry. |
 
 ```twig
 {# Fetch entries with a related entry #}

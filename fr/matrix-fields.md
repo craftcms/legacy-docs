@@ -33,10 +33,10 @@ When [querying for elements](dev/element-queries/README.md) that have a Matrix f
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `':empty:'` | that don’t have any Matrix blocks.
-| `':notempty:'` | that have at least one Matrix block.
+| Value          | Fetches elements…                    |
+| -------------- | ------------------------------------ |
+| `':empty:'`    | that don’t have any Matrix blocks.   |
+| `':notempty:'` | that have at least one Matrix block. |
 
 ```twig
 {# Fetch entries with a Matrix block #}

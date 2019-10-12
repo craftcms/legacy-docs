@@ -32,8 +32,8 @@ Each item within the [navItems](api:craft\events\RegisterCpNavItemsEvent::$navIt
 - `url` – The URL that the nav item should link to. (It will be run through <api:craft\helpers\UrlHelper::cpUrl()>.)
 - `label` – The user-facing nav item label.
 - `icon` – The path to the icon SVG that should be used. (It can begin with an alias.)
-- `badgeCount` _(optional)_ – The badge count that should be displayed in the nav item.
-- `subnav` _(optional)_ – An array of subnav items that should be visible when your section is accessed. (See [Subnavs](#subnavs).)
+- `badgeCount` *(optional)* – The badge count that should be displayed in the nav item.
+- `subnav` *(optional)* – An array of subnav items that should be visible when your section is accessed. (See [Subnavs](#subnavs).)
 
 ## Subnavs
 
@@ -43,7 +43,7 @@ If your section has a sub-navigation, each subnav item within your `subnav` arra
 'subnav' => [
     'foo' => ['label' => 'Foo', 'url' => 'section-url/foo'],
     'bar' => ['label' => 'Bar', 'url' => 'section-url/bar'],
-    
+
     // A subnav can also have it's own badge count by adding the optional `badgeCount` key:
     'baz' => ['label' => 'Baz', 'url' => 'section-url/baz', 'badgeCount' => 5],
 ],

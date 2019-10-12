@@ -14,14 +14,14 @@ When [querying for elements](dev/element-queries/README.md) that have a Date/Tim
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `':empty:'` | that don’t have a selected date.
-| `':notempty:'` | that have a selected date.
-| `'>= 2018-04-01'` | that have a date selected on or after 2018-04-01.
-| `'< 2018-05-01'` | that have a date selected before 2018-05-01
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | that have a date selected between 2018-04-01 and 2018-05-01.
-| `['or', '< 2018-04-04', '> 2018-05-01']` | that have a date selected before 2018-04-01 or after 2018-05-01.
+| Value                                            | Fetches elements…                                                |
+| ------------------------------------------------ | ---------------------------------------------------------------- |
+| `':empty:'`                                      | that don’t have a selected date.                                 |
+| `':notempty:'`                                   | that have a selected date.                                       |
+| `'>= 2018-04-01'`                             | that have a date selected on or after 2018-04-01.                |
+| `'< 2018-05-01'`                              | that have a date selected before 2018-05-01                      |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that have a date selected between 2018-04-01 and 2018-05-01.     |
+| `['or', '< 2018-04-04', '> 2018-05-01']`   | that have a date selected before 2018-04-01 or after 2018-05-01. |
 
 ```twig
 {# Fetch entries with with a selected date in the next month #}

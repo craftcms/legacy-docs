@@ -43,10 +43,10 @@ When [querying for elements](dev/element-queries/README.md) that have a Tags fie
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `':empty:'` | that don’t have any related tags.
-| `':notempty:'` | that have at least one related tag.
+| Value          | Fetches elements…                   |
+| -------------- | ----------------------------------- |
+| `':empty:'`    | that don’t have any related tags.   |
+| `':notempty:'` | that have at least one related tag. |
 
 ```twig
 {# Fetch entries with a related tag #}

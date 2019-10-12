@@ -29,7 +29,7 @@ Categories fields have the following settings:
 
 ### Multi-Site Settings
 
-On multi-site installs, the following settings will also be available (under “Advanced”):
+That will give you a [category query](dev/element-queries/category-queries.md), prepped to output all of the related categories for the given field.
 
 - **Relate categories from a specific site?** – Whether to only allow relations to categories from a specific site.
 
@@ -39,49 +39,30 @@ On multi-site installs, the following settings will also be available (under “
 
 - **Manage relations on a per-site basis** – Whether each site should get its own set of related categories.
 
-## The Field
+## See Also
 
-Categories fields list all of the currently-related categories, with a button to select new ones.
+To loop through all of the related categories as a flat list, call [all()](api:craft\db\Query::all()) and then loop over the results:
 
-Clicking the “Add a category” button will bring up a modal window where you can find and select additional categories. You can create new categories from this modal as well, by clicking the “New category” button.
+Or you can show them as a hierarchical list with the [nav](dev/tags/nav.md) tag:
 
-When you select a nested category, all of the ancestors leading up to that category will also automatically be related. Likewise, when you remove a category from within the main field input, any of its descendants will also be removed.
+If you only want the first related category, call [one()](api:craft\db\Query::one()) instead, and then make sure it returned something:
 
 ### Inline Category Editing
 
-When you double-click on a related category, a HUD will appear where you can edit the category’s title and custom fields.
+If you just need to check if there are any related categories (but don’t need to fetch them), you can call [exists()](api:craft\db\Query::exists()):
 
 ## Templating
 
 ### Querying Elements with Categories Fields
 
-When [querying for elements](dev/element-queries/README.md) that have a Categories field, you can filter the results based on the Categories field data using a query param named after your field’s handle.
+You can set [parameters](dev/element-queries/category-queries.md#parameters) on the category query as well. For example, to only fetch the “leaves” (categories without any children), set the [leaves](dev/element-queries/category-queries.md#leaves) param:
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `':empty:'` | that don’t have any related categories.
-| `':notempty:'` | that have at least one related category.
-
-```twig
-{# Fetch entries with a related category #}
-{% set entries = craft.entries()
-    .<FieldHandle>(':notempty:')
-    .all() %}
-```
-
-### Working with Categories Field Data
-
-If you have an element with a Categories field in your template, you can access its related categories using your Categories field’s handle:
-
-```twig
-{% set relatedCategories = entry.<FieldHandle> %}
-```
-
-That will give you a [category query](dev/element-queries/category-queries.md), prepped to output all of the related categories for the given field.
-
-To loop through all of the related categories as a flat list, call [all()](api:craft\db\Query::all()) and then loop over the results:
+| Value          | Fetches elements…                        |
+| -------------- | ---------------------------------------- |
+| `':empty:'`    | that don’t have any related categories.  |
+| `':notempty:'` | that have at least one related category. |
 
 ```twig
 {% set relatedCategories = entry.<FieldHandle>.all() %}
@@ -94,7 +75,9 @@ To loop through all of the related categories as a flat list, call [all()](api:c
 {% endif %}
 ```
 
-Or you can show them as a hierarchical list with the [nav](dev/tags/nav.md) tag:
+### Working with Categories Field Data
+
+If you have an element with a Categories field in your template, you can access its related categories using your Categories field’s handle:
 
 ```twig
 {% set relatedCategories = entry.<FieldHandle.all() %}
@@ -114,13 +97,31 @@ Or you can show them as a hierarchical list with the [nav](dev/tags/nav.md) tag:
 {% endif %}
 ```
 
-If you only want the first related category, call [one()](api:craft\db\Query::one()) instead, and then make sure it returned something:
+That will give you a [category query](dev/element-queries/category-queries.md), prepped to output all of the related categories for the given field.
+
+To loop through all of the related categories as a flat list, call [all()](api:craft\db\Query::all()) and then loop over the results:
 
 ```twig
 {% set rel = entry.<FieldHandle>.one() %}
 {% if rel %}
     <p><a href="{{ rel.url }}">{{ rel.title }}</a></p>
 {% endif %}
+```
+
+Or you can show them as a hierarchical list with the [nav](dev/tags/nav.md) tag:
+
+```twig
+{% if entry.<FieldHandle>.exists() %}
+    <p>There are related categories!</p>
+{% endif %}
+```
+
+If you only want the first related category, call [one()](api:craft\db\Query::one()) instead, and then make sure it returned something:
+
+```twig
+{% set relatedCategories = entry.<FieldHandle>
+    .leaves()
+    .all() %}
 ```
 
 If you just need to check if there are any related categories (but don’t need to fetch them), you can call [exists()](api:craft\db\Query::exists()):

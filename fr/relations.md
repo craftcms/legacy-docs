@@ -87,8 +87,8 @@ By doing that, Craft will return all of the elements related to the given elemen
 If you want to be a little more specific, `relatedTo` also accepts an object that contains the following properties:
 
 * `element`, `sourceElement`, or `targetElement`
-* `field` _(optional)_
-* `sourceLocale` _(optional)_
+* `field` *(optional)*
+* `sourceLocale` *(optional)*
 
 Set the first property’s key depending on what you want to get back:
 
@@ -138,4 +138,4 @@ There might be times when you need to factor multiple types of relations into th
 ]).all() %}
 ```
 
-That first argument (`'and'`) specified that the query must match _all_ of the relation criteria. You can pass `'or'` instead if you want _any_ of the relation criteria to match.
+That first argument (`'and'`) specified that the query must match *all* of the relation criteria. You can pass `'or'` instead if you want *any* of the relation criteria to match.

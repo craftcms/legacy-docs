@@ -61,7 +61,7 @@ public function handleChangedProductType(ConfigEvent $event)
 {
     // Get the UID that was matched in the config path
     $uid = $event->tokenMatches[0];
-    
+
     // Does this product type exist?
     $id = (new Query())
         ->select(['id'])
@@ -132,7 +132,7 @@ public function handleDeletedProductType(ConfigEvent $event)
 }
 ```
 
-At this point, if product types were to be added or removed from the project config manually, those changes should be syncing with the database, and any `afterSaveProductType`, `beforeApplyProductTypeDelete`, and `afterDeleteProductType` event listeners will be triggered. 
+At this point, if product types were to be added or removed from the project config manually, those changes should be syncing with the database, and any `afterSaveProductType`, `beforeApplyProductTypeDelete`, and `afterDeleteProductType` event listeners will be triggered.
 
 ::: tip
 If your component config references another component config, you can ensure that the other config changes are processed first by calling [ProjectConfig::processConfigChanges()](api:craft\services\ProjectConfig::processConfigChanges()) within your handler method.
@@ -216,13 +216,13 @@ Consider this scenario:
 
 1. Your plugin is updated on Environment A, which includes a new migration that makes a change to the project config.
 3. The updated `composer.lock` and `project.yaml` is committed to Git.
-4. The Git commit is pulled into Environment B, where Craft must now run the new plugin migration _and_ sync `project.yaml` changes.
+4. The Git commit is pulled into Environment B, where Craft must now run the new plugin migration *and* sync `project.yaml` changes.
 
-When new plugin migrations are pending _and_ `project.yaml` changes are pending, Craft will run migrations first and then sync the `project.yaml` changes.
+When new plugin migrations are pending *and* `project.yaml` changes are pending, Craft will run migrations first and then sync the `project.yaml` changes.
 
 If your plugin migration were to make the same project config changes again on Environment B, those changes will conflict with the pending changes in `project.yaml`.
 
-To avoid this, always check your plugin’s schema version _in `project.yaml`_ before making project config changes. (You do that by passing `true` as the second argument when calling [ProjectConfig::get()](api:craft\services\ProjectConfig::get()).)
+To avoid this, always check your plugin’s schema version *in `project.yaml`* before making project config changes. (You do that by passing `true` as the second argument when calling [ProjectConfig::get()](api:craft\services\ProjectConfig::get()).)
 
 ```php
 public function safeUp()

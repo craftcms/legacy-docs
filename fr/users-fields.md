@@ -34,10 +34,10 @@ When [querying for elements](dev/element-queries/README.md) that have a Users fi
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `':empty:'` | that don’t have any related users.
-| `':notempty:'` | that have at least one related user.
+| Value          | Fetches elements…                    |
+| -------------- | ------------------------------------ |
+| `':empty:'`    | that don’t have any related users.   |
+| `':notempty:'` | that have at least one related user. |
 
 ```twig
 {# Fetch entries with a related user #}

@@ -29,7 +29,7 @@ As you can see, they are made up three segments:
 
     Identifiers can also include the site ID, UUID, or handle that the element should be loaded from, using an `@<Site>` syntax.
 
-3.  `<Property>` _(optional)_ – The element property that the reference tag should return. If omitted, the element’s URL will be returned.
+3.  `<Property>` *(optional)* – The element property that the reference tag should return. If omitted, the element’s URL will be returned.
 
     You can refer to the element types’ class references for a list of available properties:
 

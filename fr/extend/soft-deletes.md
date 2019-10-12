@@ -38,7 +38,7 @@ Table rows that have been soft-deleted should only stick around as long as the <
 
 Rather than check for stale rows on every request, we can make this a part of Craft’s [garbage collection](../gc.md) routines.
 
-<api:craft\services\Gc> will fire a `run` event each time that it is running. You can tap into that from your module/plugin’s `init()` method. 
+<api:craft\services\Gc> will fire a `run` event each time that it is running. You can tap into that from your module/plugin’s `init()` method.
 
 ```php
 use craft\services\Gc;
@@ -47,14 +47,14 @@ use yii\base\Event;
 public function init()
 {
     paren::init();
-    
+
     Event::on(Gc::class, Gc::EVENT_RUN, function() {
         Craft::$app->gc->hardDelete('{{%tablename}}');
     }
 }
 ```
 
-[hardDelete()](api:craft\services\Gc::hardDelete()) method will delete any rows with a `dateDeleted` value set to a timestamp that’s older than the <config:softDeleteDuration> config setting. 
+[hardDelete()](api:craft\services\Gc::hardDelete()) method will delete any rows with a `dateDeleted` value set to a timestamp that’s older than the <config:softDeleteDuration> config setting.
 
 ::: tip
 If you need to check multiple tables for stale rows, you can pass an array of table names into [hardDelete()](api:craft\services\Gc::hardDelete()) instead.
@@ -71,7 +71,7 @@ use craft\db\SoftDeleteTrait;
 class MyRecord extends ActiveRecord
 {
     use SoftDeleteTrait;
-    
+
     // ...
 }
 ```
@@ -157,10 +157,10 @@ There are two ways to restore soft-deleted rows that haven’t been hard-deleted
 
   ```php
   $record = MyRecord::findTrashed()
-      ->where(['id' => $id])
-      ->one();
+        ->where(['id' => $id])
+        ->one();
 
-  $record->restore();
+    $record->restore();
   ```
 
 - With a query command, by calling <api:craft\db\Command::restore()>.
