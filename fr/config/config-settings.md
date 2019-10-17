@@ -147,6 +147,11 @@ Defined by
 
 [GeneralConfig::$allowAdminChanges](api:craft\config\GeneralConfig::$allowAdminChanges)
 
+Since
+:
+
+3.1.0
+
 
 
 Whether admins should be allowed to make administrative changes to the system.
@@ -835,6 +840,11 @@ Defined by
 
 [GeneralConfig::$disabledPlugins](api:craft\config\GeneralConfig::$disabledPlugins)
 
+Since
+:
+
+3.1.9
+
 
 
 Array of plugin handles that should be disabled, regardless of what the project config says.
@@ -935,6 +945,11 @@ Defined by
 
 [GeneralConfig::$enableGql](api:craft\config\GeneralConfig::$enableGql)
 
+Since
+:
+
+3.3.1
+
 
 
 Whether the GraphQL API should be enabled.
@@ -1031,6 +1046,11 @@ Defined by
 
 [GeneralConfig::$extraAppLocales](api:craft\config\GeneralConfig::$extraAppLocales)
 
+Since
+:
+
+3.0.24
+
 
 
 List of extra locale IDs that the application should support, and users should be able to select as their Preferred Language.
@@ -1055,6 +1075,11 @@ Defined by
 :
 
 [GeneralConfig::$extraFileKinds](api:craft\config\GeneralConfig::$extraFileKinds)
+
+Since
+:
+
+3.0.37
 
 
 
@@ -1142,6 +1167,11 @@ Defined by
 :
 
 [GeneralConfig::$headlessMode](api:craft\config\GeneralConfig::$headlessMode)
+
+Since
+:
+
+3.3.0
 
 
 
@@ -1442,6 +1472,11 @@ Defined by
 :
 
 [GeneralConfig::$maxRevisions](api:craft\config\GeneralConfig::$maxRevisions)
+
+Since
+:
+
+3.2.0
 
 
 
@@ -1759,6 +1794,11 @@ Defined by
 
 [GeneralConfig::$preserveCmykColorspace](api:craft\config\GeneralConfig::$preserveCmykColorspace)
 
+Since
+:
+
+3.0.8
+
 
 
 Whether CMYK should be preserved as the colorspace when when manipulating images.
@@ -1913,6 +1953,11 @@ Defined by
 
 [GeneralConfig::$purgeStaleUserSessionDuration](api:craft\config\GeneralConfig::$purgeStaleUserSessionDuration)
 
+Since
+:
+
+3.3.0
+
 
 
 The amount of time to wait before Craft purges stale user sessions from the sessions table in the database.
@@ -1939,6 +1984,11 @@ Defined by
 :
 
 [GeneralConfig::$purgeUnsavedDraftsDuration](api:craft\config\GeneralConfig::$purgeUnsavedDraftsDuration)
+
+Since
+:
+
+3.2.0
 
 
 
@@ -2498,6 +2548,11 @@ Defined by
 
 [GeneralConfig::$softDeleteDuration](api:craft\config\GeneralConfig::$softDeleteDuration)
 
+Since
+:
+
+3.1.0
+
 
 
 The amount of time before a soft-deleted item will be up for hard-deletion by garbage collection.
@@ -2524,6 +2579,11 @@ Defined by
 :
 
 [GeneralConfig::$storeUserIps](api:craft\config\GeneralConfig::$storeUserIps)
+
+Since
+:
+
+3.1.0
 
 
 
@@ -2620,6 +2680,11 @@ Defined by
 :
 
 [GeneralConfig::$transformGifs](api:craft\config\GeneralConfig::$transformGifs)
+
+Since
+:
+
+3.0.7
 
 
 
@@ -2792,6 +2857,11 @@ Defined by
 
 [GeneralConfig::$useProjectConfigFile](api:craft\config\GeneralConfig::$useProjectConfigFile)
 
+Since
+:
+
+3.1.0
+
 
 
 Whether the project config should be saved out to `config/project.yaml`.
@@ -2922,6 +2992,11 @@ Defined by
 :
 
 [GeneralConfig::$verifyEmailSuccessPath](api:craft\config\GeneralConfig::$verifyEmailSuccessPath)
+
+Since
+:
+
+3.1.20
 
 
 
