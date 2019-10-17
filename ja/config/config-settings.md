@@ -147,6 +147,11 @@ Craft がサポートするコンフィグ設定の完全なリストは、次�
 
 [GeneralConfig::$allowAdminChanges](api:craft\config\GeneralConfig::$allowAdminChanges)
 
+Since
+:
+
+3.1.0
+
 
 
 管理者によるシステムへの管理上の変更を許可するかどうか。
@@ -835,6 +840,11 @@ JPG と PNG ファイルを保存する際に、Craft が使用する品質レ�
 
 [GeneralConfig::$disabledPlugins](api:craft\config\GeneralConfig::$disabledPlugins)
 
+Since
+:
+
+3.1.9
+
 
 
 プロジェクトコンフィグの内容に関わらず無効にする、プラグインハンドルの配列。
@@ -935,6 +945,11 @@ Craft 経由で送信されるすべてのフォームで、不可視項目に�
 
 [GeneralConfig::$enableTemplateCaching](api:craft\config\GeneralConfig::$enableGql)
 
+Since
+:
+
+3.3.1
+
 
 
 グローバル基準で Craft テンプレートの `{% cache %}` タグを有効にするかどうか。
@@ -1031,6 +1046,11 @@ Craft 経由で送信されるすべてのフォームで、不可視項目に�
 
 [GeneralConfig::$extraFileKinds](api:craft\config\GeneralConfig::$extraAppLocales)
 
+Since
+:
+
+3.0.24
+
 
 
 Craft がサポートすべき追加のファイル種類のリスト。この配列は `\craft\config\craft\helpers\Assets::_buildFileKinds()` 内で定義されたものとマージされます。
@@ -1057,6 +1077,11 @@ Craft がサポートすべき追加のファイル種類のリスト。この�
 :
 
 [GeneralConfig::$filenameWordSeparator](api:craft\config\GeneralConfig::$extraFileKinds)
+
+Since
+:
+
+3.0.37
 
 
 
@@ -1142,6 +1167,11 @@ Craft が画像の削除や変形で使用するイメージドライバ。デ�
 :
 
 [GeneralConfig::$indexTemplateFilenames](api:craft\config\GeneralConfig::$headlessMode)
+
+Since
+:
+
+3.3.0
 
 
 
@@ -1413,7 +1443,7 @@ Craft がフロントエンドのユーザーログアウトに使用する URI�
 デフォルト値
 :
 
-`167772160d42.6816777216167772161677721608316777216`
+`67772163008061677721616777216`
 
 定義元
 :
@@ -1442,6 +1472,11 @@ Craft がフロントエンドのユーザーログアウトに使用する URI�
 :
 
 [GeneralConfig::$omitScriptNameInUrls](api:craft\config\GeneralConfig::$maxRevisions)
+
+Since
+:
+
+3.2.0
 
 
 
@@ -1759,6 +1794,11 @@ PHP セッション Cookie の名前。
 
 [GeneralConfig::$preventUserEnumeration](api:craft\config\GeneralConfig::$preserveCmykColorspace)
 
+Since
+:
+
+3.0.8
+
 
 
 `false` に設定すると画像サイズが少し小さくなります。ただし、ImageMagick のバージョンによっては正しくないガンマ値が保存され、とても暗い画像になることがあります。これは ImageMagick を使用している場合のみ、影響があります。
@@ -1913,6 +1953,11 @@ CP ログインページへ自動挿入するために、Craft がユーザー�
 
 [GeneralConfig::$requireUserAgentAndIpForSession](api:craft\config\GeneralConfig::$purgeStaleUserSessionDuration)
 
+Since
+:
+
+3.3.0
+
 
 
 Cookie からユーザーセッションを復元する際に、一致するユーザーエージェントの文字列を Craft が必要とするかどうか。
@@ -1939,6 +1984,11 @@ Cookie からユーザーセッションを復元する際に、一致するユ�
 :
 
 [GeneralConfig::$resourceBasePath](api:craft\config\GeneralConfig::$purgeUnsavedDraftsDuration)
+
+Since
+:
+
+3.2.0
 
 
 
@@ -2496,6 +2546,11 @@ GIF ファイルを綺麗にしたり、変形したりするかどうか。
 
 [GeneralConfig::$transformGifs](api:craft\config\GeneralConfig::$softDeleteDuration)
 
+Since
+:
+
+3.1.0
+
 
 
 デフォルトでは、すべてのホストが信頼されます。
@@ -2522,6 +2577,11 @@ GIF ファイルを綺麗にしたり、変形したりするかどうか。
 :
 
 [GeneralConfig::$translationDebugOutput](api:craft\config\GeneralConfig::$storeUserIps)
+
+Since
+:
+
+3.1.0
 
 
 
@@ -2618,6 +2678,11 @@ Craft が URL を生成する際、`PATH_INFO` を使用してパスを指定す
 :
 
 [GeneralConfig::$useFileLocks](api:craft\config\GeneralConfig::$transformGifs)
+
+Since
+:
+
+3.0.7
 
 
 
@@ -2792,6 +2857,11 @@ Craft が URL を生成する際、`PATH_INFO` を使用してパスを指定す
 
 [GeneralConfig::$verifyEmailSuccessPath](api:craft\config\GeneralConfig::$useProjectConfigFile)
 
+Since
+:
+
+3.1.0
+
 
 
 サポートされる値の種類は、[craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) のリストを参照してください。
@@ -2922,6 +2992,11 @@ Defined by
 :
 
 [GeneralConfig::$verifyEmailSuccessPath](api:craft\config\GeneralConfig::$verifyEmailSuccessPath)
+
+Since
+:
+
+3.1.20
 
 
 
