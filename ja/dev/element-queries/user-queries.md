@@ -234,7 +234,7 @@ $elements = ElementClass::find()
 
 | 値                                                           | 取得するエレメント                    |
 | ----------------------------------------------------------- | ---------------------------- |
-| `bar.baz'0660'foo@bar.baz'`                                 | メールアドレスが `foo@bar.baz`。      |
+| `875.5748'foo@bar.baz'895'foo@bar.baz'`                     | メールアドレスが `foo@bar.baz`。      |
 | a [craft\elements\User](api:craft\elements\User) object | メールアドレスが `foo@bar.baz` ではない。 |
 
 
@@ -264,9 +264,9 @@ $elements = ElementClass::find()
 
 利用可能な値には、次のものが含まれます。
 
-| 値             | 取得するエレメント         |
-| ------------- | ----------------- |
-| `e'744'Jane'` | ファーストネームが `Jane`。 |
+| 値        | 取得するエレメント         |
+| -------- | ----------------- |
+| `'Jane'` | ファーストネームが `Jane`。 |
 
 
 
@@ -297,7 +297,7 @@ $elements = ElementClass::find()
 
 | 値                     | 取得するエレメント               |
 | --------------------- | ----------------------- |
-| `'foo''foo'30'foo'`   | ハンドルが `foo` のグループ内。     |
+| `8520'foo'`           | ハンドルが `foo` のグループ内。     |
 | a ElementClass object | ハンドルが `foo` のグループ内ではない。 |
 
 
@@ -479,7 +479,7 @@ $elements = ElementClass::find()
 
 | 値               | 取得するエレメント                            |
 | --------------- | ------------------------------------ |
-| `6266'Doe'`     | ラストネームが `Doe`。                       |
+| `'Doe'`         | ラストネームが `Doe`。                       |
 | `'not Doe'`     | ラストネームが `Doe` ではない。                  |
 | `[1, 2]`        | in a group with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
