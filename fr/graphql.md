@@ -1198,18 +1198,8 @@ A defined type exists for each specific interface implementation. For example, i
 ### Query payload
 
 ```graphql
-curl \
-  -H "Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
-  -H "Content-Type: application/graphql" \
-  -d '{entries{id}}' \
-  http://my-project.test/api
-```
-
-### The response
-
-```json
 {
-  queryEntries (section: "news", limit: 2, orderBy: "dateCreated DESC"){
+  entries (section: "news", limit: 2, orderBy: "dateCreated DESC") {
     dateCreated @formatDateTime (format: "Y-m-d")
     title
     children {
@@ -1221,6 +1211,42 @@ curl \
         url @transform (width: 300, immediately: true)
       }
     }
+  }
+}
+```
+
+### The response
+
+```json
+{
+  "data": {
+    "entries": [
+      {
+        "dateCreated": "2019-08-21",
+        "title": "An important news item",
+        "children": [],
+        "shortDescription": "<p>This is how we roll these days.</p>",
+        "featuredImage": [
+          {
+            "url": "/assets/site/_300xAUTO_crop_center-center_none/glasses.jpg"
+          }
+        ]
+      },
+      {
+        "dateCreated": "2019-07-02",
+        "title": "Dolorem ea eveniet alias",
+        "children": [
+          {
+            "title": "Child entry"
+          },
+          {
+            "title": "This is also a child entry"
+          }
+        ],
+        "shortDescription": "Et omnis explicabo iusto eum nobis. Consequatur debitis architecto est exercitationem vitae velit repellendus. Aut consequatur maiores error ducimus ea et. Rem ipsa asperiores eius quas et omnis. Veniam quasi qui repellendus dignissimos et necessitatibus. Aut a illo tempora.",
+        "featuredImage": []
+      }
+    ]
   }
 }
 ```
