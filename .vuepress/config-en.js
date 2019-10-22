@@ -114,7 +114,8 @@ module.exports = {
                     'framework/mocking',
                     'framework/support-classes',
                     'framework/full-mock',
-                    'framework/assertion-helpers'
+                    'framework/assertion-helpers',
+                    'framework/docker',
                 ]
             },
 
