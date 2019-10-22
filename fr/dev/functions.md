@@ -198,6 +198,38 @@ Returns the value of an environment variable.
 {{ getenv('MAPS_API_KEY') }}
 ```
 
+## `gql`
+
+Executes a GraphQL query against the full schema.
+
+```twig
+{% set result = gql('{
+  entries (section: "news", limit: 2, orderBy: "dateCreated DESC") {
+    postDate @formatDateTime (format: "Y-m-d")
+    title
+    url
+    ... on news_article_Entry {
+      shortDescription
+      featuredImage {
+        url @transform (width: 300, immediately: true)
+        altText
+      }
+    }
+  }
+}') %}
+
+{% for entry in result['data'] %}
+    <h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
+    <p class="timestamp">{{ entry.postDate }}</p>
+
+    {% set entry.featuredImage[0] %}
+    <img class="thumb" src="{{ image.url }}" alt="{{ image.altText }}">
+
+    {{ entry.shortDescription|markdown }}
+    <p><a href="{{ entry.url }}">Continue reading…</a></p>
+{% endfor %}
+```
+
 ## `parseEnv`
 
 Checks if a string references an environment variable (`$VARIABLE_NAME`) and/or an alias (`@aliasName`), and returns the referenced value.
@@ -349,7 +381,7 @@ Randomizes the order of the elements within an array.
 
 ## `siteUrl`
 
-Similar to [url()](#url-path-params-scheme-mustshowscriptname), except *only* for creating URLs to pages on your site.
+Similar to [url()](#url-path-params-scheme-mustshowscriptname), except _only_ for creating URLs to pages on your site.
 
 ```twig
 <a href="{{ siteUrl('company/contact') }}">Contact Us</a>
@@ -395,13 +427,13 @@ You can pass the following things into it:
 By default, if you pass an asset or raw markup into the function, the SVG will be sanitized of potentially malicious scripts using [svg-sanitizer](https://github.com/darylldoyle/svg-sanitizer), and any IDs or class names within the document will be namespaced so they don’t conflict with other IDs or class names in the DOM. You can disable those behaviors using the `sanitize` and `namespace` arguments:
 
 ```twig
-{{ svg('@webroot/icons/lemon.svg') }}
+{{ svg(image, sanitize=false, namespace=false) }}
 ```
 
 You can also specify a custom class name that should be added to the root `<svg>` node using the `class` argument:
 
 ```twig
-{{ svg(image, sanitize=false, namespace=false) }}
+{{ svg('@webroot/icons/lemon.svg', class='lemon-icon') }}
 ```
 
 ## `source`
@@ -415,25 +447,28 @@ This works identically to Twig’s core [`source`](https://twig.symfony.com/doc/
 Renders a complete HTML tag.
 
 ```twig
-{{ svg('@webroot/icons/lemon.svg', class='lemon-icon') }}
-```
-
-If `text` is included in the attributes argument, its value will be HTML-encoded and set as the text contents of the tag.
-
-```twig
 {{ tag('div', {
     class: 'foo'
 }) }}
 {# Output: <div class="foo"></div> #}
 ```
 
-If `html` is included in the attributes argument (and `text` isn’t), its value will be set as the inner HTML of the tag (without getting HTML-encoded).
+If `text` is included in the attributes argument, its value will be HTML-encoded and set as the text contents of the tag.
 
 ```twig
 {{ tag('div', {
     text: 'Hello'
 }) }}
 {# Output: <div>Hello</div> #}
+```
+
+If `html` is included in the attributes argument (and `text` isn’t), its value will be set as the inner HTML of the tag (without getting HTML-encoded).
+
+```twig
+{{ tag('div', {
+    html: 'Hello<br>world'
+}) }}
+{# Output: <div>Hello<br>world</div> #}
 ```
 
 All other keys passed to the second argument will be set as attributes on the tag, using <api:yii\helpers\BaseHtml::renderTagAttributes()>.
@@ -449,10 +484,7 @@ This works identically to Twig’s core [`template_from_string`](https://twig.sy
 Returns a URL.
 
 ```twig
-{{ tag('div', {
-    html: 'Hello<br>world'
-}) }}
-{# Output: <div>Hello<br>world</div> #}
+<a href="{{ url('company/contact') }}">Contact Us</a>
 ```
 
 ### Arguments
@@ -467,6 +499,7 @@ The `url()` function has the following arguments:
 ::: tip
 You can use the `url()` function for appending query string parameters and/or enforcing a scheme on an absolute URL:
 ```twig
-<a href="{{ url('company/contact') }}">Contact Us</a>
+{{ url('http://my-project.com', 'foo=1', 'https') }}
+{# Outputs: "https://my-project.com?foo=1" #}
 ```
 :::
