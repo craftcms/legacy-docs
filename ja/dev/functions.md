@@ -180,39 +180,68 @@ SVG 文書を出力します。
 <p>{{ seq('hits:' ~ entry.id, next=false) }} views</p>
 ```
 
-## `svg( svg, sanitize, namespace, class )`
+## `gql`
 
-URL を返します。
-
-## `url( path, params, scheme, mustShowScriptName )`
-
-`url()` ファンクションは、次の引数を持っています。
+Executes a GraphQL query against the full schema.
 
 ```twig
-{% set promos = shuffle(homepage.promos) %}
+{% set result = gql('{
+  entries (section: "news", limit: 2, orderBy: "dateCreated DESC") {
+    postDate @formatDateTime (format: "Y-m-d")
+    title
+    url
+    ... on news_article_Entry {
+      shortDescription
+      featuredImage {
+        url @transform (width: 300, immediately: true)
+        altText
+      }
+    }
+  }
+}') %}
 
-{% for promo in promos %}
-    <div class="promo {{ promo.slug }}">
-        <h3>{{ promo.title }}</h3>
-        <p>{{ promo.description }}</p>
-        <a class="cta" href="{{ promo.ctaUrl }}">{{ promo.ctaLabel }}</a>
-    </div>
+{% for entry in result['data'] %}
+    <h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
+    <p class="timestamp">{{ entry.postDate }}</p>
+
+    {% set entry.featuredImage[0] %}
+    <img class="thumb" src="{{ image.url }}" alt="{{ image.altText }}">
+
+    {{ entry.shortDescription|markdown }}
+    <p><a href="{{ entry.url }}">Continue reading…</a></p>
 {% endfor %}
+```
+
+## `parseEnv`
+
+Checks if a string references an environment variable (`$VARIABLE_NAME`) and/or an alias (`@aliasName`), and returns the referenced value.
+
+## `head`
+
+Outputs any scripts and styles that were registered for the “head” position. It should be placed right before your `</head>` tag.
+
+```twig
+<head>
+    <title>{{ siteName }}</title>
+    {{ head() }}
+</head>
 ```
 
 ## `hiddenInput`
 
-::: tip
-クエリ文字列パラメータを追加、および / または、絶対 URL にスキームを適用するために、`url()` ファンクションを使用することができます。
+Generates an HTML input tag.
 
 ```twig
-<a href="{{ siteUrl('company/contact') }}">Contact Us</a>
+{{ hiddenInput('entryId', entry.id) }}
+{# Output: <input type="hidden" name="entryId" value="100"> #}
 ```
 
-:::
+You can optionally set additional attributes on the tag by passing an `options` argument.
 
 ```twig
-{{ svg(image, sanitize=false, namespace=false) }}
+{{ hiddenInput('entryId', entry.id, {
+    id: 'entry-id-input'
+}) }}
 ```
 
 ## `include`
@@ -226,13 +255,16 @@ This works identically to Twig’s core [`include`](https://twig.symfony.com/doc
 Generates an HTML input tag.
 
 ```twig
-{{ svg('@webroot/icons/lemon.svg', class='lemon-icon') }}
+{{ input('email', 'email-input', '') }}
+{# Output: <input type="email" name="email-input" value=""> #}
 ```
 
 You can optionally set additional attributes on the tag by passing an `options` argument.
 
 ```twig
-<a href="{{ url('company/contact') }}">Contact Us</a>
+{{ input('email', 'email-input', '', {
+    id: 'custom-input'
+}) }}
 ```
 
 ## `max`
@@ -258,8 +290,7 @@ This works identically to Twig’s core [`parent`](https://twig.symfony.com/doc/
 Returns a plugin instance by its handle, or `null` if no plugin is installed and enabled with that handle.
 
 ```twig
-{{ url('http://my-project.com', 'foo=1', 'https') }}
-{# Outputs: "https://my-project.com?foo=1" #}
+{{ plugin('commerce').version }}
 ```
 
 ## `random`
