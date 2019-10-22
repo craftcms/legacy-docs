@@ -355,7 +355,7 @@ $categories = \craft\elements\Category::find()
 
 | 値           | 取得するカテゴリ            |
 | ----------- | ------------------- |
-| `0405'foo'` | ハンドルが `foo` のグループ内。 |
+| `3392'foo'` | ハンドルが `foo` のグループ内。 |
 
 
 
@@ -873,7 +873,7 @@ $categories = \craft\elements\Category::find()
 
 | 値                                    | 取得するカテゴリ            |
 | ------------------------------------ | ------------------- |
-| `5639'foo'`                          | ハンドルが `foo` のサイトから。 |
+| `754'foo''foo'`                      | ハンドルが `foo` のサイトから。 |
 | `\craft\elements\db\Site` オブジェクト | オブジェクトで表されるサイトから。   |
 
 
@@ -934,7 +934,7 @@ $categories = \craft\elements\Category::find()
 
 | 値                                                  | 取得するカテゴリ          |
 | -------------------------------------------------- | ----------------- |
-| `'foo'`                                            | スラグが `foo`。       |
+| `5569'foo'`                                        | スラグが `foo`。       |
 | a [Category](api:craft\elements\Category) object | スラグが `foo` ではじまる。 |
 
 
@@ -1029,9 +1029,9 @@ $categories = \craft\elements\Category::find()
 
 利用可能な値には、次のものが含まれます。
 
-| 値           | 取得するカテゴリ     |
-| ----------- | ------------ |
-| `o'33'Foo'` | タイトルが `Foo`。 |
+| 値               | 取得するカテゴリ     |
+| --------------- | ------------ |
+| `oo''Foo''Foo'` | タイトルが `Foo`。 |
 
 
 
@@ -1062,7 +1062,7 @@ $categories = \craft\elements\Category::find()
 
 | 値                                                  | 取得するカテゴリ           |
 | -------------------------------------------------- | ------------------ |
-| `9009'foo'`                                        | URI が `foo`。       |
+| `o'697703'foo'`                                    | URI が `foo`。       |
 | a [Category](api:craft\elements\Category) object | URI が `foo` ではじまる。 |
 
 
