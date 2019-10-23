@@ -350,12 +350,21 @@ RSS フィードに必要な形式（`D, d M Y H:i:s O`）で日付を出力し�
 
 ## `multisort`
 
-`format` パラメータに値を渡すことで、詳細がどの程度提供されるかをカスタマイズできます。
+Groups items in an array by a the results of an arrow function.
 
 ```twig
-{% set str = "Hello, NAME" %}
+{% set allEntries = craft.entries.section('blog').all() %}
+{% set allEntriesByYear = allEntries|group(e => e.postDate|date('Y')) %}
 
-{{ str|replace('NAME', currentUser.name) }}
+{% for year, entriesInYear in allEntriesByYear %}
+    <h2>{{ year }}</h2>
+
+    <ul>
+        {% for entry in entriesInYear %}
+            <li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endfor %}
 ```
 
 ## `number`
