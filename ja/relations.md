@@ -88,7 +88,7 @@ Craft のリレーションを操作する前に、それがテンプレート�
 
 * `element`, `sourceElement`、または `targetElement`
 * `field` _（オプション）_
-* `sourceLocale` _（オプション）_
+* `sourceSite` _(optional)_
 
 最初のプロパティのキーは、取得したいものにあわせてセットしてください。
 
@@ -105,12 +105,12 @@ Craft のリレーションを操作する前に、それがテンプレート�
 }) %}
 ```
 
-特定のフィールドで作成されたリレーションにスコープを制限する場合は、`sourceLocale` プロパティをセットします。（関連フィールドを翻訳可能にしている場合のみ、これを行います。）ロケール ID をここにセットします。
+Set the `sourceSite` property if you want to limit the scope to relations created from a particular site. (Only do this if you set your relational field to be translatable.) You can set this to a site ID.
 
 ```twig
 {% set ingredients = craft.entries.section('ingredients').relatedTo({
     sourceElement: drink,
-    sourceLocale: craft.app.language
+    sourceSite: craft.app.sites.currentSite.id
 }) %}
 ```
 
