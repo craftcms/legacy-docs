@@ -97,7 +97,7 @@
 または、[nav](dev/tags/nav.md) タグで階層リストとして表示することもできます。
 
 ```twig
-{% set relatedCategories = entry.<FieldHandle.all() %}
+{% set relatedCategories = entry.<FieldHandle>.all() %}
 {% if relatedCategories|length %}
     <ul>
         {% nav rel in relatedCategories %}
