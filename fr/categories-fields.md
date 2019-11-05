@@ -111,8 +111,20 @@ To loop through all of the related categories as a flat list, call [all()](api:c
 Or you can show them as a hierarchical list with the [nav](dev/tags/nav.md) tag:
 
 ```twig
-{% if entry.<FieldHandle>.exists() %}
-    <p>There are related categories!</p>
+{% set relatedCategories = entry.<FieldHandle>.all() %}
+{% if relatedCategories|length %}
+    <ul>
+        {% nav rel in relatedCategories %}
+            <li>
+                <a href="{{ rel.url }}">{{ rel.title }}</a>
+                {% ifchildren %}
+                    <ul>
+                        {% children %}
+                    </ul>
+                {% endifchildren %}
+            </li>
+        {% endnav %}
+    </ul>
 {% endif %}
 ```
 
