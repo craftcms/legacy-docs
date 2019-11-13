@@ -34,7 +34,7 @@ Craft が開発ドメイン上で実行されている場合、「試用」ボ�
 
 ## プラグインライセンスの管理
 
-[Craft ID](https://id.craftcms.com/) アカウントの「Licenses → Plugins」から、すべてのプラグインライセンスを管理することができます。
+You can manage all of your plugin licenses from your [Craft ID](https://id.craftcms.com/) account, under Licenses → Plugins
 
 まだ Craft ID アカウントをお持ちでない場合は、[id.craftcms.com/register](https://id.craftcms.com/register) にアクセスしてアカウントを作成することができます。
 
