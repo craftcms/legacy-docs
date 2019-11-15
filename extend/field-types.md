@@ -33,19 +33,21 @@ class Plugin extends \craft\base\Plugin
 }
 ```
 
-## Delta Saving Field Content
+## Delta Saving
 
-Craft can track field content edits as they happen, saving only what changed. This improves performance since only the delta will be posted and saved rather than all field content.
+If your field type implements `afterElementSave()`, an additional check can be added with `isFieldDirty()` to skip taking action for unchanged content.
 
-If your field type uses or extends one of the field templates that ships with Craft, you won’t need to make any changes to take advantage of this feature.
+This function checks for content changes before continuing to handle that element:
 
-If your field type provides its own template, you’ll need to add two lines to enable delta saving. The template needs to...
+```php
+public function afterElementSave(ElementInterface $element, bool $isNew)
+{
+    if ($element->isFieldDirty()) {
+        // logic for handling saved element
+    }
 
-1. ensure delta saving is active with `{% do view.setIsDeltaRegistrationActive(true) %}`.
-2. provide a handle for tracking field edits with `{% do view.registerDeltaName(field.handle) %}`.
+    parent::afterElementSave($element, $isNew);
+}
+```
 
-These can be called anywhere in the template, and the field handle should match your frontend input(s).
-
-To verify that your field is utilizing delta saving, inspect the `$_POST` data when saving an Element. Your field should only appear in the `fields` array if changes were made.
-
-If you do not implement delta saving for your field, its entire contents will be saved along with its parent Element.
+If your field type provides its own template, that template will need to register its delta handle [as described in the Element Types section](element-types.md#delta-saving-field-content).
