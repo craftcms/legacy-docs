@@ -857,3 +857,19 @@ public function setEagerLoadedElements(string $handle, array $elements)
     }
 }
 ```
+
+## Delta Saving
+
+If your element implements `afterElementSave()`, an additional check can be added with `isFieldDirty()` to skip taking action for unchanged content.
+
+This function checks for content changes before continuing to handle that element:
+
+```php
+public function afterElementSave(ElementInterface $element, bool $isNew)
+{
+    if ($element->isFieldDirty()) {
+        // logic for handling saved element
+    }
+
+    parent::afterElementSave($element, $isNew);
+}
