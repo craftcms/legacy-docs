@@ -873,4 +873,4 @@ These can be called anywhere in the template, and the field handle should match 
 
 To verify that your field is utilizing delta saving, inspect the `$_POST` data when saving edits in the control panel. Your field should only appear in the `fields` array if changes were made.
 
-If you do not implement delta saving for your field, its entire contents will be saved along with its parent Element.
+If you do not implement delta saving for your field, its entire contents will be saved along with its parent element.
