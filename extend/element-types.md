@@ -871,6 +871,6 @@ If your element provides its own field template, you’ll need to add two lines 
 
 These can be called anywhere in the template, and the field handle should match your frontend input(s).
 
-To verify that your field is utilizing delta saving, inspect the `$_POST` data when saving an element. Your field should only appear in the `fields` array if changes were made.
+To verify that your field is utilizing delta saving, inspect the `$_POST` data when saving edits in the control panel. Your field should only appear in the `fields` array if changes were made.
 
 If you do not implement delta saving for your field, its entire contents will be saved along with its parent Element.
