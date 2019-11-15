@@ -867,7 +867,7 @@ If your element uses or extends one of the field templates that ships with Craft
 If your element provides its own field template, you’ll need to add two lines to enable delta saving. The template needs to...
 
 1. ensure delta saving is active with `{% do view.setIsDeltaRegistrationActive(true) %}`.
-2. provide a handle for tracking content changes with `{% do view.registerDeltaName(field.handle) %}`.
+2. provide a handle for tracking changes with `{% do view.registerDeltaName(field.handle) %}`.
 
 These can be called anywhere in the template, and the field handle should match your frontend input(s).
 
