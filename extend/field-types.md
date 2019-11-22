@@ -33,11 +33,13 @@ class Plugin extends \craft\base\Plugin
 }
 ```
 
-## Delta Saving
+## Supporting Delta Saves
 
-If your field type implements `afterElementSave()`, an additional check can be added with `isFieldDirty()` to skip taking action for unchanged content.
+If your field type needs to do anything following [`afterElementSave()`](api:craft\base\Field::afterElementSave()) or [`afterElementPropagate()`](api:craft\base\Field::afterElementPropagate()), you can improve performance by skipping processing when the field’s value is unchanged.
 
-This function checks for content changes before continuing to handle that element:
+You can tell whether field content has changed by calling `isFieldDirty()` on the element.
+
+This method checks for content changes before continuing to handle that element:
 
 ```php
 public function afterElementSave(ElementInterface $element, bool $isNew)
@@ -49,5 +51,3 @@ public function afterElementSave(ElementInterface $element, bool $isNew)
     parent::afterElementSave($element, $isNew);
 }
 ```
-
-If your field type provides its own template, that template will need to register its delta handle [as described in the Element Types section](element-types.md#delta-saving-field-content).
