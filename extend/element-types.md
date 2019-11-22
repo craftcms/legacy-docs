@@ -858,19 +858,23 @@ public function setEagerLoadedElements(string $handle, array $elements)
 }
 ```
 
-## Delta Saving Field Content
+## Saving Field Content Deltas
 
-Craft can track field content edits as they happen, saving only what changed. This improves performance since only the delta will be posted and saved rather than all field content.
+Element forms can be configured to submit only the field values that actually changed on the page. This is a prerequisite to [field delta saves](/extend/field-types.md#supporting-delta-saves).
 
-If your element uses or extends one of the field templates that ships with Craft, you won’t need to make any changes to take advantage of this feature.
+If your element provides its own edit form template, here’s how you can configure it to submit delta field content:
 
-If your element provides its own field template, you’ll need to add two lines to enable delta saving. The template needs to...
+1. Enable delta input name registration at the top of your template.
+2. Add `registerDeltas: true` wherever you’ve used `_includes/fields.html` or `_includes/field.html`.
 
-1. ensure delta saving is active with `{% do view.setIsDeltaRegistrationActive(true) %}`.
-2. provide a handle for tracking changes with `{% do view.registerDeltaName(field.handle) %}`.
+```twig{1,6}
+{% do view.setIsDeltaRegistrationActive(true) %}
 
-These can be called anywhere in the template, and the field handle should match your frontend input(s).
+{% include "_includes/fields" with {
+    fields: tab.getFields(),
+    element: customElement,
+    registerDeltas: true,
+} only %}
+```
 
-To verify that your field is utilizing delta saving, inspect the `$_POST` data when saving edits in the control panel. Your field should only appear in the `fields` array if changes were made.
-
-If you do not implement delta saving for your field, its entire contents will be saved along with its parent element.
+To verify that your element form is utilizing delta saving, inspect the `$_POST` data when saving edits in the Control Panel. Only the field types edited on the page should appear in the `fields` array.
