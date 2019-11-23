@@ -35,7 +35,7 @@ class Plugin extends \craft\base\Plugin
 
 ## Supporting Delta Saves
 
-If your field type needs to do anything following [`afterElementSave()`](api:craft\base\Field::afterElementSave()) or [`afterElementPropagate()`](api:craft\base\Field::afterElementPropagate()), you can improve performance by skipping processing when the field’s value is unchanged.
+If your field type does any processing from [afterElementSave()](api:craft\base\FieldInterface::afterElementSave()) or [afterElementPropagate()](api:craft\base\FieldInterface::afterElementPropagate()), you can improve performance by skipping processing when the field’s value is unchanged.
 
 You can tell whether field content has changed by calling `isFieldDirty()` on the element.
 
