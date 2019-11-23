@@ -867,8 +867,10 @@ If your element provides its own edit form template, here’s how you can config
 1. Enable delta input name registration at the top of your template.
 2. Add `registerDeltas: true` wherever you’ve used `_includes/fields.html` or `_includes/field.html`.
 
-```twig{1,6}
+```twig{1,8}
 {% do view.setIsDeltaRegistrationActive(true) %}
+
+...
 
 {% include "_includes/fields" with {
     fields: tab.getFields(),
