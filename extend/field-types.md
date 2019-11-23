@@ -37,7 +37,7 @@ class Plugin extends \craft\base\Plugin
 
 If your field type does any processing from [afterElementSave()](api:craft\base\FieldInterface::afterElementSave()) or [afterElementPropagate()](api:craft\base\FieldInterface::afterElementPropagate()), you can improve performance by skipping processing when the field’s value is unchanged.
 
-You can tell whether field content has changed by calling `isFieldDirty()` on the element.
+You can tell whether field content has changed by calling [isFieldDirty()](api:craft\base\ElementInterface::isFieldDirty()) on the element.
 
 This method checks for content changes before continuing to handle that element:
 
