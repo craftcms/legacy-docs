@@ -39,8 +39,6 @@ If your field type does any processing from [afterElementSave()](api:craft\base\
 
 You can tell whether field content has changed by calling [isFieldDirty()](api:craft\base\ElementInterface::isFieldDirty()) on the element.
 
-This method checks for content changes before continuing to handle that element:
-
 ```php
 public function afterElementSave(ElementInterface $element, bool $isNew)
 {
