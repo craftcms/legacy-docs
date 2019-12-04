@@ -154,6 +154,16 @@
 <input type="file" name="fields[<FieldHanlde>][]" multiple>
 ```
 
+If you want to add files to a field with existing assets, you will need to first fetch the existing asset ids and add them to a hidden field:
+
+```
+{% for asset in entry.<FieldHanlde> %}
+    <input type="hidden" name="fields[<FieldHanlde>][]" value="{{ asset.id }}">
+{% endfor %}
+
+<input type="file" name="fields[<FieldHanlde>][]" multiple>
+```
+
 ## 関連項目
 
 * [アセットクエリ](dev/element-queries/asset-queries.md)
