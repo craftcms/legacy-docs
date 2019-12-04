@@ -248,9 +248,9 @@ Narrows the query results based on the Matrix blocks’ draft’s ID (from the `
 
 ::: code
 
-| 値                       | Fetches drafts…                |
-| ----------------------- | ------------------------------ |
-| `4'foo''foo''foo''foo'` | for the draft with an ID of 1. |
+| 値               | Fetches drafts…                |
+| --------------- | ------------------------------ |
+| `foo'4993'foo'` | for the draft with an ID of 1. |
 
 
 
@@ -338,7 +338,7 @@ Possible values include:
 
 | 値                       | 取得する行列ブロック                           |
 | ----------------------- | ------------------------------------ |
-| `6992'foo'`             | in a field with an ID of 1.          |
+| `6647'foo'`             | in a field with an ID of 1.          |
 | `'not foo'`             | not in a field with an ID of 1.      |
 | `['foo', 'bar']`        | in a field with an ID of 1 or 2.     |
 | `['not', 'foo', 'bar']` | not in a field with an ID of 1 or 2. |
