@@ -50,6 +50,43 @@ $myUserQuery = \craft\elements\User::find();
 
 <!-- BEGIN PARAMS -->
 
+- [`admin`](#admin)
+- [`anyStatus`](#anystatus)
+- [`asArray`](#asarray)
+- [`can`](#can)
+- [`column`](#column)
+- [`dateCreated`](#datecreated)
+- [`dateUpdated`](#dateupdated)
+- [`draftCreator`](#draftcreator)
+- [`draftId`](#draftid)
+- [`draftOf`](#draftof)
+- [`drafts`](#drafts)
+- [`email`](#email)
+- [`firstName`](#firstname)
+- [`fixedOrder`](#fixedorder)
+- [`group`](#group)
+- [`groupId`](#groupid)
+- [`id`](#id)
+- [`ignorePlaceholders`](#ignoreplaceholders)
+- [`inReverse`](#inreverse)
+- [`lastLoginDate`](#lastlogindate)
+- [`lastName`](#lastname)
+- [`limit`](#limit)
+- [`offset`](#offset)
+- [`orderBy`](#orderby)
+- [`preferSites`](#prefersites)
+- [`relatedTo`](#relatedto)
+- [`revisionCreator`](#revisioncreator)
+- [`revisionId`](#revisionid)
+- [`revisionOf`](#revisionof)
+- [`revisions`](#revisions)
+- [`search`](#search)
+- [`status`](#status)
+- [`trashed`](#trashed)
+- [`uid`](#uid)
+- [`username`](#username)
+- [`with`](#with)
+
 ### `admin`
 
 「管理」権限を持つユーザーだけに、クエリの結果を絞り込みます。
@@ -148,13 +185,26 @@ $elements = ElementClass::find()
 :::
 
 
+### `column`
+
+Executes the query and returns the first column of the result.
+
+
+
+
+
+
+
+
+
+
 ### `dateCreated`
 
-エレメントの作成日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the elements’ creation dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するエレメント                            |
 | ------------------------------------------------ | ------------------------------------ |
@@ -189,11 +239,11 @@ $elements = ElementClass::find()
 
 ### `dateUpdated`
 
-エレメントの最終アップデート日に基づいて、クエリの結果が絞り込まれます。
+Narrows the query results based on the elements’ last-updated dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するエレメント                                |
 | ------------------------------------------------ | ---------------------------------------- |
@@ -224,17 +274,17 @@ $elements = ElementClass::find()
 :::
 
 
-### `email`
+### `draftCreator`
 
-ユーザーのメールアドレスに基づいて、クエリの結果を絞り込みます。
+Narrows the query results to only drafts created by a given user.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                           | 取得するエレメント                    |
 | ----------------------------------------------------------- | ---------------------------- |
-| `@bar.baz'244'foo@bar.baz'`                                 | メールアドレスが `foo@bar.baz`。      |
+| `.baz'6054872'foo@bar.baz'`                                 | メールアドレスが `foo@bar.baz`。      |
 | a [craft\elements\User](api:craft\elements\User) object | メールアドレスが `foo@bar.baz` ではない。 |
 
 
@@ -256,17 +306,17 @@ $elements = ElementClass::find()
 :::
 
 
-### `firstName`
+### `draftId`
 
-ユーザーのファーストネーム（名）に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the elements’ draft’s ID (from the `drafts` table).
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値        | 取得するエレメント         |
-| -------- | ----------------- |
-| `'Jane'` | ファーストネームが `Jane`。 |
+| 値                  | 取得するエレメント         |
+| ------------------ | ----------------- |
+| `ane'643405'Jane'` | ファーストネームが `Jane`。 |
 
 
 
@@ -287,22 +337,22 @@ $elements = ElementClass::find()
 :::
 
 
-### `fixedOrder`
+### `draftOf`
 
-クエリの結果を [id](#id) で指定された順序で返します。
+Narrows the query results to only drafts of a given element.
 
 
 
-::: code
+Possible values include:
 
 | 値                     | 取得するエレメント               |
 | --------------------- | ----------------------- |
-| `'3'foo'38998'foo'`   | ハンドルが `foo` のグループ内。     |
+| `oo'9'foo'`           | ハンドルが `foo` のグループ内。     |
 | a ElementClass object | ハンドルが `foo` のグループ内ではない。 |
 
 
 
-:::
+::: code
 ```twig
 {# Fetch elements in a specific order #}
 {% set elements = craft.queryFunction()
@@ -321,9 +371,9 @@ $elements = ElementClass::find()
 :::
 
 
-### `group`
+### `drafts`
 
-利用可能な値には、次のものが含まれます。
+Narrows the query results to only drafts elements.
 
 
 
@@ -346,11 +396,11 @@ $elements = ElementClass::find()
 :::
 
 
-### `groupId`
+### `email`
 
-グループ ID ごとに、ユーザーが属するユーザーグループに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the users’ email addresses.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値         | 取得するエレメント            |
 | --------- | -------------------- |
@@ -377,11 +427,11 @@ $elements = ElementClass::find()
 :::
 
 
-### `id`
+### `firstName`
 
-エレメントの ID に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the users’ first names.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値         | 取得するエレメント   |
 | --------- | ----------- |
@@ -407,17 +457,15 @@ $element = ElementClass::find()
 :::
 
 
-### `inReverse`
+### `fixedOrder`
 
-::: tip
-特定の順序で結果を返したい場合、[fixedOrder](#fixedorder) と組み合わせることができます。
-:::
+Causes the query results to be returned in the order specified by [id](#id).
 
 
 
 
 
-クエリの結果を逆順で返します。
+::: code
 ```twig
 {# Fetch elements in reverse #}
 {% set elements = craft.queryFunction()
@@ -434,11 +482,11 @@ $elements = ElementClass::find()
 :::
 
 
-### `lastLoginDate`
+### `group`
 
-:::
+Narrows the query results based on the user group the users belong to.
 
-ユーサーの最終ログイン日に基づいて、クエリの結果を絞り込みます。
+Possible values include:
 
 | 値                                                  | 取得するエレメント                                       |
 | -------------------------------------------------- | ----------------------------------------------- |
@@ -450,7 +498,7 @@ $elements = ElementClass::find()
 
 
 
-利用可能な値には、次のものが含まれます。
+::: code
 ```twig
 {# Fetch elements that logged in recently #}
 {% set aWeekAgo = date('7 days ago')|atom %}
@@ -471,22 +519,22 @@ $elements = ElementClass::find()
 :::
 
 
-### `lastName`
+### `groupId`
 
-:::
+Narrows the query results based on the user group the users belong to, per the groups’ IDs.
 
-ユーザーのラストネーム（姓）に基づいて、クエリの結果を絞り込みます。
+Possible values include:
 
 | 値               | 取得するエレメント                            |
 | --------------- | ------------------------------------ |
-| `'Doe'`         | ラストネームが `Doe`。                       |
+| `8608'Doe'`     | ラストネームが `Doe`。                       |
 | `'not Doe'`     | ラストネームが `Doe` ではない。                  |
 | `[1, 2]`        | in a group with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
 
 
 
-利用可能な値には、次のものが含まれます。
+::: code
 ```twig
 {# Fetch all the Doe's #}
 {% set elements = craft.queryFunction()
@@ -503,13 +551,13 @@ $elements = ElementClass::find()
 :::
 
 
-### `limit`
+### `id`
 
-:::
+Narrows the query results based on the elements’ IDs.
 
 
 
-返されるエレメントの数を決定します。
+Possible values include:
 
 | 値             | 取得するエレメント                           |
 | ------------- | ----------------------------------- |
@@ -538,31 +586,33 @@ $elements = ElementClass::find()
 
 
 
-結果からスキップされるエレメントの数を決定します。
-
-
-### `offset`
-
-::: code
-
-
-
-
-
-
-
-
-
-
-### `orderBy`
-
+::: tip
+This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order.
 :::
 
 
+### `ignorePlaceholders`
+
+Causes the query to return matching elements as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 
 
-返されるエレメントの順序を決定します。
+
+
+
+
+
+
+
+### `inReverse`
+
+Causes the query results to be returned in reverse order.
+
+
+
+
+
+::: code
 ```twig
 {# Fetch all elements except for the first 3 #}
 {% set elements = craft.queryFunction()
@@ -579,11 +629,11 @@ $elements = ElementClass::find()
 :::
 
 
-### `relatedTo`
+### `lastLoginDate`
 
-:::
+Narrows the query results based on the users’ last login dates.
 
-特定の他のエレメントと関連付けられたエレメントだけに、クエリの結果を絞り込みます。
+Possible values include:
 
 | 値                                                | 取得するエレメント                                              |
 | ------------------------------------------------ | ------------------------------------------------------ |
@@ -593,7 +643,7 @@ $elements = ElementClass::find()
 
 
 
-このパラメーターがどのように機能するかの詳細については、[リレーション](https://docs.craftcms.com/v3/relations.html)を参照してください。
+::: code
 ```twig
 {# Fetch all elements in order of date created #}
 {% set elements = craft.queryFunction()
@@ -610,11 +660,11 @@ $elements = ElementClass::find()
 :::
 
 
-### `search`
+### `lastName`
 
-:::
+Narrows the query results based on the users’ last names.
 
-検索結果にマッチするエレメントだけに、クエリの結果を絞り込みます。
+Possible values include:
 
 | Value       | Fetches elements…              |
 | ----------- | ------------------------------ |
@@ -623,7 +673,7 @@ $elements = ElementClass::find()
 
 
 
-このパラメーターがどのように機能するかの詳細については、[検索](https://docs.craftcms.com/v3/searching.html)を参照してください。
+::: code
 ```twig
 {# Fetch all elements that are related to myCategory #}
 {% set elements = craft.queryFunction()
@@ -640,13 +690,13 @@ $elements = ElementClass::find()
 :::
 
 
-### `status`
+### `limit`
 
-:::
+Determines the number of elements that should be returned.
 
 
 
-エレメントのステータスに基づいて、クエリの結果を絞り込みます。
+::: code
 ```twig
 {# Get the search query from the 'q' query string param #}
 {% set searchQuery = craft.app.request.getQueryParam('q') %}
@@ -669,13 +719,13 @@ $elements = ElementClass::find()
 :::
 
 
-### `trashed`
+### `offset`
+
+Determines how many elements should be skipped in the results.
+
+
 
 ::: code
-
-
-
-:::
 ```twig
 {# Fetch active and locked elements #}
 {% set elements = {twig-function}
@@ -692,13 +742,13 @@ $elements = ElementClass::find()
 :::
 
 
-### `uid`
+### `orderBy`
+
+Determines the order that the elements should be returned in.
+
+
 
 ::: code
-
-
-
-:::
 ```twig
 {# Fetch trashed elements #}
 {% set elements = {twig-function}
@@ -715,19 +765,19 @@ $elements = ElementClass::find()
 :::
 
 
-### `username`
+### `preferSites`
+
+If [unique()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-unique) is set, this determines which site should be selected when querying multi-site elements.
+
+
+
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
+
+If this isn’t set, then preference goes to the current site.
+
+
 
 ::: code
-
-
-
-:::
-
-ユーザーのユーザー名に基づいて、クエリの結果を絞り込みます。
-
-
-
-利用可能な値には、次のものが含まれます。
 ```twig
 {# Fetch the element by its UID #}
 {% set element = craft.queryFunction()
@@ -744,17 +794,17 @@ $element = ElementClass::find()
 :::
 
 
-### `with`
+### `relatedTo`
 
-:::
-
-
-
-関連付けられたエレメントを eager-loaded した状態で、マッチしたエレメントをクエリが返します。
+Narrows the query results to only elements that are related to certain other elements.
 
 
 
-このパラメーターがどのように機能するかの詳細については、[エレメントのEager-Loading](https://docs.craftcms.com/v3/dev/eager-loading-elements.html)を参照してください。
+See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
+
+
+
+::: code
 ```twig
 {# Get the requested username #}
 {% set requestedUsername = craft.app.request.getSegment(2) %}
@@ -779,7 +829,7 @@ $element = ElementClass::find()
 
 ### `revisionCreator`
 
-:::
+Narrows the query results to only revisions created by a given user.
 
 
 
