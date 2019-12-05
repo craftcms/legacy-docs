@@ -51,46 +51,46 @@ $myAssetQuery = \craft\elements\Asset::find();
 
 <!-- BEGIN PARAMS -->
 
-- [`anyStatus`](#anystatus)
-- [`asArray`](#asarray)
-- [`dateCreated`](#datecreated)
-- [`dateModified`](#datemodified)
-- [`dateUpdated`](#dateupdated)
-- [`draftCreator`](#draftcreator)
-- [`draftId`](#draftid)
-- [`draftOf`](#draftof)
-- [`drafts`](#drafts)
-- [`filename`](#filename)
-- [`fixedOrder`](#fixedorder)
-- [`folderId`](#folderid)
-- [`height`](#height)
-- [`id`](#id)
-- [`ignorePlaceholders`](#ignoreplaceholders)
-- [`inReverse`](#inreverse)
-- [`includeSubfolders`](#includesubfolders)
-- [`kind`](#kind)
-- [`limit`](#limit)
-- [`offset`](#offset)
-- [`orderBy`](#orderby)
-- [`preferSites`](#prefersites)
-- [`relatedTo`](#relatedto)
-- [`revisionCreator`](#revisioncreator)
-- [`revisionId`](#revisionid)
-- [`revisionOf`](#revisionof)
-- [`revisions`](#revisions)
-- [`search`](#search)
-- [`site`](#site)
-- [`siteId`](#siteid)
-- [`size`](#size)
-- [`title`](#title)
-- [`trashed`](#trashed)
-- [`uid`](#uid)
-- [`unique`](#unique)
-- [`volume`](#volume)
-- [`volumeId`](#volumeid)
-- [`width`](#width)
-- [`with`](#with)
-- [`withTransforms`](#withtransforms)
+- [anyStatus](#anystatus)
+- [asArray](#asarray)
+- [dateCreated](#datecreated)
+- [dateModified](#datemodified)
+- [dateUpdated](#dateupdated)
+- [draftCreator](#draftcreator)
+- [draftId](#draftid)
+- [draftOf](#draftof)
+- [drafts](#drafts)
+- [filename](#filename)
+- [fixedOrder](#fixedorder)
+- [folderId](#folderid)
+- [height](#height)
+- [id](#id)
+- [ignorePlaceholders](#ignoreplaceholders)
+- [inReverse](#inreverse)
+- [includeSubfolders](#includesubfolders)
+- [kind](#kind)
+- [limit](#limit)
+- [offset](#offset)
+- [orderBy](#orderby)
+- [preferSites](#prefersites)
+- [relatedTo](#relatedto)
+- [revisionCreator](#revisioncreator)
+- [revisionId](#revisionid)
+- [revisionOf](#revisionof)
+- [revisions](#revisions)
+- [search](#search)
+- [site](#site)
+- [siteId](#siteid)
+- [size](#size)
+- [title](#title)
+- [trashed](#trashed)
+- [uid](#uid)
+- [unique](#unique)
+- [volume](#volume)
+- [volumeId](#volumeid)
+- [width](#width)
+- [with](#with)
+- [withTransforms](#withtransforms)
 
 ### `anyStatus`
 
@@ -263,7 +263,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                                      | 取得するアセット            |
 | -------------------------------------- | ------------------- |
-| `'foo.jpg'`                            | ファイル名が `foo.jpg`。   |
+| `'foo.jpg'070'foo.jpg'208'foo.jpg'`    | ファイル名が `foo.jpg`。   |
 | a `\craft\elements\db\User` object | ファイル名が `foo` ではじまる。 |
 
 
@@ -328,7 +328,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                                            | 取得するアセット        |
 | -------------------------------------------- | --------------- |
-| `00100`                                      | 高さ 100px。       |
+| `0032100`                                    | 高さ 100px。       |
 | a [Asset](api:craft\elements\Asset) object | 少なくとも、高さ 100px。 |
 
 
@@ -447,7 +447,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                         | 取得するアセット                         |
 | ------------------------- | -------------------------------- |
-| `366880'image'`           | ファイルの種類が `image`。                |
+| `'image'`                 | ファイルの種類が `image`。                |
 | `'not image'`             | ファイルの種類が `image` ではない。           |
 | `['image', 'pdf']`        | ファイルの種類が `image` または `pdf`。      |
 | `['not', 'image', 'pdf']` | ファイルの種類が `image` または `pdf` ではない。 |
@@ -518,7 +518,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                                | 取得するアセット                         |
 | -------------------------------- | -------------------------------- |
-| `6992100001000`                  | サイズが 1,000 bytes（1KB）。           |
+| `1000`                           | サイズが 1,000 bytes（1KB）。           |
 | `'< 1000000'`                 | サイズが 1,000,000 bytes（1MB）よりも小さい。 |
 | `['>= 1000', '< 1000000']` | サイズが 1KB から 1MB の間。              |
 | `['not', 1, 2]`                  | not with an ID of 1 or 2.        |
@@ -803,7 +803,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                                      | 取得するアセット                 |
 | -------------------------------------- | ------------------------ |
-| `608'foo''foo'`                        | ハンドルが `foo` のボリューム内。     |
+| `oo'60937'foo'`                        | ハンドルが `foo` のボリューム内。     |
 | a `\craft\elements\db\User` object | ハンドルが `foo` のボリューム内ではない。 |
 
 
@@ -866,7 +866,7 @@ $asset = \craft\elements\Asset::find()
 
 | 値                                            | 取得するアセット       |
 | -------------------------------------------- | -------------- |
-| `100`                                        | 幅 100px。       |
+| `531006100`                                  | 幅 100px。       |
 | a [Asset](api:craft\elements\Asset) object | 少なくとも、幅 100px。 |
 
 
