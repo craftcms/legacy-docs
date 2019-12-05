@@ -51,36 +51,36 @@ $myGlobalSetQuery = \craft\elements\GlobalSet::find();
 
 <!-- BEGIN PARAMS -->
 
-- [`anyStatus`](#anystatus)
-- [`asArray`](#asarray)
-- [`column`](#column)
-- [`dateCreated`](#datecreated)
-- [`dateUpdated`](#dateupdated)
-- [`draftCreator`](#draftcreator)
-- [`draftId`](#draftid)
-- [`draftOf`](#draftof)
-- [`drafts`](#drafts)
-- [`fixedOrder`](#fixedorder)
-- [`handle`](#handle)
-- [`id`](#id)
-- [`ignorePlaceholders`](#ignoreplaceholders)
-- [`inReverse`](#inreverse)
-- [`limit`](#limit)
-- [`offset`](#offset)
-- [`orderBy`](#orderby)
-- [`preferSites`](#prefersites)
-- [`relatedTo`](#relatedto)
-- [`revisionCreator`](#revisioncreator)
-- [`revisionId`](#revisionid)
-- [`revisionOf`](#revisionof)
-- [`revisions`](#revisions)
-- [`search`](#search)
-- [`site`](#site)
-- [`siteId`](#siteid)
-- [`trashed`](#trashed)
-- [`uid`](#uid)
-- [`unique`](#unique)
-- [`with`](#with)
+- [anyStatus](#anystatus)
+- [asArray](#asarray)
+- [column](#column)
+- [dateCreated](#datecreated)
+- [dateUpdated](#dateupdated)
+- [draftCreator](#draftcreator)
+- [draftId](#draftid)
+- [draftOf](#draftof)
+- [drafts](#drafts)
+- [fixedOrder](#fixedorder)
+- [handle](#handle)
+- [id](#id)
+- [ignorePlaceholders](#ignoreplaceholders)
+- [inReverse](#inreverse)
+- [limit](#limit)
+- [offset](#offset)
+- [orderBy](#orderby)
+- [preferSites](#prefersites)
+- [relatedTo](#relatedto)
+- [revisionCreator](#revisioncreator)
+- [revisionId](#revisionid)
+- [revisionOf](#revisionof)
+- [revisions](#revisions)
+- [search](#search)
+- [site](#site)
+- [siteId](#siteid)
+- [trashed](#trashed)
+- [uid](#uid)
+- [unique](#unique)
+- [with](#with)
 
 ### `anyStatus`
 
@@ -231,7 +231,7 @@ Possible values include:
 
 | 値                                      | 取得するグローバル設定       |
 | -------------------------------------- | ----------------- |
-| `3'foo'63'foo'`                        | ハンドルが `foo`。      |
+| `oo'2222'foo''foo'`                    | ハンドルが `foo`。      |
 | a `\craft\elements\db\User` object | ハンドルが `foo` ではない。 |
 
 
@@ -296,7 +296,7 @@ Possible values include:
 
 | 値                                    | 取得するグローバル設定         |
 | ------------------------------------ | ------------------- |
-| `8483'foo'`                          | ハンドルが `foo` のサイトから。 |
+| `foo'8373'foo'`                      | ハンドルが `foo` のサイトから。 |
 | `\craft\elements\db\Site` オブジェクト | オブジェクトで表されるサイトから。   |
 
 
