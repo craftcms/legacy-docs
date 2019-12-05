@@ -54,6 +54,44 @@ $myMatrixBlockQuery = \craft\elements\MatrixBlock::find();
 
 <!-- BEGIN PARAMS -->
 
+- [`allowOwnerDrafts`](#allowownerdrafts)
+- [`allowOwnerRevisions`](#allowownerrevisions)
+- [`anyStatus`](#anystatus)
+- [`asArray`](#asarray)
+- [`column`](#column)
+- [`dateCreated`](#datecreated)
+- [`dateUpdated`](#dateupdated)
+- [`draftCreator`](#draftcreator)
+- [`draftId`](#draftid)
+- [`draftOf`](#draftof)
+- [`drafts`](#drafts)
+- [`fieldId`](#fieldid)
+- [`fixedOrder`](#fixedorder)
+- [`id`](#id)
+- [`ignorePlaceholders`](#ignoreplaceholders)
+- [`inReverse`](#inreverse)
+- [`limit`](#limit)
+- [`offset`](#offset)
+- [`orderBy`](#orderby)
+- [`owner`](#owner)
+- [`ownerId`](#ownerid)
+- [`preferSites`](#prefersites)
+- [`relatedTo`](#relatedto)
+- [`revisionCreator`](#revisioncreator)
+- [`revisionId`](#revisionid)
+- [`revisionOf`](#revisionof)
+- [`revisions`](#revisions)
+- [`search`](#search)
+- [`site`](#site)
+- [`siteId`](#siteid)
+- [`status`](#status)
+- [`trashed`](#trashed)
+- [`type`](#type)
+- [`typeId`](#typeid)
+- [`uid`](#uid)
+- [`unique`](#unique)
+- [`with`](#with)
+
 ### `allowOwnerDrafts`
 
 Narrows the query results based on whether the Matrix blocks’ owners are drafts.
@@ -132,13 +170,26 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 :::
 
 
+### `column`
+
+Executes the query and returns the first column of the result.
+
+
+
+
+
+
+
+
+
+
 ### `dateCreated`
 
 Narrows the query results based on the Matrix blocks’ creation dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | Fetches Matrix blocks…                               |
 | ------------------------------------------------ | ---------------------------------------------------- |
@@ -177,7 +228,7 @@ Narrows the query results based on the Matrix blocks’ last-updated dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | Fetches Matrix blocks…                               |
 | ------------------------------------------------ | ---------------------------------------------------- |
@@ -214,7 +265,7 @@ Narrows the query results to only drafts created by a given user.
 
 
 
-::: code
+Possible values include:
 
 | 値                                      | 取得する行列ブロック                             |
 | -------------------------------------- | -------------------------------------- |
@@ -223,7 +274,7 @@ Narrows the query results to only drafts created by a given user.
 
 
 
-:::
+::: code
 ```twig
 {# Fetch Matrix blocks in the field with an ID of 1 #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -246,15 +297,15 @@ Narrows the query results based on the Matrix blocks’ draft’s ID (from the `
 
 
 
+Possible values include:
+
+| 値                   | Fetches drafts…                |
+| ------------------- | ------------------------------ |
+| `'56676'foo'2'foo'` | for the draft with an ID of 1. |
+
+
+
 ::: code
-
-| 値               | Fetches drafts…                |
-| --------------- | ------------------------------ |
-| `foo'4993'foo'` | for the draft with an ID of 1. |
-
-
-
-:::
 ```twig
 {# Fetch Matrix blocks in a specific order #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -313,7 +364,7 @@ Narrows the query results to only drafts Matrix blocks.
 
 
 
-:::
+::: code
 ```twig
 {# Fetch Matrix blocks in reverse #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -338,7 +389,7 @@ Possible values include:
 
 | 値                       | 取得する行列ブロック                           |
 | ----------------------- | ------------------------------------ |
-| `6647'foo'`             | in a field with an ID of 1.          |
+| `3663'foo'`             | in a field with an ID of 1.          |
 | `'not foo'`             | not in a field with an ID of 1.      |
 | `['foo', 'bar']`        | in a field with an ID of 1 or 2.     |
 | `['not', 'foo', 'bar']` | not in a field with an ID of 1 or 2. |
@@ -370,7 +421,7 @@ Causes the query results to be returned in the order specified by [id](#id).
 
 
 
-指定されたエレメントに基づいて、[ownerId](#ownerid) および [siteId](#siteid) パラメータをセットします。
+::: code
 ```twig
 {# Fetch all Matrix blocks except for the first 3 #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -546,7 +597,7 @@ Sets the [ownerId](#ownerid) and [siteId](#siteid) parameters based on a given e
 
 
 
-デフォルトでは、現在のサイトが使用されます。
+::: code
 ```twig
 {# Fetch Matrix blocks from the Foo site #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -607,7 +658,7 @@ If this isn’t set, then preference goes to the current site.
 
 
 
-:::
+::: code
 ```twig
 {# Fetch disabled Matrix blocks #}
 {% set MatrixBlocks = craft.matrixBlocks()
@@ -634,7 +685,7 @@ See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanat
 
 
 
-:::
+::: code
 ```twig
 {# Fetch trashed Matrix blocks #}
 {% set MatrixBlocks = {twig-function}
@@ -657,7 +708,7 @@ Narrows the query results to only revisions created by a given user.
 
 
 
-::: code
+Possible values include:
 
 | Value                                  | Fetches revisions…                     |
 | -------------------------------------- | -------------------------------------- |
@@ -666,7 +717,7 @@ Narrows the query results to only revisions created by a given user.
 
 
 
-:::
+::: code
 ```twig
 {# Fetch Matrix blocks with a Foo block type #}
 {% set MatrixBlocks = myEntry.myMatrixField
@@ -689,7 +740,7 @@ Narrows the query results based on the Matrix blocks’ revision’s ID (from th
 
 
 
-:::
+Possible values include:
 
 | Value | Fetches revisions…                |
 | ----- | --------------------------------- |
@@ -697,7 +748,7 @@ Narrows the query results based on the Matrix blocks’ revision’s ID (from th
 
 
 
-関連付けられたエレメントを eager-loaded した状態で、マッチした行列ブロックをクエリが返します。
+::: code
 ```twig
 {# Fetch Matrix blocks of the block type with an ID of 1 #}
 {% set MatrixBlocks = myEntry.myMatrixField
