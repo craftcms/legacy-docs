@@ -57,6 +57,54 @@ $myCategoryQuery = \craft\elements\Category::find();
 
 <!-- BEGIN PARAMS -->
 
+- [`ancestorDist`](#ancestordist)
+- [`ancestorOf`](#ancestorof)
+- [`anyStatus`](#anystatus)
+- [`asArray`](#asarray)
+- [`dateCreated`](#datecreated)
+- [`dateUpdated`](#dateupdated)
+- [`descendantDist`](#descendantdist)
+- [`descendantOf`](#descendantof)
+- [`draftCreator`](#draftcreator)
+- [`draftId`](#draftid)
+- [`draftOf`](#draftof)
+- [`drafts`](#drafts)
+- [`enabledForSite`](#enabledforsite)
+- [`fixedOrder`](#fixedorder)
+- [`group`](#group)
+- [`groupId`](#groupid)
+- [`hasDescendants`](#hasdescendants)
+- [`id`](#id)
+- [`ignorePlaceholders`](#ignoreplaceholders)
+- [`inReverse`](#inreverse)
+- [`leaves`](#leaves)
+- [`level`](#level)
+- [`limit`](#limit)
+- [`nextSiblingOf`](#nextsiblingof)
+- [`offset`](#offset)
+- [`orderBy`](#orderby)
+- [`positionedAfter`](#positionedafter)
+- [`positionedBefore`](#positionedbefore)
+- [`preferSites`](#prefersites)
+- [`prevSiblingOf`](#prevsiblingof)
+- [`relatedTo`](#relatedto)
+- [`revisionCreator`](#revisioncreator)
+- [`revisionId`](#revisionid)
+- [`revisionOf`](#revisionof)
+- [`revisions`](#revisions)
+- [`search`](#search)
+- [`siblingOf`](#siblingof)
+- [`site`](#site)
+- [`siteId`](#siteid)
+- [`slug`](#slug)
+- [`status`](#status)
+- [`title`](#title)
+- [`trashed`](#trashed)
+- [`uid`](#uid)
+- [`unique`](#unique)
+- [`uri`](#uri)
+- [`with`](#with)
+
 ### `ancestorDist`
 
 [ancestorOf](#ancestorof) で指定されたカテゴリから特定の距離だけ離れているカテゴリのみに、クエリの結果を絞り込みます。
@@ -353,9 +401,9 @@ $categories = \craft\elements\Category::find()
 
 ::: code
 
-| 値       | 取得するカテゴリ            |
-| ------- | ------------------- |
-| `'foo'` | ハンドルが `foo` のグループ内。 |
+| 値           | 取得するカテゴリ            |
+| ----------- | ------------------- |
+| `2825'foo'` | ハンドルが `foo` のグループ内。 |
 
 
 
@@ -934,7 +982,7 @@ $categories = \craft\elements\Category::find()
 
 | 値                                                  | 取得するカテゴリ          |
 | -------------------------------------------------- | ----------------- |
-| `foo'8349'foo'`                                    | スラグが `foo`。       |
+| `8609'foo'`                                        | スラグが `foo`。       |
 | a [Category](api:craft\elements\Category) object | スラグが `foo` ではじまる。 |
 
 
@@ -1031,7 +1079,7 @@ $categories = \craft\elements\Category::find()
 
 | 値           | 取得するカテゴリ     |
 | ----------- | ------------ |
-| `6584'Foo'` | タイトルが `Foo`。 |
+| `'907'Foo'` | タイトルが `Foo`。 |
 
 
 
@@ -1062,7 +1110,7 @@ $categories = \craft\elements\Category::find()
 
 | 値                                                  | 取得するカテゴリ           |
 | -------------------------------------------------- | ------------------ |
-| `8882'foo'`                                        | URI が `foo`。       |
+| `o'92'foo'`                                        | URI が `foo`。       |
 | a [Category](api:craft\elements\Category) object | URI が `foo` ではじまる。 |
 
 
