@@ -53,6 +53,64 @@ $myEntryQuery = \craft\elements\Entry::find();
 
 <!-- BEGIN PARAMS -->
 
+- [`after`](#after)
+- [`ancestorDist`](#ancestordist)
+- [`ancestorOf`](#ancestorof)
+- [`anyStatus`](#anystatus)
+- [`asArray`](#asarray)
+- [`authorGroup`](#authorgroup)
+- [`authorGroupId`](#authorgroupid)
+- [`authorId`](#authorid)
+- [`before`](#before)
+- [`column`](#column)
+- [`dateCreated`](#datecreated)
+- [`dateUpdated`](#dateupdated)
+- [`descendantDist`](#descendantdist)
+- [`descendantOf`](#descendantof)
+- [`draftCreator`](#draftcreator)
+- [`draftId`](#draftid)
+- [`draftOf`](#draftof)
+- [`drafts`](#drafts)
+- [`enabledForSite`](#enabledforsite)
+- [`expiryDate`](#expirydate)
+- [`fixedOrder`](#fixedorder)
+- [`hasDescendants`](#hasdescendants)
+- [`id`](#id)
+- [`ignorePlaceholders`](#ignoreplaceholders)
+- [`inReverse`](#inreverse)
+- [`leaves`](#leaves)
+- [`level`](#level)
+- [`limit`](#limit)
+- [`nextSiblingOf`](#nextsiblingof)
+- [`offset`](#offset)
+- [`orderBy`](#orderby)
+- [`positionedAfter`](#positionedafter)
+- [`positionedBefore`](#positionedbefore)
+- [`postDate`](#postdate)
+- [`preferSites`](#prefersites)
+- [`prevSiblingOf`](#prevsiblingof)
+- [`relatedTo`](#relatedto)
+- [`revisionCreator`](#revisioncreator)
+- [`revisionId`](#revisionid)
+- [`revisionOf`](#revisionof)
+- [`revisions`](#revisions)
+- [`search`](#search)
+- [`section`](#section)
+- [`sectionId`](#sectionid)
+- [`siblingOf`](#siblingof)
+- [`site`](#site)
+- [`siteId`](#siteid)
+- [`slug`](#slug)
+- [`status`](#status)
+- [`title`](#title)
+- [`trashed`](#trashed)
+- [`type`](#type)
+- [`typeId`](#typeid)
+- [`uid`](#uid)
+- [`unique`](#unique)
+- [`uri`](#uri)
+- [`with`](#with)
+
 ### `after`
 
 特定の日付以降に投稿されたエントリだけに、クエリの結果を絞り込みます。
@@ -333,13 +391,26 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
+### `column`
+
+Executes the query and returns the first column of the result.
+
+
+
+
+
+
+
+
+
+
 ### `dateCreated`
 
-エントリの作成日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the entries’ creation dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するエントリ                             |
 | ------------------------------------------------ | ------------------------------------ |
@@ -374,11 +445,11 @@ $entries = \craft\elements\Entry::find()
 
 ### `dateUpdated`
 
-エントリの最終アップデート日に基づいて、クエリの結果が絞り込まれます。
+Narrows the query results based on the entries’ last-updated dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するエントリ                                 |
 | ------------------------------------------------ | ---------------------------------------- |
@@ -411,7 +482,7 @@ $entries = \craft\elements\Entry::find()
 
 ### `descendantDist`
 
-[descendantOf](#descendantof) で指定されたエントリから特定の距離だけ離れているエントリのみに、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are up to a certain distance away from the entry specified by [descendantOf](#descendantof).
 
 
 
@@ -438,11 +509,11 @@ $entries = \craft\elements\Entry::find()
 
 ### `descendantOf`
 
-指定したエントリの子孫であるエントリだけに、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are descendants of another entry.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                          | 取得するエントリ            |
 | ------------------------------------------ | ------------------- |
@@ -470,17 +541,17 @@ $entries = \craft\elements\Entry::find()
 
 
 ::: tip
-どれだけ離れた子孫エントリを対象にするか制限したい場合、[descendantDist](#descendantdist) と組み合わせることができます。
+This can be combined with [descendantDist](#descendantdist) if you want to limit how far away the descendant entries can be.
 :::
 
 
-### `enabledForSite`
+### `draftCreator`
 
-[site](#site) パラメータごとに、照会されているサイトでエントリが有効になっているかどうかに基づいて、クエリの結果を絞り込みます。
+Narrows the query results to only drafts created by a given user.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                      | 取得するエントリ          |
 | -------------------------------------- | ----------------- |
@@ -506,13 +577,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `expiryDate`
+### `draftId`
 
-エントリの有効期限日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the entries’ draft’s ID (from the `drafts` table).
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値           | 取得するエントリ    |
 | ----------- | ----------- |
@@ -541,13 +612,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `fixedOrder`
+### `draftOf`
 
-クエリの結果を [id](#id) で指定された順序で返します。
+Narrows the query results to only drafts of a given entry.
 
 
 
-::: code
+Possible values include:
 
 | 値                                            | 取得するエントリ    |
 | -------------------------------------------- | ----------- |
@@ -556,7 +627,7 @@ $entries = \craft\elements\Entry::find()
 
 
 
-:::
+::: code
 ```twig
 {# Fetch entries in a specific order #}
 {% set entries = craft.entries()
@@ -575,9 +646,9 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `hasDescendants`
+### `drafts`
 
-（これは [leaves](#leaves) の呼び出しと反対の効果を持っています。）
+Narrows the query results to only drafts entries.
 
 
 
@@ -600,13 +671,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `id`
+### `enabledForSite`
 
-エントリの ID に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on whether the entries are enabled in the site they’re being queried in, per the [site](#site) parameter.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                  | 取得するエントリ     |
 | ------------------ | ------------ |
@@ -632,13 +703,11 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `inReverse`
+### `expiryDate`
 
-::: tip
-特定の順序で結果を返したい場合、[fixedOrder](#fixedorder) と組み合わせることができます。
-:::
+Narrows the query results based on the entries’ expiry dates.
 
-クエリの結果を逆順で返します。
+Possible values include:
 
 | 値                                                | 取得するエントリ                                            |
 | ------------------------------------------------ | --------------------------------------------------- |
@@ -667,15 +736,15 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `leaves`
+### `fixedOrder`
 
-エントリが「leaves」（子孫のないエントリ）であるかどうかに基づいて、クエリの結果を絞り込みます。
-
-
+Causes the query results to be returned in the order specified by [id](#id).
 
 
 
-（これは [hasDescendants](#hasdescendants) の呼び出しと反対の効果を持っています。）
+
+
+::: code
 ```twig
 {# Fetch entries that have no descendants #}
 {% set entries = craft.entries()
@@ -692,17 +761,17 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `level`
+### `hasDescendants`
 
-:::
-
-
-
-構造内のエントリのレベルに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on whether the entries have any descendants.
 
 
 
-利用可能な値には、次のものが含まれます。
+(This has the opposite effect of calling [leaves](#leaves).)
+
+
+
+::: code
 ```twig
 {# Fetch entries positioned at level 3 or above #}
 {% set entries = craft.entries()
@@ -719,13 +788,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `limit`
+### `id`
 
-:::
+Narrows the query results based on the entries’ IDs.
 
 
 
-返されるエントリの数を決定します。
+Possible values include:
 
 | 値               | 取得するエントリ                  |
 | --------------- | ------------------------- |
@@ -754,31 +823,33 @@ $entries = \craft\elements\Entry::find()
 
 
 
-指定したエントリの直後にあるエントリだけに、クエリの結果を絞り込みます。
+::: tip
+This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order.
+:::
 
 
-### `nextSiblingOf`
+### `ignorePlaceholders`
 
-利用可能な値には、次のものが含まれます。
-
-
-
-
-
+Causes the query to return matching entries as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 
 
 
 
-### `offset`
+
+
+
+
+
+### `inReverse`
+
+Causes the query results to be returned in reverse order.
+
+
+
+
 
 ::: code
-
-
-
-
-
-:::
 ```twig
 {# Fetch the next entry #}
 {% set entry = craft.entries()
@@ -795,17 +866,17 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `orderBy`
+### `leaves`
+
+Narrows the query results based on whether the entries are “leaves” (entries with no descendants).
+
+
+
+(This has the opposite effect of calling [hasDescendants](#hasdescendants).)
+
+
 
 ::: code
-
-
-
-:::
-
-
-
-返されるエントリの順序を決定します。
 ```twig
 {# Fetch all entries except for the first 3 #}
 {% set entries = craft.entries()
@@ -822,13 +893,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `positionedAfter`
+### `level`
 
-:::
+Narrows the query results based on the entries’ level within the structure.
 
 
 
-指定したエントリの後に位置するエントリだけに、クエリの結果を絞り込みます。
+Possible values include:
 
 | 値               | 取得するエントリ                                 |
 | --------------- | ---------------------------------------- |
@@ -840,7 +911,7 @@ $entries = \craft\elements\Entry::find()
 
 
 
-利用可能な値には、次のものが含まれます。
+::: code
 ```twig
 {# Fetch all entries in order of date created #}
 {% set entries = craft.entries()
@@ -857,13 +928,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `positionedBefore`
+### `limit`
 
-:::
+Determines the number of entries that should be returned.
 
 
 
-指定したエントリの前に位置するエントリだけに、クエリの結果を絞り込みます。
+::: code
 ```twig
 {# Fetch entries after this one #}
 {% set entries = craft.entries()
@@ -880,22 +951,22 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `postDate`
+### `nextSiblingOf`
 
-::: code
+Narrows the query results to only the entry that comes immediately after another entry.
 
 
 
-:::
+Possible values include:
 
 | 値                                            | 取得するエントリ                |
 | -------------------------------------------- | ----------------------- |
-| `;= 2018-04-01'879'>= 2018-04-01'`        | 2018-04-01 以降に投稿されたもの。  |
+| `018-04-01'2925534'>= 2018-04-01'`        | 2018-04-01 以降に投稿されたもの。  |
 | a [Entry](api:craft\elements\Entry) object | 2018-05-01 より前に投稿されたもの。 |
 
 
 
-エントリの投稿日に基づいて、クエリの結果を絞り込みます。
+::: code
 ```twig
 {# Fetch entries before this one #}
 {% set entries = craft.entries()
@@ -912,13 +983,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `prevSiblingOf`
+### `offset`
+
+Determines how many entries should be skipped in the results.
+
+
 
 ::: code
-
-
-
-:::
 ```twig
 {# Fetch entries posted last month #}
 {% set start = date('first day of last month')|atom %}
@@ -941,9 +1012,9 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `relatedTo`
+### `orderBy`
 
-利用可能な値には、次のものが含まれます。
+Determines the order that the entries should be returned in.
 
 
 
@@ -964,13 +1035,13 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `search`
+### `positionedAfter`
 
-特定の他のエレメントと関連付けられたエントリだけに、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are positioned after another entry.
 
 
 
-このパラメーターがどのように機能するかの詳細については、[リレーション](https://docs.craftcms.com/v3/relations.html)を参照してください。
+Possible values include:
 
 | 値                                          | 取得するエントリ           |
 | ------------------------------------------ | ------------------ |
@@ -996,17 +1067,17 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `section`
+### `positionedBefore`
 
-検索クエリにマッチするエントリだけに、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are positioned before another entry.
 
 
 
-このパラメーターがどのように機能するかの詳細については、[検索](https://docs.craftcms.com/v3/searching.html)を参照してください。
+Possible values include:
 
 | 値                                            | 取得するエントリ                 |
 | -------------------------------------------- | ------------------------ |
-| `0880'foo'`                                  | ハンドルが `foo` のセクション内。     |
+| `5270'foo'`                                  | ハンドルが `foo` のセクション内。     |
 | a [Entry](api:craft\elements\Entry) object | ハンドルが `foo` のセクション内ではない。 |
 
 
@@ -1034,11 +1105,11 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `sectionId`
+### `postDate`
 
-エントリが属するセクションに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the entries’ post dates.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値         | 取得するエントリ              |
 | --------- | --------------------- |
@@ -1065,19 +1136,19 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `siblingOf`
+### `preferSites`
 
-セクションの ID ごとに、エントリが属するセクションに基づいて、クエリの結果を絞り込みます。
+If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
 
 
 
-利用可能な値には、次のものが含まれます。
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
+
+If this isn’t set, then preference goes to the current site.
+
+
 
 ::: code
-
-
-
-:::
 ```twig
 {# Fetch entries in the section with an ID of 1 #}
 {% set entries = craft.entries()
@@ -1094,13 +1165,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `site`
+### `prevSiblingOf`
 
-利用可能な値には、次のものが含まれます。
+Narrows the query results to only the entry that comes immediately before another entry.
 
 
 
-::: code
+Possible values include:
 
 | 値                                          | 取得するエントリ           |
 | ------------------------------------------ | ------------------ |
@@ -1109,7 +1180,7 @@ $entries = \craft\elements\Entry::find()
 
 
 
-:::
+::: code
 ```twig
 {# Fetch entries beside this one #}
 {% set entries = craft.entries()
@@ -1126,13 +1197,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `siteId`
+### `relatedTo`
 
-デフォルトでは、現在のサイトが使用されます。
+Narrows the query results to only entries that are related to certain other elements.
 
 
 
-利用可能な値には、次のものが含まれます。
+See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
 
 
@@ -1153,17 +1224,17 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `slug`
+### `revisionCreator`
 
-サイトの ID ごとに、エントリを照会するサイトを決定します。
+Narrows the query results to only revisions created by a given user.
 
 
 
-デフォルトでは、現在のサイトが使用されます。
+Possible values include:
 
 | 値                                    | 取得するエントリ            |
 | ------------------------------------ | ------------------- |
-| `o'93'foo'`                          | ハンドルが `foo` のサイトから。 |
+| `'foo'`                              | ハンドルが `foo` のサイトから。 |
 | `\craft\elements\db\Site` オブジェクト | オブジェクトで表されるサイトから。   |
 
 
@@ -1185,17 +1256,17 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `status`
+### `revisionId`
 
-エントリのスラグに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the entries’ revision’s ID (from the `revisions` table).
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値               | 取得するエントリ    |
 | --------------- | ----------- |
-| `oo'65267'foo'` | スラグが `foo`。 |
+| `'foo'938'foo'` | スラグが `foo`。 |
 
 
 
@@ -1222,13 +1293,13 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `title`
+### `revisionOf`
 
-エントリのステータスに基づいて、クエリの結果を絞り込みます。
+Narrows the query results to only revisions of a given entry.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                            | 取得するエントリ                      |
 | -------------------------------------------- | ----------------------------- |
@@ -1254,15 +1325,15 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `trashed`
+### `revisions`
 
-エントリのタイトルに基づいて、クエリの結果を絞り込みます。
-
-
+Narrows the query results to only revision entries.
 
 
 
-利用可能な値には、次のものが含まれます。
+
+
+::: code
 ```twig
 {# Fetch entries with a title that contains "Foo" #}
 {% set entries = craft.entries()
@@ -1279,13 +1350,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `type`
+### `search`
 
-:::
+Narrows the query results to only entries that match a search query.
 
 
 
-ソフトデリートされたエントリだけに、クエリの結果を絞り込みます。
+See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
 
 
@@ -1306,11 +1377,11 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `typeId`
+### `section`
 
-エントリの入力タイプに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the sections the entries belong to.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                              | 取得するエントリ           |
 | ---------------------------------------------- | ------------------ |
@@ -1341,15 +1412,15 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `uid`
+### `sectionId`
 
-タイプの ID ごとに、エントリの入力タイプに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                       | 取得するエントリ                        |
 | ----------------------- | ------------------------------- |
-| `foo''foo'`             | ハンドルが `foo` のタイプ。               |
+| `'foo'624052'foo''foo'` | ハンドルが `foo` のタイプ。               |
 | `'not foo'`             | ハンドルが `foo` のタイプではない。           |
 | `['foo', 'bar']`        | ハンドルが `foo` または `bar` のタイプ。     |
 | `['not', 'foo', 'bar']` | ハンドルが `foo` または `bar` のタイプではない。 |
@@ -1373,13 +1444,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `uri`
+### `siblingOf`
 
-エントリの UID に基づいて、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are siblings of another entry.
 
 
 
-::: code
+Possible values include:
 
 | 値                                            | 取得するエントリ         |
 | -------------------------------------------- | ---------------- |
@@ -1388,7 +1459,7 @@ $entries = \craft\elements\Entry::find()
 
 
 
-:::
+::: code
 ```twig
 {# Fetch the entry by its UID #}
 {% set entry = craft.entries()
@@ -1405,15 +1476,15 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `with`
+### `site`
 
-利用可能な値には、次のものが含まれます。
+Determines which site(s) the entries should be queried in.
 
 
 
-::: code
+The current site will be used by default.
 
-:::
+Possible values include:
 
 | 値                                      | 取得するエントリ           |
 | -------------------------------------- | ------------------ |
@@ -1423,11 +1494,13 @@ $entry = \craft\elements\Entry::find()
 | a `\craft\elements\db\Site` object | URI が `foo` を含む。   |
 | `'not *foo*'`                          | URI が `foo` を含まない。 |
 
-関連付けられたエレメントを eager-loaded した状態で、マッチしたエントリをクエリが返します。
+::: tip
+If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
+:::
 
 
 
-このパラメーターがどのように機能するかの詳細については、[エレメントのEager-Loading](https://docs.craftcms.com/v3/dev/eager-loading-elements.html)を参照してください。
+::: code
 ```twig
 {# Get the requested URI #}
 {% set requestedUri = craft.app.request.getPathInfo() %}
@@ -1452,7 +1525,7 @@ $entry = \craft\elements\Entry::find()
 
 ### `siteId`
 
-:::
+Determines which site(s) the entries should be queried in, per the site’s ID.
 
 
 
