@@ -54,43 +54,43 @@ $myMatrixBlockQuery = \craft\elements\MatrixBlock::find();
 
 <!-- BEGIN PARAMS -->
 
-- [`allowOwnerDrafts`](#allowownerdrafts)
-- [`allowOwnerRevisions`](#allowownerrevisions)
-- [`anyStatus`](#anystatus)
-- [`asArray`](#asarray)
-- [`column`](#column)
-- [`dateCreated`](#datecreated)
-- [`dateUpdated`](#dateupdated)
-- [`draftCreator`](#draftcreator)
-- [`draftId`](#draftid)
-- [`draftOf`](#draftof)
-- [`drafts`](#drafts)
-- [`fieldId`](#fieldid)
-- [`fixedOrder`](#fixedorder)
-- [`id`](#id)
-- [`ignorePlaceholders`](#ignoreplaceholders)
-- [`inReverse`](#inreverse)
-- [`limit`](#limit)
-- [`offset`](#offset)
-- [`orderBy`](#orderby)
-- [`owner`](#owner)
-- [`ownerId`](#ownerid)
-- [`preferSites`](#prefersites)
-- [`relatedTo`](#relatedto)
-- [`revisionCreator`](#revisioncreator)
-- [`revisionId`](#revisionid)
-- [`revisionOf`](#revisionof)
-- [`revisions`](#revisions)
-- [`search`](#search)
-- [`site`](#site)
-- [`siteId`](#siteid)
-- [`status`](#status)
-- [`trashed`](#trashed)
-- [`type`](#type)
-- [`typeId`](#typeid)
-- [`uid`](#uid)
-- [`unique`](#unique)
-- [`with`](#with)
+- [allowOwnerDrafts](#allowownerdrafts)
+- [allowOwnerRevisions](#allowownerrevisions)
+- [anyStatus](#anystatus)
+- [asArray](#asarray)
+- [column](#column)
+- [dateCreated](#datecreated)
+- [dateUpdated](#dateupdated)
+- [draftCreator](#draftcreator)
+- [draftId](#draftid)
+- [draftOf](#draftof)
+- [drafts](#drafts)
+- [fieldId](#fieldid)
+- [fixedOrder](#fixedorder)
+- [id](#id)
+- [ignorePlaceholders](#ignoreplaceholders)
+- [inReverse](#inreverse)
+- [limit](#limit)
+- [offset](#offset)
+- [orderBy](#orderby)
+- [owner](#owner)
+- [ownerId](#ownerid)
+- [preferSites](#prefersites)
+- [relatedTo](#relatedto)
+- [revisionCreator](#revisioncreator)
+- [revisionId](#revisionid)
+- [revisionOf](#revisionof)
+- [revisions](#revisions)
+- [search](#search)
+- [site](#site)
+- [siteId](#siteid)
+- [status](#status)
+- [trashed](#trashed)
+- [type](#type)
+- [typeId](#typeid)
+- [uid](#uid)
+- [unique](#unique)
+- [with](#with)
 
 ### `allowOwnerDrafts`
 
@@ -299,9 +299,9 @@ Narrows the query results based on the Matrix blocks’ draft’s ID (from the `
 
 Possible values include:
 
-| 値                   | Fetches drafts…                |
-| ------------------- | ------------------------------ |
-| `'56676'foo'2'foo'` | for the draft with an ID of 1. |
+| 値           | Fetches drafts…                |
+| ----------- | ------------------------------ |
+| `oo'7'foo'` | for the draft with an ID of 1. |
 
 
 
@@ -389,7 +389,7 @@ Possible values include:
 
 | 値                       | 取得する行列ブロック                           |
 | ----------------------- | ------------------------------------ |
-| `3663'foo'`             | in a field with an ID of 1.          |
+| `oo'7'foo'`             | in a field with an ID of 1.          |
 | `'not foo'`             | not in a field with an ID of 1.      |
 | `['foo', 'bar']`        | in a field with an ID of 1 or 2.     |
 | `['not', 'foo', 'bar']` | not in a field with an ID of 1 or 2. |
