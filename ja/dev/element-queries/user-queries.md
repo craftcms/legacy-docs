@@ -210,7 +210,7 @@ Possible values include:
 | ------------------------------------------------ | ------------------------------------ |
 | `'>= 2018-04-01'`                             | 2018-04-01 以降に作成されたもの。               |
 | `'< 2018-05-01'`                              | 2018-05-01 より前に作成されたもの。              |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間に作成されたもの。 |
+| `['and', '>= 2018-04-01', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間に作成されたもの。 |
 
 
 
@@ -282,10 +282,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| 値                                                           | 取得するエレメント                    |
-| ----------------------------------------------------------- | ---------------------------- |
-| `'foo@bar.baz'`                                             | メールアドレスが `foo@bar.baz`。      |
-| a [craft\elements\User](api:craft\elements\User) object | メールアドレスが `foo@bar.baz` ではない。 |
+| 値                                                               | 取得するエレメント                    |
+| --------------------------------------------------------------- | ---------------------------- |
+| `z''foo@bar.baz'.622'foo@bar.baz'993'foo@bar.baz''foo@bar.baz'` | メールアドレスが `foo@bar.baz`。      |
+| a [craft\elements\User](api:craft\elements\User) object     | メールアドレスが `foo@bar.baz` ではない。 |
 
 
 
@@ -314,9 +314,9 @@ Narrows the query results based on the elements’ draft’s ID (from the `draft
 
 Possible values include:
 
-| 値                  | 取得するエレメント         |
-| ------------------ | ----------------- |
-| `9'Jane'205'Jane'` | ファーストネームが `Jane`。 |
+| 値        | 取得するエレメント         |
+| -------- | ----------------- |
+| `'Jane'` | ファーストネームが `Jane`。 |
 
 
 
@@ -347,7 +347,7 @@ Possible values include:
 
 | 値                     | 取得するエレメント               |
 | --------------------- | ----------------------- |
-| `'4589534'foo'`       | ハンドルが `foo` のグループ内。     |
+| `'foo'`               | ハンドルが `foo` のグループ内。     |
 | a ElementClass object | ハンドルが `foo` のグループ内ではない。 |
 
 
@@ -527,7 +527,7 @@ Possible values include:
 
 | 値               | 取得するエレメント                            |
 | --------------- | ------------------------------------ |
-| `'364'Doe'`     | ラストネームが `Doe`。                       |
+| `'2858222'Doe'` | ラストネームが `Doe`。                       |
 | `'not Doe'`     | ラストネームが `Doe` ではない。                  |
 | `[1, 2]`        | in a group with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
