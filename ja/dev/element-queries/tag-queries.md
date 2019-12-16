@@ -233,7 +233,7 @@ Possible values include:
 
 | 値                                      | 取得するタグ                  |
 | -------------------------------------- | ----------------------- |
-| `'2959504'foo'`                        | ハンドルが `foo` のグループ内。     |
+| `9'foo'689'foo'86'foo'`                | ハンドルが `foo` のグループ内。     |
 | a `\craft\elements\db\User` object | ハンドルが `foo` のグループ内ではない。 |
 
 
@@ -409,12 +409,12 @@ Narrows the query results based on the tag groups the tags belong to, per the gr
 
 Possible values include:
 
-| 値               | 取得するタグ             |
-| --------------- | ------------------ |
-| `o'385739'Foo'` | タイトルが `Foo`。       |
-| `'Foo*'`        | タイトルが `Foo` ではじまる。 |
-| `'*Foo'`        | タイトルが `Foo` で終わる。  |
-| `'*Foo*'`       | タイトルが `Foo` を含む。   |
+| 値           | 取得するタグ             |
+| ----------- | ------------------ |
+| `8260'Foo'` | タイトルが `Foo`。       |
+| `'Foo*'`    | タイトルが `Foo` ではじまる。 |
+| `'*Foo'`    | タイトルが `Foo` で終わる。  |
+| `'*Foo*'`   | タイトルが `Foo` を含む。   |
 
 
 
@@ -445,7 +445,7 @@ Possible values include:
 
 | 値           | 取得するタグ             |
 | ----------- | ------------------ |
-| `3852'foo'` | URI が `foo`。       |
+| `6293'foo'` | URI が `foo`。       |
 | `'foo*'`    | URI が `foo` ではじまる。 |
 | `'*foo'`    | URI が `foo` で終わる。  |
 | `'*foo*'`   | URI が `foo` を含む。   |
