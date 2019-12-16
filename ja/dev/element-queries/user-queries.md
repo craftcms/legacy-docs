@@ -57,10 +57,6 @@ $myUserQuery = \craft\elements\User::find();
 - [column](#column)
 - [dateCreated](#datecreated)
 - [dateUpdated](#dateupdated)
-- [draftCreator](#draftcreator)
-- [draftId](#draftid)
-- [draftOf](#draftof)
-- [drafts](#drafts)
 - [email](#email)
 - [firstName](#firstname)
 - [fixedOrder](#fixedorder)
@@ -76,10 +72,6 @@ $myUserQuery = \craft\elements\User::find();
 - [orderBy](#orderby)
 - [preferSites](#prefersites)
 - [relatedTo](#relatedto)
-- [revisionCreator](#revisioncreator)
-- [revisionId](#revisionid)
-- [revisionOf](#revisionof)
-- [revisions](#revisions)
 - [search](#search)
 - [status](#status)
 - [trashed](#trashed)
@@ -274,139 +266,17 @@ $users = \craft\elements\User::find()
 :::
 
 
-### `draftCreator`
-
-Narrows the query results to only drafts created by a given user.
-
-
-
-Possible values include:
-
-| 値                                                           | 取得するエレメント                    |
-| ----------------------------------------------------------- | ---------------------------- |
-| `ea7.80379'foo@bar.baz'88'foo@bar.baz'`                     | メールアドレスが `foo@bar.baz`。      |
-| a [craft\elements\User](api:craft\elements\User) object | メールアドレスが `foo@bar.baz` ではない。 |
-
-
-
-::: code
-```twig
-{# Fetch drafts by the current user #}
-{% set users = craft.users()
-    .draftCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch drafts by the current user
-$users = \craft\elements\User::find()
-    ->draftCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `draftId`
-
-Narrows the query results based on the users’ draft’s ID (from the `drafts` table).
-
-
-
-Possible values include:
-
-| 値                                 | 取得するエレメント         |
-| --------------------------------- | ----------------- |
-| `'Jane'.2'Jane'52236'Jane''Jane'` | ファーストネームが `Jane`。 |
-
-
-
-::: code
-```twig
-{# Fetch a draft #}
-{% set users = craft.users()
-    .draftId(10)
-    .all() %}
-```
-
-```php
-// Fetch a draft
-$users = \craft\elements\User::find()
-    ->draftIf(10)
-    ->all();
-```
-:::
-
-
-### `draftOf`
-
-Narrows the query results to only drafts of a given user.
-
-
-
-Possible values include:
-
-| 値                                          | 取得するエレメント                               |
-| ------------------------------------------ | --------------------------------------- |
-| `'48'foo'48'foo'7'foo'`                    | for the user with an ID of 1.           |
-| a [User](api:craft\elements\User) object | for the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch drafts of the user #}
-{% set users = craft.users()
-    .draftOf(myUser)
-    .all() %}
-```
-
-```php
-// Fetch drafts of the user
-$users = \craft\elements\User::find()
-    ->draftOf($myUser)
-    ->all();
-```
-:::
-
-
-### `drafts`
-
-Narrows the query results to only drafts users.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a draft user #}
-{% set users = {twig-function}
-    .drafts()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a draft user
-$users = \craft\elements\User::find()
-    ->drafts()
-    ->id(123)
-    ->one();
-```
-:::
-
-
 ### `email`
 
 Narrows the query results based on the users’ email addresses.
 
 Possible values include:
 
-| 値         | Fetches users…       |
-| --------- | -------------------- |
-| `1`       | ID が 1 のグループ内。       |
-| `'not 1'` | ID が 1 のグループ内ではない。   |
-| `[1, 2]`  | ID が 1 または 2 のグループ内。 |
+| 値                   | Fetches users…                           |
+| ------------------- | ---------------------------------------- |
+| `'foo@bar.baz'`     | with an email of `foo@bar.baz`.          |
+| `'not foo@bar.baz'` | not with an email of `foo@bar.baz`.      |
+| `'*@bar.baz'`       | with an email that ends with `@bar.baz`. |
 
 
 
@@ -433,10 +303,10 @@ Narrows the query results based on the users’ first names.
 
 Possible values include:
 
-| 値         | Fetches users… |
-| --------- | -------------- |
-| `1`       | ID が 1。        |
-| `'not 1'` | ID が 1ではない。    |
+| 値            | Fetches users…                   |
+| ------------ | -------------------------------- |
+| `'Jane'`     | with a first name of `Jane`.     |
+| `'not Jane'` | not with a first name of `Jane`. |
 
 
 
@@ -492,9 +362,9 @@ Possible values include:
 
 | 値                                                  | Fetches users…                                  |
 | -------------------------------------------------- | ----------------------------------------------- |
-| `'>= 2018-04-01'`                               | 2018-04-01 以降に最終ログインされたもの。                      |
-| `'< 2018-05-01'`                                | 2018-05-01 より前に最終ログインされたもの。                     |
-| `['and', '>= 2018-04-04', '< 2018-05-01']`   | 2018-04-01 から 2018-05-01 の間に最終ログインされたもの。        |
+| `'foo'`                                            | in a group with a handle of `foo`.              |
+| `'not foo'`                                        | not in a group with a handle of `foo`.          |
+| `['foo', 'bar']`                                   | in a group with a handle of `foo` or `bar`.     |
 | `['not', 'foo', 'bar']`                            | not in a group with a handle of `foo` or `bar`. |
 | a [UserGroup](api:craft\models\UserGroup) object | in a group represented by the object.           |
 
@@ -525,8 +395,8 @@ Possible values include:
 
 | 値               | Fetches users…                       |
 | --------------- | ------------------------------------ |
-| `oe'2'Doe'`     | ラストネームが `Doe`。                       |
-| `'not Doe'`     | ラストネームが `Doe` ではない。                  |
+| `1`             | in a group with an ID of 1.          |
+| `'not 1'`       | not in a group with an ID of 1.      |
 | `[1, 2]`        | in a group with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not in a group with an ID of 1 or 2. |
 
@@ -557,12 +427,12 @@ Narrows the query results based on the users’ IDs.
 
 Possible values include:
 
-| 値             | Fetches users…                      |
-| ------------- | ----------------------------------- |
-| `1`           | 有効なアカウント。                           |
-| `'suspended'` | 停止されているアカウント。                       |
-| `'pending'`   | アクティベーションが保留されているアカウント。             |
-| `'locked'`    | （それが有効か停止されているかに関わらず）ロックされているアカウント。 |
+| 値               | Fetches users…            |
+| --------------- | ------------------------- |
+| `1`             | with an ID of 1.          |
+| `'not 1'`       | not with an ID of 1.      |
+| `[1, 2]`        | with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
 
@@ -635,8 +505,8 @@ Possible values include:
 
 | 値                                                | Fetches users…                                         |
 | ------------------------------------------------ | ------------------------------------------------------ |
-| `'foo'`                                          | ユーザー名が `foo`。                                          |
-| `'not foo'`                                      | ユーザー名が `foo` ではない。                                     |
+| `'>= 2018-04-01'`                             | that last logged-in on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that last logged-in before 2018-05-01                  |
 | `['and', '>= 2018-04-04', '< 2018-05-01']` | that last logged-in between 2018-04-01 and 2018-05-01. |
 
 
@@ -668,7 +538,7 @@ Narrows the query results based on the users’ last names.
 
 Possible values include:
 
-| Value       | Fetches users…                 |
+| 値           | Fetches users…                 |
 | ----------- | ------------------------------ |
 | `'Doe'`     | with a last name of `Doe`.     |
 | `'not Doe'` | not with a last name of `Doe`. |
@@ -821,128 +691,6 @@ $users = \craft\elements\User::find()
 :::
 
 
-### `revisionCreator`
-
-Narrows the query results to only revisions created by a given user.
-
-
-
-Possible values include:
-
-| Value                                                       | Fetches revisions…                     |
-| ----------------------------------------------------------- | -------------------------------------- |
-| `1`                                                         | created by the user with an ID of 1.   |
-| a [craft\elements\User](api:craft\elements\User) object | by the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions by the current user #}
-{% set users = craft.users()
-    .revisionCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch revisions by the current user
-$users = \craft\elements\User::find()
-    ->revisionCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `revisionId`
-
-Narrows the query results based on the users’ revision’s ID (from the `revisions` table).
-
-
-
-Possible values include:
-
-| Value | Fetches revisions…                |
-| ----- | --------------------------------- |
-| `1`   | for the revision with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a revision #}
-{% set users = craft.users()
-    .revisionId(10)
-    .all() %}
-```
-
-```php
-// Fetch a revision
-$users = \craft\elements\User::find()
-    ->revisionIf(10)
-    ->all();
-```
-:::
-
-
-### `revisionOf`
-
-Narrows the query results to only revisions of a given user.
-
-
-
-Possible values include:
-
-| Value                                      | Fetches revisions…                      |
-| ------------------------------------------ | --------------------------------------- |
-| `1`                                        | for the user with an ID of 1.           |
-| a [User](api:craft\elements\User) object | for the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions of the user #}
-{% set users = craft.users()
-    .revisionOf(myUser)
-    .all() %}
-```
-
-```php
-// Fetch revisions of the user
-$users = \craft\elements\User::find()
-    ->revisionOf($myUser)
-    ->all();
-```
-:::
-
-
-### `revisions`
-
-Narrows the query results to only revision users.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a revision user #}
-{% set users = {twig-function}
-    .revisions()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a revision user
-$users = \craft\elements\User::find()
-    ->revisions()
-    ->id(123)
-    ->one();
-```
-:::
-
-
 ### `search`
 
 Narrows the query results to only users that match a search query.
@@ -982,7 +730,7 @@ Narrows the query results based on the users’ statuses.
 
 Possible values include:
 
-| Value                     | Fetches users…                                                            |
+| 値                         | Fetches users…                                                            |
 | ------------------------- | ------------------------------------------------------------------------- |
 | `'active'` _(default)_    | with active accounts.                                                     |
 | `'suspended'`             | with suspended accounts.                                                  |
@@ -1065,7 +813,7 @@ Narrows the query results based on the users’ usernames.
 
 Possible values include:
 
-| Value       | Fetches users…                |
+| 値           | Fetches users…                |
 | ----------- | ----------------------------- |
 | `'foo'`     | with a username of `foo`.     |
 | `'not foo'` | not with a username of `foo`. |
