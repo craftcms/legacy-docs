@@ -553,10 +553,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| 値                                      | 取得するエントリ          |
-| -------------------------------------- | ----------------- |
-| `1`                                    | サイト内で有効になっているもの。  |
-| a `\craft\elements\db\User` object | サイト内で有効かどうかに関係なく。 |
+| 値                                      | 取得するエントリ                                       |
+| -------------------------------------- | ---------------------------------------------- |
+| `1`                                    | サイト内で有効になっているもの。                               |
+| a `\craft\elements\db\User` object | created by the user represented by the object. |
 
 
 
@@ -585,9 +585,9 @@ Narrows the query results based on the entries’ draft’s ID (from the `drafts
 
 Possible values include:
 
-| 値                                   | 取得するエントリ    |
-| ----------------------------------- | ----------- |
-| `86':empty:'0925':empty:'':empty:'` | 有効期限日を持たない。 |
+| 値                   | 取得するエントリ    |
+| ------------------- | ----------- |
+| `:'659875':empty:'` | 有効期限日を持たない。 |
 
 
 
@@ -959,10 +959,10 @@ Narrows the query results to only the entry that comes immediately after another
 
 Possible values include:
 
-| 値                                            | 取得するエントリ                |
-| -------------------------------------------- | ----------------------- |
-| `;= 2018-04-01'352'>= 2018-04-01'`        | 2018-04-01 以降に投稿されたもの。  |
-| a [Entry](api:craft\elements\Entry) object | 2018-05-01 より前に投稿されたもの。 |
+| 値                                                                       | 取得するエントリ                |
+| ----------------------------------------------------------------------- | ----------------------- |
+| `04-01'3'>= 2018-04-01'.0'>= 2018-04-01'876423'>= 2018-04-01'` | 2018-04-01 以降に投稿されたもの。  |
+| a [Entry](api:craft\elements\Entry) object                            | 2018-05-01 より前に投稿されたもの。 |
 
 
 
@@ -1077,7 +1077,7 @@ Possible values include:
 
 | 値                                            | 取得するエントリ                 |
 | -------------------------------------------- | ------------------------ |
-| `4872'foo'`                                  | ハンドルが `foo` のセクション内。     |
+| `o'64'foo'`                                  | ハンドルが `foo` のセクション内。     |
 | a [Entry](api:craft\elements\Entry) object | ハンドルが `foo` のセクション内ではない。 |
 
 
@@ -1232,10 +1232,10 @@ Narrows the query results to only revisions created by a given user.
 
 Possible values include:
 
-| 値                                    | 取得するエントリ            |
-| ------------------------------------ | ------------------- |
-| `9668'foo'`                          | ハンドルが `foo` のサイトから。 |
-| `\craft\elements\db\Site` オブジェクト | オブジェクトで表されるサイトから。   |
+| 値                                    | 取得するエントリ                                       |
+| ------------------------------------ | ---------------------------------------------- |
+| `3422'foo'`                          | ハンドルが `foo` のサイトから。                            |
+| `\craft\elements\db\Site` オブジェクト | created by the user represented by the object. |
 
 
 
@@ -1266,7 +1266,7 @@ Possible values include:
 
 | 値           | 取得するエントリ    |
 | ----------- | ----------- |
-| `0273'foo'` | スラグが `foo`。 |
+| `7273'foo'` | スラグが `foo`。 |
 
 
 
@@ -1420,7 +1420,7 @@ Possible values include:
 
 | 値                       | 取得するエントリ                        |
 | ----------------------- | ------------------------------- |
-| `8443'foo'`             | ハンドルが `foo` のタイプ。               |
+| `'foo'`                 | ハンドルが `foo` のタイプ。               |
 | `'not foo'`             | ハンドルが `foo` のタイプではない。           |
 | `['foo', 'bar']`        | ハンドルが `foo` または `bar` のタイプ。     |
 | `['not', 'foo', 'bar']` | ハンドルが `foo` または `bar` のタイプではない。 |
