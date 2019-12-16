@@ -299,9 +299,9 @@ Narrows the query results based on the Matrix blocks’ draft’s ID (from the `
 
 Possible values include:
 
-| 値           | Fetches drafts…                |
-| ----------- | ------------------------------ |
-| `0903'foo'` | for the draft with an ID of 1. |
+| 値               | Fetches drafts…                |
+| --------------- | ------------------------------ |
+| `oo'83039'foo'` | for the draft with an ID of 1. |
 
 
 
@@ -389,7 +389,7 @@ Possible values include:
 
 | 値                       | 取得する行列ブロック                           |
 | ----------------------- | ------------------------------------ |
-| `'foo'8'foo'2'foo'`     | in a field with an ID of 1.          |
+| `'229'foo''foo'55'foo'` | in a field with an ID of 1.          |
 | `'not foo'`             | not in a field with an ID of 1.      |
 | `['foo', 'bar']`        | in a field with an ID of 1 or 2.     |
 | `['not', 'foo', 'bar']` | not in a field with an ID of 1 or 2. |
