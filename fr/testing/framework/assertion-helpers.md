@@ -4,7 +4,7 @@ Testing mainly revolves around `asserting` that some behaviour, object or value,
 
 ## `assertElementsExist`
 
-This assert can be used to test that multiple [elements](../../extend/element-types.md#getting-started) exist in the database I.E as a result of code you have just executed. It accepts three arguments:
+This assert can be used to test that multiple [elements](../../extend/element-types.md#getting-started) exist in the database I.E as a result of code you have just executed. It accepts four arguments:
 
 - `string $elementType` what [element type](../../extend/element-types.md) must these elements be of.
 - `array $searchParameters` the params that they must match (see below).
