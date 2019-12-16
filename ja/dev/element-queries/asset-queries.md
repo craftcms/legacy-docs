@@ -263,7 +263,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                                      | 取得するアセット            |
 | -------------------------------------- | ------------------- |
-| `foo.jpg''foo.jpg'`                    | ファイル名が `foo.jpg`。   |
+| `30700'foo.jpg'35'foo.jpg'`            | ファイル名が `foo.jpg`。   |
 | a `\craft\elements\db\User` object | ファイル名が `foo` ではじまる。 |
 
 
@@ -328,7 +328,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                                            | 取得するアセット        |
 | -------------------------------------------- | --------------- |
-| `03100`                                      | 高さ 100px。       |
+| `010035100`                                  | 高さ 100px。       |
 | a [Asset](api:craft\elements\Asset) object | 少なくとも、高さ 100px。 |
 
 
@@ -445,12 +445,12 @@ $assets = \craft\elements\Asset::find()
 
 :::
 
-| 値                           | 取得するアセット                         |
-| --------------------------- | -------------------------------- |
-| `'image'45'image'87'image'` | ファイルの種類が `image`。                |
-| `'not image'`               | ファイルの種類が `image` ではない。           |
-| `['image', 'pdf']`          | ファイルの種類が `image` または `pdf`。      |
-| `['not', 'image', 'pdf']`   | ファイルの種類が `image` または `pdf` ではない。 |
+| 値                         | Fetches assets…                  |
+| ------------------------- | -------------------------------- |
+| `973926'image'`           | ファイルの種類が `image`。                |
+| `'not image'`             | ファイルの種類が `image` ではない。           |
+| `['image', 'pdf']`        | ファイルの種類が `image` または `pdf`。      |
+| `['not', 'image', 'pdf']` | ファイルの種類が `image` または `pdf` ではない。 |
 
 
 
@@ -464,10 +464,9 @@ $assets = \craft\elements\Asset::find()
 ```
 
 ```php
-// Fetch categories in the folder with an ID of 1 (including its subfolders)
+// Fetch assets in the folder with an ID of 1
 $assets = \craft\elements\Asset::find()
     ->folderId(1)
-    ->includeSubfolders()
     ->all();
 ```
 :::
@@ -518,7 +517,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                                | 取得するアセット                         |
 | -------------------------------- | -------------------------------- |
-| `3048910001000`                  | サイズが 1,000 bytes（1KB）。           |
+| `5861000`                        | サイズが 1,000 bytes（1KB）。           |
 | `'< 1000000'`                 | サイズが 1,000,000 bytes（1MB）よりも小さい。 |
 | `['>= 1000', '< 1000000']` | サイズが 1KB から 1MB の間。              |
 | `['not', 1, 2]`                  | not with an ID of 1 or 2.        |
@@ -599,9 +598,10 @@ $assets = \craft\elements\Asset::find()
 ```
 
 ```php
-// Fetch all assets in order of date created
+// Fetch assets in the folder with an ID of 1 (including its subfolders)
 $assets = \craft\elements\Asset::find()
-    ->orderBy('dateCreated asc')
+    ->folderId(1)
+    ->includeSubfolders()
     ->all();
 ```
 :::
@@ -803,7 +803,7 @@ $assets = \craft\elements\Asset::find()
 
 | 値                                      | 取得するアセット                 |
 | -------------------------------------- | ------------------------ |
-| `6868'foo'`                            | ハンドルが `foo` のボリューム内。     |
+| `o'52'foo'365'foo'`                    | ハンドルが `foo` のボリューム内。     |
 | a `\craft\elements\db\User` object | ハンドルが `foo` のボリューム内ではない。 |
 
 
@@ -866,7 +866,7 @@ $asset = \craft\elements\Asset::find()
 
 | 値                                            | 取得するアセット       |
 | -------------------------------------------- | -------------- |
-| `009739100`                                  | 幅 100px。       |
+| `8074100`                                    | 幅 100px。       |
 | a [Asset](api:craft\elements\Asset) object | 少なくとも、幅 100px。 |
 
 
@@ -1163,7 +1163,7 @@ Narrows the query results based on the volume the assets belong to.
 
 Possible values include:
 
-| Value                                      | Fetches categories…                              |
+| Value                                      | Fetches assets…                                  |
 | ------------------------------------------ | ------------------------------------------------ |
 | `'foo'`                                    | in a volume with a handle of `foo`.              |
 | `'not foo'`                                | not in a volume with a handle of `foo`.          |
@@ -1196,7 +1196,7 @@ Narrows the query results based on the volumes the assets belong to, per the vol
 
 Possible values include:
 
-| Value           | Fetches categories…                   |
+| Value           | Fetches assets…                       |
 | --------------- | ------------------------------------- |
 | `1`             | in a volume with an ID of 1.          |
 | `'not 1'`       | not in a volume with an ID of 1.      |
@@ -1214,7 +1214,7 @@ Possible values include:
 ```
 
 ```php
-// Fetch categories in the volume with an ID of 1
+// Fetch assets in the volume with an ID of 1
 $assets = \craft\elements\Asset::find()
     ->volumeId(1)
     ->all();
