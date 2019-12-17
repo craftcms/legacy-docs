@@ -130,7 +130,7 @@ Set the `sourceSite` property if you want to limit the scope to relations create
 複数のタイプのリレーションを組み合わせる必要がある場合があります。例えば、エスプレッソを含む現在のユーザーのお気に入りの飲み物をすべて出力するには、次のようになります。
 
 ```twig
-{% set espresso = craft.entries.section('ingredients').slug('espresso').first() %}
+{% set espresso = craft.entries.section('ingredients').slug('espresso').one() %}
 
 {% set cocktails = craft.entries.section('drinks').relatedTo(['and',
     { sourceElement: currentUser, field: 'favoriteDrinks' },
