@@ -704,10 +704,19 @@ class Products extends BaseRelationField
 ユーザーがエレメントの参照タグを簡単にコピーできるようにするには、エレメントのインデックスページに「リファレンスタグのコピー」[アクション](#index-page-actions)を追加する必要があります。
 
 ```php
-public static function refHandle()
-{
-    return 'product';
-}
+// Create a new product element
+$product = new Product();
+
+// Set the main properties from POST data
+$product->price = Craft::$app->request->getBodyParam('price');
+$product->currency = Craft::$app->request->getBodyParam('currency');
+$product->enabled = (bool)Craft::$app->request->getBodyParam('enabled');
+
+// Set custom field values from POST data in a `fields` namespace
+$product->setFieldValuesFromRequest('fields');
+
+// Save the product
+$success = Craft::$app->elements->saveElement($product);
 ```
 
 エレメントタイプが独自の[関連フィールド](#relation-field)を持っているなら、それはすでに eager-loadable です。そして、[カスタムフィールド](#custom-fields)をサポートする場合、関連フィールドでエレメントに関連づけられているすべてのエレメントは eager-loadable になります。
