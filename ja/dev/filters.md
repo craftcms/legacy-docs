@@ -112,33 +112,206 @@ PHP の `date()` ファンクションでサポートされるものと同じ [�
 
 ## `filesize`
 
-文字列を暗号化し、base64 エンコードします。
+Returns the values from a single property or key in the input array.
 
 ```twig
 <p>Posted {{ entry.postDate.diff(now)|duration(false) }} ago.</p>
 ```
 
-バイト数をより良い何かにフォーマットします。
+An arrow function can be passed instead, if the values that should be returned don’t exist as a property or key on the array elements.
+
+```twig
+{% set authorNames = entries|column(e => e.author.fullName) %}
+```
+
+This works similarly to Twig’s core [`column`](https://twig.symfony.com/doc/2.x/filters/column.html) filter, except that [ArrayHelper::getColumn()](api:yii\helpers\BaseArrayHelper::getColumn()) is used rather than PHP’s [array_column()](https://secure.php.net/array_column) function.
 
 ## `filter`
 
-配列から空のエレメントを削除し、変更された配列を返します。
+Converts a string from one encoding to another.
 
-配列に <api:craft\helpers\ArrayHelper::filterByValue()> を実行します。
+This works identically to Twig’s core [`convert_encoding`](https://twig.symfony.com/doc/2.x/filters/convert_encoding.html) filter.
 
 ## `filterByValue`
 
-共通のプロパティに基づいて、配列の項目をグループ化します。
+Formats a number with a given currency according to the user’s preferred language.
 
 ```twig
-{{ "secure-string"|encenc }}
+{{ 1000000|currency('USD') }}
+{# Output: $1,000,000.00 #}
 ```
 
-不正に変更されるべきではないフォームのデータを安全に渡すために、メッセージ認証コード（HMAC）の鍵付ハッシュを指定された文字列の先頭に追加します。
+You can pass `stripZeros=true` to remove any fraction digits if the value to be formatted has no minor value (e.g. cents):
+
+```twig
+{{ 1000000|currency('USD', stripZeros=true) }}
+{# Output: $1,000,000 #}
+```
+
+## `group`
+
+Formats a timestamp or [DateTime](http://php.net/manual/en/class.datetime.php) object.
+
+```twig
+{{ entry.postDate|date }}
+{# Output: Dec 20, 1990 #}
+```
+
+You can customize how the date is presented by passing a custom date format, just like Twig’s core [`date`](https://twig.symfony.com/doc/2.x/filters/date.html) filter:
+
+```twig
+{{ 'now'|date('m/d/Y') }}
+{# Output: 12/20/1990 #}
+```
+
+Craft also provides some special format keywords that will output locale-specific date formats:
+
+| フォーマット             | 実例                            |
+| ------------------ | ----------------------------- |
+| `short`            | 9/26/2018                     |
+| `medium` _（デフォルト）_ | Sep 26, 2018                  |
+| `long`             | September 26, 2018            |
+| `full`             | Wednesday, September 26, 2018 |
+
+```twig
+{{ entry.postDate|date('short') }}
+{# Output: 12/20/1990 #}
+```
+
+The current application locale will be used by default. If you want to format the date for a different locale, use the `locale` argument:
+
+```twig
+{{ entry.postDate|date('short', locale='en-GB') }}
+{# Output: 20/12/1990 #}
+```
+
+You can customize the timezone the time is output in, using the `timezone` param:
+
+```twig
+{{ entry.postDate|date('short', timezone='UTC') }}
+{# Output: 12/21/1990 #}
+```
+
+## `hash`
+
+Modifies a date with a given modifier string.
+
+This works identically to Twig’s core [`date_modify`](https://twig.symfony.com/doc/2.x/filters/date_modify.html) filter.
+
+## `id`
+
+Formats a timestamp or [DateTime](http://php.net/manual/en/class.datetime.php) object, including the time of day.
+
+```twig
+{{ entry.postDate|datetime }}
+{# Output: Dec 20, 1990, 5:00:00 PM #}
+```
+
+Craft provides some special format keywords that will output locale-specific date and time formats:
+
+```twig
+{{ entry.postDate|datetime('short') }}
+{# Output: 9/26/2018, 5:00 PM #}
+```
+
+Possible `format` values are:
+
+| フォーマット             | 実例                                              |
+| ------------------ | ----------------------------------------------- |
+| `short`            | 9/26/2018, 5:00 PM                              |
+| `medium` _（デフォルト）_ | Sep 26, 2018, 5:00:00 PM                        |
+| `long`             | September 26, 2018 at 5:00:00 PM PDT            |
+| `full`             | Wednesday, September 26, 2018 at 5:00:00 PM PDT |
+
+The current application locale will be used by default. If you want to format the date and time for a different locale, use the `locale` argument:
+
+```twig
+{{ entry.postDate|datetime('short', locale='en-GB') }}
+{# Output: 20/12/1990, 17:00 #}
+```
+
+You can customize the timezone the time is output in, using the `timezone` param:
+
+```twig
+{{ entry.postDate|datetime('short', timezone='UTC') }}
+{# Output: 12/21/1990, 12:00 AM #}
+```
+
+## `index`
+
+Returns the passed default value if the value is undefined or empty, otherwise the value of the variable.
+
+This works identically to Twig’s core [`default`](https://twig.symfony.com/doc/2.x/filters/default.html) filter.
+
+## `indexOf`
+
+Runs a [DateInterval](http://php.net/manual/en/class.dateinterval.php) object through <api:craft\helpers\DateTimeHelper::humanDurationFromInterval()>
+
+```twig
+<p>Posted {{ entry.postDate.diff(now)|duration(false) }} ago.</p>
+```
+
+## `intersect`
+
+Encrypts and base64-encodes a string.
+
+```twig
+{{ 'secure-string'|encenc }}
+```
+
+## `json_encode`
+
+Escapes a string using strategies that depend on the context.
+
+This works identically to Twig’s core [`escape`](https://twig.symfony.com/doc/2.x/filters/escape.html) filter.
+
+## `json_decode`
+
+Formats a number of bytes into something nicer.
+
+## `kebab`
+
+Filters elements of an array.
+
+If nothing is passed to it, any “empty” elements will be removed.
+
+```twig
+{% set array = ['foo', '', 'bar', '', 'baz'] %}
+{% set filteredArray = array|filter %}
+{# Result: ['foo', 'bar', 'baz'] #}
+```
+
+When an arrow function is passed, this works identically to Twig’s core [`filter`](https://twig.symfony.com/doc/2.x/filters/filter.html) filter.
+
+```twig
+{% set array = ['foo', 'bar', 'baz'] %}
+{% set filteredArray = array|filter(v => v[0] == 'b') %}
+{# Result: ['bar', 'baz'] #}
+```
+
+## `lcfirst`
+
+Runs an array through <api:craft\helpers\ArrayHelper::filterByValue()>.
+
+## `literal`
+
+Returns the first element of an array or string.
+
+This works identically to Twig’s core [`first`](https://twig.symfony.com/doc/2.x/filters/first.html) filter.
+
+## `format`
+
+formats a given string by replacing the placeholders (placeholders follows the [sprintf()](https://secure.php.net/sprintf) notation).
+
+This works identically to Twig’s core [`format`](https://twig.symfony.com/doc/2.x/filters/format.html) filter.
+
+## `multisort`
+
+Groups items in an array by a the results of an arrow function.
 
 ```twig
 {% set allEntries = craft.entries.section('blog').all() %}
-{% set allEntriesByYear = allEntries|group('postDate|date("Y")') %}
+{% set allEntriesByYear = allEntries|group(e => e.postDate|date('Y')) %}
 
 {% for year, entriesInYear in allEntriesByYear %}
     <h2>{{ year }}</h2>
@@ -151,18 +324,18 @@ PHP の `date()` ファンクションでサポートされるものと同じ [�
 {% endfor %}
 ```
 
-## `group`
+## `number`
 
-PHP スクリプトは、[Security::validateData()](api:yii\base\Security::validateData()) を経由して値を検証できます。
+Prefixes the given string with a keyed-hash message authentication code (HMAC), for securely passing data in forms that should not be tampered with.
 
 ```twig
 <input type="hidden" name="foo" value="{{ 'bar'|hash }}">
 ```
 
-を経由して、HTML の input 要素の `id` としてうまく動作するよう、文字列をフォーマットします。
+PHP scripts can validate the value via [Security::validateData()](api:yii\base\Security::validateData()):
 
-```twig
-$foo = Craft::$app->request->getPost('foo');
+```php
+$foo = Craft::$app->request->getBodyParam('foo');
 $foo = Craft::$app->security->validateData($foo);
 
 if ($foo !== false) {
@@ -170,47 +343,40 @@ if ($foo !== false) {
 }
 ```
 
-配列に [ArrayHelper::index()](api:yii\helpers\BaseArrayHelper::index()) を実行します。
+## `parseRefs`
 
-| フォーマット             | 実例                            |
-| ------------------ | ----------------------------- |
-| `short`            | 9/26/2018                     |
-| `medium` _（デフォルト）_ | Sep 26, 2018                  |
-| `long`             | September 26, 2018            |
-| `full`             | Wednesday, September 26, 2018 |
+Formats a string into something that will work well as an HTML input `id`, via <api:craft\web\View::formatInputId()>.
 
 ```twig
 {% set name = 'input[name]' %}
 <input type="text" name="{{ name }}" id="{{ name|id }}">
 ```
 
-配列内の渡された値のインデックス、または、他の文字列に含まれる渡された文字列のインデックスを返します。（返される位置は、0 からはじまることに注意してください。）見つからなかった場合、代わりに `-1` が返されます。
+## `pascal`
+
+Runs an array through [ArrayHelper::index()](api:yii\helpers\BaseArrayHelper::index()).
 
 ```twig
 {% set entries = entries|index('id') %}
 ```
 
-渡された配列内にある値だけを含む配列を返します。
+## `percentage`
+
+Returns the index of a passed-in value within an array, or the position of a passed-in string within another string. (Note that the returned position is 0-indexed.) If no position can be found, `-1` is returned instead.
 
 ```twig
 {% set colors = ['red', 'green', 'blue'] %}
 <p>Green is located at position {{ colors|indexOf('green') + 1 }}.</p>
 
-{% set position = "team"|indexOf('i') %}
+{% set position = 'team'|indexOf('i') %}
 {% if position != -1 %}
     <p>There <em>is</em> an “i” in “team”! It’s at position {{ position + 1 }}.</p>
 {% endif %}
 ```
 
-## `hash`
+## `replace`
 
-Twig の [json_encode](https://twig.symfony.com/doc/2.x/filters/json_encode.html) フィルタと同様ですが、引数 `options` がセットされておらず、レスポンスのコンテンツタイプが `text/html` または `application/xhtml+xml` の場合、デフォルトで `JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_QUOT` になります。
-
-を通して、文字列を JSON デコードし配列にします。
-
-## `id`
-
-「kebab-case」でフォーマットされた文字列を返します。
+Returns an array containing only the values that are also in a passed-in array.
 
 ```twig
 {% set ownedIngredients = [
@@ -236,215 +402,35 @@ Twig の [json_encode](https://twig.symfony.com/doc/2.x/filters/json_encode.html
 %}
 ```
 
-ヒント：類推できない方のために、[シシカバブ](https://en.wikipedia.org/wiki/Kebab#Shish)の参照です。
+## `round`
+
+Returns a string which is the concatenation of the elements in an array.
+
+This works identically to Twig’s core [`join`](https://twig.symfony.com/doc/2.x/filters/join.html) filter.
+
+## `rss`
+
+Returns the JSON representation of a value.
+
+This works similarly to Twig’s core [`json_encode`](https://twig.symfony.com/doc/2.x/filters/json_encode.html) filter, except that the `options` argument will default to `JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_QUOT` if the response content type is either `text/html` or `application/xhtml+xml`.
+
+## `snake`
+
+JSON-decodes a string into an array  by passing it through <api:yii\helpers\Json::decode()>.
 
 ```twig
 {% set arr = '[1, 2, 3]'|json_decode %}
 ```
 
-文字列の最初の文字を小文字にします。
-
-| フォーマット             | 実例                                              |
-| ------------------ | ----------------------------------------------- |
-| `short`            | 9/26/2018, 5:00 PM                              |
-| `medium` _（デフォルト）_ | Sep 26, 2018, 5:00:00 PM                        |
-| `long`             | September 26, 2018 at 5:00:00 PM PDT            |
-| `full`             | Wednesday, September 26, 2018 at 5:00:00 PM PDT |
-
-文字列に <api:craft\helpers\Db::escapeParam()> を実行します。
-
-```twig
-{{ "foo bar?"|kebab }}
-{# Outputs: foo-bar #}
-```
-
-[Markdown](https://daringfireball.net/projects/markdown/) で文字列を処理します。
-
-```twig
-{% set content %}
-# Everything You Need to Know About Computer Keyboards
-
-The only *real* computer keyboard ever made was famously
-the [Apple Extended Keyboard II] [1].
-
-    [1]: https://www.flickr.com/photos/gruber/sets/72157604797968156/
-{% endset %}
-
-{{ content|markdown }}
-```
-
-## `index`
-
-このフィルタは、2つの引数をサポートしています。
-
-[ArrayHelper::multisort()](api:yii\helpers\BaseArrayHelper::multisort()) で配列をソートします。
-
-## `indexOf`
-
-ユーザーが優先する言語に応じて、数値をフォーマットします。 <api:craft\helpers\DateTimeHelper::humanDurationFromInterval()>
-
-```twig
-{{ 1000000|number }} → 1,000,000
-{{ 1000000|number(false) }} → 1000000
-```
-
-## `intersect`
-
-グループシンボル（例えば、英語のコンマ）を省略したい場合は、オプションで `false` を渡すことができます。
-
-```twig
-{% set content %}
-    {entry:blog/hello-world:link} was my first blog post. Pretty geeky, huh?
-{% endset %}
-
-{{ content|parseRefs|raw }}
-```
-
-## `json_encode`
-
-[リファレンスタグ](../reference-tags.md)の文字列を解析します。
-
-「PascalCase」（別名「UpperCamelCase」）でフォーマットされた文字列を返します。
-
-## `json_decode`
-
-ユーザーが優先する言語に応じて、割合をフォーマットします。
-
-## `kebab`
-
-文字列の一部を他のものに置き換えます。
-
-ペアの検索 / 置換のオブジェクトを渡すことで、一度に複数のものを置き換えることができます。
-
-```twig
-{{ "foo bar"|pascal }}
-{# Outputs: FooBar #}
-```
-
-または、一度に1つのものを置き換えることができます。
-
-```twig
-{% set str = "Hello, FIRST LAST" %}
-
-{{ str|replace({
-    FIRST: currentUser.firstName,
-    LAST:  currentUser.lastName
-}) }}
-```
-
-## `lcfirst`
-
-置換文字列の値の最初と最後にスラッシュを付けてマッチするものを検索することで、正規表現も利用できます。
-
-## `literal`
-
-最も近い整数値に数を丸めます。
-
-RSS フィードに必要な形式（`D, d M Y H:i:s O`）で日付を出力します。
-
-## `format`
-
-「snake_case」でフォーマットされた文字列を返します。
-
-タイムスタンプ、または、[DateTime](http://php.net/manual/en/class.datetime.php) オブジェクトのフォーマットされた時刻を出力します。
-
-## `multisort`
-
-Groups items in an array by a the results of an arrow function.
-
-```twig
-{% set allEntries = craft.entries.section('blog').all() %}
-{% set allEntriesByYear = allEntries|group(e => e.postDate|date('Y')) %}
-
-{% for year, entriesInYear in allEntriesByYear %}
-    <h2>{{ year }}</h2>
-
-    <ul>
-        {% for entry in entriesInYear %}
-            <li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
-        {% endfor %}
-    </ul>
-{% endfor %}
-```
-
-## `number`
-
-利用可能な `format` 値は、次の通りです。
-
-```twig
-{{ tag.title|lower|replace('/[^\\w]+/', '-') }}
-```
-
-使用される正確な時刻のフォーマットは、現在のアプリケーションのローケルに依存します。異なるローケルの時刻のフォーマットを使用したい場合、`locale` パラメータを利用します。
-
-```php
-{{ 42.1|round }} → 42
-{{ 42.9|round }} → 43
-```
-
-## `parseRefs`
-
-`timezone` パラメータを使用して、出力される時刻のタイムゾーンをカスタマイズできます。
-
-```twig
-{{ entry.postDate|rss }}
-```
-
-## `pascal`
-
-経由で、人が読めるタイムスタンプとして日付をフォーマットします。
-
-```twig
-{{ "foo bar"|snake }}
-{# Outputs: foo_bar #}
-```
-
-## `percentage`
-
-[Craft::t()](api:yii\BaseYii::t()) でメッセージを翻訳します。
-
-```twig
-{{ entry.postDate|time }} → 10:00:00 AM
-```
-
-## `replace`
-
-カテゴリの指定がない場合、デフォルトで `site` になります。
-
-```twig
-{{ entry.postDate|time('short') }} → 10:00 AM
-```
-
-## `round`
-
-::: tip
-これがどのように機能するかの詳細については、[静的メッセージの翻訳](../static-translations.md)を参照してください。
-:::
-
-文字列の最初の文字を大文字にします。
-
-## `rss`
-
-文字列に含まれるそれぞれの単語の最初の文字を大文字にします。
-
-配列に [array_unique()](http://php.net/manual/en/function.array-unique.php) を実行します。
-
-## `snake`
-
-指定された配列のすべての値の配列を返しますが、カスタムキーは除かれます。
-
-```twig
-{{ entry.postDate|time('short', locale='en-GB') }} → 17:00
-```
-
 ## `time`
 
-指定されたエレメントを除いた配列を返します。
+Returns a string formatted in “kebab-case”.
 
 Tip: That’s a reference to [shish kebabs](https://en.wikipedia.org/wiki/Kebab#Shish) for those of you that don’t get the analogy.
 
 ```twig
-{{ entry.postDate|time('short', timezone='UTC') }} → 12:00 AM
+{{ 'foo bar?'|kebab }}
+{# Output: foo-bar #}
 ```
 
 ## `timestamp`
@@ -490,7 +476,16 @@ This works identically to Twig’s core [`map`](https://twig.symfony.com/doc/2.x
 Processes a string with [Markdown](https://daringfireball.net/projects/markdown/).
 
 ```twig
-{{ "Hello world"|t('myCategory') }}
+{% set content %}
+# Everything You Need to Know About Computer Keyboards
+
+The only *real* computer keyboard ever made was famously
+the [Apple Extended Keyboard II] [1].
+
+    [1]: https://www.flickr.com/photos/gruber/sets/72157604797968156/
+{% endset %}
+
+{{ content|markdown }}
 ```
 
 This filter supports two arguments:
@@ -505,7 +500,51 @@ This works identically to Twig’s core [`merge`](https://twig.symfony.com/doc/2
 
 ## `multisort`
 
-Sorts an array with [ArrayHelper::multisort()](api:yii\helpers\BaseArrayHelper::multisort()).
+Sorts an array by one or more properties or keys within an array’s values.
+
+To sort by a single property or key, pass its name as a string:
+
+```twig
+{% set entries = entries|multisort('title') %}
+```
+
+An arrow function can be passed instead, if the values that should be sorted by don’t exist as a property or key on the array elements.
+
+```twig
+{% set entries = entries|multisort(e => e.author.fullName) %}
+```
+
+To sort by multiple properties or keys, pass them in as an array. For example, this will sort entries by their author’s name first, and then by their title:
+
+```twig
+{% set entries = entries|multisort([
+    e => e.author.fullName,
+    'title',
+]) %}
+```
+
+The values will be sorted in ascending order by default. You can switch to descending order with the `direction` param:
+
+```twig
+{% set entries = entries|multisort('title', direction=SORT_DESC) %}
+```
+
+You can also customize which sorting behavior is used, with the `sortFlag` param. For example, to sort items numerically, use `SORT_NUMERIC`:
+
+```twig
+{% set entries = entries|multisort('id', sortFlag=SORT_NUMERIC) %}
+```
+
+See PHP’s [sort()](https://www.php.net/manual/en/function.sort.php) documentation for the available sort flags.
+
+When sorting by multiple properties or keys, you must set the `direction` and `sortFlag` params to arrays as well.
+
+```twig
+{% set entries = entries|multisort([
+    e => e.author.fullName,
+    'title',
+], sortFlag=[SORT_FLAG_CASE, SORT_FLAG_CASE]) %}
+```
 
 ## `nl2br`
 
@@ -520,7 +559,11 @@ Formats a number according to the user’s preferred language.
 You can optionally pass `false` to it if you want group symbols to be omitted (e.g. commas in English).
 
 ```twig
-{{ "Hello world"|t }}
+{{ 1000000|number }}
+{# Output: 1,000,000 #}
+
+{{ 1000000|number(false) }}
+{# Output: 1000000 #}
 ```
 
 ## `number_format`
@@ -534,9 +577,11 @@ This works identically to Twig’s core [`number_format`](https://twig.symfony.c
 Parses a string for [reference tags](../reference-tags.md).
 
 ```twig
-{% set arr1 = {foo: "Foo", bar: "Bar"} %}
-{% set arr2 = arr1|values %}
-{# arr2 = ["Foo", "Bar"] #}
+{% set content %}
+    {entry:blog/hello-world:link} was my first blog post. Pretty geeky, huh?
+{% endset %}
+
+{{ content|parseRefs|raw }}
 ```
 
 ## `pascal`
@@ -544,9 +589,8 @@ Parses a string for [reference tags](../reference-tags.md).
 Returns a string formatted in “PascalCase” (AKA “UpperCamelCase”).
 
 ```twig
-{% set entries = craft.entries.section('articles').limit(3).find %}
-{% set firstEntry = entries[0] %}
-{% set remainingEntries = entries|without(firstEntry) %}
+{{ 'foo bar'|pascal }}
+{# Output: FooBar #}
 ```
 
 ## `percentage`
