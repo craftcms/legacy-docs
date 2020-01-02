@@ -717,10 +717,19 @@ The Edit Category page offers a relatively straightforward example of how it cou
 Here’s a simple example of the code needed to save an element programatically, which could live within an `actionSave()` controller action:
 
 ```php
-'categories/<groupHandle:{handle}>/new' => 'categories/edit-category',
-  'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>' => 'categories/edit-category',
-  'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>/<siteHandle:{handle}>' => 'categories/edit-category',
-  'categories/<groupHandle:{handle}>/new/<siteHandle:{handle}>' => 'categories/edit-category',
+// Create a new product element
+$product = new Product();
+
+// Set the main properties from POST data
+$product->price = Craft::$app->request->getBodyParam('price');
+$product->currency = Craft::$app->request->getBodyParam('currency');
+$product->enabled = (bool)Craft::$app->request->getBodyParam('enabled');
+
+// Set custom field values from POST data in a `fields` namespace
+$product->setFieldValuesFromRequest('fields');
+
+// Save the product
+$success = Craft::$app->elements->saveElement($product);
 ```
 
 Once you’ve set up an edit page for your element type, you can add a [getCpEditUrl()](api:craft\base\ElementInterface::getCpEditUrl()) method to your element class, which will communicate your elements’ edit page URLs within the Control Panel.
