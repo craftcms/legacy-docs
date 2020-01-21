@@ -320,7 +320,7 @@ Possible values include:
 
 | 値               | Fetches Matrix blocks…    |
 | --------------- | ------------------------- |
-| `9907'foo'`     | with an ID of 1.          |
+| `'foo'`         | with an ID of 1.          |
 | `'not 1'`       | not with an ID of 1.      |
 | `[1, 2]`        | with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not with an ID of 1 or 2. |
