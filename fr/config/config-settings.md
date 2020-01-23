@@ -55,7 +55,7 @@ Defined by
 
 
 
-The URI segment Craft should look for when determining if the current request should first be routed to a controller action.
+The URI segment Craft should look for when determining if the current request should be routed to a controller action.
 
 
 
@@ -2454,7 +2454,11 @@ The password-reset template path. Note that this only affects front-end site req
 
 See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
 
-You might also want to set [`invalidUserTokenPath`](config/config-settings#invalidusertokenpath) in the case that a user tries to use an expired password reset link.
+::: tip
+You might also want to set <config:invalidUserTokenPath> in case a user clicks on an expired password reset link.
+:::
+
+
 
 ### `setPasswordSuccessPath`
 
