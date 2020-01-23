@@ -54,7 +54,6 @@ $myUserQuery = \craft\elements\User::find();
 - [anyStatus](#anystatus)
 - [asArray](#asarray)
 - [can](#can)
-- [column](#column)
 - [dateCreated](#datecreated)
 - [dateUpdated](#dateupdated)
 - [email](#email)
@@ -175,19 +174,6 @@ $users = \craft\elements\User::find()
     ->all();
 ```
 :::
-
-
-### `column`
-
-Executes the query and returns the first column of the result.
-
-
-
-
-
-
-
-
 
 
 ### `dateCreated`
