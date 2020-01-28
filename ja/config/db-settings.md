@@ -99,52 +99,6 @@ PDO コンストラクタに渡す PDO 属性の key => value ペアの配列。
 
 
 
-### `database`
-
-許可される型
-:
-
-[string](http://php.net/language.types.string)
-
-デフォルト値
-:
-
-`''`
-
-定義元
-:
-
-[DbConfig::$database](api:craft\config\DbConfig::$database)
-
-
-
-選択するデータベースの名前。
-
-
-
-### `driver`
-
-許可される型
-:
-
-[string](http://php.net/language.types.string)
-
-デフォルト値
-:
-
-`self::DRIVER_MYSQL`
-
-定義元
-:
-
-[DbConfig::$driver](api:craft\config\DbConfig::$driver)
-
-
-
-使用するデータベースのドライバ。MySQL 向けの 'mysql'、または、PostgreSQL 向けの 'pgsql'。
-
-
-
 ### `dsn`
 
 許可される型
@@ -164,10 +118,12 @@ PDO コンストラクタに渡す PDO 属性の key => value ペアの配列。
 
 
 
-手動で PDO DSN 接続文字列を指定する場合は、ここで設定できます。
+The Data Source Name (“DSN”) that tells Craft how to connect to the database.
 
-- MySQL: http://php.net/manual/en/ref.pdo-mysql.connection.php
-- PostgreSQL: http://php.net/manual/en/ref.pdo-pgsql.connection.php これを設定すると、コンフィグ設定の [server](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#server)、[port](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#port)、[user](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#user)、[password](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#password)、[database](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#database)、[driver](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#driver)、および、[unixSocket](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#unixsocket) は無視されます。
+DSNs should begin with a driver prefix (`mysql:` or `pgsql:`), followed by driver-specific parameters. For example, `mysql:host=127.0.0.1;port=3306;dbname=acme_corp`.
+
+- MySQL parameters: http://php.net/manual/en/ref.pdo-mysql.connection.php
+- PostgreSQL parameters: http://php.net/manual/en/ref.pdo-pgsql.connection.php
 
 
 
@@ -190,30 +146,7 @@ PDO コンストラクタに渡す PDO 属性の key => value ペアの配列。
 
 
 
-接続するデータベースのパスワード。
-
-
-
-### `port`
-
-許可される型
-:
-
-[integer](http://php.net/language.types.integer)
-
-デフォルト値
-:
-
-`null`
-
-定義元
-:
-
-[DbConfig::$port](api:craft\config\DbConfig::$port)
-
-
-
-データベースサーバーのポート。デフォルトは、MySQL 向けの 3306、および、PostgreSQL 向けの 5432。
+The database password to connect with.
 
 
 
@@ -236,30 +169,7 @@ PDO コンストラクタに渡す PDO 属性の key => value ペアの配列。
 
 
 
-使用するデータベースのスキーマ（PostgreSQL のみ）。
-
-
-
-### `server`
-
-許可される型
-:
-
-[string](http://php.net/language.types.string)
-
-デフォルト値
-:
-
-`'localhost'`
-
-定義元
-:
-
-[DbConfig::$server](api:craft\config\DbConfig::$server)
-
-
-
-データベースのサーバー名、または、IP アドレス。通常は 'localhost' または '127.0.0.1' です。
+The schema that Postgres is configured to use by default (PostgreSQL only).
 
 
 
@@ -282,55 +192,7 @@ PDO コンストラクタに渡す PDO 属性の key => value ペアの配列。
 
 
 
-共有するCraft のインストールを単一のデータベース（MySQL）、または、単一のデータベースで共有スキーマ（PostgreSQL）を使用する場合、インストールごとにテーブル名の競合を避けるために、テーブル接頭辞をセットできます。これは5文字以内、かつ、すべて小文字でなければなりません。
-
-
-
-### `unixSocket`
-
-許可される型
-:
-
-[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
-
-デフォルト値
-:
-
-`null`
-
-定義元
-:
-
-[DbConfig::$unixSocket](api:craft\config\DbConfig::$unixSocket)
-
-
-
-MySQL のみ。セットされている場合、（yiic で使用される）CLI 接続文字列は、 サーバーやポートの代わりに Unix ソケットに接続します。これを指定すると、'server' と 'port' 設定が無視されます。
-
-
-
-### `url`
-
-許可される型
-:
-
-[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
-
-デフォルト値
-:
-
-`null`
-
-定義元
-:
-
-[DbConfig::$url](api:craft\config\DbConfig::$url)
-
-
-
-ホスティング環境によって提供された場合、データベースの接続 URL。
-
-これがセットされている場合、[driver](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#driver)、[user](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#user)、[database](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#database)、[server](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#server)、[port](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#port)、および、[database](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#database) の値は、そこから抽出されます。
+If you're sharing Craft installs in a single database (MySQL) or a single database and using a shared schema (PostgreSQL), then you can set a table prefix here to avoid table naming conflicts per install. This can be no more than 5 characters, and must be all lowercase.
 
 
 
@@ -353,7 +215,7 @@ MySQL のみ。セットされている場合、（yiic で使用される）CLI
 
 
 
-接続するデータベースのユーザー名。
+The database username to connect with.
 
 
 
