@@ -58,8 +58,10 @@ $myMatrixBlockQuery = \craft\elements\MatrixBlock::find();
 - [allowOwnerRevisions](#allowownerrevisions)
 - [anyStatus](#anystatus)
 - [asArray](#asarray)
+- [clearCachedResult](#clearcachedresult)
 - [dateCreated](#datecreated)
 - [dateUpdated](#dateupdated)
+- [field](#field)
 - [fieldId](#fieldid)
 - [fixedOrder](#fixedorder)
 - [id](#id)
@@ -161,6 +163,15 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 :::
 
 
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
+
+
 ### `dateCreated`
 
 Narrows the query results based on the Matrix blocks’ creation dates.
@@ -237,6 +248,39 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 :::
 
 
+### `field`
+
+Narrows the query results based on the field the Matrix blocks belong to.
+
+Possible values include:
+
+| 値                                                           | Fetches Matrix blocks…                          |
+| ----------------------------------------------------------- | ----------------------------------------------- |
+| `'foo'`                                                     | in a field with a handle of `foo`.              |
+| `'not foo'`                                                 | not in a field with a handle of `foo`.          |
+| `['foo', 'bar']`                                            | in a field with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                                     | not in a field with a handle of `foo` or `bar`. |
+| a [craft\fields\Matrix](api:craft\fields\Matrix) object | in a field represented by the object.           |
+
+
+
+::: code
+```twig
+{# Fetch Matrix blocks in the Foo field #}
+{% set MatrixBlocks = craft.matrixBlocks()
+    .field('foo')
+    .all() %}
+```
+
+```php
+// Fetch Matrix blocks in the Foo field
+$MatrixBlocks = \craft\elements\MatrixBlock::find()
+    ->field('foo')
+    ->all();
+```
+:::
+
+
 ### `fieldId`
 
 Narrows the query results based on the field the Matrix blocks belong to, per the fields’ IDs.
@@ -245,7 +289,7 @@ Possible values include:
 
 | 値               | Fetches Matrix blocks…               |
 | --------------- | ------------------------------------ |
-| `1`             | in a field with an ID of 1.          |
+| `'foo'`         | in a field with an ID of 1.          |
 | `'not 1'`       | not in a field with an ID of 1.      |
 | `[1, 2]`        | in a field with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not in a field with an ID of 1 or 2. |
@@ -306,7 +350,7 @@ Possible values include:
 
 | 値               | Fetches Matrix blocks…    |
 | --------------- | ------------------------- |
-| `'foo'`         | with an ID of 1.          |
+| `1`             | with an ID of 1.          |
 | `'not 1'`       | not with an ID of 1.      |
 | `[1, 2]`        | with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not with an ID of 1 or 2. |
@@ -472,7 +516,7 @@ Narrows the query results based on the owner element of the Matrix blocks, per t
 
 Possible values include:
 
-| 値               | Fetches Matrix blocks…                           |
+| 値               | 取得する行列ブロック                                       |
 | --------------- | ------------------------------------------------ |
 | `1`             | created for an element with an ID of 1.          |
 | `'not 1'`       | not created for an element with an ID of 1.      |
@@ -601,7 +645,7 @@ The current site will be used by default.
 
 Possible values include:
 
-| 値                                      | 取得する行列ブロック                                     |
+| 値                                      | Fetches Matrix blocks…                         |
 | -------------------------------------- | ---------------------------------------------- |
 | `'foo'`                                | from the site with a handle of `foo`.          |
 | `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
@@ -667,7 +711,7 @@ Narrows the query results based on the Matrix blocks’ statuses.
 
 Possible values include:
 
-| 値                        | Fetches Matrix blocks… |
+| Value                    | Fetches Matrix blocks… |
 | ------------------------ | ---------------------- |
 | `'enabled'`  _(default)_ | that are enabled.      |
 | `'disabled'`             | that are disabled.     |
