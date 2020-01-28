@@ -148,6 +148,10 @@ Now all that’s left is to update your service methods so that they update the 
 
 Items in the project config can be added or updated using <api:craft\services\ProjectConfig::set()>, and removed using [remove()](api:craft\services\ProjectConfig::remove()).
 
+::: tip
+`ProjectConfig::set()` will sort all associative arrays by their keys, recursively. If you are storing an associative array where the order of the items is important (e.g. editable table data), then you must run the array through <api:craft\helpers\ProjectConfig::packAssociativeArray()> before passing it to `ProjectConfig::set()`.
+:::
+
 ```php
 use Craft;
 use craft\helpers\Db;
@@ -218,11 +222,11 @@ Consider this scenario:
 3. The updated `composer.lock` and `project.yaml` is committed to Git.
 4. The Git commit is pulled into Environment B, where Craft must now run the new plugin migration *and* sync `project.yaml` changes.
 
-When new plugin migrations are pending *and* `project.yaml` changes are pending, Craft will run migrations first and then sync the `project.yaml` changes.
+When new plugin migrations are pending _and_ `project.yaml` changes are pending, Craft will run migrations first and then sync the `project.yaml` changes.
 
 If your plugin migration were to make the same project config changes again on Environment B, those changes will conflict with the pending changes in `project.yaml`.
 
-To avoid this, always check your plugin’s schema version *in `project.yaml`* before making project config changes. (You do that by passing `true` as the second argument when calling [ProjectConfig::get()](api:craft\services\ProjectConfig::get()).)
+To avoid this, always check your plugin’s schema version _in `project.yaml`_ before making project config changes. (You do that by passing `true` as the second argument when calling [ProjectConfig::get()](api:craft\services\ProjectConfig::get()).)
 
 ```php
 public function safeUp()
