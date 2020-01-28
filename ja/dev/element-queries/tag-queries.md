@@ -52,6 +52,7 @@ $myTagQuery = \craft\elements\Tag::find();
 
 - [anyStatus](#anystatus)
 - [asArray](#asarray)
+- [clearCachedResult](#clearcachedresult)
 - [dateCreated](#datecreated)
 - [dateUpdated](#dateupdated)
 - [fixedOrder](#fixedorder)
@@ -123,6 +124,15 @@ $tags = \craft\elements\Tag::find()
     ->all();
 ```
 :::
+
+
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
 
 
 ### `dateCreated`
