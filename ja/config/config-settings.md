@@ -78,7 +78,7 @@ The URI segment Craft should look for when determining if the current request sh
 
 
 
-コントロールパネルにアクセスできないユーザーが、アカウントをアクティベートしたときにリダイレクトする URI。
+The URI that users without access to the control panel should be redirected to after activating their account.
 
 サポートされる値の種類は、[craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) のリストを参照してください。
 
@@ -208,7 +208,7 @@ Since
 
 
 
-コントロールパネルでのシステムとプラグインのアップデート、および、プラグインストアからのプラグインのインストールを Craft が許可するかどうか。
+Whether Craft should allow system and plugin updates in the control panel, and plugin installation from the Plugin Store.
 
 [allowAdminChanges](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#allowadminchanges) が無効になっている場合、この設定は自動的に無効になります。
 
@@ -361,12 +361,12 @@ Since
 
 
 
-コントロールパネルの URL を生成する際に、Craft が使用するベース URL。
+The base URL that Craft should use when generating control panel URLs.
 
 空白の場合、自動的に決定されます。
 
 ::: tip
-ベース CP URL に [CP トリガーワード](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#cptrigger)（例：`/admin`）を **含めない** でください。
+The base control panel URL should **not** include the [control panel trigger word](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#cptrigger) (e.g. `/admin`).
 :::
 
 
@@ -517,7 +517,7 @@ Craft が `{% cache %}` タグ内にエレメントクエリをキャッシュ�
 
 
 
-現在のリクエストをフロントエンドのウェブサイトではなくコントロールパネルにルーティングするかどうかを決定するとき、Craft が探す URI セグメント。
+The URI segment Craft should look for when determining if the current request should route to the control panel rather than the front-end website.
 
 
 
@@ -586,7 +586,7 @@ Craft によって生成される Cookie が作成されるべきドメイン。
 
 
 
-優先言語をまだセットしてないユーザー向けに、コントロールパネルが使用するデフォルトの言語。
+The default language the control panel should use for users who haven’t set a preferred language yet.
 
 
 
@@ -1207,15 +1207,16 @@ Since
 
 
 
-Bool Whether the system should run in Headless Mode, which optimizes the system and Control Panel for headless CMS implementations.
+Bool Whether the system should run in Headless Mode, which optimizes the system and control panel for headless CMS implementations.
 
 When this is enabled, the following changes will take place:
 
-- `{path}` - バックアップファイルのパス
+- Template settings for sections and category groups will be hidden.
 - `{port}` -現在のデータベースポート
 - `{server}` - 現在のデータベースホスト名
 - `{user}` -データベースのに接続するユーザー
 - `{database}` - 現在のデータベース名
+- The [loginPath](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#loginpath), [logoutPath](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#logoutpath), [setPasswordPath](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#setpasswordpath), and [verifyEmailPath](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#verifyemailpath) settings will be ignored.
 
 
 
@@ -1413,6 +1414,8 @@ This only affects the JavaScript auto-generated slugs. Non-ASCII characters can 
 
 The URI Craft should use for user login on the front-end.
 
+This can be set to `false` to disable front-end login.
+
 See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
 
 
@@ -1438,7 +1441,32 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 
 The URI Craft should use for user logout on the front-end.
 
+This can be set to `false` to disable front-end logout.
+
 See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
+
+
+
+### `maxBackups`
+
+許可される型
+:
+
+[integer](http://php.net/language.types.integer), [false](http://php.net/language.types.boolean)
+
+デフォルト値
+:
+
+`20`
+
+定義元
+:
+
+[GeneralConfig::$maxBackups](api:craft\config\GeneralConfig::$maxBackups)
+
+
+
+The number of backups that Craft should make before it starts deleting the oldest backups. If it is set to `false`, then Craft will not delete any backups.
 
 
 
@@ -1631,7 +1659,7 @@ Whether Craft should optimize images for reduced file sizes without noticeably r
 デフォルト値
 :
 
-`'dashboard'`
+`'p'`
 
 定義元
 :
@@ -1749,11 +1777,11 @@ The name of the PHP session cookie.
 
 
 
-The path that users should be redirected to after logging in from the Control Panel.
+The path that users should be redirected to after logging in from the control panel.
 
-This setting will also come into effect if the user visits the CP’s Login page (`/admin/login`) or the CP’s root URL (/admin) when they are already logged in.
+This setting will also come into effect if a user visits the control panel’s Login page (`/admin/login`) or the control panel’s root URL (/admin) when they are already logged in.
 
-`true` をセットすると、画像ファイルのサイズが大きくなります。
+See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
 
 
 
@@ -1814,12 +1842,12 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 許可される型
 :
 
-[string](http://php.net/language.types.boolean)
+[boolean](http://php.net/language.types.boolean)
 
 デフォルト値
 :
 
-`'_'`
+`false`
 
 定義元
 :
@@ -1910,7 +1938,7 @@ Setting this to `false` will reduce the image size a little bit, but on some Ima
 
 
 
-When set to `false` and you go through the "forgot password" workflow on the Control Panel login page, for example, you get distinct messages saying if the username/email didn't exist or the email was successfully sent and to check your email for further instructions. This can allow for username/email enumeration based on the response. If set `true`, you will always get a successful response even if there was an error making it difficult to enumerate users.
+When set to `false` and you go through the "forgot password" workflow on the control panel login page, for example, you get distinct messages saying if the username/email didn't exist or the email was successfully sent and to check your email for further instructions. This can allow for username/email enumeration based on the response. If set `true`, you will always get a successful response even if there was an error making it difficult to enumerate users.
 
 
 
@@ -1962,9 +1990,9 @@ The amount of time to wait before Craft purges pending users from the system tha
 
 Note that any content assigned to a pending user will be deleted as well when the given time interval passes.
 
-新しいユーザーセッションを作成する際に、ユーザーエージェントの文字列と IP アドレスの存在を Craft が必要とするかどうか。
+データベースのバックアップを復元するために Craft が実行するシェルコマンド。
 
-公開された CP リソースを保管するルートディレクトリのパス。
+ウェブサーバーを実行しているユーザーの `$PATH` 変数にライブラリが含まれている場合、デフォルトで Craft は `mysql` または `psql` を実行します。
 
 
 
@@ -1994,9 +2022,9 @@ Since
 
 The amount of time to wait before Craft purges stale user sessions from the sessions table in the database.
 
-データベースのバックアップを復元するために Craft が実行するシェルコマンド。
+Set to `0` to disable this feature.
 
-ウェブサーバーを実行しているユーザーの `$PATH` 変数にライブラリが含まれている場合、デフォルトで Craft は `mysql` または `psql` を実行します。
+アップロード時の EXIF データに従って、Craft が画像を回転するかどうか。
 
 
 
@@ -2028,7 +2056,7 @@ The amount of time to wait before Craft purges drafts of new elements that were 
 
 Set to `0` to disable this feature.
 
-アップロード時の EXIF データに従って、Craft が画像を回転するかどうか。
+無効にした場合、代わりのキューランナーを別途セットアップ*しなければなりません*。
 
 
 
@@ -2051,11 +2079,11 @@ Set to `0` to disable this feature.
 
 
 
-The amount of time Craft will remember a username and pre-populate it on the CP login page.
+The amount of time Craft will remember a username and pre-populate it on the control panel’s Login page.
 
 Set to `0` to disable this feature altogether.
 
-無効にした場合、代わりのキューランナーを別途セットアップ*しなければなりません*。
+See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-durationinseconds) for a list of supported value types.
 
 
 
@@ -2151,7 +2179,7 @@ Whether Craft should require the existence of a user agent string and IP address
 
 
 
-The path to the root directory that should store published CP resources.
+The path to the root directory that should store published control panel resources.
 
 
 
@@ -2174,7 +2202,7 @@ The path to the root directory that should store published CP resources.
 
 
 
-The URL to the root directory that should store published CP resources.
+The URL to the root directory that should store published control panel resources.
 
 
 
@@ -2334,12 +2362,12 @@ This should definitely be enabled if you are accepting SVG uploads from untruste
 許可される型
 :
 
-[string](http://php.net/language.types.string), [string](http://php.net/language.types.string)[]
+[array](http://php.net/language.types.array), [null](http://php.net/language.types.null)
 
 デフォルト値
 :
 
-`null`
+`'-'`
 
 定義元
 :
@@ -2366,7 +2394,7 @@ If not set, the default [yii\web\Request::$secureHeaders](https://www.yiiframewo
 デフォルト値
 :
 
-`'-'`
+`null`
 
 定義元
 :
@@ -2450,7 +2478,7 @@ Whether an `X-Powered-By: Craft CMS` header should be sent, helping services lik
 
 
 
-The password-reset template path. Note that this only affects front-end site requests.
+The URI Craft should use for Set Password forms on the front-end.
 
 See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
 
@@ -2490,7 +2518,7 @@ See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api
 許可される型
 :
 
-[string](http://php.net/language.types.string), [null](http://php.net/language.types.null)
+[string](http://php.net/language.types.string), [string](http://php.net/language.types.string)[]
 
 デフォルト値
 :
@@ -2637,7 +2665,7 @@ Whether user IP addresses should be stored/logged by the system.
 デフォルト値
 :
 
-`true`
+`null`
 
 定義元
 :
@@ -2778,6 +2806,34 @@ By default, all hosts are trusted.
 
 
 
+### `upscaleImages`
+
+許可される型
+:
+
+[boolean](http://php.net/language.types.boolean)
+
+デフォルト値
+:
+
+`true`
+
+定義元
+:
+
+[GeneralConfig::$upscaleImages](api:craft\config\GeneralConfig::$upscaleImages)
+
+Since
+:
+
+3.4.0
+
+
+
+Whether images should be upscaled if the provided transform size is larger than the image.
+
+
+
 ### `useCompressedJs`
 
 許可される型
@@ -2811,7 +2867,7 @@ Whether Craft should use compressed JavaScript files whenever possible.
 デフォルト値
 :
 
-`false`
+`''`
 
 定義元
 :
@@ -2826,17 +2882,17 @@ Whether Craft should set users’ usernames to their email addresses, rather tha
 
 ### `useFileLocks`
 
-許可される型
+Allowed types
 :
 
 [boolean](http://php.net/language.types.boolean), [null](http://php.net/language.types.null)
 
-デフォルト値
+Default value
 :
 
 `null`
 
-定義元
+Defined by
 :
 
 [GeneralConfig::$useFileLocks](api:craft\config\GeneralConfig::$useFileLocks)
@@ -2853,17 +2909,17 @@ If not set to `true` or `false`, Craft will automatically try to detect if the u
 
 ### `usePathInfo`
 
-許可される型
+Allowed types
 :
 
 [boolean](http://php.net/language.types.boolean)
 
-デフォルト値
+Default value
 :
 
-`''`
+`false`
 
-定義元
+Defined by
 :
 
 [GeneralConfig::$usePathInfo](api:craft\config\GeneralConfig::$usePathInfo)
@@ -3012,6 +3068,36 @@ See [craft\helpers\ConfigHelper::durationInSeconds()](https://docs.craftcms.com/
 
 
 
+### `verifyEmailPath`
+
+Allowed types
+:
+
+`mixed`
+
+Default value
+:
+
+`'verifyemail'`
+
+Defined by
+:
+
+[GeneralConfig::$verifyEmailPath](api:craft\config\GeneralConfig::$verifyEmailPath)
+
+Since
+:
+
+3.4.0
+
+
+
+The URI Craft should use for email verification links on the front-end.
+
+See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
+
+
+
 ### `verifyEmailSuccessPath`
 
 Allowed types
@@ -3036,7 +3122,7 @@ Since
 
 
 
-The URI that users without access to the Control Panel should be redirected to after verifying a new email address.
+The URI that users without access to the control panel should be redirected to after verifying a new email address.
 
 See [craft\helpers\ConfigHelper::localizedValue()](https://docs.craftcms.com/api/v3/craft-helpers-confighelper.html#method-localizedvalue) for a list of supported value types.
 
