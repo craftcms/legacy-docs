@@ -28,8 +28,8 @@ module.exports = {
                 text: 'Craft CMS',
                 items: [
                     { text: 'Craft 2 Documentation', link: 'https://docs.craftcms.com/v2/' },
-                    { text: 'Craft 3 Documentation', link: '/' },
                     { text: 'Craft 2 Class Reference', link: 'https://docs.craftcms.com/api/v2/' },
+                    { text: 'Craft 3 Documentation', link: '/' },
                     { text: 'Craft 3 Class Reference', link: 'https://docs.craftcms.com/api/v3/' },
                 ]
             },
