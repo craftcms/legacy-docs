@@ -39,6 +39,8 @@ module.exports = {
                     { text: 'Commerce 1 Documentation', link: 'https://docs.craftcms.com/commerce/v1/' },
                     { text: 'Commerce 2 Documentation', link: 'https://docs.craftcms.com/commerce/v2/' },
                     { text: 'Commerce 2 Class Reference', link: 'https://docs.craftcms.com/commerce/api/v2/' },
+                    { text: 'Commerce 3 Documentation', link: 'https://docs.craftcms.com/commerce/v3/' },
+                    { text: 'Commerce 3 Class Reference', link: 'https://docs.craftcms.com/commerce/api/v3/' },
                 ]
             },
             { text: 'Craftnet API', link: 'https://docs.api.craftcms.com/' },
