@@ -61,6 +61,7 @@ $myCategoryQuery = \craft\elements\Category::find();
 - [ancestorOf](#ancestorof)
 - [anyStatus](#anystatus)
 - [asArray](#asarray)
+- [clearCachedResult](#clearcachedresult)
 - [dateCreated](#datecreated)
 - [dateUpdated](#dateupdated)
 - [descendantDist](#descendantdist)
@@ -212,13 +213,22 @@ $categories = \craft\elements\Category::find()
 :::
 
 
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
+
+
 ### `dateCreated`
 
-カテゴリの作成日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the categories’ creation dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するカテゴリ                             |
 | ------------------------------------------------ | ------------------------------------ |
@@ -253,11 +263,11 @@ $categories = \craft\elements\Category::find()
 
 ### `dateUpdated`
 
-カテゴリの最終アップデート日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the categories’ last-updated dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するカテゴリ                                 |
 | ------------------------------------------------ | ---------------------------------------- |
@@ -290,7 +300,7 @@ $categories = \craft\elements\Category::find()
 
 ### `descendantDist`
 
-[descendantOf](#descendantof) で指定されたカテゴリから特定の距離だけ離れているカテゴリのみに、クエリの結果を絞り込みます。
+Narrows the query results to only categories that are up to a certain distance away from the category specified by [descendantOf](#descendantof).
 
 
 
@@ -317,11 +327,11 @@ $categories = \craft\elements\Category::find()
 
 ### `descendantOf`
 
-指定したカテゴリの子孫であるカテゴリだけに、クエリの結果を絞り込みます。
+Narrows the query results to only categories that are descendants of another category.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するカテゴリ            |
 | ------------------------------------------------ | ------------------- |
@@ -349,7 +359,7 @@ $categories = \craft\elements\Category::find()
 
 
 ::: tip
-どれだけ離れた子孫カテゴリを対象にするか制限したい場合、[descendantDist](#descendantdist) と組み合わせることができます。
+This can be combined with [descendantDist](#descendantdist) if you want to limit how far away the descendant categories can be.
 :::
 
 
@@ -359,7 +369,7 @@ Narrows the query results based on whether the categories are enabled in the sit
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                  | Fetches categories…                          |
 | ------------------ | -------------------------------------------- |
@@ -682,7 +692,7 @@ Possible values include:
 
 
 
-:::
+::: code
 ```twig
 {# Fetch the next category #}
 {% set category = craft.categories()
@@ -1129,7 +1139,7 @@ Possible values include:
 
 
 
-:::
+::: code
 ```twig
 {# Fetch categories with a title that contains "Foo" #}
 {% set categories = craft.categories()
