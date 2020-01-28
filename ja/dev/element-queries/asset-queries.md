@@ -53,6 +53,7 @@ $myAssetQuery = \craft\elements\Asset::find();
 
 - [anyStatus](#anystatus)
 - [asArray](#asarray)
+- [clearCachedResult](#clearcachedresult)
 - [dateCreated](#datecreated)
 - [dateModified](#datemodified)
 - [dateUpdated](#dateupdated)
@@ -78,6 +79,7 @@ $myAssetQuery = \craft\elements\Asset::find();
 - [trashed](#trashed)
 - [uid](#uid)
 - [unique](#unique)
+- [uploader](#uploader)
 - [volume](#volume)
 - [volumeId](#volumeid)
 - [width](#width)
@@ -134,13 +136,22 @@ $assets = \craft\elements\Asset::find()
 :::
 
 
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
+
+
 ### `dateCreated`
 
-アセットの作成日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the assets’ creation dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するアセット                             |
 | ------------------------------------------------ | ------------------------------------ |
@@ -175,9 +186,9 @@ $assets = \craft\elements\Asset::find()
 
 ### `dateModified`
 
-アセットファイルの最終更新日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the assets’ files’ last-modified dates.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するアセット                             |
 | ------------------------------------------------ | ------------------------------------ |
@@ -210,11 +221,11 @@ $assets = \craft\elements\Asset::find()
 
 ### `dateUpdated`
 
-アセットの最終アップデート日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the assets’ last-updated dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                | 取得するアセット                                 |
 | ------------------------------------------------ | ---------------------------------------- |
@@ -249,7 +260,7 @@ $assets = \craft\elements\Asset::find()
 
 Narrows the query results based on the assets’ filenames.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                           | Fetches assets…                                      |
 | --------------------------- | ---------------------------------------------------- |
@@ -565,7 +576,7 @@ Determines how many assets should be skipped in the results.
 
 
 
-:::
+::: code
 ```twig
 {# Fetch all assets except for the first 3 #}
 {% set assets = craft.assets()
@@ -588,7 +599,7 @@ Determines the order that the assets should be returned in.
 
 
 
-:::
+::: code
 ```twig
 {# Fetch all assets in order of date created #}
 {% set assets = craft.assets()
@@ -648,7 +659,7 @@ See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanat
 
 
 
-アセットを照会するサイトを決定します。
+::: code
 ```twig
 {# Fetch all assets that are related to myCategory #}
 {% set assets = craft.assets()
@@ -913,6 +924,36 @@ $assets = \craft\elements\Asset::find()
 :::
 
 
+### `uploader`
+
+Narrows the query results based on the user the assets were uploaded by, per the user’s IDs.
+
+Possible values include:
+
+| 値                                                           | Fetches assets…                                 |
+| ----------------------------------------------------------- | ----------------------------------------------- |
+| `1`                                                         | uploaded by the user with an ID of 1.           |
+| a [craft\elements\User](api:craft\elements\User) object | uploaded by the user represented by the object. |
+
+
+
+::: code
+```twig
+{# Fetch assets uploaded by the user with an ID of 1 #}
+{% set assets = craft.assets()
+    .uploader(1)
+    .all() %}
+```
+
+```php
+// Fetch assets uploaded by the user with an ID of 1
+$assets = \craft\elements\Asset::find()
+    ->uploader(1)
+    ->all();
+```
+:::
+
+
 ### `volume`
 
 Narrows the query results based on the volume the assets belong to.
@@ -961,7 +1002,7 @@ Possible values include:
 
 
 
-トランスフォームがすでに生成されている場合、一度に複数の変換された画像を表示する際のパフォーマンスが向上します。
+::: code
 ```twig
 {# Fetch assets in the volume with an ID of 1 #}
 {% set assets = craft.assets()
@@ -984,7 +1025,7 @@ Narrows the query results based on the assets’ image widths.
 
 Possible values include:
 
-| 値                             | Fetches assets…                     |
+| Value                         | Fetches assets…                     |
 | ----------------------------- | ----------------------------------- |
 | `100`                         | with a width of 100.                |
 | `'>= 100'`                 | with a width of at least 100.       |
