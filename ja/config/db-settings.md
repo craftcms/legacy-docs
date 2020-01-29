@@ -9,37 +9,35 @@ Craft は、Craft がどのようにデータベースへ接続するかを制�
 ```bash
 ENVIRONMENT="dev"
 SECURITY_KEY=""
-DB_DRIVER="mysql"
-DB_SERVER="localhost"
+DB_DSN="mysql:host=<host>;port=<port>;dbname=<dbname>"
 DB_USER="root"
 DB_PASSWORD=""
-DB_DATABASE=""
 DB_SCHEMA="public"
 DB_TABLE_PREFIX=""
-DB_PORT=""
 ```
 
 `DB_` ではじまる変数はデータベース接続設定で、`config/db.php` の中から次のように取得します。
 
 ```php
 return [
-    'driver' => getenv('DB_DRIVER'),
-    'server' => getenv('DB_SERVER'),
+    'dsn' => getenv('DB_DSN'),
     'user' => getenv('DB_USER'),
     'password' => getenv('DB_PASSWORD'),
-    'database' => getenv('DB_DATABASE'),
     'schema' => getenv('DB_SCHEMA'),
     'tablePrefix' => getenv('DB_TABLE_PREFIX'),
-    'port' => getenv('DB_PORT')
 ];
 ```
 
-私たちがこのような環境変数のアプローチを推奨するには、2つの理由があります。
+::: tip
+NOTE If you installed Craft before 3.4 was released, you will have `DB_DRIVER`, `DB_SERVER`, `DB_DATABASE`, and `DB_PORT` environment variables (a well as corresponding values in `config/db.php`) instead of `DB_DSN`. Both approaches work, but setting `DB_DSN` instead is recommended in Craft 3.4 and later.
+:::
+
+We recommend this environment variable approach for two reasons:
 
 1. 機密情報をプロジェクトのコードベースから守ります。（`.env` ファイルは、共有したり Git にコミットするべきではありません。）
 2. それぞれの開発者が他者の設定を上書きすることなく独自の設定を定義できるため、他の開発者とのコラボレーションを容易にします。
 
-Craft がサポートするデータベース接続設定の完全なリストは、次の通りです。
+Here’s the full list of database connection settings that Craft supports:
 
 <!-- BEGIN SETTINGS -->
 
@@ -62,9 +60,9 @@ Craft がサポートするデータベース接続設定の完全なリスト�
 
 
 
-PDO コンストラクタに渡す PDO 属性の key => value ペアの配列。
+An array of key => value pairs of PDO attributes to pass into the PDO constructor.
 
-例えば、MySQL PDO ドライバ（http://php.net/manual/en/ref.pdo-mysql.php）を使用する場合、（MySQL で SSL が利用できると仮定する https://dev.mysql.com/doc/refman/5.5/en/using-secure-connections.html）SSL データベース接続で `'user'` が SSL 経由で接続できる場合、次のように設定します。
+For example, when using the MySQL PDO driver (http://php.net/manual/en/ref.pdo-mysql.php), if you wanted to enable a SSL database connection (assuming SSL is enabled in MySQL (https://dev.mysql.com/doc/refman/5.5/en/using-secure-connections.html) and `'user'` can connect via SSL, you'd set these:
 
 ```php
 [
@@ -95,7 +93,7 @@ PDO コンストラクタに渡す PDO 属性の key => value ペアの配列。
 
 
 
-テーブルを作成する際に使用する文字セット。
+The charset to use when creating tables.
 
 
 
