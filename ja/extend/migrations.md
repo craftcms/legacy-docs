@@ -63,7 +63,7 @@ $this->insert('{{%tablename}}', $rows);
 ```
 
 ::: warning
-<api:api:yii\db\Migration::insert()>、<a href="api:craft\db\Migration::batchInsert()">batchInsert()</a>、および、<a href="api:yii\db\Migration::update()">update()</a> マイグレーションメソッドは、引数 `$columns` で指定したものに加えて `dateCreated`、 `dateUpdated`、`uid` テーブルのカラムにあるデータを自動的に挿入 / アップデートします。操作しているテーブルにこれらのカラムがない場合、引数 `$includeAuditColumns` に `false` を渡して、SQL エラーにならないようにしてください。
+The <api:yii\db\Migration::insert()>, [batchInsert()](api:craft\db\Migration::batchInsert()), and [update()](api:yii\db\Migration::update()) migration methods will automatically insert/update data in the `dateCreated`, `dateUpdated`, `uid` table columns in addition to whatever you specified in the `$columns` argument. If the table you’re working with does’t have those columns, make sure you pass `false` to the `$includeAuditColumns` argument so you don’t get a SQL error.
 :::
 
 ::: tip
