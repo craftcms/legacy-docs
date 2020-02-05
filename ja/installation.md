@@ -154,15 +154,13 @@ Craft プロジェクトをホストするための新しいウェブサーバ�
 ./craft setup
 ```
 
-ウェブブラウザで `http://<Hostname>/index.php?p=admin/install`（ウェブサーバーのホスト名で `<Hostname>` を置き換える）に移動します。ここまでのステップがうまくいっていれば、Craft のセットアップウィザードが迎えてくれるでしょう。
-
 ### ウェブブラウザによるセットアップ
 
-In your web browser, go to `http://<Hostname>/index.php?p=admin/install` (substituting `<Hostname>` with your web server’s host name). If you’ve done everything right so far, you should be greeted by Craft’s Setup Wizard.
+ウェブブラウザで `http://<Hostname>/index.php?p=admin/install`（ウェブサーバーのホスト名で `<Hostname>` を置き換える）に移動します。ここまでのステップがうまくいっていれば、Craft のセットアップウィザードが迎えてくれるでしょう。
 
 ![Craft Installation Screen](./images/installation-step-0.png)
 
-The first step of the installer is to accept the [license agreement](https://craftcms.com/license). Scroll down through the agreement (reading it all, of course) and click the “Got it” button to accept.
+インストーラの初めのステップは [ライセンス契約](https://craftcms.com/license) に同意することです。規約をスクロールダウンし（もちろん全て読んでから）、 “Got it” ボタンをクリックして同意します。
 
 ![Craft Installation License Agreement](./images/installation-step-1.png)
 
@@ -170,26 +168,18 @@ The first step of the installer is to accept the [license agreement](https://cra
 Craft がすでにデータベースに接続可能な状態であれば、このステップはスキップされます。
 :::
 
-::: tip
-If the Setup Wizard skips this step, it’s because Craft is already able to connect to your database.
-:::
-
 ![Craft Installation Database Connection Information](./images/installation-step-2.png)
 
-The third step of the installer is to create an admin account. Don’t be one of _those people_ and be sure to pick a strong password.
+インストーラーの3番目のステップは、管理者アカウントを作成することです。_よくある誰か_にならない様に、強いパスワードを選んでください。
 
 ![Craft Installation Create User Account](./images/installation-step-3.png)
 
-The final step is to define your System Name, Base URL, and Language.
+最後のステップは、システム名、ベース URL、及び言語を定義することです。
 
 ![Craft Installation System Settings](./images/installation-step-4.png)
 
 インストールが成功したら、Craft はブラウザをコントロールパネルにリダイレクトします。
 
-If it was successful, Craft will redirect your browser to the Control Panel.
-
 ![Craft Installation Complete](./images/installation-step-5.png)
 
 さぁ、素晴らしいものを築きあげましょう。
-
-Now build something incredible.
