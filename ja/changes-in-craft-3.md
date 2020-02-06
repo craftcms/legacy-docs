@@ -342,7 +342,7 @@ Twig 2 では、`defined` のテストでない限り、エラーを返します
 | `craft.session.getFlash()`                              | `craft.app.session.getFlash()`                              |
 | `craft.session.hasFlash()`                              | `craft.app.session.hasFlash()`                              |
 
-*<sup>1</sup> `craft.app.request.isLivePreview` is also deprecated, and only will return `true` when previewing categories or plugin-supplied element types that don’t support the new previewing system. If you were calling this to work around Craft templating bugs in Live Preview requests, you can simply delete the condition now, and treat Live Preview requests the same as any other request type.*
+*<sup>1</sup> `craft.app.request.isLivePreview` も非推奨になり、新しいプレビューシステムをサポートしていないカテゴリまたはプラグイン提供の要素タイプをプレビューする場合にのみ` true` を返します。ライブプレビューリクエストの Craft テンプレートバグを回避するためにこれを呼び出す場合、条件を削除するだけで、ライブプレビューリクエストを他のリクエストタイプと同じように扱うことができます。*
 
 ## 日付フォーマット
 
@@ -630,7 +630,6 @@ CSRF プロテクションは、Craft 3 ではデフォルトで有効になり�
 <input type="hidden" name="{{ csrfParam }}" value="{{ csrfToken }}">
 ```
 
-[Craft 3 のためのプラグインアップデート](extend/updating-plugins.md)を参照してください。
 
 ```twig
 {{ csrfInput() }}
@@ -638,4 +637,4 @@ CSRF プロテクションは、Craft 3 ではデフォルトで有効になり�
 
 ## プラグイン
 
-See [Updating Plugins for Craft 3](extend/updating-plugins.md).
+[Craft 3 のためのプラグインアップデート](extend/updating-plugins.md)を参照してください。
