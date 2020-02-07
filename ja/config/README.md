@@ -86,7 +86,7 @@ ASSETS_BASE_URL=http://my-project.com/assets
 ASSETS_BASE_PATH=/path/to/web/assets
 ```
 
-You can define additional custom aliases using the <config:aliases> config setting as well. For example, you may wish to create aliases that define the base URL and base path that your asset volumes will live in.
+[getenv()](http://php.net/manual/en/function.getenv.php) を使用して、エイリアスの定義にセットすることができます。
 
 ```php
 'aliases' => [
@@ -94,8 +94,6 @@ You can define additional custom aliases using the <config:aliases> config setti
     '@assetBasePath' => getenv('ASSETS_BASE_PATH'),
 ],
 ```
-
-[getenv()](http://php.net/manual/en/function.getenv.php) を使用して、エイリアスの定義にセットすることができます。
 
 ::: tip
 設定でエイリアスを参照する場合、URL やパスに追加のセグメントを付加することができます。例えば、`@assetBaseUrl/user-photos` をボリュームのベース URL  にセットできます。
@@ -122,7 +120,6 @@ You can define additional custom aliases using the <config:aliases> config setti
 ```twig
 {{ alias('@assetBaseUrl') }}
 ```
-:::
 
 ## URL ルール
 
@@ -130,8 +127,8 @@ You can define additional custom aliases using the <config:aliases> config setti
 
 ## PHP 定数
 
-You can configure core settings like system file paths and the active environment by defining certain [PHP constants](php-constants.md) in `web/index.php`.
+`web/index.php` 内の特定の [PHP 定数](php-constants.md) を定義することにより、システムファイルパスやアクティブ環境などのコア設定を設定できます。
 
 ## アプリケーション設定
 
-You can customize Craft’s [application configuration](app.md) from `config/app.php`, such as overriding component configs, or adding new modules and components.
+コンポーネントの設定をオーバーライドしたり、新しいモジュールやコンポーネントを追加したりするなど、 `config/app.php` から Craft の [アプリケーション設定](app.md) をカスタマイズできます。
