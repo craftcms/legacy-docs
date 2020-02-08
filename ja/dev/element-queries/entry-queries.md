@@ -549,10 +549,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| 値                                      | 取得するエントリ                                       |
-| -------------------------------------- | ---------------------------------------------- |
-| `1`                                    | サイト内で有効になっているもの。                               |
-| a `\craft\elements\db\User` object | created by the user represented by the object. |
+| 値                                                           | 取得するエントリ                                       |
+| ----------------------------------------------------------- | ---------------------------------------------- |
+| `1`                                                         | サイト内で有効になっているもの。                               |
+| a [craft\elements\User](api:craft\elements\User) object | created by the user represented by the object. |
 
 
 
@@ -1228,10 +1228,10 @@ Narrows the query results to only revisions created by a given user.
 
 Possible values include:
 
-| 値                                    | 取得するエントリ                                       |
-| ------------------------------------ | ---------------------------------------------- |
-| `'foo'`                              | ハンドルが `foo` のサイトから。                            |
-| `\craft\elements\db\Site` オブジェクト | created by the user represented by the object. |
+| 値                                                           | 取得するエントリ                                       |
+| ----------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                     | ハンドルが `foo` のサイトから。                            |
+| a [craft\elements\User](api:craft\elements\User) object | created by the user represented by the object. |
 
 
 
@@ -1482,13 +1482,13 @@ The current site will be used by default.
 
 Possible values include:
 
-| 値                                      | 取得するエントリ           |
-| -------------------------------------- | ------------------ |
-| `'foo'`                                | URI が `foo`。       |
-| `'foo*'`                               | URI が `foo` ではじまる。 |
-| `'*foo'`                               | URI が `foo` で終わる。  |
-| a `\craft\elements\db\Site` object | URI が `foo` を含む。   |
-| `'not *foo*'`                          | URI が `foo` を含まない。 |
+| 値                                                       | 取得するエントリ           |
+| ------------------------------------------------------- | ------------------ |
+| `'foo'`                                                 | URI が `foo`。       |
+| `'foo*'`                                                | URI が `foo` ではじまる。 |
+| `'*foo'`                                                | URI が `foo` で終わる。  |
+| a [craft\models\Site](api:craft\models\Site) object | URI が `foo` を含む。   |
+| `'not *foo*'`                                           | URI が `foo` を含まない。 |
 
 ::: tip
 If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
