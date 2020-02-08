@@ -549,10 +549,10 @@ Narrows the query results to only drafts created by a given user.
 
 Possible values include:
 
-| Value                                  | Fetches drafts…                                |
-| -------------------------------------- | ---------------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.           |
-| a `\craft\elements\db\User` object | created by the user represented by the object. |
+| Value                                                       | Fetches drafts…                                |
+| ----------------------------------------------------------- | ---------------------------------------------- |
+| `1`                                                         | created by the user with an ID of 1.           |
+| a [craft\elements\User](api:craft\elements\User) object | created by the user represented by the object. |
 
 
 
@@ -1228,10 +1228,10 @@ Narrows the query results to only revisions created by a given user.
 
 Possible values include:
 
-| Value                                  | Fetches revisions…                             |
-| -------------------------------------- | ---------------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.           |
-| a `\craft\elements\db\User` object | created by the user represented by the object. |
+| Value                                                       | Fetches revisions…                             |
+| ----------------------------------------------------------- | ---------------------------------------------- |
+| `1`                                                         | created by the user with an ID of 1.           |
+| a [craft\elements\User](api:craft\elements\User) object | created by the user represented by the object. |
 
 
 
@@ -1482,13 +1482,13 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value                                  | Fetches entries…                               |
-| -------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                | from the site with a handle of `foo`.          |
-| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
-| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
-| a `\craft\elements\db\Site` object | from the site represented by the object.       |
-| `'*'`                                  | from any site.                                 |
+| Value                                                   | Fetches entries…                               |
+| ------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                 | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                                        | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                                 | not in a site with a handle of `foo` or `bar`. |
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.       |
+| `'*'`                                                   | from any site.                                 |
 
 ::: tip
 If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
