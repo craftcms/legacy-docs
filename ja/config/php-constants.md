@@ -66,16 +66,18 @@ define('CRAFT_SITE', 'de');
 
 [storage/](../directory-structure.md#storage) フォルダのパス。（デフォルトでは、ベースディレクトリ内に存在するものとします。）
 
-[templates/](../directory-structure.md#templates) フォルダのパス。（デフォルトでは、ベースディレクトリ内に存在するものとします。）
+::: tip
+必ず有効なフォルダーパスを指定してください。そうでない場合は無視されます。
+:::
 
 ### `CRAFT_TEMPLATES_PATH`
 
-`translations/` フォルダのパス。（デフォルトでは、ベースディレクトリ内に存在するものとします。）
+[templates/](../directory-structure.md#templates) フォルダのパス。（デフォルトでは、ベースディレクトリ内に存在するものとします。）
 
 ### `CRAFT_TRANSLATIONS_PATH`
 
-[vendor/](../directory-structure.md#vendor) フォルダのパス。（デフォルトでは、起動スクリプトによって4つのディレクトリが稼働しているものとします。）
+`translations/` フォルダのパス。（デフォルトでは、ベースディレクトリ内に存在するものとします。）
 
 ### `CRAFT_VENDOR_PATH`
 
-The path to the [vendor/](../directory-structure.md#vendor) folder. (It is assumed to live 4 directories up from the bootstrap script by default.)
+[vendor/](../directory-structure.md#vendor) フォルダのパス。（デフォルトでは、起動スクリプトによって4つのディレクトリが稼働しているものとします。）
