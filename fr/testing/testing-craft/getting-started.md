@@ -76,14 +76,10 @@ These variables are explained [here](../framework/config-options.md)
 Create a `.env` file in `tests/` and ensure the following variables are setup:
 
 ```dotenv
-DB_DRIVER=""
-DB_SERVER=""
-DB_USER=""
+DB_DSN="mysql:host=<host>;port=<port>;dbname=<dbname>"
+DB_USER="root"
 DB_PASSWORD=""
-DB_DATABASE=""
-DB_SCHEMA=""
 DB_TABLE_PREFIX=""
-DB_PORT=""
 SECURITY_KEY=""
 DEFAULT_SITE_URL="https://your-site-url.test/" # Set this to the `entryUrl` param in the `codeception.yml` file.
 ```
@@ -150,14 +146,11 @@ Craft requires a `db.php` file to be present in the config directory. To satisfy
 <?php
 
 return [
-    'password' => getenv('DB_PASSWORD'),
+    'dsn' => getenv('DB_DSN'),
     'user' => getenv('DB_USER'),
-    'database' => getenv('DB_DATABASE'),
-    'tablePrefix' => getenv('DB_TABLE_PREFIX'),
-    'driver' => getenv('DB_DRIVER'),
-    'port' => getenv('DB_PORT'),
+    'password' => getenv('DB_PASSWORD'),
     'schema' => getenv('DB_SCHEMA'),
-    'server' => getenv('DB_SERVER'),
+    'tablePrefix' => getenv('DB_TABLE_PREFIX'),
 ];
 ```
 
