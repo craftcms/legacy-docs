@@ -598,11 +598,9 @@ Possible values include:
 ```
 
 ```php
-// Fetch entries expiring this month
-$nextMonth = (new \DateTime('first day of next month'))->format(\DateTime::ATOM);
-
+// Fetch a draft
 $entries = \craft\elements\Entry::find()
-    ->expiryDate("< {$nextMonth}")
+    ->draftId(10)
     ->all();
 ```
 :::
