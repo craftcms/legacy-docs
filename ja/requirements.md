@@ -41,7 +41,11 @@ Craft は次の PHP エクステンションが必要です。
 * [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) - アップデートやプラグインストアからのプラグインインストールを可能にするため、Craft では PHP 設定を有効にする必要があります。
 * [proc_*](http://php.net/manual/en/ref.exec.php) - プラグインストアを利用したり、メールの送信ができるよう PHP の `proc_` メソッドを有効にする必要があります。
 
-## 必要なデータベースユーザー特権
+## Optional Extras
+
+* [Composer 1.30+](https://docs.craftcms.com/v3/installation.html#downloading-with-composer) - When installing Craft with Composer
+
+## Required Database User Privileges
 
 Craft のデータベースに接続するユーザーには、次の特権がなければなりません。
 
@@ -68,21 +72,21 @@ Craft のデータベースに接続するユーザーには、次の特権が�
 * `REFERENCES`
 * `CONNECT`
 
-## コントロールパネルのブラウザ要件
+## Control Panel Browser Requirements
 
 Craft のコントロールパネルは、モダンブラウザが必要です。
 
 #### Windows と macOS
 
-* Chrome 29 以降
-* Firefox 28 以降
-* Safari 9.0 以降
+* Chrome 29 or later
+* Firefox 28 or later
+* Safari 9.0 or later
 * Microsoft Edge
 
 #### モバイル
 
-* iOS: Safari 9.1 以降
-* Android: Chrome 4.4 以降
+* iOS: Safari 9.1 or later
+* Android: Chrome 4.4 or later
 
 ::: tip
 Craft の CP のブラウザ要件は、実際のウェブサイトとは関係がありません。もしあなたがつらい仕事を苦にせず、IE 6 で完璧に表示されるサイトを望むのであれば、あたなの望む通りにできます。
