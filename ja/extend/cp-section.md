@@ -55,7 +55,7 @@ public function init()
 
 ## プラグインセクション
 
-1つのセクションだけを追加したいプラグインは、[EVENT_REGISTER_CP_NAV_ITEMS](api:craft\web\twig\variables\Cp::EVENT_REGISTER_CP_NAV_ITEMS) イベントを使うのではなく、プライマリプラグインクラスの `$hasCpSection` プロパティで設定できます。
+Plugins that only need to add one section can set the `$hasCpSection` property on their primary plugin class, rather than using the [EVENT_REGISTER_CP_NAV_ITEMS](api:craft\web\twig\variables\Cp::EVENT_REGISTER_CP_NAV_ITEMS) event:
 
 ```php
 <?php
