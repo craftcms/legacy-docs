@@ -600,7 +600,7 @@ Possible values include:
 ```php
 // Fetch a draft
 $entries = \craft\elements\Entry::find()
-    ->draftId(10)
+    ->draftIf(10)
     ->all();
 ```
 :::
