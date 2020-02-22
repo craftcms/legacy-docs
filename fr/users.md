@@ -30,36 +30,36 @@ Craft Pro allows you to set permissions on users and groups, such as the ability
 
 The permissions Craft comes with are:
 
-| Permission                                                | Handle                                     |
-| --------------------------------------------------------- | ------------------------------------------ |
-| Access the site when the system is off                    | `accessSiteWhenSystemIsOff`                |
-| Access the CP                                             | `accessCp`                                 |
-| ↳&nbsp; Access the CP when the system is off              | `accessCpWhenSystemIsOff`                  |
-| ↳&nbsp; Perform Craft and plugin updates                  | `performUpdates`                           |
-| ↳&nbsp; Access *[Plugin Name]*                            | `accessPlugin-[PluginHandle]`              |
-| Edit users                                                | `editUsers`                                |
-| ↳&nbsp; Register users                                    | `registerUsers`                            |
-| ↳&nbsp; Assign permissions                                | `assignUserPermissions`                    |
-| ↳&nbsp; Administrate users                                | `administrateUsers`                        |
-| Delete users                                              | `deleteUsers`                              |
-| Edit *[Site Name]*                                        | `editSite:[SiteID]`                        |
-| Impersonate users                                         | `impersonateUsers`                         |
-| Edit entries                                              | `editEntries:[SectionID]`                  |
-| ↳&nbsp; Create entries                                    | `createEntries:[SectionID]`                |
-| ↳&nbsp; Publish entries                                   | `publishEntries:[SectionID]`               |
-| ↳&nbsp; Delete entries                                    | `deleteEntries:[SectionID]`                |
-| ↳&nbsp; Edit other authors’ entries                       | `editPeerEntries:[SectionID]`              |
-| &nbsp;&nbsp;&nbsp; ↳&nbsp; Publish other authors’ entries | `publishPeerEntries:[SectionID]`           |
-| &nbsp;&nbsp;&nbsp; ↳&nbsp; Delete other authors’ entries  | `deletePeerEntries:[SectionID]`            |
-| ↳&nbsp; Edit other authors’ drafts                        | `editPeerEntryDrafts:[SectionID]`          |
-| &nbsp;&nbsp;&nbsp; ↳&nbsp; Publish other authors’ drafts  | `publishPeerEntryDrafts:[SectionID]`       |
-| &nbsp;&nbsp;&nbsp; ↳&nbsp; Delete other authors’ drafts   | `deletePeerEntryDrafts:[SectionID]`        |
-| Edit *[Global Set Name]*                                  | `editGlobalSet:[GlobalSetID]`              |
-| Edit *[Category Group Name]*                              | `editCategories:[CategoryGroupID]`         |
-| View *[Asset Volume Name]*                                | `viewVolume:[VolumeID]`                    |
-| ↳&nbsp; Upload files                                      | `saveAssetInVolume:[VolumeID]`             |
-| ↳&nbsp; Create subfolders                                 | `createFoldersInVolume:[VolumeID]`         |
-| ↳&nbsp; Remove files                                      | `deleteFilesAndFoldersInVolume:[VolumeID]` |
+| Permission | Handle
+| ---------- | ------
+| Access the site when the system is off | `accessSiteWhenSystemIsOff`
+| Access the CP | `accessCp`
+| ↳&nbsp; Access the CP when the system is off | `accessCpWhenSystemIsOff`
+| ↳&nbsp; Perform Craft and plugin updates | `performUpdates`
+| ↳&nbsp; Access *[Plugin Name]* | `accessPlugin-[PluginHandle]`
+| Edit users | `editUsers`
+| ↳&nbsp; Register users | `registerUsers`
+| ↳&nbsp; Assign permissions | `assignUserPermissions`
+| ↳&nbsp; Administrate users | `administrateUsers`
+| Delete users | `deleteUsers`
+| Edit *[Site Name]* | `editSite:[SiteUID]`
+| Impersonate users | `impersonateUsers`
+| Edit entries | `editEntries:[SectionUID]`
+| ↳&nbsp; Create entries | `createEntries:[SectionUID]`
+| ↳&nbsp; Publish entries | `publishEntries:[SectionUID]`
+| ↳&nbsp; Delete entries | `deleteEntries:[SectionUID]`
+| ↳&nbsp; Edit other authors’ entries | `editPeerEntries:[SectionUID]`
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Publish other authors’ entries | `publishPeerEntries:[SectionUID]`
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Delete other authors’ entries | `deletePeerEntries:[SectionUID]`
+| ↳&nbsp; Edit other authors’ drafts | `editPeerEntryDrafts:[SectionUID]`
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Publish other authors’ drafts | `publishPeerEntryDrafts:[SectionUID]`
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Delete other authors’ drafts | `deletePeerEntryDrafts:[SectionUID]`
+| Edit *[Global Set Name]* | `editGlobalSet:[GlobalSetUID]`
+| Edit *[Category Group Name]* | `editCategories:[CategoryGroupUID]`
+| View *[Asset Volume Name]* | `viewVolume:[VolumeUID]`
+| ↳&nbsp; Upload files | `saveAssetInVolume:[VolumeUID]`
+| ↳&nbsp; Create subfolders | `createFoldersInVolume:[VolumeUID]`
+| ↳&nbsp; Remove files | `deleteFilesAndFoldersInVolume:[VolumeUID]`
 
 ## Public Registration
 

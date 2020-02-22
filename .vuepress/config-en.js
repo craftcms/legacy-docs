@@ -72,6 +72,8 @@ module.exports = {
                     'translation-categories',
                     'asset-bundles',
                     'services',
+                    'controllers',
+                    'commands',
                     // 'behaviors',
                     'template-roots',
                     'extending-twig',
