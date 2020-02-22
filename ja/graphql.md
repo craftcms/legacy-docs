@@ -2,11 +2,69 @@
 
 Craft Pro 版では [GraphQL](https://graphql.org) のAPIを使ってコンテンツを扱うことができます。GraphQL APIにより、シングルページアプリケーション (SPA) や Static Site Generator のような別のアプリケーションでコンテンツを利用することができます。
 
-## はじめよう
+## An example query and response
+
+### Query payload
+
+```graphql
+{
+  entries (section: "news", limit: 2, orderBy: "dateCreated DESC") {
+    dateCreated @formatDateTime (format: "Y-m-d")
+    title
+    children {
+      title
+    }
+    ... on news_article_Entry {
+      shortDescription
+      featuredImage {
+        url @transform (width: 300, immediately: true)
+      }
+    }
+  }
+}
+```
+
+### The response
+
+```json
+{
+  "data": {
+    "entries": [
+      {
+        "dateCreated": "2019-08-21",
+        "title": "An important news item",
+        "children": [],
+        "shortDescription": "<p>This is how we roll these days.</p>",
+        "featuredImage": [
+          {
+            "url": "/assets/site/_300xAUTO_crop_center-center_none/glasses.jpg"
+          }
+        ]
+      },
+      {
+        "dateCreated": "2019-07-02",
+        "title": "Dolorem ea eveniet alias",
+        "children": [
+          {
+            "title": "Child entry"
+          },
+          {
+            "title": "This is also a child entry"
+          }
+        ],
+        "shortDescription": "Et omnis explicabo iusto eum nobis. Consequatur debitis architecto est exercitationem vitae velit repellendus. Aut consequatur maiores error ducimus ea et. Rem ipsa asperiores eius quas et omnis. Veniam quasi qui repellendus dignissimos et necessitatibus. Aut a illo tempora.",
+        "featuredImage": []
+      }
+    ]
+  }
+}
+```
+
+## Getting Started
 
 まずはじめに、Craft 3.3 またはそれ以降のバージョンを使っているか、そしてライセンスは Pro版をインストールしているかを確認します。
 
-### エンドポイントを作成
+### Create Your API Endpoint
 
 プロジェクトに GraphQL API のエンドポイントを作成する最初のステップは、公開エンドポイントを用意します。
 
@@ -101,18 +159,6 @@ If you need to specify any [variables](https://graphql.org/learn/queries/#variab
 
 ```bash
 curl \
-    --data-urlencode "query={ping}" \
-    http://craft32.test/api
-  # or
-  curl http://craft32.test/api?query=%7Bping%7D
-```
-
-#### Querying a Private Schema
-
-The Public Schema will be used by default. To query against a different [schema](#define-your-schemas), pass its Access Token using an `Authorization` header.
-
-```bash
-curl \
   -H "Content-Type: application/json" \
   -d '{
         "query": "query($id:[Int]) { entries(id: $id) { id, title } }",
@@ -121,11 +167,27 @@ curl \
   http://my-project.test/api
 ```
 
+#### Querying a Private Schema
+
+The Public Schema will be used by default. To query against a different [schema](#define-your-schemas), pass its Access Token using an `Authorization` header.
+
+```bash
+curl \
+  -H "Authorization: Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" \
+  -H "Content-Type: application/graphql" \
+  -d '{entries{id}}' \
+  http://my-project.test/api
+```
+
 ## Caching
 
 All query results are cached, so that repeated queries can yield results faster. The GraphQL result cache does not have a sophisticated ruleset on ivalidating the cache - if the site's content or structure changes, the entire cache is invalidated.
 
 Craft has GraphQL result caching enabled by default, but it can be disabled with the [enableGraphQlCaching](https://docs.craftcms.com/api/v3/craft-config-generalconfig.html#enablegraphqlcaching) config setting.
+
+## Interface Implementation
+
+A defined type exists for each specific interface implementation. For example, if a “News” section has “Article” and “Editorial” entry types, in addition to the `EntryInterface` interface type, two additional types would be defined the GraphQL schema, if the token used allows it: `news_article_Entry` and `news_editorial_Entry` types.
 
 ## Query Reference
 
@@ -1236,65 +1298,3 @@ The ID of the group that contains the tag.
 
 #### The `groupHandle` field
 The handle of the group that contains the tag.
-
-## Interface Implementation
-
-A defined type exists for each specific interface implementation. For example, if a “News” section has “Article” and “Editorial” entry types, in addition to the `EntryInterface` interface type, two additional types would be defined the GraphQL schema, if the token used allows it: `news_article_Entry` and `news_editorial_Entry` types.
-
-## An example query and response
-
-### Query payload
-
-```graphql
-{
-  entries (section: "news", limit: 2, orderBy: "dateCreated DESC") {
-    dateCreated @formatDateTime (format: "Y-m-d")
-    title
-    children {
-      title
-    }
-    ... on news_article_Entry {
-      shortDescription
-      featuredImage {
-        url @transform (width: 300, immediately: true)
-      }
-    }
-  }
-}
-```
-
-### The response
-
-```json
-{
-  "data": {
-    "entries": [
-      {
-        "dateCreated": "2019-08-21",
-        "title": "An important news item",
-        "children": [],
-        "shortDescription": "<p>This is how we roll these days.</p>",
-        "featuredImage": [
-          {
-            "url": "/assets/site/_300xAUTO_crop_center-center_none/glasses.jpg"
-          }
-        ]
-      },
-      {
-        "dateCreated": "2019-07-02",
-        "title": "Dolorem ea eveniet alias",
-        "children": [
-          {
-            "title": "Child entry"
-          },
-          {
-            "title": "This is also a child entry"
-          }
-        ],
-        "shortDescription": "Et omnis explicabo iusto eum nobis. Consequatur debitis architecto est exercitationem vitae velit repellendus. Aut consequatur maiores error ducimus ea et. Rem ipsa asperiores eius quas et omnis. Veniam quasi qui repellendus dignissimos et necessitatibus. Aut a illo tempora.",
-        "featuredImage": []
-      }
-    ]
-  }
-}
-```
