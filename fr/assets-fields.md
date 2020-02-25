@@ -41,7 +41,7 @@ Subfolder paths defined by the “Upload Location” and “Default Upload Locat
 Any properties supported by the source element (the element that has the Assets field) can be used here.
 
 ::: tip
-If you are creating the Assets field within a [Matrix field](matrix-fields.md), the source element is going to be the Matrix block, *not* the element that the Matrix field is being created on.
+If you are creating the Assets field within a [Matrix field](matrix-fields.md), the source element is going to be the Matrix block, _not_ the element that the Matrix field is being created on.
 
 So if your Matrix field is attached to an entry, and you want to output the entry ID in your dynamic subfolder path, use `owner.id` rather than `id`.
 :::
@@ -68,10 +68,10 @@ When [querying for elements](dev/element-queries/README.md) that have an Assets 
 
 Possible values include:
 
-| Value          | Fetches elements…                     |
-| -------------- | ------------------------------------- |
-| `':empty:'`    | that don’t have any related assets.   |
-| `':notempty:'` | that have at least one related asset. |
+| Value | Fetches elements…
+| - | -
+| `':empty:'` | that don’t have any related assets.
+| `':notempty:'` | that have at least one related asset.
 
 ```twig
 {# Fetch entries with a related asset #}
@@ -85,7 +85,7 @@ Possible values include:
 If you have an element with an Assets field in your template, you can access its related assets using your Assets field’s handle:
 
 ```twig
-{% set relatedAssets = entry.<FieldHandle> %}
+{% set query = entry.<FieldHandle> %}
 ```
 
 That will give you an [asset query](dev/element-queries/asset-queries.md), prepped to output all of the related assets for the given field.
@@ -123,10 +123,14 @@ If you just need to check if there are any related assets (but don’t need to f
 You can set [parameters](dev/element-queries/asset-queries.md#parameters) on the asset query as well. For example, to ensure that only images are returned, you can set the [kind](dev/element-queries/asset-queries.md#kind) param:
 
 ```twig
-{% set relatedAssets = entry.<FieldHandle>
+{% set relatedAssets = clone(entry.<FieldHandle>)
     .kind('image')
     .all() %}
 ```
+
+::: tip
+It’s always a good idea to clone the asset query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
 ### Uploading Files from Front-End Entry Forms
 
@@ -151,6 +155,16 @@ Replace `<FieldHandle>` with you actual field handle. For example if you field h
 If you want to allow multiple file uploads, add the `multiple` attribute and add `[]` to the end of the input name:
 
 ```markup
+<input type="file" name="fields[<FieldHanlde>][]" multiple>
+```
+
+If you want to add files to a field with existing assets, you will need to first fetch the existing asset ids and add them to a hidden field:
+
+```
+{% for asset in entry.<FieldHanlde> %}
+    <input type="hidden" name="fields[<FieldHanlde>][]" value="{{ asset.id }}">
+{% endfor %}
+
 <input type="file" name="fields[<FieldHanlde>][]" multiple>
 ```
 
