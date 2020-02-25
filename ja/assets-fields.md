@@ -85,7 +85,7 @@
 テンプレート内でアセットフィールドのエレメントを取得する場合、アセットフィールドのハンドルを利用して関連付けられたアセットにアクセスできます。
 
 ```twig
-{% set relatedAssets = entry.<FieldHandle> %}
+{% set query = entry.<FieldHandle> %}
 ```
 
 これは、所定のフィールドで関連付けられたすべてのアセットを出力するよう準備された[アセットクエリ](dev/element-queries/asset-queries.md)を提供します。
@@ -123,32 +123,36 @@
 アセットクエリで[パラメータ](dev/element-queries/asset-queries.md#parameters)をセットすることもできます。例えば、画像だけが返されることを保証するために、[kind](dev/element-queries/asset-queries.md#kind) パラメータをセットできます。
 
 ```twig
-{% set relatedAssets = entry.<FieldHandle>
+{% set relatedAssets = clone(entry.<FieldHandle>)
     .kind('image')
     .all() %}
 ```
 
+::: tip
+It’s always a good idea to clone the asset query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
+
 ### フロントエンドの投稿フォームからのファイルアップロード
 
-フロントエンドの[投稿フォーム](dev/examples/entry-form.md)から、アセットフィールドへのファイルアップロードをユーザーに許可するには、2つの調整が必要です。
+If you want to allow users to upload files to an Assets field from a front-end [entry form](dev/examples/entry-form.md), you just need to do two things.
 
-まず、`<form>` タグに `enctype="multipart/form-data"` 属性があることを確認して、ファイルをアップロードできるようにします。
+First, make sure your `<form>` tag has an `enctype="multipart/form-data"` attribute, so that it is capable of uploading files.
 
 ```markup
 <form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
 ```
 
-次に、ファイル入力欄をフォームに追加します。
+Then add a file input to the form:
 
 ```markup
 <input type="file" name="fields[<FieldHandle>]">
 ```
 
 ::: tip
-`<FieldHandle>` を実際のフィールドハンドルに置き換えます。例えば、フィールドハンドルが “heroImage” の場合、input 名は `fields[heroImage]` になります。
+Replace `<FieldHandle>` with you actual field handle. For example if you field handle is “heroImage”, the input name should be `fields[heroImage]`.
 :::
 
-複数ファイルをアップロードできるようにする場合、`multiple` 属性を追加し、input 名の末尾に `[]` を追加します。
+If you want to allow multiple file uploads, add the `multiple` attribute and add `[]` to the end of the input name:
 
 ```markup
 <input type="file" name="fields[<FieldHanlde>][]" multiple>
