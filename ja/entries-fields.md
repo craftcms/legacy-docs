@@ -57,7 +57,7 @@
 テンプレート内でエントリフィールドのエレメントを取得する場合、エントリフィールドのハンドルを利用して、関連付けられたエントリにアクセスできます。
 
 ```twig
-{% set relatedEntries = entry.<FieldHandle> %}
+{% set query = entry.<FieldHandle> %}
 ```
 
 これは、所定のフィールドで関連付けられたすべてのエントリを出力するよう定義された[エレメントクエリ](dev/element-queries/entry-queries.md)を提供します。
@@ -95,10 +95,14 @@
 エントリクエリで[パラメータ](dev/element-queries/entry-queries.md#parameters)をセットすることもできます。例えば、`news` セクションに含まれるエントリだけを取得するには、[section](dev/element-queries/entry-queries.md#section) パラメータをセットしてください。
 
 ```twig
-{% set relatedEntries = entry.<FieldHandle>
+{% set relatedEntries = clone(entry.<FieldHandle>)
     .section('news')
     .all() %}
 ```
+
+::: tip
+It’s always a good idea to clone the entry query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
 ## 関連項目
 
