@@ -51,7 +51,7 @@
 テンプレート内でユーザーフィールドのエレメントを取得する場合、ユーザーフィールドのハンドルを利用して、関連付けられたユーザーにアクセスできます。
 
 ```twig
-{% set relatedUsers = entry.<FieldHandle> %}
+{% set query = entry.<FieldHandle> %}
 ```
 
 これは、所定のフィールドで関連付けられたすべてのユーザーを出力するよう準備された[ユーザークエリ](dev/element-queries/user-queries.md)を提供します。
@@ -89,10 +89,14 @@
 ユーザークエリで[パラメータ](dev/element-queries/user-queries.md#parameters)をセットすることもできます。例えば、`authors` グループに含まれるユーザーだけを取得するには、[groupId](dev/element-queries/user-queries.md#groupid) パラメータをセットします。
 
 ```twig
-{% set relatedUsers = entry.<FieldHandle>
+{% set relatedUsers = clone(entry.<FieldHandle>)
     .group('authors')
     .all() %}
 ```
+
+::: tip
+It’s always a good idea to clone the user query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
 ## 関連項目
 
