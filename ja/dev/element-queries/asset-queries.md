@@ -45,9 +45,13 @@ $myAssetQuery = \craft\elements\Asset::find();
 </ul>
 ```
 
+::: warning
+When using `asset.url` or `asset.getUrl()`, the asset’s source volume must have “Assets in this volume have public URLs” enabled and a “Base URL” setting. Otherwise, the result will always be empty.
+:::
+
 ## パラメータ
 
-アセットクエリは、次のパラメータをサポートしています。
+Asset queries support the following parameters:
 
 <!-- BEGIN PARAMS -->
 
@@ -88,7 +92,7 @@ $myAssetQuery = \craft\elements\Asset::find();
 
 ### `anyStatus`
 
-[status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) および [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) パラメータをクリアします。
+Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
 
 
 
@@ -113,7 +117,7 @@ $assets = \craft\elements\Asset::find()
 
 ### `asArray`
 
-[Asset](api:craft\elements\Asset) オブジェクトではなく、データの配列として、マッチしたアセットをクエリが返します。
+Causes the query to return matching assets as arrays of data, rather than [Asset](api:craft\elements\Asset) objects.
 
 
 
