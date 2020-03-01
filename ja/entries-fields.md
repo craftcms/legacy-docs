@@ -40,15 +40,21 @@
 
 利用可能な値には、次のものが含まれます。
 
-| 値              | 取得するエレメント               |
-| -------------- | ----------------------- |
-| `':empty:'`    | 関連付けられたエントリを持たない。       |
-| `':notempty:'` | 少なくとも1つの関連付けられたエントリを持つ。 |
+| 値                                                           | 取得するエレメント                                                |
+| ----------------------------------------------------------- | -------------------------------------------------------- |
+| `':empty:'`                                                 | 関連付けられたエントリを持たない。                                        |
+| `':notempty:'`                                              | 少なくとも1つの関連付けられたエントリを持つ。                                  |
+| `100`                                                       | that are related to the entry with an ID of 100.         |
+| `[100, 200]`                                                | that are related to an entry with an ID of 100 or 200.   |
+| `['and', 100, 200]`                                         | that are related to the entries with IDs of 100 and 200. |
+| an [Entry](api:craft\elements\Entry) object               | that are related to the entry.                           |
+| an [EntryQuery](api:craft\elements\db\EntryQuery) object | that are related to any of the resulting entries.        |
 
 ```twig
-{# Fetch entries with a related entry #}
-{% set entries = craft.entries()
-    .<FieldHandle>(':notempty:')
+{# Fetch artwork entries that are related to `artist` #}
+{% set works = craft.entries()
+    .section('artwork')
+    .<FieldHandle>(artist)
     .all() %}
 ```
 
