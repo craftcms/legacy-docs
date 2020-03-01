@@ -126,13 +126,28 @@ An arrow function can be passed instead, if the values that should be returned d
 
 This works similarly to Twig’s core [`column`](https://twig.symfony.com/doc/2.x/filters/column.html) filter, except that [ArrayHelper::getColumn()](api:yii\helpers\BaseArrayHelper::getColumn()) is used rather than PHP’s [array_column()](https://secure.php.net/array_column) function.
 
-## `filter`
+## `contains`
+
+Returns whether the passed-in array contains any nested arrays/objects with a particular key/attribute set to a given value.
+
+```twig
+{% set works = craft.entries()
+    .section('artwork')
+    .all() %}
+
+{# See if any of the artwork has a mature rating #}
+{% if works|contains('rating', 'm') %}
+    <p class="mature">Some of this artwork is meant for mature viewers.</p>
+{% endif %}
+```
+
+## `convert_encoding`
 
 Converts a string from one encoding to another.
 
 This works identically to Twig’s core [`convert_encoding`](https://twig.symfony.com/doc/2.x/filters/convert_encoding.html) filter.
 
-## `filterByValue`
+## `currency`
 
 Formats a number with a given currency according to the user’s preferred language.
 
@@ -148,7 +163,7 @@ You can pass `stripZeros=true` to remove any fraction digits if the value to be 
 {# Output: $1,000,000 #}
 ```
 
-## `group`
+## `date`
 
 Formats a timestamp or [DateTime](http://php.net/manual/en/class.datetime.php) object.
 
@@ -192,13 +207,13 @@ You can customize the timezone the time is output in, using the `timezone` param
 {# Output: 12/21/1990 #}
 ```
 
-## `hash`
+## `date_modify`
 
 Modifies a date with a given modifier string.
 
 This works identically to Twig’s core [`date_modify`](https://twig.symfony.com/doc/2.x/filters/date_modify.html) filter.
 
-## `id`
+## `datetime`
 
 Formats a timestamp or [DateTime](http://php.net/manual/en/class.datetime.php) object, including the time of day.
 
@@ -237,13 +252,13 @@ You can customize the timezone the time is output in, using the `timezone` param
 {# Output: 12/21/1990, 12:00 AM #}
 ```
 
-## `index`
+## `default`
 
 Returns the passed default value if the value is undefined or empty, otherwise the value of the variable.
 
 This works identically to Twig’s core [`default`](https://twig.symfony.com/doc/2.x/filters/default.html) filter.
 
-## `indexOf`
+## `duration`
 
 Runs a [DateInterval](http://php.net/manual/en/class.dateinterval.php) object through <api:craft\helpers\DateTimeHelper::humanDurationFromInterval()>
 
@@ -251,7 +266,7 @@ Runs a [DateInterval](http://php.net/manual/en/class.dateinterval.php) object th
 <p>Posted {{ entry.postDate.diff(now)|duration(false) }} ago.</p>
 ```
 
-## `intersect`
+## `encenc`
 
 Encrypts and base64-encodes a string.
 
@@ -259,17 +274,17 @@ Encrypts and base64-encodes a string.
 {{ 'secure-string'|encenc }}
 ```
 
-## `json_encode`
+## `escape`
 
 Escapes a string using strategies that depend on the context.
 
 This works identically to Twig’s core [`escape`](https://twig.symfony.com/doc/2.x/filters/escape.html) filter.
 
-## `json_decode`
+## `filesize`
 
 Formats a number of bytes into something nicer.
 
-## `kebab`
+## `filter`
 
 Filters elements of an array.
 
@@ -289,11 +304,11 @@ When an arrow function is passed, this works identically to Twig’s core [`filt
 {# Result: ['bar', 'baz'] #}
 ```
 
-## `lcfirst`
+## `filterByValue`
 
 Runs an array through <api:craft\helpers\ArrayHelper::filterByValue()>.
 
-## `literal`
+## `first`
 
 Returns the first element of an array or string.
 
@@ -305,7 +320,7 @@ formats a given string by replacing the placeholders (placeholders follows the [
 
 This works identically to Twig’s core [`format`](https://twig.symfony.com/doc/2.x/filters/format.html) filter.
 
-## `multisort`
+## `group`
 
 Groups items in an array by a the results of an arrow function.
 
@@ -324,7 +339,7 @@ Groups items in an array by a the results of an arrow function.
 {% endfor %}
 ```
 
-## `number`
+## `hash`
 
 Prefixes the given string with a keyed-hash message authentication code (HMAC), for securely passing data in forms that should not be tampered with.
 
@@ -343,7 +358,7 @@ if ($foo !== false) {
 }
 ```
 
-## `parseRefs`
+## `id`
 
 Formats a string into something that will work well as an HTML input `id`, via <api:craft\web\View::formatInputId()>.
 
@@ -352,7 +367,7 @@ Formats a string into something that will work well as an HTML input `id`, via <
 <input type="text" name="{{ name }}" id="{{ name|id }}">
 ```
 
-## `pascal`
+## `index`
 
 Runs an array through [ArrayHelper::index()](api:yii\helpers\BaseArrayHelper::index()).
 
@@ -360,7 +375,7 @@ Runs an array through [ArrayHelper::index()](api:yii\helpers\BaseArrayHelper::in
 {% set entries = entries|index('id') %}
 ```
 
-## `percentage`
+## `indexOf`
 
 Returns the index of a passed-in value within an array, or the position of a passed-in string within another string. (Note that the returned position is 0-indexed.) If no position can be found, `-1` is returned instead.
 
@@ -374,7 +389,7 @@ Returns the index of a passed-in value within an array, or the position of a pas
 {% endif %}
 ```
 
-## `replace`
+## `intersect`
 
 Returns an array containing only the values that are also in a passed-in array.
 
@@ -402,19 +417,19 @@ Returns an array containing only the values that are also in a passed-in array.
 %}
 ```
 
-## `round`
+## `join`
 
 Returns a string which is the concatenation of the elements in an array.
 
 This works identically to Twig’s core [`join`](https://twig.symfony.com/doc/2.x/filters/join.html) filter.
 
-## `rss`
+## `json_encode`
 
 Returns the JSON representation of a value.
 
 This works similarly to Twig’s core [`json_encode`](https://twig.symfony.com/doc/2.x/filters/json_encode.html) filter, except that the `options` argument will default to `JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_QUOT` if the response content type is either `text/html` or `application/xhtml+xml`.
 
-## `snake`
+## `json_decode`
 
 JSON-decodes a string into an array  by passing it through <api:yii\helpers\Json::decode()>.
 
@@ -422,7 +437,7 @@ JSON-decodes a string into an array  by passing it through <api:yii\helpers\Json
 {% set arr = '[1, 2, 3]'|json_decode %}
 ```
 
-## `time`
+## `kebab`
 
 Returns a string formatted in “kebab-case”.
 
@@ -433,7 +448,7 @@ Tip: That’s a reference to [shish kebabs](https://en.wikipedia.org/wiki/Kebab#
 {# Output: foo-bar #}
 ```
 
-## `timestamp`
+## `keys`
 
 Returns the keys of an array.
 
@@ -445,27 +460,27 @@ Returns the last element of an array or string.
 
 This works identically to Twig’s core [`last`](https://twig.symfony.com/doc/2.x/filters/last.html) filter.
 
-## `ucfirst`
+## `lcfirst`
 
 Lowercases the first character of a string.
 
-## `ucwords`
+## `length`
 
 Returns the number of elements in an array or string.
 
 This works identically to Twig’s core [`length`](https://twig.symfony.com/doc/2.x/filters/length.html) filter.
 
-## `unique`
+## `literal`
 
 Runs a string through <api:craft\helpers\Db::escapeParam()>
 
-## `values`
+## `lower`
 
 Converts a value to lowercase.
 
 This works identically to Twig’s core [`lower`](https://twig.symfony.com/doc/2.x/filters/lower.html) filter.
 
-## `without`
+## `map`
 
 Applies an arrow function to the elements of an array.
 
@@ -619,6 +634,22 @@ If you want to replace an existing element of the same type, pass `'replace'` as
 {{ '<div><p>Ipsum</p></div>'|prepend('<p>Lorem</p>', 'replace') }}
 {# Output: <div><p>Lorem</p></div> #}
 ```
+
+## `purify`
+
+Runs the given text through HTML Purifier.
+
+```twig
+{{ user.bio|purify }}
+```
+
+You can specify a custom HTML Purifier config file as well:
+
+```twig
+{{ user.bio|purify('user_bio') }}
+```
+
+That will configure HTML Purifier based on the settings defined by `config/htmlpurifier/user_bio.json`.
 
 ## `raw`
 
