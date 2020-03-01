@@ -59,10 +59,15 @@
 
 利用可能な値には、次のものが含まれます。
 
-| 値              | 取得するエレメント               |
-| -------------- | ----------------------- |
-| `':empty:'`    | 関連付けられたカテゴリを持たない。       |
-| `':notempty:'` | 少なくとも1つの関連付けられたカテゴリを持つ。 |
+| 値                                                                 | 取得するエレメント                                                   |
+| ----------------------------------------------------------------- | ----------------------------------------------------------- |
+| `':empty:'`                                                       | 関連付けられたカテゴリを持たない。                                           |
+| `':notempty:'`                                                    | 少なくとも1つの関連付けられたカテゴリを持つ。                                     |
+| `100`                                                             | that are related to the category with an ID of 100.         |
+| `[100, 200]`                                                      | that are related to a category with an ID of 100 or 200.    |
+| `['and', 100, 200]`                                               | that are related to the categories with IDs of 100 and 200. |
+| an [Category](api:craft\elements\Category) object               | that are related to the category.                           |
+| an [CategoryQuery](api:craft\elements\db\CategoryQuery) object | that are related to any of the resulting categories.        |
 
 ```twig
 {# Fetch entries with a related category #}
