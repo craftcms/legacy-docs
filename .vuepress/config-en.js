@@ -149,6 +149,7 @@ module.exports = {
                     'tags/nav',
                     'tags/paginate',
                     'tags/redirect',
+                    'tags/requireguest',
                     'tags/requirelogin',
                     'tags/requirepermission',
                     'tags/switch',
