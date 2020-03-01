@@ -91,11 +91,13 @@ Craft は次の検索構文をサポートしています。
 
 この場合、返されるすべてのエレメントに `searchScore` 属性がセットされ、それぞれの検索スコアを知ることができます。
 
-> 動的な検索結果をリスト化する完全な例については、[検索フォーム](dev/examples/search-form.md)チュートリアルを参照してください。
+::: tip
+See our [Search Form](dev/examples/search-form.md) tutorial for a complete example of listing dynamic search results.
+:::
 
 ## 検索インデックスの再構築
 
-Craft は検索インデックスを可能な限り最新に保つよう、最善を尽くしています。しかし、その一部を不正確にするかもしれない可能性がいくつかあります。検索インデックスが最新かつ最高データでないと疑われる場合、設定にある検索インデックスの再構築ツールで Craft に再構築させることができます。
+Craft does its best to keep its search indexes as up-to-date as possible, but there are a couple things that might render portions of them inaccurate. If you suspect that your search indexes don’t have the latest and greatest data, you can have Craft rebuild them by bulk-resaving your entries with the `resave/entries` command:
 
 ```bash
 ./craft resave/entries --update-search-index
