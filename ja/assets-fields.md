@@ -68,10 +68,15 @@
 
 利用可能な値には、次のものが含まれます。
 
-| 値              | 取得するエレメント               |
-| -------------- | ----------------------- |
-| `':empty:'`    | 関連付けられたアセットを持たない。       |
-| `':notempty:'` | 少なくとも1つの関連付けられたアセットを持つ。 |
+| 値                                                           | 取得するエレメント                                               |
+| ----------------------------------------------------------- | ------------------------------------------------------- |
+| `':empty:'`                                                 | 関連付けられたアセットを持たない。                                       |
+| `':notempty:'`                                              | 少なくとも1つの関連付けられたアセットを持つ。                                 |
+| `100`                                                       | that are related to the asset with an ID of 100.        |
+| `[100, 200]`                                                | that are related to an asset with an ID of 100 or 200.  |
+| `['and', 100, 200]`                                         | that are related to the assets with IDs of 100 and 200. |
+| an [Asset](api:craft\elements\Asset) object               | that are related to the asset.                          |
+| an [AssetQuery](api:craft\elements\db\AssetQuery) object | that are related to any of the resulting assets.        |
 
 ```twig
 {# Fetch entries with a related asset #}
