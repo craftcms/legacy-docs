@@ -97,87 +97,111 @@
 </body>
 ```
 
-## `expression( expression, params, config )`
+## `combine`
 
-文字列が環境変数（`$VARIABLE_NAME`）、および / または、エイリアス（`@aliasName`）を参照しているかどうかを確認し、参照されている値を返します。
-
-「head」に登録されたスクリプトやスタイルを出力します。`</head>` タグの直前に配置する必要があります。
-
-## `floor( num )`
-
-ハンドルに従ってプラグインインスタンスを返します。そのハンドルでインストールされ有効化されているプラグインがない場合、`null` を返します。
+Combines two arrays into one, using the first array to define the keys, and the second array to define the values.
 
 ```twig
-{{ floor(42.9) }} → 42
+{% set arr1 = ['a', 'b', 'c'] %}
+{% set arr2 = ['foo', 'bar', 'baz'] %}
+{% set arr3 = combine(arr1, arr2) %}
+{# arr3 will now be `{a: 'foo', b: 'bar', c: 'baz'}` #}
 ```
 
-## `getenv( name )`
+## `constant`
 
-`<input type="hidden" name="redirect" value="{{ url|hash }}">` を入力するためのショートカットです。
+Returns the constant value for a given string.
+
+This works identically to Twig’s core [`constant`](https://twig.symfony.com/doc/2.x/functions/constant.html) function.
+
+## `create`
+
+Creates a new object instance based on a given class name or object configuration. See <api:Yii::createObject()> for a full explanation of supported arguments.
+
+```twig
+{# Pass in a class name #}
+{% set cookie = create('yii\\web\\Cookie') %}
+
+{# Or a full object configuration array #}
+{% set cookie = create({
+    class: 'yii\\web\\cookie',
+    name: 'foo',
+    value: 'bar'
+}) %}
+```
+
+## `csrfInput`
+
+Returns a hidden CSRF Token input. All sites that have CSRF Protection enabled must include this in each form that submits via POST.
+
+```twig
+{{ csrfInput() }}
+```
+
+You can optionally set additional attributes on the tag by passing an `options` argument.
+
+```twig
+{{ csrfInput({
+    id: 'csrf-input'
+}) }}
+```
+
+## `cycle`
+
+Cycles on an array of values.
+
+This works identically to Twig’s core [`cycle`](https://twig.symfony.com/doc/2.x/functions/cycle.html) function.
+
+## `date`
+
+Converts an argument to a date.
+
+This works identically to Twig’s core [`date`](https://twig.symfony.com/doc/2.x/functions/date.html) function.
+
+## `dump`
+
+Dumps information about a template variable.
+
+This works identically to Twig’s core [`dump`](https://twig.symfony.com/doc/2.x/functions/dump.html) function.
+
+## `endBody`
+
+Outputs any scripts and styles that were registered for the “end body” position. It should be placed right before your `</body>` tag.
+
+```twig
+<body>
+    <h1>{{ page.name }}</h1>
+    {{ page.body }}
+
+    {{ endBody() }}
+</body>
+```
+
+## `expression`
+
+Creates and returns a new <api:yii\db\Expression> object, for use in database queries.
+
+```twig
+{% set entries = craft.entries()
+    .andWhere(expression('[[authorId]] = :authorId', {authorId: currentUser.id}))
+    .all() %}
+```
+
+## `floor`
+
+Rounds a number down.
+
+```twig
+{{ floor(42.9) }}
+{# Output: 42 #}
+```
+
+## `getenv`
+
+Returns the value of an environment variable.
 
 ```twig
 {{ getenv('MAPS_API_KEY') }}
-```
-
-`name` で定義されたシーケンスの次または現在の番号を出力します。
-
-```twig
-<head>
-    <title>{{ siteName }}</title>
-    {{ head() }}
-</head>
-```
-
-## `parseEnv( str )`
-
-ファンクションが呼び出されるたびに、与えられたシーケンスは自動的にインクリメントされます。
-
-オプションで特定の長さにゼロ詰めした数値にすることができます。
-
-## `head()`
-
-インクリメントせずにシーケンスの現在の数字を表示するには、`next` 引数に `false` をセットします。
-
-配列内のエレメントの順序をランダム化します。
-
-## `plugin( handle )`
-
-サイト上のページへの URL を作成するため _だけ_ という点を除けば、[url()](#url-path-params-scheme-mustshowscriptname) と似ています。
-
-`siteUrl()` ファンクションは、次の引数を持っています。
-
-## `redirectInput( url )`
-
-SVG 文書を出力します。
-
-```twig
-{{ plugin('commerce').version }}
-```
-
-## `seq( name, length, next )`
-
-次のものを渡すことができます。
-
-```twig
-<p>This entry has been read {{ seq('hits:' ~ entry.id) }} times.</p>
-```
-
-## `shuffle( array )`
-
-ファンクションにアセットまたは生のマークアップを渡した場合、デフォルトでは SVG は [svg-sanitizer](https://github.com/darylldoyle/svg-sanitizer) を使用して潜在的に悪意のあるスクリプトをサニタイズし、ドキュメント内の ID や class 名が DOM の他の ID や class 名と衝突しないよう名前空間を付加します。引数 `sanitize`、および、`namespace` を使用して、これらの動作を無効にできます。
-
-```twig
-{{ now|date('Y') ~ '-' ~ seq('orderNumber:' ~ now|date('Y'), 5) }}
-{# outputs: 2018-00001 #}
-```
-
-## `siteUrl( path, params, scheme, siteId )`
-
-引数 `class` を使用して、ルートの `<svg>` ノードに追加する独自の class 名を指定することもできます。
-
-```twig
-<h5><a href="{{ entry.url }}">{{ entry.title }}</a></h5>
-<p>{{ seq('hits:' ~ entry.id, next=false) }} views</p>
 ```
 
 ## `gql`
