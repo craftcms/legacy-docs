@@ -67,9 +67,8 @@
     }
   },
   "extra": {
-    "handle": "plugin-handle",
     "name": "Plugin Name",
-    "documentationUrl": "https://github.com/developer/repo/blob/master/README.md"
+    "handle": "plugin-handle"
   }
 }
 ```
@@ -83,33 +82,24 @@
 - `developer/repo` をプラグインが稼働している実際の GitHub アカウントとリポジトリ名にします。
 - `master` を GitHub リポジトリの実際のプライマリブランチ名にします。
 - ``namespace\\prefix\\` を名前空間接頭辞にします。（これは JSON であるため、二重バックスラッシュを使用し、最後が``\\` でなければならない点に注意してください。）
-- `plugin-handle` をプラグインハンドルにします。
-- `Plugin Name` をプラグイン名にします。
+- `Plugin Name` with your plugin name.
+- `plugin-handle` with your plugin handle.
 - [Craft License](https://craftcms.github.io/license/) を使用する計画の場合、`MIT` を `proprietary` にします（「プラグインストアでの配布」ページの[ライセンスの選択](plugin-store.md#choose-a-license)を参照してください）。
 
 [MIT](https://opensource.org/licenses/MIT) よりむしろ [Craft license](https://craftcms.github.io/license/) でプラグインをリリースしたい場合、`license` 値を `"proprietary"` に変更してください。
 
-`extra` オブジェクトにセットできるプロパティの完全なリストは、次の通りです。
-
-- `handle` – プラグインハンドル _（必須）_ 。
-- `class` – [プラグインクラス](#the-plugin-class)名。設定されていない場合、インストーラーはそれぞれの `autoload` パスのルートで `Plugin.php` ファイルを探します。
-- `basePath` – プラグインのソースファイルへのベースパス。[Yii alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases)（例： `@vendorname/foo`） としてフォーマットされた `autoload` 名前空間の1つからはじめることができます。設定されてない場合、プライマリプラグインクラスを含むディレクトリが使用されます。
-- `name` – プラグイン名。設定されていない場合、（ベンダー接頭辞なしの）パッケージ名が使用されます。
-- `version` - プラグインのバージョン。設定されていない場合、現在のパッケージバージョンが使用されます。
-- `schemaVersion` – プラグインスキーマのバージョン。
-- `description` – プラグインの説明。設定されていない場合、メインの `description` プロパティが使用されます。
-- `developer` – 開発者の名前。設定されていない場合、（`authors` プロパティ経由で）最初の作者の `name` が使用されます。
-- `developerUrl` – 開発者の URL。設定されていない場合、`homepage` プロパティ、または、（`authors` プロパティ経由で）最初の作者の `homepage` が使用されます。
-- `developerEmail` – サポートのメールアドレス。設定されていない場合、`support.email` プロパティが使用されます。
-- `documentationUrl` – プラグインのドキュメントの URL。設定されていない場合、`support.docs` プロパティが使用されます。
-- `sourceLanguage` – プラグインのソース言語（デフォルトは `en-US`）。
-- `hasSettings` – プラグインの設定があるかどうか（`true` または `false`）。
-- `hasCpSection` – コントロールパネルにプラグイン独自のセクションを持つかどうか（`true` または `false`）。
-- `components` – プラグイン上に存在するべき [component configs](https://www.yiiframework.com/doc/guide/2.0/en/structure-application-components) を定義するオブジェクト。
-
 ::: tip
-Composer が厳密に要求しているわけではありませんが、プラグインを開発する際にいくつかのことが簡単に行えるよう `composer.json` へ明示的に`version` を設定することをお勧めします。そして、アップデートし続けることを忘れないでください！
+While not strictly required by Composer, we recommend you explicitly set the `version` in your `composer.json` because it makes a couple things easier on you when developing the plugin. Don’t forget to keep it updated though!
 :::
+
+In addition to `name` and `handle` (which are both required), there are a few other things you can include in that `extra` object:
+
+- `class` – The [Plugin class](#the-plugin-class) name. If not set, the installer will look for a `Plugin.php` file at each of the `autoload` path roots.
+- `description` – The plugin description. If not set, the main `description` property will be used.
+- `developer` – The developer name. If not set, the first author’s `name` will be used (via the `authors` property).
+- `developerUrl` – The developer URL. If not set, the `homepage` property will be used, or the first author’s `homepage` (via the `authors` property).
+- `developerEmail` – The support email. If not set, the `support.email` property will be used.
+- `documentationUrl` – The plugin’s documentation URL. If not set, the `support.docs` property will be used.
 
 ::: warning
 Craft 2 プラグインをアップデートする場合、`composer/installers` 依存があれば確実に削除してください。
