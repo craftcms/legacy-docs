@@ -81,6 +81,7 @@ module.exports = {
                     'soft-deletes',
                     'environmental-settings',
                     // 'front-end-controllers',
+                    'exporters'
                 ]
             }
         ],
