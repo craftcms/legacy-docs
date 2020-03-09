@@ -46,22 +46,32 @@ Craft ID アカウントから「Plugins」へ移動後に「Add a plugin」を�
 最初にプラグインを無料で提出した場合、あとから商用に変更することはできません。ただし、無料エディションから重要な機能を削除しない限り、拡張機能を提供する商用[エディション](plugin-editions.md)を提供できます。
 :::
 
-### 承認のための提出
+### Declare Craft Version Support
 
-プラグインを提出するための準備ができたら、「Submit for approval」ボタンをクリックしてください。プラグインが承認されると、[plugins.craftcms.com](https://plugins.craftcms.com/) で表示されるようになります。プラグインが少なくとも1つの[リリース](#plugin-releases)を持っていない限り、アプリ内のプラグインストアで利用可能にならない点に注意してください。
+Every plugin needs to explicitly require a minimum Craft CMS version in `composer.json`:
+
+```json
+"require": {
+    "craftcms/cms": "^3.0.0"
+}
+```
+
+### Submit for Approval
+
+Once you’re ready to submit the plugin, click the “Submit for approval” button. Once your plugin is approved, it will become visible on [plugins.craftcms.com](https://plugins.craftcms.com/). It won’t necessarily be available in the in-app Plugin Store yet, though, unless your plugin already has at least one [release](#plugin-releases).
 
 ::: tip
-人々がコマンドラインからプラグインのインストールとアップデートすることもできるよう、プラグインストアに加えて [Packagist](https://packagist.org/) でプラグインを登録したいかもしれません。しかし、Packagist はプラグインストアの必須要件ではありません。
+You might want to register your plugin with [Packagist](https://packagist.org/) in addition to the Plugin Store, so that people can install and update your plugin from the command line. But Packagist isn’t a requirement for the Plugin Store.
 :::
 
 ## プラグインのリリース
 
-プラグインの新しいバージョンをリリースするために、はじめにバージョン番号を決定してください。プラグインストアは Composer でサポートされているのと同じ [Semantic Versioning](https://semver.org/) 規約に従います。
+To release a new version of your plugin, first decide on the version number. The Plugin Store follows the same [Semantic Versioning](https://semver.org/) conventions supported by Composer:
 
 - バージョンは3つ、または、4つのセグメント（例：`1.2.3` または `1.2.3.4`）が必要です。
 - プレリリースバージョンには、リリース識別子（`-alpha.X`、`-beta.X`、または、`-RCX`）が必要です。
 
-バージョンを決定したら、次のステップに従います。
+Once you’ve decided on a version, follow these steps:
 
 1. プラグインが[更新履歴](changelogs-and-updates.md)を持つ場合、新しいバージョンがリリース日を含めた正しいフォーマットの見出しを持つことを確認してください。
 
