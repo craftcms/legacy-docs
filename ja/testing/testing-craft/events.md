@@ -4,7 +4,7 @@ Most modules/plugins support events that are triggered that enable modules/plugi
 
 Seeing as events and the triggering thereof are routed through some complex [Yii2](https://www.yiiframework.com/doc/guide/2.0/en/concept-events) based functionality some specific steps must be taken to test code that triggers events.
 
-## Testing event code
+## Testing Event Code
 
 Craft provides a simple helper method that allows you to test event codes. Firstly you need to ensure that your test class has a `$tester` property. Once this class property is declared you can call the following method:
 
@@ -24,7 +24,7 @@ $this->tester->expectEvent(MyComponent::class, MyComponent::AN_EVENT, function()
 This is a watered down example of the `expectEvent` method. There are two optional parameters that give you a whole lot of extra power - see below.
 :::
 
-## Additional properties
+## Additional Properties
 
 If you want more fine-grained control over your event testing code the `expectEvent` method has two optional parameters.
 
@@ -71,11 +71,11 @@ If you have set `TYPE_CLASS` you can pass in an additional `desiredClass` proper
 
 `desiredValue` is designed to check the property values of the event that is passed. This can depend based on the `type` argument:
 
-#### When type is `EventItem::TYPE_OTHERVALUE`
+#### When Type is `EventItem::TYPE_OTHERVALUE`
 
 Here you can set the `desiredValue` to anything you want. The result of accessing the event using the [eventPropName](#eventpropname) property will be directly compared using `assertSame()`.
 
-#### When type is `EventItem::TYPE_CLASS`
+#### When Type is `EventItem::TYPE_CLASS`
 
 Craft allows you to check the individual properties of the returned object. In order to do this you must enter a key-value array where:
 
