@@ -78,7 +78,7 @@ The anatomy of this test can be defined somewhat as follows:
 
 2. A test is executed and a method of the `SalaryChecker` class is called. An **assertion** (checking that when passing 2 twice, 4 is returned - because the 2's are multiplied) is then made regarding its return result.
 
-Fundamentally - that is a unit test. Now imagine a developer was to change the `add` method of the `SalaryChecker` class to the following:
+Fundamentally - that is a unit test. Now imagine a developer was to change the `multiply` method of the `SalaryChecker` class to the following:
 
 ```php
 public function multiply(int $a, int $b) : int
