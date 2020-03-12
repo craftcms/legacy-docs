@@ -27,11 +27,13 @@ Craft ライセンスにする場合、`composer.json` ファイルの `license`
 プラグインが GitHub の organization アカウントで公開されている場合、GitHub アカウントの認証時にその組織がチェックされていることを確認してください。
 :::
 
-Craft ID アカウントから「Plugins」へ移動後に「Add a plugin」をクリックし、プラグインのリポジトリの横にある「Select」ボタンをクリックします。説明文、スクリーンショット、および、その他の詳細を編集できます。
+From your Craft ID account, you’ll need to first go to “Account Settings”, make sure “Enable plugin developer features” is checked under your username, and choose “Save”.
+
+Once plugin developer features are enabled, add your plugin by going to Plugins → “Add a plugin”, and choose the “Select” button next to your plugin’s repository. You will then be able to edit its description, screenshots, and other details.
 
 ### 価格の選択
 
-プラグインを販売したい場合、筋が通っている価格を選択してください。考慮すべき推奨される価格帯は次の通りです。
+If you wish to sell your plugin, choose a price point that makes sense. Here are some suggested price ranges to consider:
 
 | 価格帯       | 使用例                             |
 | --------- | ------------------------------- |
@@ -40,10 +42,10 @@ Craft ID アカウントから「Plugins」へ移動後に「Add a plugin」を�
 | $149-$249 | 重要な新しいシステム機能を追加するプラグイン          |
 | $499-$999 | 主要、または、高度にニッチなアプリケーション          |
 
-また、2年目以降に新しいアップデートをインストールしたい顧客にプラグインストアが請求する年額料金である更新価格を選択する必要があります。最初の価格のおよそ 20-50% で更新価格を選択してください。例えば、プラグインで $99 請求する場合、更新価格は $19-$49 の間にするべきです。
+You will also be required to pick a Renewal Price, which is the annual fee the Plugin Store will charge customers who wish to continue installing new updates, after the first year. Pick a Renewal Price that is around 20-50% of the initial Price. For example, if you are charging $99 for your plugin, your Renewal Price should be between $19-$49.
 
 ::: warning
-最初にプラグインを無料で提出した場合、あとから商用に変更することはできません。ただし、無料エディションから重要な機能を削除しない限り、拡張機能を提供する商用[エディション](plugin-editions.md)を提供できます。
+If you initially submit your plugin as free, you will not be allowed to change it to commercial later. You can, however, give it a commercial [edition](plugin-editions.md) that offers extended functionality, as long as you don’t remove crucial functionality from the free edition.
 :::
 
 ### Declare Craft Version Support
