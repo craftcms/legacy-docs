@@ -253,7 +253,8 @@ module.exports = {
             apiKey: '1014b55e7f916b20c5d6834bf7666dc3',
             indexName: 'craftcms',
             algoliaOptions: {
-                facetFilters: ['version:v2', 'tags:doc']
+                facetFilters: ['version:v2', 'tags:doc'],
+                hitsPerPage: 10
             }
         }
     },
