@@ -61,6 +61,7 @@ module.exports = {
                     'utility-types',
                     'element-types',
                     'element-action-types',
+                    'element-exporter-types',
                 ]
             },
             {
@@ -81,7 +82,6 @@ module.exports = {
                     'soft-deletes',
                     'environmental-settings',
                     // 'front-end-controllers',
-                    'exporters'
                 ]
             }
         ],
