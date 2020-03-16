@@ -43,10 +43,10 @@ When [querying for elements](dev/element-queries/README.md) that have a Tags fie
 
 Possible values include:
 
-| Value          | Fetches elements…                   |
-| -------------- | ----------------------------------- |
-| `':empty:'`    | that don’t have any related tags.   |
-| `':notempty:'` | that have at least one related tag. |
+| Value | Fetches elements…
+| - | -
+| `':empty:'` | that don’t have any related tags.
+| `':notempty:'` | that have at least one related tag.
 
 ```twig
 {# Fetch entries with a related tag #}
@@ -60,7 +60,7 @@ Possible values include:
 If you have an element with an Tags field in your template, you can access its related tags using your Tags field’s handle:
 
 ```twig
-{% set relatedTags = entry.<FieldHandle> %}
+{% set query = entry.<FieldHandle> %}
 ```
 
 That will give you a [tag query](dev/element-queries/tag-queries.md), prepped to output all of the related tags for the given field.
@@ -96,6 +96,16 @@ If you just need to check if there are any related tags (but don’t need to fet
 ```
 
 You can set [parameters](dev/element-queries/tag-queries.md#parameters) on the tag query as well.
+
+```twig
+{% set relatedTags = clone(entry.<FieldHandle>)
+    .group('blogEntryTags')
+    .all() %}
+```
+
+::: tip
+It’s always a good idea to clone the tag query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
 ## See Also
 

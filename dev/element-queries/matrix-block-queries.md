@@ -58,9 +58,10 @@ Matrix block queries support the following parameters:
 - [allowOwnerRevisions](#allowownerrevisions)
 - [anyStatus](#anystatus)
 - [asArray](#asarray)
-- [column](#column)
+- [clearCachedResult](#clearcachedresult)
 - [dateCreated](#datecreated)
 - [dateUpdated](#dateupdated)
+- [field](#field)
 - [fieldId](#fieldid)
 - [fixedOrder](#fixedorder)
 - [id](#id)
@@ -162,13 +163,9 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 :::
 
 
-### `column`
+### `clearCachedResult`
 
-Executes the query and returns the first column of the result.
-
-
-
-
+Clears the cached result.
 
 
 
@@ -246,6 +243,39 @@ $lastWeek = (new \DateTime('1 week ago'))->format(\DateTime::ATOM);
 
 $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->dateUpdated(">= {$lastWeek}")
+    ->all();
+```
+:::
+
+
+### `field`
+
+Narrows the query results based on the field the Matrix blocks belong to.
+
+Possible values include:
+
+| Value | Fetches Matrix blocks…
+| - | -
+| `'foo'` | in a field with a handle of `foo`.
+| `'not foo'` | not in a field with a handle of `foo`.
+| `['foo', 'bar']` | in a field with a handle of `foo` or `bar`.
+| `['not', 'foo', 'bar']` | not in a field with a handle of `foo` or `bar`.
+| a [craft\fields\Matrix](api:craft\fields\Matrix) object | in a field represented by the object.
+
+
+
+::: code
+```twig
+{# Fetch Matrix blocks in the Foo field #}
+{% set MatrixBlocks = craft.matrixBlocks()
+    .field('foo')
+    .all() %}
+```
+
+```php
+// Fetch Matrix blocks in the Foo field
+$MatrixBlocks = \craft\elements\MatrixBlock::find()
+    ->field('foo')
     ->all();
 ```
 :::
@@ -623,7 +653,7 @@ Possible values include:
 | `'foo'` | from the site with a handle of `foo`.
 | `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
 | `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
-| a `\craft\elements\db\Site` object | from the site represented by the object.
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.
 | `'*'` | from any site.
 
 ::: tip

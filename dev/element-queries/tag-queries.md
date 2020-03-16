@@ -52,7 +52,7 @@ Tag queries support the following parameters:
 
 - [anyStatus](#anystatus)
 - [asArray](#asarray)
-- [column](#column)
+- [clearCachedResult](#clearcachedresult)
 - [dateCreated](#datecreated)
 - [dateUpdated](#dateupdated)
 - [fixedOrder](#fixedorder)
@@ -126,13 +126,9 @@ $tags = \craft\elements\Tag::find()
 :::
 
 
-### `column`
+### `clearCachedResult`
 
-Executes the query and returns the first column of the result.
-
-
-
-
+Clears the cached result.
 
 
 
@@ -565,7 +561,7 @@ Possible values include:
 | `'foo'` | from the site with a handle of `foo`.
 | `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
 | `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
-| a `\craft\elements\db\Site` object | from the site represented by the object.
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.
 | `'*'` | from any site.
 
 ::: tip
