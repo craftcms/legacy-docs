@@ -102,6 +102,17 @@ Clones a given object.
 {% set articles = clone(query).type('articles') %}
 ```
 
+## `combine`
+
+Combines two arrays into one, using the first array to define the keys, and the second array to define the values.
+
+```twig
+{% set arr1 = ['a', 'b', 'c'] %}
+{% set arr2 = ['foo', 'bar', 'baz'] %}
+{% set arr3 = combine(arr1, arr2) %}
+{# arr3 will now be `{a: 'foo', b: 'bar', c: 'baz'}` #}
+```
+
 ## `constant`
 
 Returns the constant value for a given string.
@@ -218,7 +229,7 @@ Executes a GraphQL query against the full schema.
   }
 }') %}
 
-{% for entry in result.data. %}
+{% for entry in result.data %}
     <h3><a href="{{ entry.url }}">{{ entry.title }}</a></h3>
     <p class="timestamp">{{ entry.postDate }}</p>
 
@@ -368,9 +379,10 @@ To view the current number in the sequence without incrementing it, set the `nex
 Randomizes the order of the elements within an array.
 
 ```twig
-{% set promos = shuffle(homepage.promos) %}
+{% set promos = craft.entries.section('promos').all() %}
+{% set shuffledPromos = shuffle(promos) %}
 
-{% for promo in promos %}
+{% for promo in shuffledPromos %}
     <div class="promo {{ promo.slug }}">
         <h3>{{ promo.title }}</h3>
         <p>{{ promo.description }}</p>

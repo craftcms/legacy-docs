@@ -14,7 +14,9 @@ Admin accounts are special accounts that can do absolutely everything within Cra
 
 The user account you create during installation is an admin by default.
 
-> Considering the amount of damage an admin can do, it’s strongly recommended that you be conservative with creating new admin accounts. Only do it if you trust that they know what they’re doing.
+::: tip
+Considering the amount of damage an admin can do, it’s strongly recommended that you be conservative with creating new admin accounts. Only do it if you trust that they know what they’re doing.
+:::
 
 ## User Groups
 
@@ -59,7 +61,13 @@ The permissions Craft comes with are:
 | View _[Asset Volume Name]_ | `viewVolume:[VolumeUID]`
 | ↳&nbsp; Upload files | `saveAssetInVolume:[VolumeUID]`
 | ↳&nbsp; Create subfolders | `createFoldersInVolume:[VolumeUID]`
-| ↳&nbsp; Remove files | `deleteFilesAndFoldersInVolume:[VolumeUID]`
+| ↳&nbsp; Remove files and folders | `deleteFilesAndFoldersInVolume:[VolumeUID]`
+| ↳&nbsp; Edit images | `editImagesInVolume:[VolumeUID]`
+| ↳&nbsp; View files uploaded by other users | `viewPeerFilesInVolume:[VolumeUID]`
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Edit files uploaded by other users | `editPeerFilesInVolume:[SectionUID]`
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Replace files uploaded by other users | `replacePeerFilesInVolume:[SectionUID]`
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Remove files uploaded by other users | `deletePeerFilesInVolume:[SectionUID]`
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Edit images uploaded by other users | `editPeerImagesInVolume:[SectionUID]`
 
 ## Public Registration
 
