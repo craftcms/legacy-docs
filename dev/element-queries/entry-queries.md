@@ -62,7 +62,7 @@ Entry queries support the following parameters:
 - [authorGroupId](#authorgroupid)
 - [authorId](#authorid)
 - [before](#before)
-- [column](#column)
+- [clearCachedResult](#clearcachedresult)
 - [dateCreated](#datecreated)
 - [dateUpdated](#dateupdated)
 - [descendantDist](#descendantdist)
@@ -391,13 +391,9 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `column`
+### `clearCachedResult`
 
-Executes the query and returns the first column of the result.
-
-
-
-
+Clears the cached result.
 
 
 
@@ -556,7 +552,7 @@ Possible values include:
 | Value | Fetches drafts…
 | - | -
 | `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | created by the user represented by the object.
+| a [craft\elements\User](api:craft\elements\User) object | created by the user represented by the object.
 
 
 
@@ -602,7 +598,7 @@ Possible values include:
 ```php
 // Fetch a draft
 $entries = \craft\elements\Entry::find()
-    ->draftIf(10)
+    ->draftId(10)
     ->all();
 ```
 :::
@@ -1238,7 +1234,7 @@ Possible values include:
 | Value | Fetches revisions…
 | - | -
 | `1` | created by the user with an ID of 1.
-| a `\craft\elements\db\User` object | created by the user represented by the object.
+| a [craft\elements\User](api:craft\elements\User) object | created by the user represented by the object.
 
 
 
@@ -1494,7 +1490,7 @@ Possible values include:
 | `'foo'` | from the site with a handle of `foo`.
 | `['foo', 'bar']` | from a site with a handle of `foo` or `bar`.
 | `['not', 'foo', 'bar']` | not in a site with a handle of `foo` or `bar`.
-| a `\craft\elements\db\Site` object | from the site represented by the object.
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.
 | `'*'` | from any site.
 
 ::: tip

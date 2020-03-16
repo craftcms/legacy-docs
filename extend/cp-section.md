@@ -57,7 +57,7 @@ Your templates can specify which subnav item should be selected by setting a `se
 
 ## Plugin Sections
 
-Plugins that only need to add one section can set a `$hasCpSection` property on their primary plugin class, rather than using the [EVENT_REGISTER_CP_NAV_ITEMS](api:craft\web\twig\variables\Cp::EVENT_REGISTER_CP_NAV_ITEMS) event:
+Plugins that only need to add one section can set the `$hasCpSection` property on their primary plugin class, rather than using the [EVENT_REGISTER_CP_NAV_ITEMS](api:craft\web\twig\variables\Cp::EVENT_REGISTER_CP_NAV_ITEMS) event:
 
 ```php
 <?php
@@ -71,6 +71,10 @@ class Plugin extends \craft\base\Plugin
     // ...
 }
 ```
+
+::: tip
+You can alternatively set a `hasCpSection` value in `composer.json` as noted in the [plugin guide](/extend/plugin-guide.md#compser-json). We don’t recommend setting it in both places, however, since the value set in `composer.json` will override your public class property’s value and likely create confusion.
+:::
 
 You can modify aspects of the plugin’s Control Panel nav item by overriding its [getCpNavItem()](api:craft\base\PluginInterface::getCpNavItem()) method:
 

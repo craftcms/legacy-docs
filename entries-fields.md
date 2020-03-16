@@ -44,11 +44,17 @@ Possible values include:
 | - | -
 | `':empty:'` | that don’t have any related entries.
 | `':notempty:'` | that have at least one related entry.
+| `100` | that are related to the entry with an ID of 100.
+| `[100, 200]` | that are related to an entry with an ID of 100 or 200.
+| `['and', 100, 200]` | that are related to the entries with IDs of 100 and 200.
+| an [Entry](api:craft\elements\Entry) object | that are related to the entry.
+| an [EntryQuery](api:craft\elements\db\EntryQuery) object | that are related to any of the resulting entries.
 
 ```twig
-{# Fetch entries with a related entry #}
-{% set entries = craft.entries()
-    .<FieldHandle>(':notempty:')
+{# Fetch artwork entries that are related to `artist` #}
+{% set works = craft.entries()
+    .section('artwork')
+    .<FieldHandle>(artist)
     .all() %}
 ```
 
@@ -57,7 +63,7 @@ Possible values include:
 If you have an element with an Entries field in your template, you can access its related entries using your Entries field’s handle:
 
 ```twig
-{% set relatedEntries = entry.<FieldHandle> %}
+{% set query = entry.<FieldHandle> %}
 ```
 
 That will give you an [entry query](dev/element-queries/entry-queries.md), prepped to output all of the related entries for the given field.
@@ -95,10 +101,14 @@ If you just need to check if there are any related entries (but don’t need to 
 You can set [parameters](dev/element-queries/entry-queries.md#parameters) on the entry query as well. For example, to only fetch entries in the `news` section, set the [section](dev/element-queries/entry-queries.md#section) param:
 
 ```twig
-{% set relatedEntries = entry.<FieldHandle>
+{% set relatedEntries = clone(entry.<FieldHandle>)
     .section('news')
     .all() %}
 ```
+
+::: tip
+It’s always a good idea to clone the entry query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
 ## See Also
 
