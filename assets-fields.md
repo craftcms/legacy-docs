@@ -72,6 +72,11 @@ Possible values include:
 | - | -
 | `':empty:'` | that don’t have any related assets.
 | `':notempty:'` | that have at least one related asset.
+| `100` | that are related to the asset with an ID of 100.
+| `[100, 200]` | that are related to an asset with an ID of 100 or 200.
+| `['and', 100, 200]` | that are related to the assets with IDs of 100 and 200.
+| an [Asset](api:craft\elements\Asset) object | that are related to the asset.
+| an [AssetQuery](api:craft\elements\db\AssetQuery) object | that are related to any of the resulting assets.
 
 ```twig
 {# Fetch entries with a related asset #}
@@ -85,7 +90,7 @@ Possible values include:
 If you have an element with an Assets field in your template, you can access its related assets using your Assets field’s handle:
 
 ```twig
-{% set relatedAssets = entry.<FieldHandle> %}
+{% set query = entry.<FieldHandle> %}
 ```
 
 That will give you an [asset query](dev/element-queries/asset-queries.md), prepped to output all of the related assets for the given field.
@@ -102,6 +107,10 @@ To loop through all of the related assets, call [all()](api:craft\db\Query::all(
     </ul>
 {% endif %}
 ```
+
+::: warning
+When using `asset.url` or `asset.getUrl()`, the asset’s source volume must have “Assets in this volume have public URLs” enabled and a “Base URL” setting. Otherwise, the result will always be empty.
+:::
 
 If you only want the first related asset, call [one()](api:craft\db\Query::one()) instead, and then make sure it returned something:
 
@@ -123,10 +132,14 @@ If you just need to check if there are any related assets (but don’t need to f
 You can set [parameters](dev/element-queries/asset-queries.md#parameters) on the asset query as well. For example, to ensure that only images are returned, you can set the [kind](dev/element-queries/asset-queries.md#kind) param:
 
 ```twig
-{% set relatedAssets = entry.<FieldHandle>
+{% set relatedAssets = clone(entry.<FieldHandle>)
     .kind('image')
     .all() %}
 ```
+
+::: tip
+It’s always a good idea to clone the asset query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
 ### Uploading Files from Front-End Entry Forms
 

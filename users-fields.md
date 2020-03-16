@@ -38,6 +38,11 @@ Possible values include:
 | - | -
 | `':empty:'` | that don’t have any related users.
 | `':notempty:'` | that have at least one related user.
+| `100` | that are related to the user with an ID of 100.
+| `[100, 200]` | that are related to a user with an ID of 100 or 200.
+| `['and', 100, 200]` | that are related to the users with IDs of 100 and 200.
+| an [User](api:craft\elements\User) object | that are related to the user.
+| an [UserQuery](api:craft\elements\db\UserQuery) object | that are related to any of the resulting users.
 
 ```twig
 {# Fetch entries with a related user #}
@@ -51,7 +56,7 @@ Possible values include:
 If you have an element with a Users field in your template, you can access its related users using your Users field’s handle:
 
 ```twig
-{% set relatedUsers = entry.<FieldHandle> %}
+{% set query = entry.<FieldHandle> %}
 ```
 
 That will give you a [user query](dev/element-queries/user-queries.md), prepped to output all of the related users for the given field.
@@ -89,10 +94,14 @@ If you just need to check if there are any related users (but don’t need to fe
 You can set [parameters](dev/element-queries/user-queries.md#parameters) on the user query as well. For example, to only fetch users in the `authors` group, set the [groupId](dev/element-queries/user-queries.md#groupid) param:
 
 ```twig
-{% set relatedUsers = entry.<FieldHandle>
+{% set relatedUsers = clone(entry.<FieldHandle>)
     .group('authors')
     .all() %}
 ```
+
+::: tip
+It’s always a good idea to clone the user query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
 ## See Also
 
