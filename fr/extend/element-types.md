@@ -448,7 +448,7 @@ Your element type can define “sources”, which are groups of elements defined
 
 Element type sources will be visible in the sidebar of element indexes, and within the settings of element relation fields.
 
-To define your element type’s sources, add a protected static `defineSources()` method to your element class:
+To define your element type’s sources, add a protected static [defineSources()](api:craft\base\Element::defineSources()) method to your element class:
 
 ```php
 protected static function defineSources(string $context = null): array
@@ -491,7 +491,7 @@ You can give your [Control Panel section](cp-section.md) an index page for your 
 
 ### Index Page Actions
 
-You can define which [actions](element-action-types.md) your element type supports on its index page by adding a protected static `defineActions()` method on your element class:
+You can define which [actions](element-action-types.md) your element type supports on its index page by adding a protected static [defineActions()](api:craft\base\Element::defineActions()) method on your element class:
 
 ```php
 protected static function defineActions(string $source = null): array
@@ -507,11 +507,24 @@ protected static function defineActions(string $source = null): array
 
 All element types are [soft-deletable](soft-deletes.md) out of the box, however it’s up to each element type to decide whether they should be restorable.
 
-To make an element restorable, just add the <api:craft\elements\actions\Restore> action to the array returned by your static `defineActions()` method. Craft will automatically hide it during normal index views, and show it when someone selects the “Trashed” status option.
+To make an element restorable, just add the <api:craft\elements\actions\Restore> action to the array returned by your static [defineActions()](api:craft\base\Element::defineActions()) method. Craft will automatically hide it during normal index views, and show it when someone selects the “Trashed” status option.
+
+### Index Page Exporters
+
+You can define which [exporter types](element-exporter-types.md) your element type supports on its index page by adding a protected static [defineExporters()](api:craft\base\Element::defineExporters()) method on your element class:
+
+```php
+protected static function defineExporters(string $source): array
+{
+    $exporters = parent::defineExporters($source);
+    $exporters[] = MyExporter::class;
+    return $exporters;
+}
+```
 
 ### Sort Options
 
-You can define the sort options for your element indexes by adding a protected static `defineSortOptions()` method to your element class:
+You can define the sort options for your element indexes by adding a protected static [defineSortOptions()](api:craft\base\Element::defineSortOptions()) method to your element class:
 
 ```php
 protected static function defineSortOptions(): array
@@ -527,7 +540,7 @@ When a sort option is selected on an index, its key will be passed to the `$orde
 
 ### Table Attributes
 
-You can customize which columns should be available to your element indexes’ Table views by adding a protected `defineTableAttributes()` method to your element class:
+You can customize which columns should be available to your element indexes’ Table views by adding a protected [defineTableAttributes()](api:craft\base\Element::defineTableAttributes()) method to your element class:
 
 ```php
 protected static function defineTableAttributes(): array
@@ -544,7 +557,7 @@ protected static function defineTableAttributes(): array
 The first attribute you list here is a special case. It defines the header for the first column in the table view, which is the only one admins can’t remove. Its values will come from your elements’ <api:craft\base\ElementInterface::getUiLabel()> method.
 :::
 
-If it’s a big list, you can also limit which columns should be visible by default for new [sources](#sources) by adding a protected `defineDefaultTableAttributes()` method to your element class:
+If it’s a big list, you can also limit which columns should be visible by default for new [sources](#sources) by adding a protected [defineDefaultTableAttributes()](api:craft\base\Element::defineDefaultTableAttributes()) method to your element class:
 
 ```php
 protected static function defineDefaultTableAttributes(string $source): array
@@ -610,7 +623,7 @@ public function getThumbUrl(int $size)
 
 When an element is saved, Craft’s Search service will index its “searchable attributes” as search keywords on the element. By default, the list of searchable attributes will only include the element’s title and slug, plus any custom field values.
 
-If your element type has additional attributes you want to make searchable, add a protected static `defineSearchableAttributes()` method on your element and list them:
+If your element type has additional attributes you want to make searchable, add a protected static [defineSearchableAttributes()](api:craft\base\Element::defineSearchableAttributes()) method on your element and list them:
 
 ```php
 protected static function defineSearchableAttributes(): array
@@ -735,19 +748,10 @@ $success = Craft::$app->elements->saveElement($product);
 Once you’ve set up an edit page for your element type, you can add a [getCpEditUrl()](api:craft\base\ElementInterface::getCpEditUrl()) method to your element class, which will communicate your elements’ edit page URLs within the Control Panel.
 
 ```php
-// Create a new product element
-$product = new Product();
-
-// Set the main properties from POST data
-$product->price = Craft::$app->request->getBodyParam('price');
-$product->currency = Craft::$app->request->getBodyParam('currency');
-$product->enabled = (bool)Craft::$app->request->getBodyParam('enabled');
-
-// Set custom field values from POST data in a `fields` namespace
-$entry->setFieldValuesFromRequest('fields');
-
-// Save the product
-$success = Craft::$app->elements->saveElement($product);
+public function getCpEditUrl()
+{
+    return 'plugin-handle/products/'.$this->id;
+}
 ```
 
 ## Relations
@@ -757,17 +761,6 @@ $success = Craft::$app->elements->saveElement($product);
 You can give your element its own relation field by creating a new [field type](field-types.md) that extends <api:craft\fields\BaseRelationField>.
 
 That base class does most of the grunt work for you, so you can get your field up and running by implementing three simple methods:
-
-```php
-public function getCpEditUrl()
-{
-    return 'plugin-handle/products/'.$this->id;
-}
-```
-
-## Reference Tags
-
-If you want your elements to support reference tags (e.g. `{product:100}`), add a static `refHandle()` method to your element class that returns a unique handle that should be used for its reference tags.
 
 ```php
 <?php
@@ -795,7 +788,9 @@ class Products extends BaseRelationField
 }
 ```
 
-To make it easier for users to copy your elements’ reference tags, you may want to add a “Copy reference tag” [action](#index-page-actions) to your element’s index page.
+## Reference Tags
+
+If you want your elements to support reference tags (e.g. `{product:100}`), add a static `refHandle()` method to your element class that returns a unique handle that should be used for its reference tags.
 
 ```php
 public static function refHandle()
@@ -804,13 +799,7 @@ public static function refHandle()
 }
 ```
 
-## Eager-Loading
-
-If your element type has its own [relation field](#relation-field), it is already eager-loadable through that. And if it supports [custom fields](#custom-fields), any elements that are related to your elements through relation fields will be eager-loadable.
-
-The only case where eager-loading support is not provided for free is if your element type has any “hard-coded” relations with other elements. For example, entries have authors (User elements), but those relations are defined in an `authorId` column in the `entries` table, not a custom Users field.
-
-If your elements have any hard-coded relations to other elements, and you want to make those elements eager-loadable, add an `eagerLoadingMap()` method to your element class:
+To make it easier for users to copy your elements’ reference tags, you may want to add a “Copy reference tag” [action](#index-page-actions) to your element’s index page.
 
 ```php
 use craft\elements\actions\CopyReferenceTag;
@@ -829,9 +818,13 @@ protected static function defineActions(string $source = null): array
 }
 ```
 
-This function takes an of already-queried elements (the “source” elements), and an eager-loading handle. It is supposed to return a mapping of which source element IDs should eager-load which “target” element IDs.
+## Eager-Loading
 
-If you need to override where eager-loaded elements are stored, add a `setEagerLoadedElements()` method to your element class as well:
+If your element type has its own [relation field](#relation-field), it is already eager-loadable through that. And if it supports [custom fields](#custom-fields), any elements that are related to your elements through relation fields will be eager-loadable.
+
+The only case where eager-loading support is not provided for free is if your element type has any “hard-coded” relations with other elements. For example, entries have authors (User elements), but those relations are defined in an `authorId` column in the `entries` table, not a custom Users field.
+
+If your elements have any hard-coded relations to other elements, and you want to make those elements eager-loadable, add an `eagerLoadingMap()` method to your element class:
 
 ```php
 use craft\db\Query;
@@ -859,5 +852,21 @@ public static function eagerLoadingMap(array $sourceElements, string $handle)
     }
 
     return parent::eagerLoadingMap($sourceElements, $handle);
+}
+```
+
+This function takes an of already-queried elements (the “source” elements), and an eager-loading handle. It is supposed to return a mapping of which source element IDs should eager-load which “target” element IDs.
+
+If you need to override where eager-loaded elements are stored, add a `setEagerLoadedElements()` method to your element class as well:
+
+```php
+public function setEagerLoadedElements(string $handle, array $elements)
+{
+    if ($handle === 'author') {
+        $author = $elements[0] ?? null;
+        $this->setAuthor($author);
+    } else {
+        parent::setEagerLoadedElements($handle, $elements);
+    }
 }
 ```
