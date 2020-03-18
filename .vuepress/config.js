@@ -48,6 +48,9 @@ module.exports = {
         codeLanguages: {
             twig: 'Twig',
             php: 'PHP',
+            csv: 'CSV',
+            json: 'JSON',
+            xml: 'XML',
         }
     },
     markdown: {

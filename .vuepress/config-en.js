@@ -61,6 +61,7 @@ module.exports = {
                     'utility-types',
                     'element-types',
                     'element-action-types',
+                    'element-exporter-types',
                 ]
             },
             {
