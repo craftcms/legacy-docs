@@ -24,12 +24,27 @@ Craft はグローバル設定内でグローバルを整理します。それ�
 
 カスタムフィールド以外で利用できる追加のグローバル設定のプロパティについては、リファレンスの <api:craft\elements\GlobalSet> を参照してください。
 
+### Manually Loading Global Sets
+
+In some special situations, like within email templates, Global Sets won’t be available by default. Any Global Set may still be loaded manually. The above example could be loaded with `getSetByHandle()`:
+
+::: code
+```twig
+{% set companyInfo = craft.globals().getSetByHandle('companyInfo') %}
+```
+```php
+$companyInfo = \Craft::$app->getGlobals()->getSetByHandle('companyInfo');
+```
+:::
+
+More details are available in the [Globals service class documentation](api:craft\services\Globals).
+
 ## マルチサイトでのグローバル設定
 
-Craft でマルチサイトを運用している場合、グローバル設定はすべてのサイトで利用可能です。しかしながら、必要に応じていくつかのフィールドを空のままにするなど、それぞれの設定値をサイトごとにセットできます。
+If you run multiple sites with Craft, Global Sets are available in all sites. However, you can set the values in those sets on a per site basis, even leaving some fields blank, if desired.
 
-そのためには、グローバルセットのフィールドを編集し、それぞれの「翻訳方法」設定で「各サイトに対して翻訳」をセットします。
+To do that, edit the global set’s fields, and make sure that their “Translation Method” settings are set to “Translate for each site”.
 
-グローバル設定を表示中にサイトを切り替えるには、コントロールパネルのグローバル設定ページの左上にあるドロップダウンメニューを使用します。
+To toggle between sites while viewing Global Sets, use the drop-down menu at the top left of the Global Sets page in the Control Panel.
 
-![グローバル内のサイトの切り替え](./images/globals-multisite-nav.png)
+![Toggling between sites in Globals](./images/globals-multisite-nav.png)
