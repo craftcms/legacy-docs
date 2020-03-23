@@ -6,8 +6,8 @@ Matrix fields allow you to create multiple blocks of content within a single fie
 
 Matrix fields have the following settings:
 
-* **Configuration** – This is where you configure which block types should be available to your Matrix field, and which sub-fields each of those block types should have.
-* **Max Blocks** – The maximum number of blocks that can be created within the field. (Default is no limit.)
+- **Configuration** – This is where you configure which block types should be available to your Matrix field, and which sub-fields each of those block types should have.
+- **Max Blocks** – The maximum number of blocks that can be created within the field. (Default is no limit.)
 
 ## The Field
 
@@ -143,7 +143,7 @@ If you have an [entry form](dev/examples/entry-form.md) that needs to contain a 
     - type
     - fields
       - <FieldHandle_1>
-      - <FieldHanlde_2>
+      - <FieldHandle_2>
   - <BlockID_2>
     - type
     - fields
@@ -206,7 +206,7 @@ If you will likely need to include a JavaScript-powered component to the field, 
 For example, the first new block that is added to the form could have an “ID” of `new:1`, so its `type` input name would end up looking like this:
 
 ```html
-<input type="hidden" name="fields[<FieldHandle>][new:1][type]" value="text">
+<input type="hidden" name="fields[<FieldHandle>][new:1][type]" value="text" />
 ```
 
 Then define the form inputs for any additional blocks that should be appended to the input.
@@ -223,5 +223,5 @@ Then define the form inputs for any additional blocks that should be appended to
 
 ## See Also
 
-* [Element Queries](dev/element-queries/README.md)
-* <api:craft\elements\MatrixBlock>
+- [Element Queries](dev/element-queries/README.md)
+- <api:craft\elements\MatrixBlock>
