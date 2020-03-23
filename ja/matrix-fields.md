@@ -6,8 +6,8 @@
 
 行列フィールドの設定は、次の通りです。
 
-* **構成** – ここでは、行列フィールドでどのようなブロックタイプが利用可能か、それらのブロックタイプがどのようなサブフィールドを持つ必要があるかを設定します。
-* **最大ブロック数** – フィールドに作成できるブロック数の上限（デフォルトは無制限です）
+- **構成** – ここでは、行列フィールドでどのようなブロックタイプが利用可能か、それらのブロックタイプがどのようなサブフィールドを持つ必要があるかを設定します。
+- **最大ブロック数** – フィールドに作成できるブロック数の上限（デフォルトは無制限です）
 
 ## フィールド
 
@@ -143,7 +143,7 @@ If you have an [entry form](dev/examples/entry-form.md) that needs to contain a 
     - type
     - fields
       - <FieldHandle_1>
-      - <FieldHanlde_2>
+      - <FieldHandle_2>
   - <BlockID_2>
     - type
     - fields
@@ -206,7 +206,7 @@ If you will likely need to include a JavaScript-powered component to the field, 
 For example, the first new block that is added to the form could have an “ID” of `new:1`, so its `type` input name would end up looking like this:
 
 ```html
-<input type="hidden" name="fields[<FieldHandle>][new:1][type]" value="text">
+<input type="hidden" name="fields[<FieldHandle>][new:1][type]" value="text" />
 ```
 
 Then define the form inputs for any additional blocks that should be appended to the input.
@@ -223,5 +223,5 @@ Then define the form inputs for any additional blocks that should be appended to
 
 ## 関連項目
 
-* [エレメントクエリ](dev/element-queries/README.md)
-* <api:craft\elements\MatrixBlock>
+- [エレメントクエリ](dev/element-queries/README.md)
+- <api:craft\elements\MatrixBlock>
