@@ -97,16 +97,11 @@ The <api:yii\db\Migration::insert()>, [batchInsert()](api:craft\db\Migration::ba
 Plugins can have a special “Install” migration which handles the installation and uninstallation of the plugin. Install migrations live at `migrations/Install.php` alongside normal migrations. They should follow this template:
 
 ```php
-<br />```bash Content Migration
-    ./craft migrate/up
+use craft\db\Query;
 
-
-:::
-
-Or you can have Craft apply all new migrations across all migration tracks:
-
-```bash
-./craft migrate/all
+$result = (new Query())
+    // …
+    ->all();
 ```
 :::
 
@@ -184,12 +179,12 @@ class Install extends Migration
 {
     public function safeUp()
     {
-        // ...
+        // …
     }
 
     public function safeDown()
     {
-        // ...
+        // …
     }
 }
 ```
@@ -213,11 +208,11 @@ If you want to add things to the [project config](project-config.md) on install,
 ```php
 public function safeUp()
 {
-    // ...
+    // …
 
     // Don't make the same config changes twice
     if (Craft::$app->projectConfig->get('plugins.<plugin-handle>', true) === null) {
-        // Make the config changes here...
+        // Make the config changes here…
     }
 }
 ```
