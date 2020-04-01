@@ -63,7 +63,16 @@
 利用可能な `format` 値は、次の通りです。
 
 ```twig
-{{ entry.postDate|date('Y-m-d') }} → 2018-09-26
+{% set svg %}
+    <?xml version="1.0" encoding="utf-8"?>
+    <svg>…</svg>
+{% endset %}
+{{ svg|attr({
+    class: 'icon'
+}) }}
+{# Output:
+   <?xml version="1.0" encoding="utf-8"?>
+   <svg class="icon">…</svg> #}
 ```
 
 使用される正確な時刻のフォーマットは、現在のアプリケーションのローケルに依存します。異なるローケルの時刻のフォーマットを使用したい場合、`locale` パラメータを利用します。
