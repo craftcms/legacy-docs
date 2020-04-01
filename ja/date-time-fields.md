@@ -122,7 +122,7 @@ By default, Craft will assume the date is posted in UTC. As of Craft 3.1.6 you c
 <select name="fields[<FieldHandle>][timezone]">
     <option value="America/Los_Angeles">Pacific Time</option>
     <option value="UTC">UTC</option>
-    <!-- ... -->
+    <!-- … -->
 </select>
 ```
 
