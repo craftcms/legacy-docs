@@ -12,8 +12,8 @@ Components that are soft-deletable must have a `dateDeleted` column in their dat
 
 ```php
 // New table migration
-$this->createTale('{{%tablename}}', [
-    // other columns...
+$this->createTable('{{%tablename}}', [
+    // other columns…
     'dateDeleted' => $this->dateTime()->null(),
 ]);
 
@@ -72,7 +72,7 @@ class MyRecord extends ActiveRecord
 {
     use SoftDeleteTrait;
 
-    // ...
+    // …
 }
 ```
 
@@ -105,7 +105,7 @@ class MyRecord extends ActiveRecord
         return $behaviors;
     }
 
-    // ...
+    // …
 }
 ```
 
