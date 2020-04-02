@@ -62,7 +62,7 @@ To loop through all of the blocks, call [all()](api:craft\db\Query::all()) and t
 {% if blocks|length %}
     <ul>
         {% for block in blocks %}
-            <!-- … -->
+            <!-- ... -->
         {% endfor %}
     </ul>
 {% endif %}
@@ -101,7 +101,7 @@ If you only want the first block, call [one()](api:craft\db\Query::one()) instea
 ```twig
 {% set block = entry.<FieldHandle>.one() %}
 {% if block %}
-    <!-- … -->
+    <!-- ... -->
 {% endif %}
 ```
 

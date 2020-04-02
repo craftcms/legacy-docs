@@ -64,7 +64,7 @@ class Product extends Element
      */
     public $currency;
 
-    // …
+    // ...
 }
 ```
 
@@ -204,7 +204,7 @@ With the element query class in place, the last step is to tie it into your elem
 use craft\elements\db\ElementQueryInterface;
 use ns\prefix\elements\db\ProductQuery;
 
-// …
+// ...
 
 class Product
 {
@@ -213,7 +213,7 @@ class Product
         return new ProductQuery(static::class);
     }
 
-    // …
+    // ...
 }
 ```
 
@@ -299,7 +299,7 @@ public function getEditorHtml(): string
         ]
     ]);
 
-    // …
+    // ...
 
     $html .= parent::getEditorHtml();
 
@@ -324,7 +324,7 @@ Place that include within a `<form>` that posts to one of your plugin’s contro
 ```php
 use ns\prefix\elements\Product;
 
-// …
+// ...
 
 // assemble the new one from the post data, and save it
 $fieldLayout = \Craft::$app->getFields()->assembleLayoutFromPost();
@@ -341,7 +341,7 @@ You can set that up however you want. Just remember to store new field layouts�
 Elements’ `getFieldLayout()` method is responsible for returning the field layout that is associated with the current element (if there is one). By default, it will check a `$fieldLayoutId` property on the element. If set, it will return the field layout with the same ID. Therefore it’s recommended that you set the `$fieldLayoutId` property on your elements when saving them.
 
 ```php
-// …
+// ...
 $product->fieldLayoutId = $productType->fieldLayoutId;
 \Craft::$app->elements->saveElement($product);
 ```
@@ -588,7 +588,7 @@ protected static function defineSources(string $context = null): array
             ],
             'hasThumbs' => true
         ],
-        // …
+        // ...
     ];
 }
 ```
@@ -598,7 +598,7 @@ Then, add a `getThumbUrl()` method to your element class, which returns the URL 
 ```php
 use craft\helpers\UrlHelper;
 
-// …
+// ...
 
 public function getThumbUrl(int $size)
 {
@@ -806,7 +806,7 @@ If your elements have any hard-coded relations to other elements, and you want t
 ```php
 use craft\elements\actions\CopyReferenceTag;
 
-// …
+// ...
 
 protected static function defineActions(string $source = null): array
 {
@@ -815,7 +815,7 @@ protected static function defineActions(string $source = null): array
             'type' => CopyReferenceTag::class,
             'elementType' => static::class,
         ],
-        // …
+        // ...
     ];
 }
 ```
@@ -829,7 +829,7 @@ use craft\db\Query;
 use craft\elements\User;
 use craft\helpers\ArrayHelper;
 
-// …
+// ...
 
 public static function eagerLoadingMap(array $sourceElements, string $handle)
 {
