@@ -64,7 +64,7 @@ class Product extends Element
      */
     public $currency;
 
-    // …
+    // ...
 }
 ```
 
@@ -202,7 +202,7 @@ class ProductQuery extends ElementQuery
 use craft\elements\db\ElementQueryInterface;
 use ns\prefix\elements\db\ProductQuery;
 
-// …
+// ...
 
 class Product
 {
@@ -211,7 +211,7 @@ class Product
         return new ProductQuery(static::class);
     }
 
-    // …
+    // ...
 }
 ```
 
@@ -297,7 +297,7 @@ public function getEditorHtml(): string
         ]
     ]);
 
-    // …
+    // ...
 
     $html .= parent::getEditorHtml();
 
@@ -322,7 +322,7 @@ public function getEditorHtml(): string
 ```php
 use ns\prefix\elements\Product;
 
-// …
+// ...
 
 // assemble the new one from the post data, and save it
 $fieldLayout = \Craft::$app->getFields()->assembleLayoutFromPost();
@@ -339,7 +339,7 @@ $fieldLayout->type = Product::class;
 `$fieldLayoutId` プロパティがセットされている場合、<api:craft\services\Elements::saveElement()> はデータベースの `elements.fieldLayoutId` カラムに保存し、ロード時に取得されたその値をエレメントに再設定します。
 
 ```php
-// …
+// ...
 $product->fieldLayoutId = $productType->fieldLayoutId;
 \Craft::$app->elements->saveElement($product);
 ```
@@ -592,7 +592,7 @@ protected static function defineSources(string $context = null): array
             ],
             'hasThumbs' => true
         ],
-        // …
+        // ...
     ];
 }
 ```
@@ -602,7 +602,7 @@ Then, add a `getThumbUrl()` method to your element class, which returns the URL 
 ```php
 use craft\helpers\UrlHelper;
 
-// …
+// ...
 
 public function getThumbUrl(int $size)
 {
@@ -795,7 +795,7 @@ To make it easier for users to copy your elements’ reference tags, you may wan
 ```php
 use craft\elements\actions\CopyReferenceTag;
 
-// …
+// ...
 
 protected static function defineActions(string $source = null): array
 {
@@ -804,7 +804,7 @@ protected static function defineActions(string $source = null): array
             'type' => CopyReferenceTag::class,
             'elementType' => static::class,
         ],
-        // …
+        // ...
     ];
 }
 ```
@@ -822,7 +822,7 @@ use craft\db\Query;
 use craft\elements\User;
 use craft\helpers\ArrayHelper;
 
-// …
+// ...
 
 public static function eagerLoadingMap(array $sourceElements, string $handle)
 {
