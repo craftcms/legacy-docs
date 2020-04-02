@@ -26,6 +26,11 @@ return [
 ];
 ```
 
+::: tip
+If you’re providing a custom database cache component, you’ll need its table to include `id`, `expire`, and `data` columns [as mentioned in Yii’s documentation](https://www.yiiframework.com/doc/api/2.0/yii-caching-dbcache#$cacheTable-detail) as well as columns for `dateCreated`, `dateUpdated`, and `uid`.
+:::
+
+
 #### Memcached の実例
 
 ```php
@@ -56,7 +61,7 @@ return [
 
 #### Redis の実例
 
-Redis キャッシュストレージを利用するには、あらかじめ [yii2-redis](https://github.com/yiisoft/yii2-redis) ライブラリをインストールする必要があります。次に、Craft の `cache` コンポーネントでそれを利用するよう設定します。
+To use Redis cache storage, you will first need to install the [yii2-redis](https://github.com/yiisoft/yii2-redis) library. Then configure Craft’s `cache` component to use it:
 
 ```php
 <?php
