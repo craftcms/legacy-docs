@@ -81,6 +81,7 @@ module.exports = {
                     'template-hooks',
                     'soft-deletes',
                     'environmental-settings',
+                    'extending-system-components'
                     // 'front-end-controllers',
                 ]
             }
