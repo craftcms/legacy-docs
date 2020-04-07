@@ -14,6 +14,31 @@ Craft のデフォルト設定は [src/config/app.php](https://github.com/craftc
 
 デフォルトでは、Craft は `storage/runtime/cache/` フォルダにデータキャッシュを蓄積します。`config/app.php` で `cache` アプリケーションコンポーネントを上書きすることによって、代替の[キャッシュストレージ](https://www.yiiframework.com/doc/guide/2.0/en/caching-data#supported-cache-storage)を使うよう Craft を設定できます。
 
+#### Database Cache Example
+
+If you want to store data caches in the database, first you will need to create a `cache` table as specified by <api:yii\caching\DbCache::$cacheTable>. Craft provides a CLI command for convenience:
+
+```bash
+./craft setup/db-cache-table
+```
+
+Once that’s done, you can set your `cache` application component to use <api:craft\cache\DbCache>.
+
+```php
+<?php
+return [
+    'components' => [
+        'cache' => craft\cache\DbCache::class,
+    ],
+];
+```
+
+::: tip
+If you’ve already configured Craft to use <api:yii\caching\DbCache> rather than <api:craft\cache\DbCache>, you can safely switch to the latter if you remove your `cache` table’s `dateCreated`, `dateUpdated`, and `uid` columns.
+:::
+
+#### APC Example
+
 ```php
 <?php
 return [
@@ -21,17 +46,14 @@ return [
         'cache' => [
             'class' => yii\caching\ApcCache::class,
             'useApcu' => true,
+            'keyPrefix' => 'a_unique_key',
         ],
     ],
 ];
 ```
 
-::: tip
-If you’re providing a custom database cache component, you’ll need its table to include `id`, `expire`, and `data` columns [as mentioned in Yii’s documentation](https://www.yiiframework.com/doc/api/2.0/yii-caching-dbcache#$cacheTable-detail) as well as columns for `dateCreated`, `dateUpdated`, and `uid`.
-:::
 
-
-#### Memcached の実例
+#### Memcached Example
 
 ```php
 <?php
@@ -54,12 +76,13 @@ return [
                     'weight' => 1,
                 ],
             ],
+            'keyPrefix' => 'a_unique_key',
         ],
     ],
 ];
 ```
 
-#### Redis の実例
+#### Redis Example
 
 To use Redis cache storage, you will first need to install the [yii2-redis](https://github.com/yiisoft/yii2-redis) library. Then configure Craft’s `cache` component to use it:
 
@@ -76,6 +99,7 @@ return [
         'cache' => [
             'class' => yii\redis\Cache::class,
             'defaultDuration' => 86400,
+            'keyPrefix' => 'a_unique_key',
         ],
     ],
 ];
