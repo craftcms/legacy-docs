@@ -6,6 +6,7 @@ module.exports = {
     shouldPrefetch: () => false,
     ga: 'UA-39036834-8',
     themeConfig: {
+        logo: '/icon.svg',
         docsRepo: 'craftcms/docs',
         docsDir: '',
         docsBranch: 'v2',
