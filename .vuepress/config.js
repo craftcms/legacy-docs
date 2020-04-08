@@ -14,6 +14,7 @@ module.exports = {
         }
     },
     themeConfig: {
+        logo: '/icon.svg',
         docsRepo: 'craftcms/docs',
         docsDir: '',
         docsBranch: 'v3',
