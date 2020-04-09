@@ -734,7 +734,7 @@ $categories = \craft\elements\Category::find()
 
 ### `orderBy`
 
-Determines the order that the categories should be returned in.
+Determines the order that the categories should be returned in. (If empty, defaults to `dateCreated DESC`.)
 
 
 
