@@ -29,8 +29,10 @@ Craft は [Yii 2](https://www.yiiframework.com/) をベースとするセルフ�
 
 ## 打ち込む
 
-Craft のコンテンツモデリングがどのように機能するのか詳しく知るには、[セクションとエントリ](sections-and-entries.md) および [フィールド](fields.md)を読んでください。
+If you’re new to Craft CMS the best place to start is [the tutorial](https://docs.craftcms.com/tutorial/).
 
-Craft をインストールする準備ができたら、[サーバー要件](requirements.md) および [インストールガイド](installation.md)を読んでください。
+To start getting acquainted with how content modeling works in Craft, read [Sections and Entries](sections-and-entries.md) and [Fields](fields.md).
 
-最後に、 サイトまたはアプリケーションのフロントエンドを構築する準備が整ったら[フロントエンド開発](dev/README.md)セクションを読んでください。
+Before installing, check out the [Server Requirements](requirements.md) and [Installation Instructions](installation.md).
+
+Finally, read the [Front-End Development](dev/README.md) section when you’re ready to start building out the front-end of your site or application.
