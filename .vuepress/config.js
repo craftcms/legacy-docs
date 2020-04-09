@@ -25,6 +25,7 @@ module.exports = {
             '/ja/': require('./config-ja')
         },
         nav: [
+            { text: 'Tutorial', link: 'https://docs.craftcms.com/tutorial/' },
             {
                 text: 'Craft CMS',
                 items: [
