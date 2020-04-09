@@ -429,7 +429,7 @@ $tags = \craft\elements\Tag::find()
 
 ### `orderBy`
 
-Determines the order that the tags should be returned in.
+Determines the order that the tags should be returned in. (If empty, defaults to `title ASC`.)
 
 
 
