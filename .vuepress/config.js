@@ -1,6 +1,10 @@
 module.exports = {
     theme: 'craftdocs',
-    ga: 'UA-39036834-9',
+    plugins: [
+        ['@vuepress/google-analytics', {
+            ga: 'UA-39036834-9',
+        }]
+    ],
     base: '/v3/',
     shouldPrefetch: () => false,
     locales: {
