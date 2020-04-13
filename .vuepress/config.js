@@ -64,7 +64,7 @@ module.exports = {
                 return content.replace(/[_`]/g, '')
             }
         },
-        config(md) {
+        extendMarkdown(md) {
             md
                 .use(replaceApiLinks)
                 .use(require('vuepress-theme-craftdocs/markup'))
