@@ -1,8 +1,10 @@
 {
   "private": true,
   "devDependencies": {
+    "@vuepress/plugin-google-analytics": "^1.4.0",
     "markdown-it-deflist": "^2.0.3",
     "vuepress": "^1.4.0",
+    "vuepress-plugin-medium-zoom": "^1.1.8",
     "vuepress-plugin-sitemap": "^1.1.1",
     "vuepress-theme-craftdocs": "./../vuepress-theme-craftdocs/"
   },
