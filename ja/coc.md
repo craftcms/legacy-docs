@@ -6,7 +6,7 @@
 
 これはあなたがしてはいけないことすべてを網羅したリストではありません。むしろ、意図している「わたしたち自身や参加する技術的なコミュニティのすべてをより豊かにするためのガイドである」という精神を取り入れてください。
 
-Craft のコミュニティがコミュニケーションのために利用するすべての場所で、この行動規範はあてはまります。Craft Slack、Craft CMS Stack Exchange、GitHub、Twitter、Facebook、会合、カンファレンス、その他すべての関連するフォーラムを含みます。Craft チームが管理していない場所でこの行動規範に違反した場合、コミュニティに参加する資格があるかどうかの判断基準に悪影響を及ぼすでしょう。
+This code of conduct applies to all spaces used by the Craft community for communication. This includes Craft Discord, Craft CMS Stack Exchange, GitHub, Twitter, Facebook, meetups, conferences, and any other relevant forums. Violations of this code outside of any spaces managed by the Craft team will still affect a person’s ability to participate within them.
 
 もし誰かが行動規範に違反したと確信したなら、[craftcms.com/contact](https://craftcms.com/contact) から連絡してください。わたしたちはすべての報告を真剣に受け止め、かつ、あなたの身元は機密のままであるようにします。
 
