@@ -2,6 +2,50 @@
 
 [Twig に付随する](https://twig.symfony.com/doc/functions/index.html)テンプレートファンクションに加えて、Craft がいくつか独自のものを提供します。
 
+| Function                                                                                       | Description                                                                    |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [actionInput](#actioninput)                                                                    | Outputs a hidden `action` input.                                               |
+| [alias](#alias)                                                                                | Parses a string as an alias.                                                   |
+| [attr](#attr)                                                                                  | Generates HTML attributes.                                                     |
+| [attribute](https://twig.symfony.com/doc/2.x/functions/attribute.html)                         | Accesses a dynamic attribute of a variable.                                    |
+| [beginBody](#beginbody)                                                                        | Outputs scripts and styles that were registered for the “begin body” position. |
+| [block](https://twig.symfony.com/doc/2.x/functions/block.html)                                 | Prints a block’s output.                                                       |
+| [ceil](#ceil)                                                                                  | Rounds a number up.                                                            |
+| [className](#classname)                                                                        | Returns the fully qualified class name of a given object.                      |
+| [clone](#clone)                                                                                | Clones an object.                                                              |
+| [combine](#combine)                                                                            | Combines two arrays into one.                                                  |
+| [constant](https://twig.symfony.com/doc/2.x/functions/constant.html)                           | Returns the constant value for a given string.                                 |
+| [create](#create)                                                                              | Creates a new object.                                                          |
+| [csrfInput](#csrfinput)                                                                        | Returns a hidden CSRF token input.                                             |
+| [cycle](https://twig.symfony.com/doc/2.x/functions/cycle.html)                                 | Cycles on an array of values.                                                  |
+| [date](https://twig.symfony.com/doc/2.x/functions/date.html)                                   | Creates a date.                                                                |
+| [dump](https://twig.symfony.com/doc/2.x/functions/dump.html)                                   | Dumps information about a variable.                                            |
+| [endBody](#endbody)                                                                            | Outputs scripts and styles that were registered for the “end body” position.   |
+| [expression](#expression)                                                                      | Creates a database expression object.                                          |
+| [floor](#floor)                                                                                | Rounds a number down.                                                          |
+| [getenv](#getenv)                                                                              | Returns the value of an environment variable.                                  |
+| [gql](#gql)                                                                                    | Executes a GraphQL query against the full schema.                              |
+| [parseEnv](#parseenv)                                                                          | Parses a stirng as an environment variable or alias.                           |
+| [head](#head)                                                                                  | Outputs scripts and styles that were registered for the “head” position.       |
+| [hiddenInput](#hiddeninput)                                                                    | Outputs a hidden input.                                                        |
+| [include](https://twig.symfony.com/doc/2.x/functions/include.html)                             | Returns the rendered content of a template.                                    |
+| [input](#input)                                                                                | Outputs an HTML input.                                                         |
+| [max](https://twig.symfony.com/doc/2.x/functions/max.html)                                     | Returns the biggest value in an array.                                         |
+| [min](https://twig.symfony.com/doc/2.x/functions/min.html)                                     | Returns the lowest value in an array.                                          |
+| [parent](https://twig.symfony.com/doc/2.x/functions/parent.html)                               | Returns the parent block’s output.                                             |
+| [plugin](#plugin)                                                                              | Returns a plugin instance by its handle.                                       |
+| [random](https://twig.symfony.com/doc/2.x/functions/random.html)                               | Returns a random value.                                                        |
+| [range](https://twig.symfony.com/doc/2.x/functions/range.html)                                 | Returns a list containing an arithmetic progression of integers.               |
+| [redirectInput](#redirectinput)                                                                | Outputs a hidden `redirect` input.                                             |
+| [seq](#seq)                                                                                    | Outputs the next or current number in a sequence.                              |
+| [shuffle](#shuffle)                                                                            | Randomizes the order of the items in an array.                                 |
+| [siteUrl](#siteurl)                                                                            | Generates a front-end URL.                                                     |
+| [svg](#svg)                                                                                    | Outputs an SVG document.                                                       |
+| [source](https://twig.symfony.com/doc/2.x/functions/source.html)                               | Returns the content of a template without rendering it.                        |
+| [tag](#tag)                                                                                    | Outputs an HTML tag.                                                           |
+| [template_from_string](https://twig.symfony.com/doc/2.x/functions/template_from_string.html) | Loads a template from a string.                                                |
+| [url](#url)                                                                                    | Generates a URL.                                                               |
+
 ## `actionInput( actionPath )`
 
 特定のコントローラーやアクションのための POST リクエストをルーティングするために使用される不可視項目を出力するためのショートカット。これは、テンプレート内に直接 `<input type="hidden" name="action" value="controller/action-name">` を書き込むのと実質的に同じです。
@@ -38,30 +82,24 @@
 {{ ceil(42.1) }} → 43
 ```
 
-## `ceil( num )`
+## `beginBody`
 
-指定されたオブジェクトの完全修飾クラス名を返します。
-
-指定されたオブジェクトのクローンを作成します。
-
-## `className( object )`
-
-与えられたクラス名やオブジェクト設定に基づいて新しいオブジェクトインスタンスを作成します。サポートされる引数の詳細については、<api:Yii::createObject()> を参照してください。
+Outputs any scripts and styles that were registered for the “begin body” position. It should be placed right after your `<body>` tag.
 
 ```twig
 {% set query = craft.entries.section('news') %}
 {% set articles = clone(query).type('articles') %}
 ```
 
-## `clone( object )`
+## `block`
 
-不可視の CSRF トークン入力欄を返します。CSRF 保護が有効になっているすべてのサイトでは、POST 経由で送信するそれぞれのフォームにこれを含めなければなりません。
+Prints a block’s output.
 
-「end body」に登録されたスクリプトやスタイルを出力します。`</body>` タグの直前に配置する必要があります。
+This works identically to Twig’s core [`block`](https://twig.symfony.com/doc/2.x/functions/block.html) function.
 
-## `create( type )`
+## `ceil`
 
-データベースクエリで使用するための新しい <api:yii\db\Expression> オブジェクトを作成して返します。
+Rounds a number up.
 
 ```twig
 {# Pass in a class name #}
@@ -75,18 +113,18 @@
 }) %}
 ```
 
-## `csrfInput()`
+## `className`
 
-整数値に切り捨てます。
+Returns the fully qualified class name of a given object.
 
 ```twig
 <form method="post">
     {{ csrfInput() }}<!-- ... --></form>
 ```
 
-## `endBody()`
+## `clone`
 
-環境変数の値を返します。
+Clones a given object.
 
 ```twig
 <body>
@@ -145,24 +183,6 @@ You can optionally set additional attributes on the tag by passing an `options` 
     id: 'csrf-input'
 }) }}
 ```
-
-## `cycle`
-
-Cycles on an array of values.
-
-This works identically to Twig’s core [`cycle`](https://twig.symfony.com/doc/2.x/functions/cycle.html) function.
-
-## `date`
-
-Converts an argument to a date.
-
-This works identically to Twig’s core [`date`](https://twig.symfony.com/doc/2.x/functions/date.html) function.
-
-## `dump`
-
-Dumps information about a template variable.
-
-This works identically to Twig’s core [`dump`](https://twig.symfony.com/doc/2.x/functions/dump.html) function.
 
 ## `endBody`
 
@@ -303,12 +323,6 @@ Returns the lowest value in an array.
 
 This works identically to Twig’s core [`min`](https://twig.symfony.com/doc/2.x/functions/min.html) function.
 
-## `parent`
-
-Returns the parent block’s output.
-
-This works identically to Twig’s core [`parent`](https://twig.symfony.com/doc/2.x/functions/parent.html) function.
-
 ## `plugin`
 
 Returns a plugin instance by its handle, or `null` if no plugin is installed and enabled with that handle.
@@ -316,18 +330,6 @@ Returns a plugin instance by its handle, or `null` if no plugin is installed and
 ```twig
 {{ plugin('commerce').version }}
 ```
-
-## `random`
-
-Returns a random value.
-
-This works identically to Twig’s core [`random`](https://twig.symfony.com/doc/2.x/functions/random.html) function.
-
-## `range`
-
-Returns a list containing an arithmetic progression of integers.
-
-This works identically to Twig’s core [`range`](https://twig.symfony.com/doc/2.x/functions/range.html) function.
 
 ## `redirectInput`
 
@@ -479,12 +481,6 @@ If `html` is included in the attributes argument (and `text` isn’t), its value
 ```
 
 All other keys passed to the second argument will be set as attributes on the tag, using <api:yii\helpers\BaseHtml::renderTagAttributes()>.
-
-## `template_from_string`
-
-Loads a template from a string.
-
-This works identically to Twig’s core [`template_from_string`](https://twig.symfony.com/doc/2.x/functions/template_from_string.html) function.
 
 ## `url`
 
