@@ -3,18 +3,16 @@
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.4.0",
     "markdown-it-deflist": "^2.0.3",
-    "vuepress": "^1.4.0",
+    "vuepress": "^1.4.1",
     "vuepress-plugin-medium-zoom": "^1.1.8",
     "vuepress-plugin-sitemap": "^1.1.1",
-    "vuepress-theme-craftdocs": "./../vuepress-theme-craftdocs/"
+    "vuepress-theme-craftdocs": "./../vuepress-theme-craftdocs/",
+    "markdown-it-imsize": "^2.0.1"
   },
   "scripts": {
     "docs:dev": "vuepress dev .",
     "docs:build": "vuepress build .",
     "docs:sitemap": "vuepress-sitemap -H https://docs.craftcms.com/v3/"
   },
-  "dependencies": {
-    "markdown-it-imsize": "^2.0.1",
-    "vuex": "^3.1.0"
-  }
+  "dependencies": {}
 }
