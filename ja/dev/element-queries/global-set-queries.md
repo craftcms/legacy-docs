@@ -51,28 +51,30 @@ $myGlobalSetQuery = \craft\elements\GlobalSet::find();
 
 <!-- BEGIN PARAMS -->
 
-- [anyStatus](#anystatus)
-- [asArray](#asarray)
-- [clearCachedResult](#clearcachedresult)
-- [dateCreated](#datecreated)
-- [dateUpdated](#dateupdated)
-- [fixedOrder](#fixedorder)
-- [handle](#handle)
-- [id](#id)
-- [ignorePlaceholders](#ignoreplaceholders)
-- [inReverse](#inreverse)
-- [limit](#limit)
-- [offset](#offset)
-- [orderBy](#orderby)
-- [preferSites](#prefersites)
-- [relatedTo](#relatedto)
-- [search](#search)
-- [site](#site)
-- [siteId](#siteid)
-- [trashed](#trashed)
-- [uid](#uid)
-- [unique](#unique)
-- [with](#with)
+| Param                                     | Description                                                                                                                                                                                                                                                                                     |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [anyStatus](#anystatus)                   | | Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.                                                  |
+| [asArray](#asarray)                       | | Causes the query to return matching global sets as arrays of data, rather than [GlobalSet](api:craft\elements\GlobalSet) objects.                                                                                                                                                           |
+| [clearCachedResult](#clearcachedresult)   | | Clears the cached result.                                                                                                                                                                                                                                                                     |
+| [dateCreated](#datecreated)               | | Narrows the query results based on the global sets’ creation dates.                                                                                                                                                                                                                           |
+| [dateUpdated](#dateupdated)               | | Narrows the query results based on the global sets’ last-updated dates.                                                                                                                                                                                                                       |
+| [fixedOrder](#fixedorder)                 | | Causes the query results to be returned in the order specified by [id](#id).                                                                                                                                                                                                                  |
+| [handle](#handle)                         | | Narrows the query results based on the global sets’ handles.                                                                                                                                                                                                                                  |
+| [id](#id)                                 | | Narrows the query results based on the global sets’ IDs.                                                                                                                                                                                                                                      |
+| [ignorePlaceholders](#ignoreplaceholders) | | Causes the query to return matching global sets as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement). |
+| [inReverse](#inreverse)                   | | Causes the query results to be returned in reverse order.                                                                                                                                                                                                                                     |
+| [limit](#limit)                           | | Determines the number of global sets that should be returned.                                                                                                                                                                                                                                 |
+| [offset](#offset)                         | | Determines how many global sets should be skipped in the results.                                                                                                                                                                                                                             |
+| [orderBy](#orderby)                       | | Determines the order that the global sets should be returned in. (If empty, defaults to `name ASC`.)                                                                                                                                                                                          |
+| [preferSites](#prefersites)               | | If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.                                                                                                                                                                                 |
+| [relatedTo](#relatedto)                   | | Narrows the query results to only global sets that are related to certain other elements.                                                                                                                                                                                                     |
+| [search](#search)                         | | Narrows the query results to only global sets that match a search query.                                                                                                                                                                                                                      |
+| [site](#site)                             | | Determines which site(s) the global sets should be queried in.                                                                                                                                                                                                                                |
+| [siteId](#siteid)                         | | Determines which site(s) the global sets should be queried in, per the site’s ID.                                                                                                                                                                                                             |
+| [trashed](#trashed)                       | | Narrows the query results to only global sets that have been soft-deleted.                                                                                                                                                                                                                    |
+| [uid](#uid)                               | | Narrows the query results based on the global sets’ UIDs.                                                                                                                                                                                                                                     |
+| [unique](#unique)                         | | Determines whether only elements with unique IDs should be returned by the query.                                                                                                                                                                                                             |
+| [with](#with)                             | | Causes the query to return matching global sets eager-loaded with related elements.                                                                                                                                                                                                           |
 
 ### `anyStatus`
 
@@ -141,11 +143,11 @@ Narrows the query results based on the global sets’ creation dates.
 
 Possible values include:
 
-| 値                                                | 取得するグローバル設定                          |
-| ------------------------------------------------ | ------------------------------------ |
-| `'>= 2018-04-01'`                             | 2018-04-01 以降に作成されたもの。               |
-| `'< 2018-05-01'`                              | 2018-05-01 より前に作成されたもの。              |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間に作成されたもの。 |
+| 値                                                | 取得するグローバル設定                                          |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -180,11 +182,11 @@ Narrows the query results based on the global sets’ last-updated dates.
 
 Possible values include:
 
-| 値                                                | 取得するグローバル設定                              |
-| ------------------------------------------------ | ---------------------------------------- |
-| `'>= 2018-04-01'`                             | 2018-04-01 以降にアップデートされたもの。               |
-| `'< 2018-05-01'`                              | 2018-05-01 より前にアップデートされたもの。              |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間にアップデートされたもの。 |
+| 値                                                | Fetches global sets…                                 |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -518,7 +520,7 @@ The current site will be used by default.
 
 Possible values include:
 
-| 値                                                       | Fetches global sets…                           |
+| Value                                                   | Fetches global sets…                           |
 | ------------------------------------------------------- | ---------------------------------------------- |
 | `'foo'`                                                 | from the site with a handle of `foo`.          |
 | `['foo', 'bar']`                                        | from a site with a handle of `foo` or `bar`.   |
