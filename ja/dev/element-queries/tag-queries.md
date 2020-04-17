@@ -50,31 +50,33 @@ $myTagQuery = \craft\elements\Tag::find();
 
 <!-- BEGIN PARAMS -->
 
-- [anyStatus](#anystatus)
-- [asArray](#asarray)
-- [clearCachedResult](#clearcachedresult)
-- [dateCreated](#datecreated)
-- [dateUpdated](#dateupdated)
-- [fixedOrder](#fixedorder)
-- [group](#group)
-- [groupId](#groupid)
-- [id](#id)
-- [ignorePlaceholders](#ignoreplaceholders)
-- [inReverse](#inreverse)
-- [limit](#limit)
-- [offset](#offset)
-- [orderBy](#orderby)
-- [preferSites](#prefersites)
-- [relatedTo](#relatedto)
-- [search](#search)
-- [site](#site)
-- [siteId](#siteid)
-- [title](#title)
-- [trashed](#trashed)
-- [uid](#uid)
-- [unique](#unique)
-- [uri](#uri)
-- [with](#with)
+| Param                                     | Description                                                                                                                                                                                                                                                                              |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [anyStatus](#anystatus)                   | | Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.                                           |
+| [asArray](#asarray)                       | | Causes the query to return matching tags as arrays of data, rather than [Tag](api:craft\elements\Tag) objects.                                                                                                                                                                       |
+| [clearCachedResult](#clearcachedresult)   | | Clears the cached result.                                                                                                                                                                                                                                                              |
+| [dateCreated](#datecreated)               | | Narrows the query results based on the tags’ creation dates.                                                                                                                                                                                                                           |
+| [dateUpdated](#dateupdated)               | | Narrows the query results based on the tags’ last-updated dates.                                                                                                                                                                                                                       |
+| [fixedOrder](#fixedorder)                 | | Causes the query results to be returned in the order specified by [id](#id).                                                                                                                                                                                                           |
+| [group](#group)                           | | Narrows the query results based on the tag groups the tags belong to.                                                                                                                                                                                                                  |
+| [groupId](#groupid)                       | | Narrows the query results based on the tag groups the tags belong to, per the groups’ IDs.                                                                                                                                                                                             |
+| [id](#id)                                 | | Narrows the query results based on the tags’ IDs.                                                                                                                                                                                                                                      |
+| [ignorePlaceholders](#ignoreplaceholders) | | Causes the query to return matching tags as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement). |
+| [inReverse](#inreverse)                   | | Causes the query results to be returned in reverse order.                                                                                                                                                                                                                              |
+| [limit](#limit)                           | | Determines the number of tags that should be returned.                                                                                                                                                                                                                                 |
+| [offset](#offset)                         | | Determines how many tags should be skipped in the results.                                                                                                                                                                                                                             |
+| [orderBy](#orderby)                       | | Determines the order that the tags should be returned in. (If empty, defaults to `title ASC`.)                                                                                                                                                                                         |
+| [preferSites](#prefersites)               | | If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.                                                                                                                                                                          |
+| [relatedTo](#relatedto)                   | | Narrows the query results to only tags that are related to certain other elements.                                                                                                                                                                                                     |
+| [search](#search)                         | | Narrows the query results to only tags that match a search query.                                                                                                                                                                                                                      |
+| [site](#site)                             | | Determines which site(s) the tags should be queried in.                                                                                                                                                                                                                                |
+| [siteId](#siteid)                         | | Determines which site(s) the tags should be queried in, per the site’s ID.                                                                                                                                                                                                             |
+| [title](#title)                           | | Narrows the query results based on the tags’ titles.                                                                                                                                                                                                                                   |
+| [trashed](#trashed)                       | | Narrows the query results to only tags that have been soft-deleted.                                                                                                                                                                                                                    |
+| [uid](#uid)                               | | Narrows the query results based on the tags’ UIDs.                                                                                                                                                                                                                                     |
+| [unique](#unique)                         | | Determines whether only elements with unique IDs should be returned by the query.                                                                                                                                                                                                      |
+| [uri](#uri)                               | | Narrows the query results based on the tags’ URIs.                                                                                                                                                                                                                                     |
+| [with](#with)                             | | Causes the query to return matching tags eager-loaded with related elements.                                                                                                                                                                                                           |
 
 ### `anyStatus`
 
@@ -143,11 +145,11 @@ Narrows the query results based on the tags’ creation dates.
 
 Possible values include:
 
-| 値                                                | 取得するタグ                               |
-| ------------------------------------------------ | ------------------------------------ |
-| `'>= 2018-04-01'`                             | 2018-04-01 以降に作成されたもの。               |
-| `'< 2018-05-01'`                              | 2018-05-01 より前に作成されたもの。              |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間に作成されたもの。 |
+| 値                                                | 取得するタグ                                               |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -182,11 +184,11 @@ Narrows the query results based on the tags’ last-updated dates.
 
 Possible values include:
 
-| 値                                                | 取得するタグ                                   |
-| ------------------------------------------------ | ---------------------------------------- |
-| `'>= 2018-04-01'`                             | 2018-04-01 以降にアップデートされたもの。               |
-| `'< 2018-05-01'`                              | 2018-05-01 より前にアップデートされたもの。              |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間にアップデートされたもの。 |
+| 値                                                | Fetches tags…                                        |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -311,7 +313,7 @@ Narrows the query results based on the tags’ IDs.
 
 Possible values include:
 
-| 値               | Fetches tags…             |
+| 値               | 取得するタグ                    |
 | --------------- | ------------------------- |
 | `1`             | with an ID of 1.          |
 | `'not 1'`       | not with an ID of 1.      |
@@ -735,7 +737,7 @@ Narrows the query results based on the tags’ URIs.
 
 Possible values include:
 
-| 値                           | 取得するタグ                                          |
+| Value                       | Fetches tags…                                   |
 | --------------------------- | ----------------------------------------------- |
 | `'foo'`                     | with a URI of `foo`.                            |
 | `'foo*'`                    | with a URI that begins with `foo`.              |
