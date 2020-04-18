@@ -1,6 +1,6 @@
 # フィルタ
 
-[Twig に付随する](https://twig.symfony.com/doc/filters/index.html)テンプレートフィルタに加えて、Craft がいくつか独自のものを提供します。
+The following [filters](https://twig.symfony.com/doc/2.x/templates.html#filters) are available to Twig templates in Craft:
 
 | Filter                                                                             | Description                                                                                                      |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
