@@ -1,6 +1,6 @@
 # ファンクション
 
-[Twig に付随する](https://twig.symfony.com/doc/functions/index.html)テンプレートファンクションに加えて、Craft がいくつか独自のものを提供します。
+The following [functions](https://twig.symfony.com/doc/2.x/templates.html#functions) are available to Twig templates in Craft:
 
 | Function                                                                                       | Description                                                                    |
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
