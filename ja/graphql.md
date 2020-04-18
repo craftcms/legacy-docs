@@ -2,6 +2,8 @@
 
 Craft Pro 版では [GraphQL](https://graphql.org) のAPIを使ってコンテンツを扱うことができます。GraphQL APIにより、シングルページアプリケーション (SPA) や Static Site Generator のような別のアプリケーションでコンテンツを利用することができます。
 
+[[toc]]
+
 ## An example query and response
 
 ### Query payload
@@ -62,11 +64,11 @@ Craft Pro 版では [GraphQL](https://graphql.org) のAPIを使ってコンテ�
 
 ## Getting Started
 
-まずはじめに、Craft 3.3 またはそれ以降のバージョンを使っているか、そしてライセンスは Pro版をインストールしているかを確認します。
+Before you begin, make sure that you are running Craft 3.3 or later, and you’ve got the Pro edition installed.
 
 ### Create Your API Endpoint
 
-プロジェクトに GraphQL API のエンドポイントを作成する最初のステップは、公開エンドポイントを用意します。
+The first step to adding a GraphQL API to your project is to set up a public endpoint for it.
 
 To do that, create a [URL rule](routing.md#advanced-routing-with-url-rules) from `config/routes.php` that points to the `graphql/api` controller action. For example, the following URL rule would cause `/api` requests to route to the GraphQL API:
 
