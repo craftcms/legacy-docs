@@ -137,10 +137,10 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'twig-primer',
-                    'tags',
+                    'global-variables',
                     'filters',
                     'functions',
-                    'global-variables',
+                    'tags',
                     'tests',
                 ]
             },
