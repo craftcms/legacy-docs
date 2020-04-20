@@ -17,7 +17,7 @@ The following [filters](https://twig.symfony.com/doc/2.x/templates.html#filters)
 | [convert_encoding](https://twig.symfony.com/doc/2.x/filters/convert_encoding.html) | Converts a string from one encoding to another.                                                                  |
 | [currency](#currency)                                                              | Formats a number as currency.                                                                                    |
 | [date](#date)                                                                      | Formats a date.                                                                                                  |
-| [date_mofidy](https://twig.symfony.com/doc/2.x/filters/date_modify.html)           | Modifies a date.                                                                                                 |
+| [date_modify](https://twig.symfony.com/doc/2.x/filters/date_modify.html)           | Modifies a date.                                                                                                 |
 | [datetime](#datetime)                                                              | Formats a date with its time.                                                                                    |
 | [default](https://twig.symfony.com/doc/2.x/filters/default.html)                   | Returns the value or a default value if empty.                                                                   |
 | [duration](#duration)                                                              | Returns a `DateInterval` object.                                                                                 |
