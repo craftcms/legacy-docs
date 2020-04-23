@@ -42,25 +42,31 @@ Craft ID アカウントと同じメールアドレスで購入されたすべ�
 
 プラグインライセンスが表示されない場合は、「Licenses → Claim License」に移動します。ライセンスキーを手動で入力するか、購入に利用したメールアドレスを知っている場合は “Claim licenses by email address” セクションにそれを入力することができます。メールアドレスの所有者であることを確認後、 メールアドレスに関連付けられている未使用のライセンスがアカウントに追加されます。
 
+### Safeguarding Plugin License Keys
+
+By default your plugin license key will be stored in the database and `project.yaml`. You may, however, move that license key to a custom PHP constant and set the key using the `$VARIABLE_NAME` syntax.
+
+If you were to create a `MY_PLUGIN_KEY` environment variable, for example, you could then use `$MY_PLUGIN_KEY` in place of the key itself anywhere the plugin license key is required.
+
 ## プラグインライセンスの譲渡
 
-プラグインライセンスを他の Craft ID アカウントに譲渡するには、あなたの Craft ID アカウントにログインし、「Licenses → Plugins」で表示されるライセンスを選択し、 “Release License” ボタンをクリックしてアカウントから解放します。それによって、他の人が Craft ID アカウントの「Licenses → Claim License」ページから自分自身のライセンスを要求できるようになります。
+To transfer a plugin license to someone else’s Craft ID account, log into your Craft ID account, and click on the license under Licenses → Plugins, and then click the “Release License” button to release it from your account. Then the other person will be able to claim the license for themselves from the Licenses → Claim License page of their Craft ID account.
 
 ## 商用プラグインのライセンス
 
-プラグインストアの商用ライセンスは、Craft のライセンスモデルに従わなければなりません。
+Commercial plugins in the Plugin Store must follow Craft’s licensing model:
 
 - 開発環境で自由に試すことができますが、本番環境での利用には支払いを必要とします。
 - 商用ライセンスは Craft へのインストールごとに1回限り支払う料金で、購入後1年間はアップデートにアクセスできます。
 - 追加のアップデートは、年ごとのアップデート料金で入手することができます。
 - 質問不要で、ライセンスは購入から30日以内に全額返金することができます。
 
-さらに、プラグインストア内のすべてのプラグインは [MIT ライセンス](https://opensource.org/licenses/MIT) または [Craft ライセンス](https://craftcms.github.io/license/) のいずれかを使用する必要があります。（一般的に、無料プラグインは MIT ライセンス、商用プラグインは Craft ライセンスを使用します。）
+Additionally, all plugins in the Plugin Store must use either the [MIT License](https://opensource.org/licenses/MIT) or the [Craft License](https://craftcms.github.io/license/). (Generally, free plugins will use the MIT License, and commercial plugins will use the Craft license.)
 
-これらのルールは、カスタマーに対しプラグインのライセンスを安全かつ予測可能にするとともに、プラグインベンダーにとって持続可能なビジネスモデルを提供することにも役立ちます。
+Together, these rules make plugin licensing safe and predictable for customers, while also helping provide a sustainable business model for plugin vendors.
 
 ## 商用プラグインのサポート
 
-わたしたちは、プラグインベンダーに特定のサポート要件を課すものではありません。サポートポリシーについて知るためには、ベンダーに確認する必要があります。そして、何が期待できるかを知ってください。
+We don’t impose any specific support requirements on plugin vendors. You will need to check with them to learn about their support policies, so you know what to expect.
 
-プラグインベンダーが商用プラグインライセンスとして妥当なレベルのサポートを提供していないと感じる場合は、<support@craftcms.com> にメールを送ってください。
+If you feel that a plugin vendor isn’t providing a reasonable level of support for a commercial plugin license, please send and email to <support@craftcms.com> about it.
