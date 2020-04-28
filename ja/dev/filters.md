@@ -292,12 +292,12 @@ Craft provides some special format keywords that will output locale-specific dat
 
 Possible `format` values are:
 
-| フォーマット             | 実例                                             |
-| ------------------ | ---------------------------------------------- |
-| `short`            | 12/20/1990, 5:00 PM                            |
-| `medium` _（デフォルト）_ | Dec 20, 1990, 5:00:00 PM                       |
-| `long`             | December 20, 1990 at 5:00:00 PM PDT            |
-| `full`             | Thursday, December 20, 19909 at 5:00:00 PM PDT |
+| フォーマット             | 実例                                            |
+| ------------------ | --------------------------------------------- |
+| `short`            | 12/20/1990, 5:00 PM                           |
+| `medium` _（デフォルト）_ | Dec 20, 1990, 5:00:00 PM                      |
+| `long`             | December 20, 1990 at 5:00:00 PM PDT           |
+| `full`             | Thursday, December 20, 1990 at 5:00:00 PM PDT |
 
 The current application locale will be used by default. If you want to format the date and time for a different locale, use the `locale` argument:
 
