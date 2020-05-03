@@ -14,15 +14,15 @@ All Twig code follows a basic pattern that separates it from the surrounding HTM
 
 There are three types of delimiters that Twig looks out for:
 
-- `{# comments #}`
-- `{% tags %}`
-- `{{ print statements }}`
+- `{#` – [Comments](#comments)
+- `{%` – [Tags](#tags)
+- `{{` – [Print statements](#print-statements)
 
 ### Comments
 
 Twig comments are wrapped in `{#` and `#}` delimiters. You can use them to leave little notes for yourself in the code.
 
-They are similar to HTML comments in that they won’t show up as rendered text in the browser. The difference is that they will never make it into the HTML source in the first place. If you View Source on a page in your browser, you’ll be able to see all of its HTML comments in there, but any Twig comments that may have been there will be nowhere to be found.
+They are similar to HTML comments in that they won’t show up as rendered text in the browser. The difference is that they will never make it into the HTML source in the first place.
 
 ```twig
 <!-- This will be visible in the HTML source -->
@@ -183,7 +183,7 @@ Filters are like functions, but they use a pipe syntax (`|`), and they are alway
 ```twig
 {% set text = "I **really** love Tom Petty." %}
 {{ text|markdown }}
-{# Output: <p>I <strong>really</strong> love Tom Petty.</p>
+{# Output: <p>I <strong>really</strong> love Tom Petty.</p> #}
 ```
 
 You can chain filters together. Each subsequent filters will use the result of the previous filter as its starting point.
@@ -191,7 +191,7 @@ You can chain filters together. Each subsequent filters will use the result of t
 ```twig
 {% set text = "I **really** love Tom Petty." %}
 {{ text|markdown|striptags|upper }}
-{# Output: I REALLY LOVE TOM PETTY.</p>
+{# Output: I REALLY LOVE TOM PETTY.</p> #}
 ```
 
 Note that filters will only apply to the value that immediately precedes it. If you want to apply the filter to the result of an expression, you must wrap the expression in parentheses first.
@@ -318,7 +318,7 @@ Arrays are ordered lists of nested values. They are delimited with left and righ
 You can loop over an array using a [for](https://twig.symfony.com/doc/2.x/tags/for.html) tag:
 
 ```twig
-<ol class="todo"">
+<ol class="todo">
   {% for item in todoList %}
     <li>{{ item }}</li>
   {% endfor %}
@@ -346,6 +346,17 @@ To define an object, use left and right curly braces as the delimiters (`{` and 
 } %}
 ```
 
+If you need to create an object with a dynamic key, wrap the key in parentheses:
+
+```twig{5}
+{% set myKey = 'weight' %}
+{% set myValue = '90kg' %}
+
+{% set specs = {
+  (myKey): myValue
+} %}
+```
+
 Like arrays, you can loop over all the values in an object using a [for](https://twig.symfony.com/doc/2.x/tags/for.html) tag:
 
 ```twig
@@ -357,7 +368,7 @@ Like arrays, you can loop over all the values in an object using a [for](https:/
 </dl>
 ```
 
-You can also access object values directly by their key:
+You can also access object values directly by their keys, using either dot or array syntax:
 
 ```twig
 <dl class="specs">
@@ -365,7 +376,7 @@ You can also access object values directly by their key:
   <dd>{{ specs.length }} × {{ specs.width }} × {{ specs.height }}</dd>
 
   <dt>Weight</dt>
-  <dd>{{ specs.weight }}</dd>
+  <dd>{{ specs['weight'] }}</dd>
 </dl>
 ```
 
@@ -406,7 +417,7 @@ You’ll frequently need to loop over multiple items in an [array](#arrays) or [
   'Manage content with Craft'
 ] %}
 
-<ol class="todo"">
+<ol class="todo">
   {% for item in todoList %}
     <li>{{ item }}</li>
   {% endfor %}
@@ -490,7 +501,7 @@ This template is pretty worthless on its own, but it provides a framework for ne
 
 - It defines `head` and `body` **blocks**, which give nested templates a way to override the contents of the `<head>` and `<body>` elements.
 - It allows nested templates to define a `docTitle` variable, which will become the `<title>` value, and defaults to the site name if that’s not defined.
-- It gives nested templates the ability to set custom attributes on the `<body>` element, by defining a `bodyArguments` object. (We’re using the [attr](functions.md#attr) to convert that object into a list of HTML attributes.)
+- It gives nested templates the ability to set custom attributes on the `<body>` element, by defining a `bodyAttributes` object. (We’re using the [attr](functions.md#attr) function to convert that object into a list of HTML attributes.)
 
 With that template in place, you can now create a `hello-world.twig` template in your `templates/` folder, which **extends** your `_html5.twig` template:
 
@@ -549,14 +560,14 @@ Now you can include that from another template, passing in the `tipText` value:
 
 ### Embeds
 
-Embeds are similar to [includes](#includes), with a superpower: they can override templaet blocks within the included template. Going with our tip example, let’s say you want to make the content more customizable. you could do that by wrapping the `<p>` tag in a block:
+Embeds are similar to [includes](#includes), with a superpower: they can override template blocks within the included template. Going with our tip example, let’s say you want to make the content more customizable. you could do that by wrapping the `<p>` tag in a block:
 
 ```twig
 <div class="tip">
   <h6>Tip</h6>
   {% block content %}
     <p>{{ tipText }}</p>
-  {% endblock
+  {% endblock %}
 </div>
 ```
 
@@ -572,7 +583,7 @@ The template will continue to work with [include](https://twig.symfony.com/doc/2
 
 ### Macros
 
-Your templates can define **macros**, which are reusable functions that output HTML. These are especially useful when a single template needs to output similar HTML multiple times, but it’s not worth using an [include](#includes) because no other templates are going to need it.
+Your templates can define **macros**, which are reusable functions that output HTML. These are especially useful when a template needs to output similar HTML multiple times, but it’s not worth using an [include](#includes) because no other templates are going to need it.
 
 For example, let’s say you find yourself repeating the same HTML and Twig code for each the global nav items in your site layout template:
 
