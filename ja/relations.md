@@ -84,7 +84,7 @@ Craft のリレーションを操作する前に、それがテンプレート�
 {% set relatedDrinks = craft.entries.section('drinks').relatedTo(drink).all() %}
 ```
 
-もう少し具体的であることを望むなら、`relatedTo` は次のプロパティを含むオブジェクトも受け入れます。
+If you want to be a little more specific, `relatedTo` also accepts a [hash](dev/twig-primer.md#hashes) that contains the following properties:
 
 * `element`, `sourceElement`、または `targetElement`
 * `field` _（オプション）_
