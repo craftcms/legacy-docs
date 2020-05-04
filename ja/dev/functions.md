@@ -76,7 +76,7 @@ The following [functions](https://twig.symfony.com/doc/2.x/templates.html#functi
 
 ## `beginBody()`
 
-整数値に切り上げます。
+Generates a list of HTML attributes based on the given [hash](twig-primer.md#hashes), using <api:yii\helpers\BaseHtml::renderTagAttributes()>.
 
 ```twig
 {{ ceil(42.1) }} → 43
@@ -160,7 +160,7 @@ Creates a new object instance based on a given class name or object configuratio
 {# Pass in a class name #}
 {% set cookie = create('yii\\web\\Cookie') %}
 
-{# Or a full object configuration array #}
+{# Or a full object configuration hash #}
 {% set cookie = create({
     class: 'yii\\web\\cookie',
     name: 'foo',
@@ -401,7 +401,7 @@ Similar to [url()](#url-path-params-scheme-mustshowscriptname), except _only_ fo
 The `siteUrl()` function has the following arguments:
 
 * **`path`** – 結果となる URL がサイトで指すべきパス。それは、ベースサイト URL に追加されます。
-* **`params`** – URL に追加するクエリ文字列パラメータ。これは文字列（例：`'foo=1&bar=2'`）またはオブジェクト（例：`{foo:'1', bar:'2'}`）が利用可能です。
+* **`params`** – Any query string parameters that should be appended to the URL. This can be either a string (e.g. `'foo=1&bar=2'`) or a [hash](twig-primer.md#hashes) (e.g. `{foo:'1', bar:'2'}`).
 * **`scheme`** – URL が使用するスキーム（`'http'` または `'https'`）。デフォルト値は、現在のリクエストが SSL 経由で配信されているかどうかに依存します。そうでなければ、サイト URL のスキームが使用され、SSL 経由なら `https` が使用されます。
 * **`siteId`** – URL が指すべきサイト ID。デフォルトでは、現在のサイトが使用されます。
 
@@ -495,7 +495,7 @@ Returns a URL.
 The `url()` function has the following arguments:
 
 * **`path`** – 結果となる URL がサイトで指すべきパス。それは、ベースサイト URL に追加されます。
-* **`params`** – URL に追加するクエリ文字列パラメータ。これは文字列（例：`'foo=1&bar=2'`）またはオブジェクト（例：`{foo:'1', bar:'2'}`）が利用可能です。
+* **`params`** – Any query string parameters that should be appended to the URL. This can be either a string (e.g. `'foo=1&bar=2'`) or a [hash](twig-primer.md#hashes) (e.g. `{foo:'1', bar:'2'}`).
 * **`scheme`** – URL が使用するスキーム（`'http'` または `'https'`）。デフォルト値は、現在のリクエストが SSL 経由で配信されているかどうかに依存します。そうでなければ、サイト URL のスキームが使用され、SSL 経由なら `https` が使用されます。
 * **`mustShowScriptName`** – ここに `true` がセットされている場合、「index.php」を含めた URL が返され、コンフィグ設定の <config:omitScriptNameInUrls> は無視されます。（ブラウザのアドレスバーに表示されない URL と .htaccess ファイルのリダイレクトとの衝突を避けたいような、Ajax 経由の POST リクエストで使用される URL の場合に有用です。）
 
