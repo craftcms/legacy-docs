@@ -70,7 +70,7 @@ First, you must create an object that defines the transform’s parameters:
 } %}
 ```
 
-Then you can pass that object into your AssetFileModel’s `getUrl()`, `getWidth()`, and `getHeight()` functions:
+Then you can pass that object into your asset’s `getUrl()`, `getWidth()`, and `getHeight()` functions:
 
 ```twig
 <img src="{{ asset.getUrl(thumb) }}" width="{{ asset.getWidth(thumb) }}" height="{{ asset.getHeight(thumb) }}">
