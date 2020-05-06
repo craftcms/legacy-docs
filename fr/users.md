@@ -1,24 +1,24 @@
-# ユーザー
+# Users
 
-Craft はシステムのすべてのメンバーアカウントを「ユーザー」と呼びます。
+Craft calls all member accounts of the system “users”.
 
-最初のユーザーアカウントは、[インストール](installation.md)中に作成されます。Solo エディションを使い続けるなら、あなたが作成可能な唯一のアカウントとなります。さらに必要であれば、追加のユーザーアカウントを提供する Pro エディションにアップグレードできます。
+The first user account is created during [installation](installation.md). If you stick with the Solo edition, this is the only account you will be able to create. If you need more you can upgrade to the Pro edition, which offers additional user accounts.
 
-## 管理者アカウント
+## Admin Accounts
 
-管理者アカウントは、明示的な権限がない次のことを含め、 Craft 内のすべての操作を確実に行うことができる特別なアカウントです。
+Admin accounts are special accounts that can do absolutely everything within Craft, including some things that there aren’t even explicit permissions for:
 
-* 設定セクションに含まれるすべてのこと
-* 他のユーザーを管理者にする（Craft Pro のみ）
-* 他の管理者を管理する（Craft Pro のみ）
+* Everything within the Settings section
+* Make other users Admins (Craft Pro only)
+* Administrate other Admins (Craft Pro only)
 
-インストール中に作成したユーザーアカウントが、デフォルトで管理者になります。
+The user account you create during installation is an admin by default.
 
 ::: tip
 Considering the amount of damage an admin can do, it’s strongly recommended that you be conservative with creating new admin accounts. Only do it if you trust that they know what they’re doing.
 :::
 
-## ユーザーグループ
+## User Groups
 
 If you have Craft Pro, you can create User Groups to help organize your site’s user accounts, as well as batch-set permissions on them.
 
@@ -26,41 +26,41 @@ To create a new User Group, go to Settings → Users and click the “New Group�
 
 After you create your groups, you can assign users to groups by going into their account settings and clicking on the Permissions tab.
 
-## 権限
+## Permissions
 
 Craft Pro allows you to set permissions on users and groups, such as the ability to access the Control Panel, edit content within certain sections, etc. You can apply these permissions directly to user accounts as well as to user groups. When you apply permissions to a user group, all users that belong to that group will inherit them.
 
 The permissions Craft comes with are:
 
-| 権限                                                               | ハンドル                                        |
+| Permission                                                       | Handle                                      |
 | ---------------------------------------------------------------- | ------------------------------------------- |
-| システムがオフの場合にサイトにアクセスする                                            | `accessSiteWhenSystemIsOff`                 |
-| 管理画面にアクセスする                                                      | `accessCp`                                  |
-| ↳&nbsp; システムがオフの場合に管理画面にアクセスする                                   | `accessCpWhenSystemIsOff`                   |
-| ↳&nbsp; Craft CMS 起動とプラグインのアップデート                                | `performUpdates`                            |
-| ↳&nbsp; _「プラグイン名」_ のアクセス                                         | `accessPlugin-[PluginHandle]`               |
-| ユーザーを編集する                                                        | `editUsers`                                 |
-| ↳&nbsp; ユーザーを登録する                                                | `registerUsers`                             |
-| ↳&nbsp; ユーザー権限を割り当てる                                             | `assignUserPermissions`                     |
-| ↳&nbsp; ユーザーを管理                                                  | `administrateUsers`                         |
-| ユーザーを削除する                                                        | `deleteUsers`                               |
-| _「サイト名」_ を編集する                                                   | `editSite:[SiteUID]`                        |
-| エントリを編集する                                                        | `editEntries:[SectionID]`                   |
-| ↳&nbsp; エントリを作る                                                  | `editEntries:[SectionUID]`                  |
-| ↳&nbsp; ライブの変更を発表する                                              | `createEntries:[SectionUID]`                |
-| ↳&nbsp; エントリを削除する                                                | `publishEntries:[SectionUID]`               |
-| ↳&nbsp; 他の投稿者のエントリを編集する                                          | `deleteEntries:[SectionUID]`                |
-|  ↳&nbsp; 他の作成者の入力のためライブを変更する                                     | `editPeerEntries:[SectionUID]`              |
-| &nbsp;&nbsp;&nbsp; ↳&nbsp; 他の投稿者のエントリを削除する                       | `publishPeerEntries:[SectionUID]`           |
-| &nbsp;&nbsp;&nbsp;↳&nbsp; 他の投稿者の下書きを編集する                         | `deletePeerEntries:[SectionUID]`            |
-|  ↳&nbsp; 他の投稿者の下書きを投稿する                                          | `editPeerEntryDrafts:[SectionUID]`          |
-| &nbsp;&nbsp;&nbsp; ↳&nbsp; 他の投稿者の下書きを削除する                        | `publishPeerEntryDrafts:[SectionUID]`       |
-| &nbsp;&nbsp;&nbsp;_「グローバル設定名」_ を編集する                             | `deletePeerEntryDrafts:[SectionUID]`        |
-| _「カテゴリグループ名」_ を編集する                                              | `editGlobalSet:[GlobalSetUID]`              |
-| _「アセットソース名」_ を表示する                                               | `editCategories:[CategoryGroupUID]`         |
-| ↳&nbsp; アップロード                                                   | `viewVolume:[VolumeUID]`                    |
-| ↳&nbsp; サブフォルダを作成する                                              | `saveAssetInVolume:[VolumeUID]`             |
-| ↳&nbsp; ファイルとフォルダーを削除                                            | `createFoldersInVolume:[VolumeUID]`         |
+| Access the site when the system is off                           | `accessSiteWhenSystemIsOff`                 |
+| Access the CP                                                    | `accessCp`                                  |
+| ↳&nbsp; Access the CP when the system is off                     | `accessCpWhenSystemIsOff`                   |
+| ↳&nbsp; Perform Craft and plugin updates                         | `performUpdates`                            |
+| ↳&nbsp; Access *[Plugin Name]*                                   | `accessPlugin-[PluginHandle]`               |
+| Edit users                                                       | `editUsers`                                 |
+| ↳&nbsp; Register users                                           | `registerUsers`                             |
+| ↳&nbsp; Assign permissions                                       | `assignUserPermissions`                     |
+| ↳&nbsp; Administrate users                                       | `administrateUsers`                         |
+| Delete users                                                     | `deleteUsers`                               |
+| Edit *[Site Name]*                                               | `editSite:[SiteUID]`                        |
+| Impersonate users                                                | `impersonateUsers`                          |
+| Edit entries                                                     | `editEntries:[SectionUID]`                  |
+| ↳&nbsp; Create entries                                           | `createEntries:[SectionUID]`                |
+| ↳&nbsp; Publish entries                                          | `publishEntries:[SectionUID]`               |
+| ↳&nbsp; Delete entries                                           | `deleteEntries:[SectionUID]`                |
+| ↳&nbsp; Edit other authors’ entries                              | `editPeerEntries:[SectionUID]`              |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Publish other authors’ entries        | `publishPeerEntries:[SectionUID]`           |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Delete other authors’ entries         | `deletePeerEntries:[SectionUID]`            |
+| ↳&nbsp; Edit other authors’ drafts                               | `editPeerEntryDrafts:[SectionUID]`          |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Publish other authors’ drafts         | `publishPeerEntryDrafts:[SectionUID]`       |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Delete other authors’ drafts          | `deletePeerEntryDrafts:[SectionUID]`        |
+| Edit *[Global Set Name]*                                         | `editGlobalSet:[GlobalSetUID]`              |
+| Edit *[Category Group Name]*                                     | `editCategories:[CategoryGroupUID]`         |
+| View *[Asset Volume Name]*                                       | `viewVolume:[VolumeUID]`                    |
+| ↳&nbsp; Upload files                                             | `saveAssetInVolume:[VolumeUID]`             |
+| ↳&nbsp; Create subfolders                                        | `createFoldersInVolume:[VolumeUID]`         |
 | ↳&nbsp; Remove files and folders                                 | `deleteFilesAndFoldersInVolume:[VolumeUID]` |
 | ↳&nbsp; Edit images                                              | `editImagesInVolume:[VolumeUID]`            |
 | ↳&nbsp; View files uploaded by other users                       | `viewPeerFilesInVolume:[VolumeUID]`         |
@@ -69,7 +69,7 @@ The permissions Craft comes with are:
 | &nbsp;&nbsp;&nbsp; ↳&nbsp; Remove files uploaded by other users  | `deletePeerFilesInVolume:[SectionUID]`      |
 | &nbsp;&nbsp;&nbsp; ↳&nbsp; Edit images uploaded by other users   | `editPeerImagesInVolume:[SectionUID]`       |
 
-## 一般登録
+## Public Registration
 
 Craft Pro has the option of allowing public user registration, which is disabled by default.
 
