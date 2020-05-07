@@ -41,32 +41,36 @@
 ソースエレメント（アセットフィールドを持つエレメント）でサポートされているすべてのプロパティは、ここで使用できます。
 
 ::: tip
-[行列フィールド](matrix-fields.md)の中にアセットフィールドを作成する場合、ソースエレメントは作成された行列フィールドのエレメント _ではなく_ 行列ブロックになります。
+If you want to include the entry’s ID or UID in a dynamic subfolder path, use `{sourceId}` or `{sourceUid}` rather than `{id}` or `{uid}`, so the source entry’s ID or UID is used rather than the revision / draft’s.
+:::
 
-そのため、行列フィールドがエントリに紐づけられていて、動的なサブフォルダパスにエントリ ID を出力したい場合、`id` ではなく `owner.id` を使用します。
+::: tip
+If you are creating the Assets field within a [Matrix field](matrix-fields.md), the source element is going to be the Matrix block, _not_ the element that the Matrix field is being created on.
+
+So if your Matrix field is attached to an entry, and you want to output the entry ID in your dynamic subfolder path, use `owner.id` rather than `id`.
 :::
 
 ## フィールド
 
-アセットフィールドには、現在関連付けられているすべてのアセットのリストと、新しいアセットを追加するためのボタンがあります。
+Assets fields list all of the currently-related assets, with a button to select new ones.
 
-「アセットを追加」ボタンをクリックすると、新しいアセットのアップロードはもちろん、すでに追加されているアセットの検索や選択ができるモーダルウィンドウが表示されます。
+Clicking the “Add an asset” button will bring up a modal window where you can find and select additional assets, as well as upload new ones.
 
 ### インラインのアセット編集
 
-関連付けられたアセットをダブルクリックすると、アセットのタイトルやカスタムフィールドを編集したり、（画像の場合）イメージエディタを起動できる HUD を表示します。
+When you double-click on a related asset, a HUD will appear where you can edit the asset’s title and custom fields, and launch the Image Editor (if it’s an image).
 
 ::: tip
-アセットで使用するカスタムフィールドは、「設定 > アセット > [ボリューム名] > フィールドレイアウト」から選択できます。
+You can choose which custom fields should be available for your assets from Settings → Assets → [Volume Name] → Field Layout.
 :::
 
 ## テンプレート記法
 
 ### アセットフィールドによるエレメントの照会
 
-アセットフィールドを持つ[エレメントを照会](dev/element-queries/README.md)する場合、フィールドのハンドルにちなんで名付けられたクエリパラメータを使用して、アセットフィールドのデータに基づいた結果をフィルタできます。
+When [querying for elements](dev/element-queries/README.md) that have an Assets field, you can filter the results based on the Assets field data using a query param named after your field’s handle.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
 | 値                                                           | 取得するエレメント                                               |
 | ----------------------------------------------------------- | ------------------------------------------------------- |
@@ -87,15 +91,15 @@
 
 ### アセットフィールドデータの操作
 
-テンプレート内でアセットフィールドのエレメントを取得する場合、アセットフィールドのハンドルを利用して関連付けられたアセットにアクセスできます。
+If you have an element with an Assets field in your template, you can access its related assets using your Assets field’s handle:
 
 ```twig
 {% set query = entry.<FieldHandle> %}
 ```
 
-これは、所定のフィールドで関連付けられたすべてのアセットを出力するよう準備された[アセットクエリ](dev/element-queries/asset-queries.md)を提供します。
+That will give you an [asset query](dev/element-queries/asset-queries.md), prepped to output all of the related assets for the given field.
 
-関連付けられたすべてのアセットをループするには、[all()](api:craft\db\Query::all()) を呼び出して、結果をループ処理します。
+To loop through all of the related assets, call [all()](api:craft\db\Query::all()) and then loop over the results:
 
 ```twig
 {% set relatedAssets = entry.<FieldHandle>.all() %}
