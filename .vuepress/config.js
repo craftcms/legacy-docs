@@ -122,72 +122,65 @@ module.exports = {
 };
 
 function replaceApiLinks(md) {
-  // code adapted from the markdown-it-replace-link plugin
-  md.core.ruler.after("inline", "replace-link", function(state) {
-    state.tokens.forEach(function(blockToken) {
-      if (blockToken.type === "inline" && blockToken.children) {
-        blockToken.children.forEach(function(token, tokenIndex) {
-          if (token.type === "link_open") {
-            token.attrs.forEach(function(attr) {
-              if (attr[0] === "href") {
-                let replace = replaceApiLink(attr[1]);
-                if (replace) {
-                  attr[1] = replace;
-                  let next = blockToken.children[tokenIndex + 1];
-                  if (next.type === "text") {
-                    next.content = next.content.replace(/^(api|config):/, "");
-                  }
-                }
-              }
-              return false;
-            });
+  let re = {
+    api: /^(?:api:)?\\?(([\w\\]+)(?:::\$?(\w+)(\(\))?)?(?:#([\w\-]+))?)$/,
+    config: /^config:(.+)/,
+  };
+
+  let normalizeLink = md.normalizeLink;
+  md.normalizeLink = url => {
+    url = normalizeLink(url);
+    let m = decodeURIComponent(url).match(re.api);
+    if (m) {
+      let className = m[2];
+      let subject = m[3];
+      let isMethod = typeof m[4] !== "undefined";
+      let hash = m[5];
+
+      if (className.match(/^craft\\/) || className.match(/^Craft/)) {
+        let url =
+          "https://docs.craftcms.com/api/v3/" +
+          className.replace(/\\/g, "-").toLowerCase() +
+          ".html";
+        if (subject) {
+          hash = "";
+          if (isMethod) {
+            hash = "method-";
           }
-        });
-      }
-    });
-    return false;
-  });
-}
-
-function replaceApiLink(link) {
-  link = decodeURIComponent(link);
-  let m = link.match(
-    /^(?:api:)?\\?([\w\\]+)(?:::\$?(\w+)(\(\))?)?(?:#([\w\-]+))?$/
-  );
-  if (m) {
-    let className = m[1];
-    let subject = m[2];
-    let isMethod = typeof m[3] !== "undefined";
-    let hash = m[4];
-
-    if (className.match(/^craft\\/) || className.match(/^Craft/)) {
-      let url =
-        "https://docs.craftcms.com/api/v3/" +
-        className.replace(/\\/g, "-").toLowerCase() +
-        ".html";
-      if (subject) {
-        hash = "";
-        if (isMethod) {
-          hash = "method-";
+          hash += subject.replace(/_/g, "-").toLowerCase();
         }
-        hash += subject.replace(/_/g, "-").toLowerCase();
+        return url + (hash ? `#${hash}` : "");
       }
-      return url + (hash ? `#${hash}` : "");
+
+      if (className.match(/^yii\\/) || className.match(/^Yii/)) {
+        let url =
+          "https://www.yiiframework.com/doc/api/2.0/" +
+          className.replace(/\\/g, "-").toLowerCase();
+        if (subject) {
+          hash = (isMethod ? `${subject}()` : `\$${subject}`) + "-detail";
+        }
+        return url + (hash ? `#${hash}` : "");
+      }
     }
 
-    if (className.match(/^yii\\/) || className.match(/^Yii/)) {
-      let url =
-        "https://www.yiiframework.com/doc/api/2.0/" +
-        className.replace(/\\/g, "-").toLowerCase();
-      if (subject) {
-        hash = (isMethod ? `${subject}()` : `\$${subject}`) + "-detail";
-      }
-      return url + (hash ? `#${hash}` : "");
+    m = url.match(re.config);
+    if (m) {
+      return "/config/config-settings.md#" + m[1].toLowerCase();
     }
-  }
 
-  m = link.match(/^config:(.+)/);
-  if (m) {
-    return "/config/config-settings.md#" + m[1].toLowerCase();
+    return url;
+  };
+
+  let normalizeLinkText = md.normalizeLinkText;
+  md.normalizeLinkText = url => {
+    url = normalizeLink(url);
+    var m;
+    if (m = decodeURIComponent(url).match(re.api)) {
+      return m[1];
+    }
+    if (m = url.match(re.config)) {
+      return m[1];
+    }
+    return url;
   }
 }
