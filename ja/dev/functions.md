@@ -5,6 +5,7 @@ The following [functions](https://twig.symfony.com/doc/2.x/templates.html#functi
 | Function                                                                                       | Description                                                                    |
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [actionInput](#actioninput)                                                                    | Outputs a hidden `action` input.                                               |
+| [actionUrl](#actionurl)                                                                        | Generates a controller action URL.                                             |
 | [alias](#alias)                                                                                | Parses a string as an alias.                                                   |
 | [attr](#attr)                                                                                  | Generates HTML attributes.                                                     |
 | [attribute](https://twig.symfony.com/doc/2.x/functions/attribute.html)                         | Accesses a dynamic attribute of a variable.                                    |
@@ -17,6 +18,7 @@ The following [functions](https://twig.symfony.com/doc/2.x/templates.html#functi
 | [constant](https://twig.symfony.com/doc/2.x/functions/constant.html)                           | Returns the constant value for a given string.                                 |
 | [create](#create)                                                                              | Creates a new object.                                                          |
 | [csrfInput](#csrfinput)                                                                        | Returns a hidden CSRF token input.                                             |
+| [cpUrl](#cpurl)                                                                                | Generates a control panel URL.                                                 |
 | [cycle](https://twig.symfony.com/doc/2.x/functions/cycle.html)                                 | Cycles on an array of values.                                                  |
 | [date](https://twig.symfony.com/doc/2.x/functions/date.html)                                   | Creates a date.                                                                |
 | [dump](https://twig.symfony.com/doc/2.x/functions/dump.html)                                   | Dumps information about a variable.                                            |
@@ -61,9 +63,21 @@ The following [functions](https://twig.symfony.com/doc/2.x/templates.html#functi
 <img src="{{ alias('@assetBaseUrl/images/logo.png') }}">
 ```
 
-## `alias( string )`
+## `actionUrl`
 
-「begin body」に登録されたスクリプトやスタイルを出力します。`<body>` タグの直後に配置する必要があります。
+Returns a controller action URL, automatically accounting for relative vs. absolute format and the active <config:actionTrigger> setting.
+
+### 引数
+
+The `actionUrl()` function has the following arguments:
+
+* **`path`** – 結果となる URL がサイトで指すべきパス。それは、ベースサイト URL に追加されます。
+* **`params`** – Any query string parameters that should be appended to the URL. This can be either a string (e.g. `'foo=1&bar=2'`) or a [hash](twig-primer.md#hashes) (e.g. `{foo:'1', bar:'2'}`).
+* **`scheme`** – URL が使用するスキーム（`'http'` または `'https'`）。デフォルト値は、現在のリクエストが SSL 経由で配信されているかどうかに依存します。そうでなければ、サイト URL のスキームが使用され、SSL 経由なら `https` が使用されます。
+
+## `alias`
+
+Passes a string through [Craft::getAlias()](api:yii\BaseYii::getAlias()), which will check if the string begins with an [alias](https://www.yiiframework.com/doc/guide/2.0/en/concept-aliases). (See [Configuration](../config/README.md#aliases) for more info.)
 
 ```twig
 <body>
@@ -74,7 +88,7 @@ The following [functions](https://twig.symfony.com/doc/2.x/templates.html#functi
 </body>
 ```
 
-## `beginBody()`
+## `attr`
 
 Generates a list of HTML attributes based on the given [hash](twig-primer.md#hashes), using <api:yii\helpers\BaseHtml::renderTagAttributes()>.
 
@@ -167,6 +181,22 @@ Creates a new object instance based on a given class name or object configuratio
     value: 'bar'
 }) %}
 ```
+
+## `cpUrl`
+
+Returns a control panel URL, automatically accounting for relative vs. absolute format and the active <config:cpTrigger> setting.
+
+```twig
+<a href="{{ cpUrl('settings') }}">Visit control panel settings</a>
+```
+
+### 引数
+
+The `cpUrl()` function has the following arguments:
+
+* **`path`** – The path that the resulting URL should point to on your site. It will be appended to your base site URL.
+* **`params`** – Any query string parameters that should be appended to the URL. This can be either a string (e.g. `'foo=1&bar=2'`) or a [hash](twig-primer.md#hashes) (e.g. `{foo:'1', bar:'2'}`).
+* **`scheme`** – Which scheme the URL should use (`'http'` or `'https'`). The default value depends on whether the current request is served over SSL or not. If not, then the scheme in your Site URL will be used; if so, then `https` will be used.
 
 ## `csrfInput`
 
@@ -396,14 +426,14 @@ Similar to [url()](#url-path-params-scheme-mustshowscriptname), except _only_ fo
 <a href="{{ siteUrl('company/contact') }}">Contact Us</a>
 ```
 
-### 引数
+### Arguments
 
 The `siteUrl()` function has the following arguments:
 
 * **`path`** – 結果となる URL がサイトで指すべきパス。それは、ベースサイト URL に追加されます。
 * **`params`** – Any query string parameters that should be appended to the URL. This can be either a string (e.g. `'foo=1&bar=2'`) or a [hash](twig-primer.md#hashes) (e.g. `{foo:'1', bar:'2'}`).
 * **`scheme`** – URL が使用するスキーム（`'http'` または `'https'`）。デフォルト値は、現在のリクエストが SSL 経由で配信されているかどうかに依存します。そうでなければ、サイト URL のスキームが使用され、SSL 経由なら `https` が使用されます。
-* **`siteId`** – URL が指すべきサイト ID。デフォルトでは、現在のサイトが使用されます。
+* **`siteId`** – The ID of the site that the URL should point to. By default the current site will be used.
 
 ## `svg`
 
@@ -411,7 +441,7 @@ Outputs an SVG document.
 
 You can pass the following things into it:
 
-- SVG ファイルのパス。
+- An SVG file path.
 
   ```twig
   {{ svg('@webroot/icons/lemon.svg') }}
@@ -421,16 +451,16 @@ You can pass the following things into it:
 
   ```twig
   {% set image = entry.myAssetsField.one() %}
-    {% if image and image.extension == 'svg' %}
-      {{ svg(image) }}
-    {% endif %}
+  {% if image and image.extension == 'svg' %}
+    {{ svg(image) }}
+  {% endif %}
   ```
 
-- 生の SVG マークアップ。
+- Raw SVG markup.
 
   ```twig
   {% set image = include('_includes/icons/lemon.svg') %}
-    {{ svg(image) }}
+  {{ svg(image) }}
   ```
 
 By default, if you pass an asset or raw markup into the function, the SVG will be sanitized of potentially malicious scripts using [svg-sanitizer](https://github.com/darylldoyle/svg-sanitizer), and any IDs or class names within the document will be namespaced so they don’t conflict with other IDs or class names in the DOM. You can disable those behaviors using the `sanitize` and `namespace` arguments:
@@ -490,14 +520,14 @@ Returns a URL.
 <a href="{{ url('company/contact') }}">Contact Us</a>
 ```
 
-### 引数
+### Arguments
 
 The `url()` function has the following arguments:
 
-* **`path`** – 結果となる URL がサイトで指すべきパス。それは、ベースサイト URL に追加されます。
+* **`path`** – The path that the resulting URL should point to on your site. It will be appended to your base site URL.
 * **`params`** – Any query string parameters that should be appended to the URL. This can be either a string (e.g. `'foo=1&bar=2'`) or a [hash](twig-primer.md#hashes) (e.g. `{foo:'1', bar:'2'}`).
-* **`scheme`** – URL が使用するスキーム（`'http'` または `'https'`）。デフォルト値は、現在のリクエストが SSL 経由で配信されているかどうかに依存します。そうでなければ、サイト URL のスキームが使用され、SSL 経由なら `https` が使用されます。
-* **`mustShowScriptName`** – ここに `true` がセットされている場合、「index.php」を含めた URL が返され、コンフィグ設定の <config:omitScriptNameInUrls> は無視されます。（ブラウザのアドレスバーに表示されない URL と .htaccess ファイルのリダイレクトとの衝突を避けたいような、Ajax 経由の POST リクエストで使用される URL の場合に有用です。）
+* **`scheme`** – Which scheme the URL should use (`'http'` or `'https'`). The default value depends on whether the current request is served over SSL or not. If not, then the scheme in your Site URL will be used; if so, then `https` will be used.
+* **`mustShowScriptName`** – If this is set to `true`, then the URL returned will include “index.php”, disregarding the <config:omitScriptNameInUrls> config setting. (This can be useful if the URL will be used by POST requests over Ajax, where the URL will not be shown in the browser’s address bar, and you want to avoid a possible collision with your site’s .htaccess file redirect.)
 
 ::: tip
 You can use the `url()` function for appending query string parameters and/or enforcing a scheme on an absolute URL:
