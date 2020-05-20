@@ -9,7 +9,7 @@
 - あなたは[Craft 3 の変更点](changes-in-craft-3.md)を確認しました。
 - あなたのサーバーは Craft 3 の[最小要件](requirements.md)（Craft 3 には PHP 7 以降が必要で、PHP 割当メモリが少なくとも 256 MB 必要です）を満たしています。
 - あなたのサイトは、少なくとも **Craft 2.6.2788** が実行されています。
-- プラグインはすべて最新の状態で、それらが Craft 3 向けにアップデートされていることを確かめました。（Craft 2 コントロールパネルのアップデートページから、プラグインの Craft 3 互換ステータスのレポートを見ることができます。）
+- your plugins are all up-to-date, and you’ve verified that they’ve been updated for Craft 3 (you can see a report of your plugins’ Craft 3 compatibility status from the Updates page in the Craft 2 control panel)
 - なんらかの問題が起こった場合に備えて、**データベースをバックアップ**してあります。
 
 上記リストをすべて満たしているなら、アップグレードプロセスを続行できます。
@@ -43,15 +43,15 @@ Craft 3 をダウンロードして準備したら、次のステップに従っ
 
 10. 新しいプロジェクトの `web/` ディレクトリを参照するよう、ウェブサーバーの設定をアップデートします。
 
-11. ブラウザでコントロールパネルの URL（例： `http://my-project.test/admin`）にアクセスします。アップデートのプロンプトが表示されたら、すべてが正しく実行されています！「Finish up（完了）」ボタンをクリックしてデータベースを更新してください。
+11. Point your browser to your control panel URL (e.g. `http://my-project.test/admin`). If you see the update prompt, you did everything right! Go ahead and click “Finish up” to update your database.
 
-12. プラグインをインストールしている場合、コントロールパネルの「プラグインストア」セクションから Craft 3 対応版をインストールする必要があります。（追加のアップグレードガイドについては、プラグインのドキュメントを参照してください。）
+12. If you had any plugins installed, you’ll need to install their Craft 3 counterparts from the “Plugin Store” section in the control panel. (See the plugins’ documentation for any additional upgrade instructions.)
 
 これで Craft 2 プロジェクトから Craft 3 へのアップグレードが完了しました。[Craft 3 の変更点](changes-in-craft-3.md)を確認する時間を設けてください。
 
 ## トラブルシューティング
 
-#### コントロールパネルにアクセスすると Craft のインストーラーが表示されます。
+#### I get the Craft installer when I access my control panel.
 
 これが起こるのは、`.env` ファイルのデータベース接続情報が実際に必要な情報と完全に一致しないためです。多くの場合、正しい `DB_TABLE_PREFIX` を設定するのを忘れています。
 
