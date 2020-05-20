@@ -9,7 +9,7 @@
 - **パッケージ名** – プラグイン向けに Composer パッケージの名前として使用されます。（詳細については、[documentation](https://getcomposer.org/doc/04-schema.md#name) を参照してください。）これが Craft のプラグインだと識別する手助けになるため、2番目のセグメント（`/` の後）に接頭辞 `craft-` を付けることをお勧めします。例えば `pixelandtonic/craft-recipes` のような形です。
 - **名前空間** – プラグインのクラスが稼働する、ルート名前空間。（詳細については、[PSR-4](https://www.php-fig.org/psr/psr-4/) オートローディング仕様を参照してください。）これは `craft\` ではじめるべき *ではない* ことに注意してください。あなたやデベロッパーを識別する何かを使用してください。
 - **プラグインハンドル** – Craft のエコシステム内でプラグインを一意に識別する何か。（プラグインハンドルは、文字ではじまり、小文字の英字、数字、および、ダッシュのみでなければなりません。`kebab-cased` にすべきです。）
-- **プラグイン名** – コントロールパネル内でプラグインを何と呼ぶか。
+- **Plugin name** – What your plugin will be called within the control panel.
 
 ## 基本ファイル構造の設定
 
@@ -77,7 +77,7 @@
 
 - `package/name` をパッケージ名にします。
 - `Developer Name` をあたなの名前、または、プラグインが帰属する組織名にします。
-- `https://developer-website.tld` をコントロールパネルの開発者名にリンクするウェブサイトの URL にします。
+- `https://developer-website.tld` with the URL to the website the developer name should link to in the control panel.
 - `email@developer-website.tld` をサポートのメールアドレスにします。
 - `developer/repo` をプラグインが稼働している実際の GitHub アカウントとリポジトリ名にします。
 - `master` を GitHub リポジトリの実際のプライマリブランチ名にします。
@@ -206,8 +206,8 @@ composer require package/name
 
 プラグインは「設定 > プラグイン」ページに表示されるアイコンを提供できます。
 
-![The Settings → Plugins page in Craft’s Control Panel.](../images/plugin-index.png)
+![The Settings → Plugins page in Craft’s control panel.](../images/plugin-index.png)
 
 プラグインアイコンは、プラグインのソースディレクトリ（例：`src/`）のルートに `icon.svg` として保存された、正方形の SVG ファイルでなければいけません。
 
-プラグインが [コントロールパネルのセクション](cp-section.md) を持つ場合は、プラグインのソースディレクトリのルートに `icon-mask.svg` ファイルを保存することによって、グローバルナビゲーション項目にカスタムアイコンを付けることもできます。このアイコンにはストロークを含めることができず、常に（アルファ透明度に関して）ソリッドカラーで表示されることに注意してください。
+If your plugin has a [control panel section](cp-section.md), you can also give its global nav item a custom icon by saving an `icon-mask.svg` file in the root of your plugin’s source directory. Note that this icon cannot contain strokes, and will always be displayed in a solid color (respecting alpha transparency).
