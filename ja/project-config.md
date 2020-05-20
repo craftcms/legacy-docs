@@ -55,7 +55,7 @@ Craft はプロジェクトコンフィグによって管理される何かが�
 
 `project.yaml` が変更されたことを Craft が検知すると、ファイルに記述される Craft およびプラグインのバージョンが実際にインストールされているものと互換性があることを確認します。
 
-それらに矛盾があった場合、Craft がファイルの変更をプロジェクトコンフィグへ同期する前に修正する必要があります。矛盾が解消されるまでコントロールパネルへのアクセスが拒否されるため、修正する唯一の実用的な方法は `composer install` を実行することです。
+If there’s a discrepancy, you will need to fix that before Craft can begin syncing the file’s changes into the loaded project config. The only practical way to do that is by running `composer install`, as access to the control panel will be denied until the discrepancy is resolved.
 
 ::: tip
 本番環境のダウンタイムを回避するため、デプロイメントワークフローに `composer install` が組み込まれていることを確認する必要があります。
@@ -81,7 +81,7 @@ Craft はプロジェクトコンフィグによって管理される何かが�
 'secret' => '$SECRET_ACCESS_KEY',
 ```
 
-その変更を行ったら、`project.yaml` ファイルが環境変数名で更新されるよう、コントロールパネルのボリュームを再保存します。
+Once you’ve made that change, re-save your volume in the control panel so your `project.yaml` file gets updated with the environment variable name.
 :::
 
 ### 本番環境の変更は忘れられるかもしれません
