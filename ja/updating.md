@@ -2,7 +2,7 @@
 
 ## コントロールパネルからのアップデート
 
-アップデートが可能になると、Craft のアップデート権限を持つユーザーは CP のサイドバーにあるナビゲーション項目「ユーティリティ」の横にバッジを確認できるようになります。「ユーティリティ」をクリックし、その後「アップデート」を選択します。デフォルトでインストールされているコントロールパネルのダッシュボードにあるアップデートウィジェットを利用することもできます。
+When an update is available, users with the permission to update Craft will see a badge in the CP next to the Utilities navigation item in the sidebar. Click on Utilities and then choose Updates. You can also use the Updates widget on the control panel dashboard, which is installed by default.
 
 このセクションには、Craft CMS のアップデートとプラグインのアップデートの両方を表示します。それぞれのアップデートは、それ自身の「アップデート」ボタンを持っています。クリックすると、 Craft の自動更新プロセスが開始されます。
 
