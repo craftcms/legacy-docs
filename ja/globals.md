@@ -1,12 +1,12 @@
 # グローバル
 
-グローバルは、テンプレート全体で包括的に利用可能なコンテンツを保存できます。これは、コントロールパネル経由でエントリではないコンテンツを簡単に編集できるようにする便利な方法です。
+Globals store content that is available globally throughout your templates. They're a convenient way to make non-Entry content easily editable via the control panel.
 
 Craft はグローバル設定内でグローバルを整理します。それぞれのグローバル設定は、存在するすべてのフィールドや新しいフィールドを利用する独自の[フィールドレイアウト](fields.md#field-layouts)を持ちます。
 
 グローバル設定を作るには、「設定 > グローバル」に移動します。
 
-少なくとも1つのグローバル設定があれば、Craft はコントロールパネルのメインナビゲーションに「グローバル」項目を追加します。これをクリックすると、サイドバーにすべてのグローバル設定のリスト、メインコンテンツエリアに選択されたグローバル設定に関連するすべてのフィールドが表示されたページに移動します。
+If you have at least one Global Set, Craft will add a new “Globals” item added to the control panel primary navigation. Clicking on this will take you to a page that lists all of your Global Sets in a sidebar, as well as all of the fields associated with the selected Global Set in the main content area.
 
 ::: tip
 [エントリ](sections-and-entries.md#entries)とは異なり、特定の URL と関連付けられていないグローバル設定では、ライブプレビュー機能がありません。
@@ -45,6 +45,6 @@ If you run multiple sites with Craft, Global Sets are available in all sites. Ho
 
 To do that, edit the global set’s fields, and make sure that their “Translation Method” settings are set to “Translate for each site”.
 
-To toggle between sites while viewing Global Sets, use the drop-down menu at the top left of the Global Sets page in the Control Panel.
+To toggle between sites while viewing Global Sets, use the drop-down menu at the top left of the Global Sets page in the control panel.
 
 ![Toggling between sites in Globals](./images/globals-multisite-nav.png)
