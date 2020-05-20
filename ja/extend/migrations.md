@@ -43,7 +43,7 @@ cd /path/to/project
 マイグレーションクラスには [safeUp()](api:yii\db\Migration::safeUp()) と [safeDown()](api:yii\db\Migration::safeDown()) メソッドが含まれます。マイグレーションが _適用される_ ときに `safeUp()` が実行され、_復帰させる_ ときに `safeDown()` が実行されます。
 
 ::: tip
-コントロールパネルから Craft がマイグレーションを元に戻す方法がないため、通常 `safeDown()` メソッドは無視できます。
+You can usually ignore the `safeDown()` method, as Craft doesn’t have a way to revert migrations from the control panel.
 :::
 
 `safeUp()` メソッドから [Craft の API](https://docs.craftcms.com/api/v3/) にフルアクセスできますが、プラグインのマイグレーションはここでプラグイン独自の API を呼び出すことを避けるようにする必要があります。長い間にプラグインのデータベーススキーマが変化するように、スキーマに関する API の想定も変化します。古いマイグレーションが、まだ適用されていないデータベースの変更を前提とするサービスメソッドを呼び出すと、SQL エラーをもたらすでしょう。そのため、一般的には独自のマイグレーションクラスからすべての SQL クエリを直接実行する必要があります。コードを複製しているように感じるかもしれませんが、将来的にも保証されるでしょう。
@@ -110,7 +110,7 @@ echo "    > some note\n";
 ./craft migrate/all
 ```
 
-Craft はコントロールパネルのリクエストで新しい[スキーマバージョン](api:craft\base\PluginTrait::$schemaVersion)を持つプラグインの新しいプラグインのマイグレーションをチェックし、コンテンツのマイグレーションはコントロールパネルの「ユーティリティ > マイグレーション」から適用できます。
+Craft will also check for new plugin migrations on control panel requests, for any plugins that have a new [schema version](api:craft\base\PluginTrait::$schemaVersion), and content migrations can be applied from the Control Panel by going to Utilities → Migrations.
 
 ## プラグインのインストールマイグレーション
 
