@@ -1,6 +1,6 @@
 # テンプレートルート
 
-モジュールやプラグインは、コントロールパネル、または、フロントエンドテンプレート向けに、カスタムの「テンプレートルート」を登録できます。
+Modules and plugins can register custom “template roots” for either control panel or front-end templates.
 
 テンプレートルートは、定義済みのテンプレートパス接頭辞から他のテンプレートにアクセスできる、テンプレートを含むディレクトリです。
 
@@ -27,8 +27,8 @@ public function init()
 }
 ```
 
-新しいコントロールパネルのテンプレートルートを登録する場合、代わりに [EVENT_REGISTER_CP_TEMPLATE_ROOTS](api:craft\web\View::EVENT_REGISTER_CP_TEMPLATE_ROOTS) イベントを使用してください。
+If you want to register new control panel template roots, use the [EVENT_REGISTER_CP_TEMPLATE_ROOTS](api:craft\web\View::EVENT_REGISTER_CP_TEMPLATE_ROOTS) event instead.
 
 ## プラグインコントロールパネルのテンプレート
 
-プラグインは自動的に追加され、プラグインハンドルにちなんで名付けられた、プラグインのベースソースフォルダ内にある `templates/` フォルダを指す、コントロールパネルのテンプレートルートを取得します。
+Plugins get a control panel template root added automatically, named after the plugin handle, which points to the `templates/` folder within the plugin’s base source folder.
