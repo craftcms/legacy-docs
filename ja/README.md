@@ -4,7 +4,7 @@ Craft は、ウェブ上でさらなる独自のデジタル体験を創造す�
 
 特徴：
 
-- コンテンツ制作や管理業務のための、直感的でユーザーフレンドリーなコントロールパネル。
+- An intuitive, user-friendly control panel for content creation and administrative tasks.
 - コンテンツやその消費方法については想定されていない、コンテンツのモデリングや[フロントエンド開発](dev/README.md)のための真っ新なアプローチです。
 - クリックするだけの、何百という無料、および、商用[プラグイン](https://plugins.craftcms.com/)を備える組み込みのプラグインストア。
 - [モジュールおよびプラグイン開発](extend/README.md)のための、強靭なフレームワーク。
