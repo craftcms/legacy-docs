@@ -44,7 +44,7 @@ Amazon S3 のようなリモートストレージサービスにアセットを�
 
 ## アセットページ
 
-最初のボリュームを作成すると、コントロールパネルのメインナビゲーションに「アセット」項目が追加されます。これをクリックすると、左サイドバーにすべてのボリュームのリスト、メインコンテンツエリアに選択されたボリュームのファイルが表示されたアセットページに移動します。
+When you create your first volume, an “Assets” item will be added to the main control panel navigation. Clicking on it will take you to the Assets page, which shows a list of all of your volumes in the left sidebar, and the selected volume’s files in the main content area.
 
 このページでは、次のことができます。
 
