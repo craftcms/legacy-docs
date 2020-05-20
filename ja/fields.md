@@ -7,7 +7,7 @@
 すべてのフィールドはいくつかの共通の設定があります。
 
 - 所属するフィールドグループ
-- 名前
+- **Name** – How the field will be referenced throughout the control panel
 - ハンドル
 - 説明
 - **Field Type** – What type of field it is
