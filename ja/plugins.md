@@ -4,13 +4,13 @@
 プラグイン _開発_ のためのドキュメントをお探しの場合は、[Craft の拡張](extend/README.md) セクションをチェックしてください。
 :::
 
-プラグインは Craft のコア機能を拡張します。新しいダッシュボードウィジェット、フィールドタイプ、コントロールパネルセクション、Twig テンプレート機能、ワークフローアクションなどを導入することができます。
+Plugins extend Craft’s core functionality. They can introduce new Dashboard widgets, field types, control panel sections, Twig templating features, workflow actions, and more.
 
 ## プラグインストア
 
-Craft のコントロールパネルはプラグインストアを特徴とし、数百の無料プラグインと商用プラグインをブラウズしたり、ワンクリックでインストールしたり、料金を支払うことができます。
+Craft’s control panel features a Plugin Store, where you can browse through hundreds of free and commercial plugins, install them with a single click, and pay for them.
 
-プラグインストアにアクセスするためには、Craft のコントロールパネルのナビゲーションにある「プラグインストア」をクリックします。そこから、様々なプラグインカテゴリや選別されたリストをブラウズして、新しいプラグインを発見することができます。
+To access the Plugin Store, click on the “Plugin Store” item in Craft’s control panel navigation. From there you can browse through the various plugin categories and curated lists to discover new plugins.
 
 ![The Craft Plugin Store](./images/plugin-store.png)
 
