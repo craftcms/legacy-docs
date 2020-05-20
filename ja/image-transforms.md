@@ -4,7 +4,7 @@
 
 ## コントロールパネルからトランスフォームの定義
 
-「設定 > アセット > 画像の変形」に移動し、「新しい画像変換」ボタンをクリックすることで、コントロールパネルからトランスフォームを定義することができます。
+You can define transforms from the control panel by going to Settings → Assets → Image Transforms and clicking the “New Transform” button.
 
 トランスフォームには、次の設定があります。
 
