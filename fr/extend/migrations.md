@@ -78,7 +78,9 @@ $result = (new Query())
 
 If you want to log any messages in your migration code, echo it out rather than calling [Craft::info()](api:yii\BaseYii::info()):
 
-If the migration is being run from a console request, this will ensure the message is seen by whoever is executing the migration, as the message will be output into the terminal. If it’s a web request, Craft will capture it and log it to `storage/logs/` just as if you had used `Craft::info()`.
+::: tip
+You can usually ignore the `safeDown()` method, as Craft doesn’t have a way to revert migrations from the control panel.
+:::
 
 You can have Craft apply your new migration from the terminal:
 
@@ -163,7 +165,7 @@ Or you can have Craft apply all new migrations across all migration tracks:
 ./craft migrate/all
 ```
 
-Craft will also check for new plugin migrations on Control Panel requests, for any plugins that have a new [schema version](api:craft\base\PluginTrait::$schemaVersion), and content migrations can be applied from the Control Panel by going to Utilities → Migrations.
+Craft will also check for new plugin migrations on control panel requests, for any plugins that have a new [schema version](api:craft\base\PluginTrait::$schemaVersion), and content migrations can be applied from the Control Panel by going to Utilities → Migrations.
 
 ## Plugin Install Migrations
 
