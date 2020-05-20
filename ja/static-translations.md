@@ -7,7 +7,7 @@
 そのため、Craft は Yii の[メッセージ翻訳](https://www.yiiframework.com/doc/guide/2.0/en/tutorial-i18n#message-translation)機能を採用し、 特別な翻訳カテゴリを事前に定義しています。
 
 - `site` はプロジェクトに属するメッセージに使用されます。
-- `app` はコントロールパネルのメッセージに使用されます。
+- `app` is used for Craft control panel messages.
 - それぞれのプラグインは、プラグインのハンドルに基づいて独自のカテゴリも取得します。
 
 ## メッセージの準備
@@ -35,7 +35,7 @@ $label = Craft::t('site', 'Contact us');
 
 翻訳のためのメッセージを準備したら、実際の翻訳を提供する必要があります。
 
-そのために、プロジェクトのベースディレクトリに `translations/` と呼ばれる新しいフォルダを作成し、その中に対象言語の ID を名前とした新しいフォルダを作成します。その中に、メッセージを作成したい翻訳カテゴリの名前をつけたファイルを作成します（プロジェクトメッセージのための `site.php`、Craft のコントロールパネルのメッセージを上書きするための `app.php`、または、プラグインのメッセージを上書きするための `<plugin-handle>.php`）。
+To do that, create a new folder in your project’s base directory called `translations/`, and within that, create a new folder named after the target language’s ID. Within that, create a file named after the translation category you want to create massages for (`site.php` for project messages, `app.php` to overwrite Craft's control panel messages, or `<plugin-handle>.php` to overwrite a plugin’s messages).
 
 例えば、プロジェクトのメッセージをドイツ語に翻訳する場合、プロジェクトのディレクトリ構造は次のようになります。
 
