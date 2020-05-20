@@ -309,7 +309,7 @@ public function getEditorHtml(): string
 
 #### フィールドレイアウトの管理
 
-プラグインのコントローラーの1つの投稿のための `<form>` 内に include を配置してください。コントローラーは、次のようにフィールドレイアウトを保存できます。
+If you want your element type to support custom fields, you will also need to create a page somewhere within the control panel for managing your element type’s field layout. Craft provides a template include that will output a Field Layout Designer for you:
 
 ```twig
 {% include "_includes/fieldlayoutdesigner" with {
@@ -467,7 +467,7 @@ protected static function defineActions(string $source = null): array
 
 ## インデックスページ
 
-エレメントクラスに protected static な `defineSortOptions()` メソッドを追加することで、エレメントインデックス向けのソートオプションを定義できます。
+You can give your [control panel section](cp-section.md) an index page for your element type using the following template:
 
 ```twig
 protected static function defineSortOptions(): array
@@ -736,7 +736,7 @@ $product->setFieldValuesFromRequest('fields');
 $success = Craft::$app->elements->saveElement($product);
 ```
 
-Once you’ve set up an edit page for your element type, you can add a [getCpEditUrl()](api:craft\base\ElementInterface::getCpEditUrl()) method to your element class, which will communicate your elements’ edit page URLs within the Control Panel.
+Once you’ve set up an edit page for your element type, you can add a [getCpEditUrl()](api:craft\base\ElementInterface::getCpEditUrl()) method to your element class, which will communicate your elements’ edit page URLs within the control panel.
 
 ```php
 public function getCpEditUrl()
