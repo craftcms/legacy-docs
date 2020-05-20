@@ -1,6 +1,6 @@
 # ユーザープロフィールの編集フォーム
 
-コントロールパネルへのアクセスを許可することなく、ユーザーが自身のプロフィールを編集できるようにするためのフロントエンドフォームを作成できます。これをするために、プロフィールフォームのためにコントロールパネルが使用するのと同じコントローラーにフォームを向かわせます。（フォームやコントローラーの詳細については、[フォームアクション](#form-action)に移動してください。）
+You can create a front-end form to let users edit their profiles without granting them access to the control panel. To do this, you can point your form to the same controller that the Control Panel uses for its profile form. (Jump down to [Form Action](#form-action) for more about forms and controllers.)
 
 可能な限りシンプルなプロフィールフォームとフル機能のプロフィールフォームの2つの例を紹介します。
 
@@ -224,7 +224,7 @@
 `<form>` タグは、意図的に `action=""` パラメータを持ちません。不可視要素の `name="action"` 項目が、どのコントローラーやコントローラーメソッドを使用するか Craft に伝えます。
 
 :::tip
-コントロールパネルのプロフィールフォームは、Craft の [UserController::actionSaveUser()](api:craft\controllers\UsersController#method-actionsaveuser) コントローラーを使用しています。あなたのニーズに適している場合、フロントエンドでも自由に使うことができます。そうでなければ、独自のモジュールやプラグインで自身のコントローラーを実装するためのインスピレーションとして使用できます。
+The control panel profile form uses Craft’s [UserController::actionSaveUser()](api:craft\controllers\UsersController#method-actionsaveuser) controller and you’re free to use it on the front end too if it suits your needs. Otherwise, you can use it as inspiration to build your own controller in a custom module or plugin.
 :::
 
 #### 通知
@@ -349,7 +349,7 @@ class 名に基づく HTML 要素を表示・非表示にするためのスタ�
 </div>
 ```
 
-コントロールパネルの「設定 > ユーザー > 設定」で「メールアドレスを確認しますか？」のチェックボックスを ON にしている場合、ユーザーが新しいメールアドレスを確認することを期待するメッセージを表示することを除けば、ユーザー名フィールドと同様です。[現在のパスワード](#current-password)フィールドは、メールアドレスを変更するために必須です。
+That is like the Username field except for showing a message that the user should expect to verify a new email address if you’ve ticked the checkbox for “Verify email addresses?” in the control panel under Settings → Users → Settings. The [Current Password](#current-password) field will be required to change an email address.
 
 #### パスワード
 
@@ -395,7 +395,7 @@ class 名に基づく HTML 要素を表示・非表示にするためのスタ�
 「設定 > ユーザー > フィールド」にあるユーザープロフィールのフィールドレイアウトで `bio` というハンドルのカスタムフィールド名 “Bio” を追加したとします。それはまた、必須のフィールドだとします。ここでの違いは、カスタムフィールドが `field[<fieldname>]` のような名前の配列 `fields` に属していることです。
 
 :::tip
-行列やサードパーティプラグインのような複雑なカスタムフィールドの操作は、理解しにくいと思うでしょう。それらの種類のフィールドを処理する方法を知るために、コントロールパネルでユーザープロフィールフォームのソースコードを見てください。
+Handling complex custom fields, like Matrix or third-party plugin fields, can seem complicated. You might want to view the source code of a user profile form in the control panel to see how to handle those types of fields.
 :::
 
 #### フォームの送信
