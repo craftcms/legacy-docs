@@ -74,7 +74,7 @@ Craft のデータベースに接続するユーザーには、次の特権が�
 
 ## Control Panel Browser Requirements
 
-Craft のコントロールパネルは、モダンブラウザが必要です。
+Craft’s control panel requires a modern browser:
 
 #### Windows と macOS
 
@@ -89,5 +89,5 @@ Craft のコントロールパネルは、モダンブラウザが必要です�
 * Android: Chrome 4.4 or later
 
 ::: tip
-Craft の CP のブラウザ要件は、実際のウェブサイトとは関係がありません。もしあなたがつらい仕事を苦にせず、IE 6 で完璧に表示されるサイトを望むのであれば、あたなの望む通りにできます。
+Craft’s control panel browser requirements have nothing to do with your actual website. If you’re a glutton for punishment and want your website to look flawless on IE 6, that’s your choice.
 :::
