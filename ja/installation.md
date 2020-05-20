@@ -186,7 +186,7 @@ The final step is to define your System Name, Base URL, and Language.
 
 インストールが成功したら、Craft はブラウザをコントロールパネルにリダイレクトします。
 
-If it was successful, Craft will redirect your browser to the Control Panel.
+If it was successful, Craft will redirect your browser to the control panel.
 
 ![Craft Installation Complete](./images/installation-step-5.png)
 
