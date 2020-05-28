@@ -38,8 +38,9 @@ Craft は次の PHP エクステンションが必要です。
 
 一部の共用ホスティング環境では、Craft の機能に影響を与える PHP メソッドや設定が無効になっています。
 
-* [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) - アップデートやプラグインストアからのプラグインインストールを可能にするため、Craft では PHP 設定を有効にする必要があります。
-* [proc_*](http://php.net/manual/en/ref.exec.php) - プラグインストアを利用したり、メールの送信ができるよう PHP の `proc_` メソッドを有効にする必要があります。
+- [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) must be enabled for updating and installing plugins from the Plugin Store.
+- [proc_*](http://php.net/manual/en/ref.exec.php) methods must be enabled in order to utilize the Plugin Store and send emails.
+- [ignore_user_abort](https://www.php.net/manual/en/function.ignore-user-abort.php) must be enabled for the [default, web-based queue runner](config:runQueueAutomatically) to operate.
 
 ## Optional Extras
 
