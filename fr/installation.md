@@ -142,6 +142,10 @@ If you’re not using [MAMP](https://mamp.info) or another localhosting tool, yo
 
 You can test whether you set everything up correctly by pointing your web browser to `http://<Hostname>/index.php?p=admin/install` (substituting `<Hostname>` with your web server’s host name). If Craft’s Setup Wizard is shown, the host name is correctly resolving to your Craft installation.
 
+::: tip
+We recommend using the `.test` TLD for local development, and specifically not `.local` on macOS since [conflicts with Bonjour can lead to performance issues](https://help.rm.com/technicalarticle.asp?cref=tec3015691).
+:::
+
 ## Step 6: Run the Setup Wizard
 
 Finally, it’s time to run Craft’s Setup Wizard. You can either run that from your [terminal](#terminal-setup) or your [web browser](#web-browser-setup).
@@ -174,7 +178,7 @@ If the Setup Wizard skips this step, it’s because Craft is already able to con
 
 ![Craft Installation Database Connection Information](./images/installation-step-2.png)
 
-The third step of the installer is to create an admin account. Don’t be one of *those people* and be sure to pick a strong password.
+The third step of the installer is to create an admin account. Don’t be one of _those people_ and be sure to pick a strong password.
 
 ![Craft Installation Create User Account](./images/installation-step-3.png)
 
