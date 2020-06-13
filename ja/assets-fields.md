@@ -41,37 +41,50 @@
 ソースエレメント（アセットフィールドを持つエレメント）でサポートされているすべてのプロパティは、ここで使用できます。
 
 ::: tip
-[行列フィールド](matrix-fields.md)の中にアセットフィールドを作成する場合、ソースエレメントは作成された行列フィールドのエレメント _ではなく_ 行列ブロックになります。
+If you want to include the entry’s ID or UID in a dynamic subfolder path, use `{sourceId}` or `{sourceUid}` rather than `{id}` or `{uid}`, so the source entry’s ID or UID is used rather than the revision / draft’s.
+:::
 
-そのため、行列フィールドがエントリに紐づけられていて、動的なサブフォルダパスにエントリ ID を出力したい場合、`id` ではなく `owner.id` を使用します。
+::: tip
+If you are creating the Assets field within a [Matrix field](matrix-fields.md), the source element is going to be the Matrix block, _not_ the element that the Matrix field is being created on.
+
+So if your Matrix field is attached to an entry, and you want to output the entry ID in your dynamic subfolder path, use `owner.id` rather than `id`.
 :::
 
 ## フィールド
 
-アセットフィールドには、現在関連付けられているすべてのアセットのリストと、新しいアセットを追加するためのボタンがあります。
+Assets fields list all of the currently-related assets, with a button to select new ones.
 
-「アセットを追加」ボタンをクリックすると、新しいアセットのアップロードはもちろん、すでに追加されているアセットの検索や選択ができるモーダルウィンドウが表示されます。
+Clicking the “Add an asset” button will bring up a modal window where you can find and select additional assets, as well as upload new ones.
+
+::: tip
+You can also upload assets by dragging files directly onto the assets field or modal window.
+:::
 
 ### インラインのアセット編集
 
-関連付けられたアセットをダブルクリックすると、アセットのタイトルやカスタムフィールドを編集したり、（画像の場合）イメージエディタを起動できる HUD を表示します。
+When you double-click on a related asset, a HUD will appear where you can edit the asset’s title and custom fields, and launch the Image Editor (if it’s an image).
 
 ::: tip
-アセットで使用するカスタムフィールドは、「設定 > アセット > [ボリューム名] > フィールドレイアウト」から選択できます。
+You can choose which custom fields should be available for your assets from Settings → Assets → [Volume Name] → Field Layout.
 :::
 
 ## テンプレート記法
 
 ### アセットフィールドによるエレメントの照会
 
-アセットフィールドを持つ[エレメントを照会](dev/element-queries/README.md)する場合、フィールドのハンドルにちなんで名付けられたクエリパラメータを使用して、アセットフィールドのデータに基づいた結果をフィルタできます。
+When [querying for elements](dev/element-queries/README.md) that have an Assets field, you can filter the results based on the Assets field data using a query param named after your field’s handle.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値              | 取得するエレメント               |
-| -------------- | ----------------------- |
-| `':empty:'`    | 関連付けられたアセットを持たない。       |
-| `':notempty:'` | 少なくとも1つの関連付けられたアセットを持つ。 |
+| 値                                                           | 取得するエレメント                                               |
+| ----------------------------------------------------------- | ------------------------------------------------------- |
+| `':empty:'`                                                 | 関連付けられたアセットを持たない。                                       |
+| `':notempty:'`                                              | 少なくとも1つの関連付けられたアセットを持つ。                                 |
+| `100`                                                       | that are related to the asset with an ID of 100.        |
+| `[100, 200]`                                                | that are related to an asset with an ID of 100 or 200.  |
+| `['and', 100, 200]`                                         | that are related to the assets with IDs of 100 and 200. |
+| an [Asset](api:craft\elements\Asset) object               | that are related to the asset.                          |
+| an [AssetQuery](api:craft\elements\db\AssetQuery) object | that are related to any of the resulting assets.        |
 
 ```twig
 {# Fetch entries with a related asset #}
@@ -82,15 +95,15 @@
 
 ### アセットフィールドデータの操作
 
-テンプレート内でアセットフィールドのエレメントを取得する場合、アセットフィールドのハンドルを利用して関連付けられたアセットにアクセスできます。
+If you have an element with an Assets field in your template, you can access its related assets using your Assets field’s handle:
 
 ```twig
 {% set query = entry.<FieldHandle> %}
 ```
 
-これは、所定のフィールドで関連付けられたすべてのアセットを出力するよう準備された[アセットクエリ](dev/element-queries/asset-queries.md)を提供します。
+That will give you an [asset query](dev/element-queries/asset-queries.md), prepped to output all of the related assets for the given field.
 
-関連付けられたすべてのアセットをループするには、[all()](api:craft\db\Query::all()) を呼び出して、結果をループ処理します。
+To loop through all of the related assets, call [all()](api:craft\db\Query::all()) and then loop over the results:
 
 ```twig
 {% set relatedAssets = entry.<FieldHandle>.all() %}
@@ -103,7 +116,11 @@
 {% endif %}
 ```
 
-関連付けられた最初のアセットだけが欲しい場合、代わりに [one()](api:craft\db\Query::one()) を呼び出して、何かが返されていることを確認します。
+::: warning
+When using `asset.url` or `asset.getUrl()`, the asset’s source volume must have “Assets in this volume have public URLs” enabled and a “Base URL” setting. Otherwise, the result will always be empty.
+:::
+
+If you only want the first related asset, call [one()](api:craft\db\Query::one()) instead, and then make sure it returned something:
 
 ```twig
 {% set rel = entry.<FieldHandle>.one() %}
@@ -112,7 +129,7 @@
 {% endif %}
 ```
 
-（取得する必要はなく）いずれかの関連付けられたアセットがあるかを確認したい場合、[exists()](api:craft\db\Query::exists()) を呼び出すことができます。
+If you just need to check if there are any related assets (but don’t need to fetch them), you can call [exists()](api:craft\db\Query::exists()):
 
 ```twig
 {% if entry.<FieldHandle>.exists() %}
@@ -120,7 +137,7 @@
 {% endif %}
 ```
 
-アセットクエリで[パラメータ](dev/element-queries/asset-queries.md#parameters)をセットすることもできます。例えば、画像だけが返されることを保証するために、[kind](dev/element-queries/asset-queries.md#kind) パラメータをセットできます。
+You can set [parameters](dev/element-queries/asset-queries.md#parameters) on the asset query as well. For example, to ensure that only images are returned, you can set the [kind](dev/element-queries/asset-queries.md#kind) param:
 
 ```twig
 {% set relatedAssets = clone(entry.<FieldHandle>)
@@ -128,30 +145,74 @@
     .all() %}
 ```
 
-### フロントエンドの投稿フォームからのファイルアップロード
+::: tip
+It’s always a good idea to clone the asset query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
-フロントエンドの[投稿フォーム](dev/examples/entry-form.md)から、アセットフィールドへのファイルアップロードをユーザーに許可するには、2つの調整が必要です。
+### Saving Assets Fields in Entry Forms
 
-まず、`<form>` タグに `enctype="multipart/form-data"` 属性があることを確認して、ファイルをアップロードできるようにします。
+If you have an [entry form](dev/examples/entry-form.md) that needs to contain an Assets field, you will need to submit your field value as a list of asset IDs, in the order you want them to be related.
 
-```markup
-<form method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+For example, you could create a list of checkboxes for each of the possible relations:
+
+```twig
+{# Include a hidden input first so Craft knows to update the
+   existing value, if no checkboxes are checked. #}
+{{ hiddenInput('fields[<FieldHandle>]', '') }}
+
+{# Get all of the possible asset options #}
+{% set possibleAssets = craft.assets()
+  .volume('siteAssets')
+  .kind('image')
+  .orderBy('filename ASC')
+  .withTransforms([
+    { width: 100, height: 100 }
+  ])
+  .all() %}
+
+{# Get the currently related asset IDs #}
+{% set relatedAssetIds = entry is defined
+  ? entry.<FieldHandle>.ids()
+  : [] %}
+
+<ul>
+  {% for possibleAsset in possibleAssets %}
+    <li>
+      <label>
+        {{ input('checkbox', 'fields[<FieldHandle>][]', possibleAsset.id, {
+          checked: possibleAsset.id in relatedAssetIds
+        }) }}
+        {{ tag('img', {
+          src: possibleAsset.
+        }) }}
+        {{ possibleAsset.getImg({width: 100, height: 100}) }}
+        {{ possibleAsset.filename }}
+      </label>
+    </li>
+    {% endfor %}
+</ul>
 ```
 
-次に、ファイル入力欄をフォームに追加します。
+You could then make the checkbox list sortable, so users have control over the order of related assets.
 
-```markup
-<input type="file" name="fields[<FieldHandle>]">
+#### Creating New Assets
+
+Assets fields can handle new file uploads as well:
+
+```twig
+{{ input('file', 'fields[<FieldHandle>][]', options={
+  multiple: true,
+}) }}
 ```
 
 ::: tip
-`<FieldHandle>` を実際のフィールドハンドルに置き換えます。例えば、フィールドハンドルが “heroImage” の場合、input 名は `fields[heroImage]` になります。
+Don’t forget to set `enctype="multipart/form-data"` on your `<form>` tag so your browser knows to submit the form as a multipart request.
 :::
 
-複数ファイルをアップロードできるようにする場合、`multiple` 属性を追加し、input 名の末尾に `[]` を追加します。
+Alternatively, you can submit Base64-encoded file data, which the Assets field will decode and treat as an uploaded file:
 
-```markup
-<input type="file" name="fields[<FieldHanlde>][]" multiple>
+```twig
+{{ hiddenInput('fields[<FieldHandle>][]', 'data:image/jpeg;base64,<BASE64DATA>') }}
 ```
 
 ## 関連項目
