@@ -102,7 +102,7 @@ Craft 3 では、コンポーネントタイプはモデルにとってあまり
 \Craft::t('app', 'Entries')
 ```
 
-フロントエンドの翻訳メッセージに加えて、`site` カテゴリはコントロールパネルの管理者が定義したラベルのために使用されます。
+In addition to front-end translation messages, the `site` category should be used for admin-defined labels in the control panel:
 
 ```php
 \Craft::t('app', 'Post a new {section} entry', [
@@ -782,7 +782,7 @@ $html = \Craft::$app->view->renderTemplate('plugin-handle/path/to/template');
 
 ## コントロールパネルのテンプレート
 
-プラグインが Craft の`_layouts/cp.html` コントロールパネルレイアウトテンプレートを拡張するプラグインを持つ場合、アップデートが必要がことがいくつかあります。
+If your plugin has any templates that extend Craft’s `_layouts/cp.html` control panel layout template, there are a few things that might need to be updated.
 
 ### `extraPageHeaderHtml`
 
@@ -839,7 +839,7 @@ $html = \Craft::$app->view->renderTemplate('plugin-handle/path/to/template');
 
 ### コントロールパネルテンプレートフック
 
-次のコントロールパネル[テンプレートフック](template-hooks.md)はリネームされました。
+The following control panel [template hooks](template-hooks.md) have been renamed:
 
 | 旧                               | 新                            |
 | ------------------------------- | ---------------------------- |
@@ -904,7 +904,7 @@ class MyJob extends BaseJob
     public function execute($queue)
     {
         $totalSteps = 5;
-        for ($step = 0; $step < $steps; $step++)
+        for ($step = 0; $step < $totalSteps; $step++)
         {
             $this->setProgress($queue, $step / $totalSteps);
             // do something...
