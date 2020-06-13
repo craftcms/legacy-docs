@@ -80,4 +80,4 @@
 - Reverted change to `$potus` due to security vulnerabilities
 ```
 
-Craft は重大なアップデートが利用可能であることを知ったとき、すべてのコントロールパネルページの最上部にメッセージを掲載し、「ユーティリティ > アップデート」ページでアップデートに特別な注目を与えます。
+When Craft finds out that a critical update is available, it will post a message about it to the top of all control panel pages, and give the update special attention on the Utilities → Updates page.
