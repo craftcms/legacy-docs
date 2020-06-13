@@ -19,7 +19,7 @@ Before you can create entries, you must create Sections to contain them. In each
 
 If you're using Craft with multiple sites then you can also define in your Section:
 
-* Which sites entries in the section should target
+* Which sites' entries in the section should target
 * Which sites are enabled by default for new entries
 
 To create a new section, go to Settings → Sections and click the “New Section” button.
@@ -96,17 +96,23 @@ With the above Entry URI Format, a top-level entry’s URI might end up as `docs
 
 ### Preview Targets
 
-Your entry content will likely show up in places other than just their main URLs. For example, the Blog index page will show excerpts of recent blog posts.
+If you’re using Craft Pro, your section can have one or more **preview targets**, which are URLs of pages that your entries will show up on, making it possible for authors to preview entries as they are writing them in the control panel.
 
-With Craft Pro, your sections will have a “Preview Targets” setting, where you can list additional places your entries will show up on your site, so that authors can quickly preview entries everywhere they appear.
+Like entry URI formats, these preview target URLs are mini Twig templates that can contain entry properties and other dynamic values.
 
-Each preview target has Name and a URI. Give each of your targets a clear name that authors will understand, such as “Homepage” or “Blog Index”. Set the URI to the actual URI you want to load when the target is selected.
+If entries in your section have their own URLs, then you can create a preview target for the entry’s primary URL using the URL template, `{url}`.
 
-The URI is a mini Twig template (just like Entry URI Formats), so you can make it dynamic if you need to. For example, if you are creating an “Archive” preview target, where the URI needs to include the year the entry was published, you can enter `archive/{postDate|date('Y')}`.
+Create additional preview targets for any other areas the entry might show up, such as `news`, or `archive/{postDate|date('Y')}`. If the entries show up on the homepage, you can create a preview target with a blank URL.
 
 ![A section’s Preview Targets setting.](./images/preview-targets.png)
 
+::: tip
+If you want to include the entry’s ID or UID in a preview target URL, use `{sourceId}` or `{sourceUid}` rather than `{id}` or `{uid}`, so the source entry’s ID or UID is used rather than the draft’s.
+:::
+
+::: tip
 You can also set the URI to a environment variable (e.g. `$NEWS_INDEX`, or a URL that begins with an alias (e.g. `@rootUrl/news` or `@rootUrl/news/{slug}`). See [Environmental Configuration](config/environments.md) to learn more about how those work.
+:::
 
 When an author is editing an entry from a section with custom preview targets, the “Share” button will be replaced with a menu that lists the “Primary entry page” (if the section has an Entry URI Format), plus the names of each preview target.
 
@@ -114,6 +120,11 @@ When an author is editing an entry from a section with custom preview targets, t
 
 The targets will also be available within Live Preview.
 
+#### Preparing external front ends for Live Preview
+
+If your site’s front end lives outside of Craft, for example as a Vue or React app, you will need to have it check for the existence of a `token` query string parameter (or whatever your <config:tokenParam> config setting is set to). If it’s in the URL, then you will need to pass that same token in the Craft API request that loads the page content. This token will cause the API request to respond with the correct content depending on what’s actually being edited (the source entry or a draft).
+
+You can pass the token via either a `token` query string parameter, or an `X-Craft-Token` header on the API request.
 
 ## Entry Types
 
@@ -141,7 +152,7 @@ The entry is passed to this template as a variable named `object`. You can refer
 * `{{ object.property }}` *(normal Twig syntax)*
 * `{property}` *(shortcut syntax)*
 
-*Note that the shortcut syntax only has one set of curly braces*.
+_Note that the shortcut syntax only has one set of curly braces_.
 
 If Craft finds any of these in your Title Format, it will replace the `{` with `{{object.` and the `}` with `}}`, before passing the template off to Twig for parsing.
 
