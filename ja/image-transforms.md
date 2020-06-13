@@ -4,7 +4,7 @@
 
 ## コントロールパネルからトランスフォームの定義
 
-「設定 > アセット > 画像の変形」に移動し、「新しい画像変換」ボタンをクリックすることで、コントロールパネルからトランスフォームを定義することができます。
+You can define transforms from the control panel by going to Settings → Assets → Image Transforms and clicking the “New Transform” button.
 
 トランスフォームには、次の設定があります。
 
@@ -58,7 +58,7 @@ If you leave **Quality** blank, Craft will use the quality set by your <config:d
 
 テンプレート内で直接トランスフォームを定義することもできます。
 
-はじめに、トランスフォームのパラメータを定義したオブジェクトを作成する必要があります。
+First, you must create a [hash](dev/twig-primer.md#hashes) that defines the transform’s parameters:
 
 ```twig
 {% set thumb = {
@@ -70,13 +70,13 @@ If you leave **Quality** blank, Craft will use the quality set by your <config:d
 } %}
 ```
 
-次に、そのオブジェクトをアセットモデルの `getUrl()`、`getWidth()`、および、`getHeight()` ファンクションへ渡します。
+Then you can pass that hash into your asset’s `getUrl()`, `getWidth()`, and `getHeight()` functions:
 
 ```twig
 <img src="{{ asset.getUrl(thumb) }}" width="{{ asset.getWidth(thumb) }}" height="{{ asset.getHeight(thumb) }}">
 ```
 
-ここでは、最初の例のように「`thumb`」の周りに引用符がないことに注意してください。最初の例では、CP で定義されたトランスフォームのハンドルを _文字列_ として渡しているのに対して、この例ではテンプレート内で作成した ‘thumb’ オブジェクトを参照するための _変数_ として渡しています。
+Note how in that example there are no quotes around “`thumb`”, like there were in the first one. That’s because in the first one, we were passing a [string](dev/twig-primer.md#strings) set to a CP-defined transform’s handle, whereas in this example we’re passing a [variable](dev/twig-primer.md#variables) referencing the `thumb` hash we created within the template.
 
 ### 利用可能な値
 
