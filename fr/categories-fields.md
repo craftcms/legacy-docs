@@ -59,10 +59,15 @@ You can set [parameters](dev/element-queries/category-queries.md#parameters) on 
 
 Possible values include:
 
-| Value          | Fetches elements…                        |
-| -------------- | ---------------------------------------- |
-| `':empty:'`    | that don’t have any related categories.  |
-| `':notempty:'` | that have at least one related category. |
+| Value                                                             | Fetches elements…                                           |
+| ----------------------------------------------------------------- | ----------------------------------------------------------- |
+| `':empty:'`                                                       | that don’t have any related categories.                     |
+| `':notempty:'`                                                    | that have at least one related category.                    |
+| `100`                                                             | that are related to the category with an ID of 100.         |
+| `[100, 200]`                                                      | that are related to a category with an ID of 100 or 200.    |
+| `['and', 100, 200]`                                               | that are related to the categories with IDs of 100 and 200. |
+| an [Category](api:craft\elements\Category) object               | that are related to the category.                           |
+| an [CategoryQuery](api:craft\elements\db\CategoryQuery) object | that are related to any of the resulting categories.        |
 
 ```twig
 {% set relatedCategories = entry.<FieldHandle>.all() %}
@@ -111,8 +116,20 @@ To loop through all of the related categories as a flat list, call [all()](api:c
 Or you can show them as a hierarchical list with the [nav](dev/tags/nav.md) tag:
 
 ```twig
-{% if entry.<FieldHandle>.exists() %}
-    <p>There are related categories!</p>
+{% set relatedCategories = entry.<FieldHandle>.all() %}
+{% if relatedCategories|length %}
+    <ul>
+        {% nav rel in relatedCategories %}
+            <li>
+                <a href="{{ rel.url }}">{{ rel.title }}</a>
+                {% ifchildren %}
+                    <ul>
+                        {% children %}
+                    </ul>
+                {% endifchildren %}
+            </li>
+        {% endnav %}
+    </ul>
 {% endif %}
 ```
 
