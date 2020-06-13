@@ -14,6 +14,31 @@ Craft’s default configuration is defined by [src/config/app.php](https://githu
 
 By default, Craft will store data caches in the `storage/runtime/cache/` folder. You can configure Craft to use alternative [cache storage](https://www.yiiframework.com/doc/guide/2.0/en/caching-data#supported-cache-storage) by overriding the `cache` application component from `config/app.php`.
 
+#### Database Cache Example
+
+If you want to store data caches in the database, first you will need to create a `cache` table as specified by <api:yii\caching\DbCache::$cacheTable>. Craft provides a CLI command for convenience:
+
+```bash
+./craft setup/db-cache-table
+```
+
+Once that’s done, you can set your `cache` application component to use <api:craft\cache\DbCache>.
+
+```php
+<?php
+return [
+    'components' => [
+        'cache' => craft\cache\DbCache::class,
+    ],
+];
+```
+
+::: tip
+If you’ve already configured Craft to use <api:yii\caching\DbCache> rather than <api:craft\cache\DbCache>, you can safely switch to the latter if you remove your `cache` table’s `dateCreated`, `dateUpdated`, and `uid` columns.
+:::
+
+#### APC Example
+
 ```php
 <?php
 return [
@@ -21,10 +46,12 @@ return [
         'cache' => [
             'class' => yii\caching\ApcCache::class,
             'useApcu' => true,
+            'keyPrefix' => 'a_unique_key',
         ],
     ],
 ];
 ```
+
 
 #### Memcached Example
 
@@ -49,6 +76,7 @@ return [
                     'weight' => 1,
                 ],
             ],
+            'keyPrefix' => 'a_unique_key',
         ],
     ],
 ];
@@ -71,14 +99,59 @@ return [
         'cache' => [
             'class' => yii\redis\Cache::class,
             'defaultDuration' => 86400,
+            'keyPrefix' => 'a_unique_key',
         ],
+    ],
+];
+```
+
+## Database Component
+
+If you need to configure the database connection beyond what’s possible with Craft’s [database config settings](db-settings.md), you can do that by overriding the `db` component:
+
+```php
+<?php
+return [
+    'components' => [
+        'db' => function() {
+            // Get the default component config
+            $config = craft\helpers\App::dbConfig();
+
+            // Use read/write query splitting
+            // (https://www.yiiframework.com/doc/guide/2.0/en/db-dao#read-write-splitting)
+
+            // Define the default config for replica DB connections
+            $config['slaveConfig'] = [
+                'username' => getenv('DB_REPLICA_USER'),
+                'password' => getenv('DB_REPLICA_PASSWORD'),
+                'tablePrefix' => getenv('DB_TABLE_PREFIX'),
+                'attributes' => [
+                    // Use a smaller connection timeout
+                    PDO::ATTR_TIMEOUT => 10,
+                ],
+                'charset' => 'utf8',
+            ];
+
+            // Define the replica DB connections
+            $config['slaves'] = [
+                ['dsn' => getenv('DB_REPLICA_DSN_1')],
+                ['dsn' => getenv('DB_REPLICA_DSN_2')],
+                ['dsn' => getenv('DB_REPLICA_DSN_3')],
+                ['dsn' => getenv('DB_REPLICA_DSN_4')],
+            ];
+
+            // Instantiate and return it
+            return Craft::createObject($config);
+        },
     ],
 ];
 ```
 
 ## Session Component
 
-In a load-balanced environment, you may want to override the default `session` component to store PHP session data in a centralized location (e.g. Redis):
+In a load-balanced environment, you may want to override the default `session` component to store PHP session data in a centralized location.
+
+#### Redis Example
 
 ```php
 <?php
@@ -90,10 +163,41 @@ return [
             'port' => 6379,
             'password' => getenv('REDIS_PASSWORD'),
         ],
-        'session' => [
-            'class' => yii\redis\Session::class,
-            'as session' => craft\behaviors\SessionBehavior::class,
-        ],
+        'session' => function() {
+            // Get the default component config
+            $config = craft\helpers\App::sessionConfig();
+
+            // Override the class to use Redis' session class
+            $config['class'] = yii\redis\Session::class;
+
+            // Instantiate and return it
+            return Craft::createObject($config);
+        },
+    ],
+];
+```
+
+#### Database Example
+
+First, you must create the database table that will store PHP’s sessions. You can do that by running the `craft setup/php-session-table` console command from your project’s root folder.
+
+```php
+<?php
+return [
+    'components' => [
+        'session' => function() {
+            // Get the default component config
+            $config = craft\helpers\App::sessionConfig();
+
+            // Override the class to use DB session class
+            $config['class'] = yii\web\DbSession::class;
+
+            // Set the session table name
+            $config['sessionTable'] = craft\db\Table::PHPSESSIONS;
+
+            // Instantiate and return it
+            return Craft::createObject($config);
+        },
     ],
 ];
 ```
@@ -157,7 +261,7 @@ return [
 Available drivers are listed in the [Yii2 Queue Extension documentation](https://github.com/yiisoft/yii2-queue/tree/master/docs/guide).
 
 ::: warning
-Only drivers that implement <api:craft\queue\QueueInterface> will be visible within the Control Panel.
+Only drivers that implement <api:craft\queue\QueueInterface> will be visible within the control panel.
 :::
 
 ::: tip
