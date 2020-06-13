@@ -15,57 +15,64 @@ Craft はシステムのすべてのメンバーアカウントを「ユーザ�
 インストール中に作成したユーザーアカウントが、デフォルトで管理者になります。
 
 ::: tip
-管理者が行うことができるダメージの量を考えると、新しい管理者アカウントの作成は慎重に行うことを強くお勧めします。彼（彼女）らが自分が実行することの意味を理解できていると確信できる場合のみに留めてください。
+Considering the amount of damage an admin can do, it’s strongly recommended that you be conservative with creating new admin accounts. Only do it if you trust that they know what they’re doing.
 :::
 
 ## ユーザーグループ
 
-Craft Pro を使っている場合、サイトのユーザーアカウントを整理したり、権限を一括設定するためにユーザーグループを作成することができます。
+If you have Craft Pro, you can create User Groups to help organize your site’s user accounts, as well as batch-set permissions on them.
 
-新しいユーザーグループを作るには、「設定 > ユーザー」に移動し、「新しいユーザーグループ」ボタンをクリックします。グループには、名前とハンドルに加え、グループに含まれるすべてのユーザーに与える権限をセットすることができます。
+To create a new User Group, go to Settings → Users and click the “New Group” button. You can give your group a Name and Handle, plus any permissions you want every user within the group to have.
 
-グループの作成後は、アカウント設定の「権利」タブをクリックして、ユーザーをグループに割り当てることができます。
+After you create your groups, you can assign users to groups by going into their account settings and clicking on the Permissions tab.
 
 ## 権限
 
-Craft Pro では、コントロールパネルにアクセスしたり、特定セクションのコンテンツを編集するといった権限をユーザーやグループに許可できます。これらの権限はユーザーアカウントと同様にユーザーグループにも直接適用できます。ユーザーグループに権限を適用すると、そのグループに所属するすべてのユーザーがそれを継承します。
+Craft Pro allows you to set permissions on users and groups, such as the ability to access the control panel, edit content within certain sections, etc. You can apply these permissions directly to user accounts as well as to user groups. When you apply permissions to a user group, all users that belong to that group will inherit them.
 
-Craft の権限は次の通りです。
+The permissions Craft comes with are:
 
-| 権限 | ハンドル
-| --- | -------
-| システムがオフの場合にサイトにアクセスする | `accessSiteWhenSystemIsOff`
-| 管理画面にアクセスする | `accessCp`
-| ↳&nbsp; システムがオフの場合に管理画面にアクセスする | `accessCpWhenSystemIsOff`
-| ↳&nbsp; Craft CMS 起動とプラグインのアップデート | `performUpdates`
-| ↳&nbsp; _「プラグイン名」_ のアクセス | `accessPlugin-[PluginHandle]`
-| ユーザーを編集する | `editUsers`
-| ↳&nbsp; ユーザーを登録する | `registerUsers`
-| ↳&nbsp; ユーザー権限を割り当てる | `assignUserPermissions`
-| ↳&nbsp; ユーザーを管理 | `administrateUsers`
-| ユーザーを削除する | `deleteUsers`
-| _「サイト名」_ を編集する | `editSite:[SiteUID]`
-| エントリを編集する | `editEntries:[SectionUID]`
-| ↳&nbsp; エントリを作る | `createEntries:[SectionUID]`
-| ↳&nbsp; ライブの変更を発表する | `publishEntries:[SectionUID]`
-| ↳&nbsp; エントリを削除する | `deleteEntries:[SectionUID]`
-| ↳&nbsp; 他の投稿者のエントリを編集する | `editPeerEntries:[SectionUID]`
-|  ↳&nbsp; 他の作成者の入力のためライブを変更する | `publishPeerEntries:[SectionUID]`
-| &nbsp;&nbsp;&nbsp; ↳&nbsp; 他の投稿者のエントリを削除する | `deletePeerEntries:[SectionUID]`
-| &nbsp;&nbsp;&nbsp;↳&nbsp; 他の投稿者の下書きを編集する | `editPeerEntryDrafts:[SectionUID]`
-|  ↳&nbsp; 他の投稿者の下書きを投稿する | `publishPeerEntryDrafts:[SectionUID]`
-| &nbsp;&nbsp;&nbsp; ↳&nbsp; 他の投稿者の下書きを削除する | `deletePeerEntryDrafts:[SectionUID]`
-| &nbsp;&nbsp;&nbsp;_「グローバル設定名」_ を編集する | `editGlobalSet:[GlobalSetUID]`
-| _「カテゴリグループ名」_ を編集する | `editCategories:[CategoryGroupUID]`
-| _「アセットソース名」_ を表示する | `viewVolume:[VolumeUID]`
-| ↳&nbsp; アップロード | `saveAssetInVolume:[VolumeUID]`
-| ↳&nbsp; サブフォルダを作成する | `createFoldersInVolume:[VolumeUID]`
-| ↳&nbsp; ファイルとフォルダーを削除 | `deleteFilesAndFoldersInVolume:[VolumeUID]`
+| 権限                                                               | ハンドル                                        |
+| ---------------------------------------------------------------- | ------------------------------------------- |
+| システムがオフの場合にサイトにアクセスする                                            | `accessSiteWhenSystemIsOff`                 |
+| 管理画面にアクセスする                                                      | `accessCp`                                  |
+| ↳&nbsp; システムがオフの場合に管理画面にアクセスする                                   | `accessCpWhenSystemIsOff`                   |
+| ↳&nbsp; Craft CMS 起動とプラグインのアップデート                                | `performUpdates`                            |
+| ↳&nbsp; _「プラグイン名」_ のアクセス                                         | `accessPlugin-[PluginHandle]`               |
+| ユーザーを編集する                                                        | `editUsers`                                 |
+| ↳&nbsp; ユーザーを登録する                                                | `registerUsers`                             |
+| ↳&nbsp; ユーザー権限を割り当てる                                             | `assignUserPermissions`                     |
+| ↳&nbsp; ユーザーを管理                                                  | `administrateUsers`                         |
+| ユーザーを削除する                                                        | `deleteUsers`                               |
+| _「サイト名」_ を編集する                                                   | `editSite:[SiteUID]`                        |
+| エントリを編集する                                                        | `editEntries:[SectionID]`                   |
+| ↳&nbsp; エントリを作る                                                  | `editEntries:[SectionUID]`                  |
+| ↳&nbsp; ライブの変更を発表する                                              | `createEntries:[SectionUID]`                |
+| ↳&nbsp; エントリを削除する                                                | `publishEntries:[SectionUID]`               |
+| ↳&nbsp; 他の投稿者のエントリを編集する                                          | `deleteEntries:[SectionUID]`                |
+|  ↳&nbsp; 他の作成者の入力のためライブを変更する                                     | `editPeerEntries:[SectionUID]`              |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; 他の投稿者のエントリを削除する                       | `publishPeerEntries:[SectionUID]`           |
+| &nbsp;&nbsp;&nbsp;↳&nbsp; 他の投稿者の下書きを編集する                         | `deletePeerEntries:[SectionUID]`            |
+|  ↳&nbsp; 他の投稿者の下書きを投稿する                                          | `editPeerEntryDrafts:[SectionUID]`          |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; 他の投稿者の下書きを削除する                        | `publishPeerEntryDrafts:[SectionUID]`       |
+| &nbsp;&nbsp;&nbsp;_「グローバル設定名」_ を編集する                             | `deletePeerEntryDrafts:[SectionUID]`        |
+| _「カテゴリグループ名」_ を編集する                                              | `editGlobalSet:[GlobalSetUID]`              |
+| _「アセットソース名」_ を表示する                                               | `editCategories:[CategoryGroupUID]`         |
+| ↳&nbsp; アップロード                                                   | `viewVolume:[VolumeUID]`                    |
+| ↳&nbsp; サブフォルダを作成する                                              | `saveAssetInVolume:[VolumeUID]`             |
+| ↳&nbsp; ファイルとフォルダーを削除                                            | `createFoldersInVolume:[VolumeUID]`         |
+| ↳&nbsp; Remove files and folders                                 | `deleteFilesAndFoldersInVolume:[VolumeUID]` |
+| ↳&nbsp; Edit images                                              | `editImagesInVolume:[VolumeUID]`            |
+| ↳&nbsp; View files uploaded by other users                       | `viewPeerFilesInVolume:[VolumeUID]`         |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Edit files uploaded by other users    | `editPeerFilesInVolume:[SectionUID]`        |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Replace files uploaded by other users | `replacePeerFilesInVolume:[SectionUID]`     |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Remove files uploaded by other users  | `deletePeerFilesInVolume:[SectionUID]`      |
+| &nbsp;&nbsp;&nbsp; ↳&nbsp; Edit images uploaded by other users   | `editPeerImagesInVolume:[SectionUID]`       |
 
 ## 一般登録
 
-Craft Pro には、一般ユーザーの登録を許可するオプションがあり、デフォルトで無効化されています。
+Craft Pro has the option of allowing public user registration, which is disabled by default.
 
-一般登録を有効にするには、「設定 > ユーザー > 設定」に移動し、「一般登録を許可しますか？」をチェックします。チェックすると、Craft が一般登録したユーザーを割り当てるデフォルトのユーザーグループを選択できるようになります。
+To enable public registration, go to Settings → Users → Settings, and check the “Allow public registration?” setting. With that checked, you will also have the ability to choose a default user group to which Craft will assign the publicly-registered users.
 
-サイトに一般ユーザーの登録を許可する設定を行ったら、最後のステップとしてフロントエンドに[ユーザー登録フォーム](dev/examples/user-registration-form.md)を作成します。
+Once you set up your site to allow public user registration, the last step is to create a [user registration form](dev/examples/user-registration-form.md) on your site’s front end.
