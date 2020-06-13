@@ -1,6 +1,6 @@
 # コントロールパネルのテンプレート
 
-コントロールパネルは Twig テンプレートを使用して構築されているため、フロントエンドの Twig を操作していれば、新しいページでそれを拡張するのは慣れ親しんだ感じがするでしょう。
+The control panel is built using Twig templates, so extending it with new pages should feel familiar if you’ve worked with Twig on the front-end.
 
 プラグインは、ベースソースフフォルダにある `templates/` フォルダ内のテンプレートを定義できます。そこに含まれるテンプレートは、プラグインのハンドルをテンプレートパス接頭辞として使用することで参照できます。
 
