@@ -19,7 +19,7 @@
 
 Craft のマルチサイト機能を利用しているなら、次のこともセクションで定義できます。
 
-* セクション内のどのサイトのエントリをターゲットにするか
+* Which sites' entries in the section should target
 * 新しいエントリ向けに、どのサイトをデフォルトで有効にするか
 
 新しいセクションを作るには、「設定 > セクション」に移動し、「新規セクション」ボタンをクリックします。
@@ -96,34 +96,45 @@ Craft のマルチサイト機能を利用しているなら、次のことも�
 
 ### 動的なエントリタイトル
 
-チャンネルとストラクチャーセクションの両方では、入力タイプを用いて複数のタイプのエントリを定義できます。
+If you’re using Craft Pro, your section can have one or more **preview targets**, which are URLs of pages that your entries will show up on, making it possible for authors to preview entries as they are writing them in the control panel.
 
-「設定 > セクション」のセクション名の横にある「入力タイプを変更してください。」リンクをクリックして、セクションの入力タイプを管理できます。セクションの入力タイプのインデックスに移動します。いずれかの入力タイプの名前をクリックすると、その設定ページへ移動します。
+Like entry URI formats, these preview target URLs are mini Twig templates that can contain entry properties and other dynamic values.
 
-Each preview target has Name and a URI. Give each of your targets a clear name that authors will understand, such as “Homepage” or “Blog Index”. Set the URI to the actual URI you want to load when the target is selected.
+If entries in your section have their own URLs, then you can create a preview target for the entry’s primary URL using the URL template, `{url}`.
 
-入力タイプの設定は、次の通りです。
+Create additional preview targets for any other areas the entry might show up, such as `news`, or `archive/{postDate|date('Y')}`. If the entries show up on the homepage, you can create a preview target with a blank URL.
 
 ![A section’s Preview Targets setting.](./images/preview-targets.png)
 
-タイトル形式は本格的な Twig テンプレートで、エントリが保存されるたびに解析されます。
+::: tip
+If you want to include the entry’s ID or UID in a preview target URL, use `{sourceId}` or `{sourceUid}` rather than `{id}` or `{uid}`, so the source entry’s ID or UID is used rather than the draft’s.
+:::
 
-エントリは `object` という名称の変数としてこのテンプレートに渡されます。エントリの [プロパティ](api:craft\elements\Entry#public-properties) は、次の2つの方法で参照できます。
+::: tip
+You can also set the URI to a environment variable (e.g. `$NEWS_INDEX`, or a URL that begins with an alias (e.g. `@rootUrl/news` or `@rootUrl/news/{slug}`). See [Environmental Configuration](config/environments.md) to learn more about how those work.
+:::
 
-_ショートカット構文には、中括弧が1つしかないことに注意してください_。
+When an author is editing an entry from a section with custom preview targets, the “Share” button will be replaced with a menu that lists the “Primary entry page” (if the section has an Entry URI Format), plus the names of each preview target.
 
-Craft がタイトル形式の中でショートカット構文を見つけた場合、Twig の解析にあたりテンプレートへ渡す前に `{` を `{{object.` 、`}` を `}}` に置換します。
+!\[An entry’s Share menu with 3 custom preview targets.\](./images/share-with-targets.png =294x)
 
+The targets will also be available within Live Preview.
+
+#### Preparing external front ends for Live Preview
+
+If your site’s front end lives outside of Craft, for example as a Vue or React app, you will need to have it check for the existence of a `token` query string parameter (or whatever your <config:tokenParam> config setting is set to). If it’s in the URL, then you will need to pass that same token in the Craft API request that loads the page content. This token will cause the API request to respond with the correct content depending on what’s actually being edited (the source entry or a draft).
+
+You can pass the token via either a `token` query string parameter, or an `X-Craft-Token` header on the API request.
 
 ## 入力タイプ
 
-いずれの構文でも Twig フィルタを使えます。
+Both Channel and Structure sections let you define multiple types of entries using Entry Types.
 
-Craft の[グローバル変数](dev/global-variables.md)は、これらのテンプレートでも利用できます。
+You can manage your sections’ Entry Types by clicking the “Edit Entry Types” link beside the section’s name in Settings → Sections. That’ll take you to the section’s entry type index. Clicking on an entry type’s name takes you to its settings page:
 
 ![Entry Type Edit Settings](./images/sections-and-entries-entry-types.png)
 
-少なくとも1つのセクションがあれば、CP のメインナビゲーションに「エントリ」タブが表示されます。クリックすると、エントリのインデックスに移動します。そこから、編集したいエントリに移動したり、新しいエントリを作成できます。
+Entry types have the following settings:
 
 * **名前** – 入力タイプの名前
 * **ハンドル** – 入力タイプのテンプレートに対応するハンドル
@@ -132,9 +143,9 @@ Craft の[グローバル変数](dev/global-variables.md)は、これらのテ�
 
 ### Dynamic Entry Titles
 
-エントリの編集ページでは、次のアクションを実行できます。
+If you want your entries to have auto-generated titles rather than requiring authors to enter them, you can uncheck the “Show the Title field?” checkbox. When you do, a new “Title Format” setting will appear, where you can define what the auto-generated titles should look like.
 
-投稿日を空のままにした場合、Craft はエントリが有効な状態で保存された最初のタイミングで自動的にセットします。
+The Title Format is a full-blown Twig template, and it will get parsed whenever your entries are saved.
 
 The entry is passed to this template as a variable named `object`. You can reference the entry’s [properties](api:craft\elements\Entry#public-properties) in two ways:
 
