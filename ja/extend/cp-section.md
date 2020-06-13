@@ -1,6 +1,6 @@
 # コントロールパネルのセクション
 
-モジュールとプラグインは、[EVENT_REGISTER_CP_NAV_ITEMS](api:craft\web\twig\variables\Cp::EVENT_REGISTER_CP_NAV_ITEMS) イベントを使用して新しいセクションをコントロールパネルに追加できます。
+Modules and plugins can add new sections to the control panel using the [EVENT_REGISTER_CP_NAV_ITEMS](api:craft\web\twig\variables\Cp::EVENT_REGISTER_CP_NAV_ITEMS) event:
 
 ```php
 use craft\events\RegisterCpNavItemsEvent;
@@ -55,7 +55,7 @@ public function init()
 
 ## プラグインセクション
 
-1つのセクションだけを追加したいプラグインは、[EVENT_REGISTER_CP_NAV_ITEMS](api:craft\web\twig\variables\Cp::EVENT_REGISTER_CP_NAV_ITEMS) イベントを使うのではなく、プライマリプラグインクラスの `$hasCpSection` プロパティで設定できます。
+Plugins that only need to add one section can set the `$hasCpSection` property on their primary plugin class, rather than using the [EVENT_REGISTER_CP_NAV_ITEMS](api:craft\web\twig\variables\Cp::EVENT_REGISTER_CP_NAV_ITEMS) event:
 
 ```php
 <?php
@@ -70,7 +70,11 @@ class Plugin extends \craft\base\Plugin
 }
 ```
 
-[getCpNavItem()](api:craft\base\PluginInterface::getCpNavItem()) メソッドで上書きすることによって、プラグインのコントロールパネルのナビゲーション項目の外観を変更できます。
+::: tip
+You can alternatively set a `hasCpSection` value in `composer.json` as noted in the [plugin guide](/extend/plugin-guide.md#compser-json). We don’t recommend setting it in both places, however, since the value set in `composer.json` will override your public class property’s value and likely create confusion.
+:::
+
+You can modify aspects of the plugin’s control panel nav item by overriding its [getCpNavItem()](api:craft\base\PluginInterface::getCpNavItem()) method:
 
 ```php
 public function getCpNavItem()
@@ -86,15 +90,15 @@ public function getCpNavItem()
 }
 ```
 
-これをする場合、Craft はプラグインの新しい[ユーザー権限](user-permissions.md)を自動的に追加し、その権限を持つユーザーだけにナビゲーション項目を表示します。
+If you do this, Craft will automatically add a new [user permission](user-permissions.md) for your plugin, and only show the nav item for users that have it.
 
-プラグインのセクションをクリックすると、ユーザーは`/admin/plugin-handle` に移動し、プラグインの[テンプレートルート](template-roots.md)（ベースソースフォルダ内の `templates/` フォルダ）内の `index.html` または `index.twig` テンプレートをロードしようと試みます。
+Clicking on a plugin’s section will take the user to `/admin/plugin-handle`, which will attempt to load an `index.html` or `index.twig` template within the plugin’s [template root](template-roots.md) (its `templates/` folder within its base source folder).
 
 ::: tip
-コントロールパネルのテンプレート開発の詳細については、[コントロールパネルのテンプレート](cp-templates.md)を参照してください。
+See [Control Panel Templates](cp-templates.md) for more information about developing Control Panel templates.
 :::
 
-あるいは、プラグインの `init()` メソッドからコントロールパネルのルートを登録することによって、`/admin/plugin-handle` のリクエストをコントローラーアクション（または、他のテンプレート）にルーティングできます。
+Alternatively, you can route `/admin/plugin-handle` requests to a controller action (or a different template) by registering a control panel route from your plugin’s `init()` method:
 
 ```php
 use craft\events\RegisterUrlRulesEvent;
