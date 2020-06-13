@@ -53,16 +53,76 @@ $myEntryQuery = \craft\elements\Entry::find();
 
 <!-- BEGIN PARAMS -->
 
+| Param                                     | Description                                                                                                                                                                                                                                                                               |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [after](#after)                           | Narrows the query results to only entries that were posted on or after a certain date.                                                                                                                                                                                                    |
+| [ancestorDist](#ancestordist)             | Narrows the query results to only entries that are up to a certain distance away from the entry specified by [ancestorOf](#ancestorof).                                                                                                                                                   |
+| [ancestorOf](#ancestorof)                 | Narrows the query results to only entries that are ancestors of another entry.                                                                                                                                                                                                            |
+| [anyStatus](#anystatus)                   | Clears out the [status](#status) and [enabledForSite](#enabledforsite) parameters.                                                                                                                                                                                                        |
+| [asArray](#asarray)                       | Causes the query to return matching entries as arrays of data, rather than [Entry](api:craft\elements\Entry) objects.                                                                                                                                                                   |
+| [authorGroup](#authorgroup)               | Narrows the query results based on the user group the entries’ authors belong to.                                                                                                                                                                                                         |
+| [authorGroupId](#authorgroupid)           | Narrows the query results based on the user group the entries’ authors belong to, per the groups’ IDs.                                                                                                                                                                                    |
+| [authorId](#authorid)                     | Narrows the query results based on the entries’ authors.                                                                                                                                                                                                                                  |
+| [before](#before)                         | Narrows the query results to only entries that were posted before a certain date.                                                                                                                                                                                                         |
+| [clearCachedResult](#clearcachedresult)   | Clears the cached result.                                                                                                                                                                                                                                                                 |
+| [dateCreated](#datecreated)               | Narrows the query results based on the entries’ creation dates.                                                                                                                                                                                                                           |
+| [dateUpdated](#dateupdated)               | Narrows the query results based on the entries’ last-updated dates.                                                                                                                                                                                                                       |
+| [descendantDist](#descendantdist)         | Narrows the query results to only entries that are up to a certain distance away from the entry specified by [descendantOf](#descendantof).                                                                                                                                               |
+| [descendantOf](#descendantof)             | Narrows the query results to only entries that are descendants of another entry.                                                                                                                                                                                                          |
+| [draftCreator](#draftcreator)             | Narrows the query results to only drafts created by a given user.                                                                                                                                                                                                                         |
+| [draftId](#draftid)                       | Narrows the query results based on the entries’ draft’s ID (from the `drafts` table).                                                                                                                                                                                                     |
+| [draftOf](#draftof)                       | Narrows the query results to only drafts of a given entry.                                                                                                                                                                                                                                |
+| [drafts](#drafts)                         | Narrows the query results to only drafts entries.                                                                                                                                                                                                                                         |
+| [enabledForSite](#enabledforsite)         | Narrows the query results based on whether the entries are enabled in the site they’re being queried in, per the [site](#site) parameter.                                                                                                                                                 |
+| [expiryDate](#expirydate)                 | Narrows the query results based on the entries’ expiry dates.                                                                                                                                                                                                                             |
+| [fixedOrder](#fixedorder)                 | Causes the query results to be returned in the order specified by [id](#id).                                                                                                                                                                                                              |
+| [hasDescendants](#hasdescendants)         | Narrows the query results based on whether the entries have any descendants.                                                                                                                                                                                                              |
+| [id](#id)                                 | Narrows the query results based on the entries’ IDs.                                                                                                                                                                                                                                      |
+| [ignorePlaceholders](#ignoreplaceholders) | Causes the query to return matching entries as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement). |
+| [inReverse](#inreverse)                   | Causes the query results to be returned in reverse order.                                                                                                                                                                                                                                 |
+| [leaves](#leaves)                         | Narrows the query results based on whether the entries are “leaves” (entries with no descendants).                                                                                                                                                                                        |
+| [level](#level)                           | Narrows the query results based on the entries’ level within the structure.                                                                                                                                                                                                               |
+| [limit](#limit)                           | Determines the number of entries that should be returned.                                                                                                                                                                                                                                 |
+| [nextSiblingOf](#nextsiblingof)           | Narrows the query results to only the entry that comes immediately after another entry.                                                                                                                                                                                                   |
+| [offset](#offset)                         | Determines how many entries should be skipped in the results.                                                                                                                                                                                                                             |
+| [orderBy](#orderby)                       | Determines the order that the entries should be returned in. (If empty, defaults to `postDate DESC`.)                                                                                                                                                                                     |
+| [positionedAfter](#positionedafter)       | Narrows the query results to only entries that are positioned after another entry.                                                                                                                                                                                                        |
+| [positionedBefore](#positionedbefore)     | Narrows the query results to only entries that are positioned before another entry.                                                                                                                                                                                                       |
+| [postDate](#postdate)                     | Narrows the query results based on the entries’ post dates.                                                                                                                                                                                                                               |
+| [preferSites](#prefersites)               | If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.                                                                                                                                                                             |
+| [prevSiblingOf](#prevsiblingof)           | Narrows the query results to only the entry that comes immediately before another entry.                                                                                                                                                                                                  |
+| [relatedTo](#relatedto)                   | Narrows the query results to only entries that are related to certain other elements.                                                                                                                                                                                                     |
+| [revisionCreator](#revisioncreator)       | Narrows the query results to only revisions created by a given user.                                                                                                                                                                                                                      |
+| [revisionId](#revisionid)                 | Narrows the query results based on the entries’ revision’s ID (from the `revisions` table).                                                                                                                                                                                               |
+| [revisionOf](#revisionof)                 | Narrows the query results to only revisions of a given entry.                                                                                                                                                                                                                             |
+| [revisions](#revisions)                   | Narrows the query results to only revision entries.                                                                                                                                                                                                                                       |
+| [search](#search)                         | Narrows the query results to only entries that match a search query.                                                                                                                                                                                                                      |
+| [section](#section)                       | Narrows the query results based on the sections the entries belong to.                                                                                                                                                                                                                    |
+| [sectionId](#sectionid)                   | Narrows the query results based on the sections the entries belong to, per the sections’ IDs.                                                                                                                                                                                             |
+| [siblingOf](#siblingof)                   | Narrows the query results to only entries that are siblings of another entry.                                                                                                                                                                                                             |
+| [site](#site)                             | Determines which site(s) the entries should be queried in.                                                                                                                                                                                                                                |
+| [siteId](#siteid)                         | Determines which site(s) the entries should be queried in, per the site’s ID.                                                                                                                                                                                                             |
+| [slug](#slug)                             | Narrows the query results based on the entries’ slugs.                                                                                                                                                                                                                                    |
+| [status](#status)                         | Narrows the query results based on the entries’ statuses.                                                                                                                                                                                                                                 |
+| [title](#title)                           | Narrows the query results based on the entries’ titles.                                                                                                                                                                                                                                   |
+| [trashed](#trashed)                       | Narrows the query results to only entries that have been soft-deleted.                                                                                                                                                                                                                    |
+| [type](#type)                             | Narrows the query results based on the entries’ entry types.                                                                                                                                                                                                                              |
+| [typeId](#typeid)                         | Narrows the query results based on the entries’ entry types, per the types’ IDs.                                                                                                                                                                                                          |
+| [uid](#uid)                               | Narrows the query results based on the entries’ UIDs.                                                                                                                                                                                                                                     |
+| [unique](#unique)                         | Determines whether only elements with unique IDs should be returned by the query.                                                                                                                                                                                                         |
+| [uri](#uri)                               | Narrows the query results based on the entries’ URIs.                                                                                                                                                                                                                                     |
+| [with](#with)                             | Causes the query to return matching entries eager-loaded with related elements.                                                                                                                                                                                                           |
+
 ### `after`
 
 特定の日付以降に投稿されたエントリだけに、クエリの結果を絞り込みます。
 
 利用可能な値には、次のものが含まれます。
 
-| 値                                                | 取得するエントリ                   |
-| ------------------------------------------------ | -------------------------- |
-| `'2018-04-01'`                                   | 2018-04-01 以降に投稿されたもの。     |
-| [DateTime](http://php.net/class.datetime) オブジェクト | オブジェクトとして表される日付以降に投稿されたもの。 |
+| 値                                                  | 取得するエントリ                                                   |
+| -------------------------------------------------- | ---------------------------------------------------------- |
+| `'2018-04-01'`                                     | that were posted after 2018-04-01.                         |
+| a [DateTime](http://php.net/class.datetime) object | that were posted after the date represented by the object. |
 
 
 
@@ -122,10 +182,10 @@ $entries = \craft\elements\Entry::find()
 
 利用可能な値には、次のものが含まれます。
 
-| 値                                          | 取得するエントリ            |
-| ------------------------------------------ | ------------------- |
-| `1`                                        | ID が 1 のエントリの上層。    |
-| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの上層。 |
+| 値                                            | 取得するエントリ                                   |
+| -------------------------------------------- | ------------------------------------------ |
+| `1`                                          | above the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | above the entry represented by the object. |
 
 
 
@@ -208,13 +268,13 @@ $entries = \craft\elements\Entry::find()
 
 利用可能な値には、次のものが含まれます。
 
-| 値                                                | 取得するエントリ                              |
-| ------------------------------------------------ | ------------------------------------- |
-| `'foo'`                                          | ハンドルが `foo` のグループ内の投稿者。               |
-| `'not foo'`                                      | ハンドルが `foo` のグループ内の投稿者ではない。           |
-| `['foo', 'bar']`                                 | ハンドルが `foo` または `bar` のグループ内の投稿者。     |
-| `['not', 'foo', 'bar']`                          | ハンドルが `foo` または `bar` のグループ内の投稿者ではない。 |
-| [UserGroup](api:craft\models\UserGroup) オブジェクト | オブジェクトで表されるグループ内の投稿者。                 |
+| 値                                                  | 取得するエントリ                                                       |
+| -------------------------------------------------- | -------------------------------------------------------------- |
+| `'foo'`                                            | with an author in a group with a handle of `foo`.              |
+| `'not foo'`                                        | not with an author in a group with a handle of `foo`.          |
+| `['foo', 'bar']`                                   | with an author in a group with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                            | not with an author in a group with a handle of `foo` or `bar`. |
+| a [UserGroup](api:craft\models\UserGroup) object | with an author in a group represented by the object.           |
 
 
 
@@ -241,12 +301,12 @@ $entries = \craft\elements\Entry::find()
 
 利用可能な値には、次のものが含まれます。
 
-| 値               | 取得するエントリ                     |
-| --------------- | ---------------------------- |
-| `1`             | ID が 1 のグループ内の投稿者。           |
-| `'not 1'`       | ID が 1 のグループ内の投稿者ではない。       |
-| `[1, 2]`        | ID が 1 または 2 のグループ内の投稿者。     |
-| `['not', 1, 2]` | ID が 1 または 2 のグループ内の投稿者ではない。 |
+| 値               | 取得するエントリ                                            |
+| --------------- | --------------------------------------------------- |
+| `1`             | with an author in a group with an ID of 1.          |
+| `'not 1'`       | not with an author in a group with an ID of 1.      |
+| `[1, 2]`        | with an author in a group with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an author in a group with an ID of 1 or 2. |
 
 
 
@@ -273,12 +333,12 @@ $entries = \craft\elements\Entry::find()
 
 利用可能な値には、次のものが含まれます。
 
-| 値               | 取得するエントリ               |
-| --------------- | ---------------------- |
-| `1`             | ID が 1 の投稿者。           |
-| `'not 1'`       | ID が 1 の投稿者ではない。       |
-| `[1, 2]`        | ID が 1 または 2 の投稿者。     |
-| `['not', 1, 2]` | ID が 1 または 2 の投稿者ではない。 |
+| 値               | 取得するエントリ                                 |
+| --------------- | ---------------------------------------- |
+| `1`             | with an author with an ID of 1.          |
+| `'not 1'`       | not with an author with an ID of 1.      |
+| `[1, 2]`        | with an author with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an author with an ID of 1 or 2. |
 
 
 
@@ -305,10 +365,10 @@ $entries = \craft\elements\Entry::find()
 
 利用可能な値には、次のものが含まれます。
 
-| 値                                                | 取得するエントリ                  |
-| ------------------------------------------------ | ------------------------- |
-| `'2018-04-01'`                                   | 2018-04-01 より前に投稿されたもの。   |
-| [DateTime](http://php.net/class.datetime) オブジェクト | オブジェクトで表される日付より前に投稿されたもの。 |
+| 値                                                  | 取得するエントリ                                                    |
+| -------------------------------------------------- | ----------------------------------------------------------- |
+| `'2018-04-01'`                                     | that were posted before 2018-04-01.                         |
+| a [DateTime](http://php.net/class.datetime) object | that were posted before the date represented by the object. |
 
 
 
@@ -333,19 +393,28 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
+
+
 ### `dateCreated`
 
-エントリの作成日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the entries’ creation dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                                                | 取得するエントリ                             |
-| ------------------------------------------------ | ------------------------------------ |
-| `'>= 2018-04-01'`                             | 2018-04-01 以降に作成されたもの。               |
-| `'< 2018-05-01'`                              | 2018-05-01 より前に作成されたもの。              |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間に作成されたもの。 |
+| 値                                                | 取得するエントリ                                             |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were created on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were created before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were created between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -374,17 +443,17 @@ $entries = \craft\elements\Entry::find()
 
 ### `dateUpdated`
 
-エントリの最終アップデート日に基づいて、クエリの結果が絞り込まれます。
+Narrows the query results based on the entries’ last-updated dates.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                                                | 取得するエントリ                                 |
-| ------------------------------------------------ | ---------------------------------------- |
-| `'>= 2018-04-01'`                             | 2018-04-01 以降にアップデートされたもの。               |
-| `'< 2018-05-01'`                              | 2018-05-01 より前にアップデートされたもの。              |
-| `['and', '>= 2018-04-04', '< 2018-05-01']` | 2018-04-01 から 2018-05-01 の間にアップデートされたもの。 |
+| 値                                                | 取得するエントリ                                             |
+| ------------------------------------------------ | ---------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were updated on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were updated before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were updated between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -411,7 +480,7 @@ $entries = \craft\elements\Entry::find()
 
 ### `descendantDist`
 
-[descendantOf](#descendantof) で指定されたエントリから特定の距離だけ離れているエントリのみに、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are up to a certain distance away from the entry specified by [descendantOf](#descendantof).
 
 
 
@@ -438,16 +507,16 @@ $entries = \craft\elements\Entry::find()
 
 ### `descendantOf`
 
-指定したエントリの子孫であるエントリだけに、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are descendants of another entry.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                                          | 取得するエントリ            |
-| ------------------------------------------ | ------------------- |
-| `1`                                        | ID が 1 のカテゴリの下層。    |
-| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの下層。 |
+| 値                                            | Fetches entries…                           |
+| -------------------------------------------- | ------------------------------------------ |
+| `1`                                          | below the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | below the entry represented by the object. |
 
 
 
@@ -470,22 +539,22 @@ $entries = \craft\elements\Entry::find()
 
 
 ::: tip
-どれだけ離れた子孫エントリを対象にするか制限したい場合、[descendantDist](#descendantdist) と組み合わせることができます。
+This can be combined with [descendantDist](#descendantdist) if you want to limit how far away the descendant entries can be.
 :::
 
 
-### `enabledForSite`
+### `draftCreator`
 
-[site](#site) パラメータごとに、照会されているサイトでエントリが有効になっているかどうかに基づいて、クエリの結果を絞り込みます。
+Narrows the query results to only drafts created by a given user.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                                      | 取得するエントリ          |
-| -------------------------------------- | ----------------- |
-| `1`                                    | サイト内で有効になっているもの。  |
-| a `\craft\elements\db\User` object | サイト内で有効かどうかに関係なく。 |
+| 値                                                           | 取得するエントリ                                       |
+| ----------------------------------------------------------- | ---------------------------------------------- |
+| `':empty:'`                                                 | created by the user with an ID of 1.           |
+| a [craft\elements\User](api:craft\elements\User) object | created by the user represented by the object. |
 
 
 
@@ -506,17 +575,17 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `expiryDate`
+### `draftId`
 
-エントリの有効期限日に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the entries’ draft’s ID (from the `drafts` table).
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                                   | 取得するエントリ    |
-| ----------------------------------- | ----------- |
-| `b7c56':empty:'6.79477389':empty:'` | 有効期限日を持たない。 |
+| 値   | 取得するエントリ                       |
+| --- | ------------------------------ |
+| `1` | for the draft with an ID of 1. |
 
 
 
@@ -531,32 +600,30 @@ $entries = \craft\elements\Entry::find()
 ```
 
 ```php
-// Fetch entries expiring this month
-$nextMonth = (new \DateTime('first day of next month'))->format(\DateTime::ATOM);
-
+// Fetch a draft
 $entries = \craft\elements\Entry::find()
-    ->expiryDate("< {$nextMonth}")
+    ->draftId(10)
     ->all();
 ```
 :::
 
 
-### `fixedOrder`
+### `draftOf`
 
-クエリの結果を [id](#id) で指定された順序で返します。
+Narrows the query results to only drafts of a given entry.
+
+
+
+Possible values include:
+
+| 値                                            | Fetches drafts…                          |
+| -------------------------------------------- | ---------------------------------------- |
+| `1`                                          | for the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | for the entry represented by the object. |
 
 
 
 ::: code
-
-| 値                                            | 取得するエントリ    |
-| -------------------------------------------- | ----------- |
-| `1`                                          | ID が 1。     |
-| a [Entry](api:craft\elements\Entry) object | ID が 1ではない。 |
-
-
-
-:::
 ```twig
 {# Fetch entries in a specific order #}
 {% set entries = craft.entries()
@@ -575,9 +642,9 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `hasDescendants`
+### `drafts`
 
-（これは [leaves](#leaves) の呼び出しと反対の効果を持っています。）
+Narrows the query results to only drafts entries.
 
 
 
@@ -600,18 +667,18 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `id`
+### `enabledForSite`
 
-エントリの ID に基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on whether the entries are enabled in the site they’re being queried in, per the [site](#site) parameter.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                  | 取得するエントリ     |
-| ------------------ | ------------ |
-| `true` _(default)_ | レベルが 1。      |
-| `'not 1'`          | レベルが 1 ではない。 |
+| 値                  | 取得するエントリ                                     |
+| ------------------ | -------------------------------------------- |
+| `true` _(default)_ | that are enabled in the site.                |
+| `false`            | whether they are enabled or not in the site. |
 
 
 
@@ -632,18 +699,16 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `inReverse`
+### `expiryDate`
 
-::: tip
-特定の順序で結果を返したい場合、[fixedOrder](#fixedorder) と組み合わせることができます。
-:::
+Narrows the query results based on the entries’ expiry dates.
 
-クエリの結果を逆順で返します。
+Possible values include:
 
 | 値                                                | 取得するエントリ                                            |
 | ------------------------------------------------ | --------------------------------------------------- |
-| `1`                                              | ID が 1 のエントリの後。                                     |
-| `':notempty:'`                                   | オブジェクトで表されるエントリの後。                                  |
+| `':empty:'`                                      | that don’t have an expiry date.                     |
+| `':notempty:'`                                   | that have an expiry date.                           |
 | `'>= 2020-04-01'`                             | that will expire on or after 2020-04-01.            |
 | `'< 2020-05-01'`                              | that will expire before 2020-05-01                  |
 | `['and', '>= 2020-04-04', '< 2020-05-01']` | that will expire between 2020-04-01 and 2020-05-01. |
@@ -667,15 +732,15 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `leaves`
+### `fixedOrder`
 
-エントリが「leaves」（子孫のないエントリ）であるかどうかに基づいて、クエリの結果を絞り込みます。
-
-
+Causes the query results to be returned in the order specified by [id](#id).
 
 
 
-（これは [hasDescendants](#hasdescendants) の呼び出しと反対の効果を持っています。）
+
+
+::: code
 ```twig
 {# Fetch entries that have no descendants #}
 {% set entries = craft.entries()
@@ -692,17 +757,17 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `level`
+### `hasDescendants`
 
-:::
-
-
-
-構造内のエントリのレベルに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on whether the entries have any descendants.
 
 
 
-利用可能な値には、次のものが含まれます。
+(This has the opposite effect of calling [leaves](#leaves).)
+
+
+
+::: code
 ```twig
 {# Fetch entries positioned at level 3 or above #}
 {% set entries = craft.entries()
@@ -719,18 +784,18 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `limit`
+### `id`
 
-:::
+Narrows the query results based on the entries’ IDs.
 
 
 
-返されるエントリの数を決定します。
+Possible values include:
 
 | 値               | 取得するエントリ                  |
 | --------------- | ------------------------- |
-| `1`             | ID が 1 のエントリの後。           |
-| `'not 1'`       | オブジェクトで表されるエントリの後。        |
+| `1`             | with an ID of 1.          |
+| `'not 1'`       | not with an ID of 1.      |
 | `[1, 2]`        | with an ID of 1 or 2.     |
 | `['not', 1, 2]` | not with an ID of 1 or 2. |
 
@@ -754,31 +819,33 @@ $entries = \craft\elements\Entry::find()
 
 
 
-指定したエントリの直後にあるエントリだけに、クエリの結果を絞り込みます。
+::: tip
+This can be combined with [fixedOrder](#fixedorder) if you want the results to be returned in a specific order.
+:::
 
 
-### `nextSiblingOf`
+### `ignorePlaceholders`
 
-利用可能な値には、次のものが含まれます。
-
-
-
-
-
+Causes the query to return matching entries as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement).
 
 
 
 
 
-### `offset`
+
+
+
+
+
+### `inReverse`
+
+Causes the query results to be returned in reverse order.
+
+
+
+
 
 ::: code
-
-
-
-
-
-:::
 ```twig
 {# Fetch the next entry #}
 {% set entry = craft.entries()
@@ -795,17 +862,17 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `orderBy`
+### `leaves`
+
+Narrows the query results based on whether the entries are “leaves” (entries with no descendants).
+
+
+
+(This has the opposite effect of calling [hasDescendants](#hasdescendants).)
+
+
 
 ::: code
-
-
-
-:::
-
-
-
-返されるエントリの順序を決定します。
 ```twig
 {# Fetch all entries except for the first 3 #}
 {% set entries = craft.entries()
@@ -822,25 +889,25 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `positionedAfter`
+### `level`
 
-:::
-
-
-
-指定したエントリの後に位置するエントリだけに、クエリの結果を絞り込みます。
-
-| 値               | 取得するエントリ                                 |
-| --------------- | ---------------------------------------- |
-| `1`             | ID が 1 のエントリの前。                          |
-| `'not 1'`       | オブジェクトで表されるエントリの前。                       |
-| `'>= 3'`     | with a level greater than or equal to 3. |
-| `[1, 2]`        | with a level of 1 or 2                   |
-| `['not', 1, 2]` | not with level of 1 or 2.                |
+Narrows the query results based on the entries’ level within the structure.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
+
+| 値                    | Fetches entries…                         |
+| -------------------- | ---------------------------------------- |
+| `'>= 2018-04-01'` | with a level of 1.                       |
+| `'not 1'`            | not with a level of 1.                   |
+| `'>= 3'`          | with a level greater than or equal to 3. |
+| `[1, 2]`             | with a level of 1 or 2                   |
+| `['not', 1, 2]`      | not with level of 1 or 2.                |
+
+
+
+::: code
 ```twig
 {# Fetch all entries in order of date created #}
 {% set entries = craft.entries()
@@ -857,13 +924,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `positionedBefore`
+### `limit`
 
-:::
+Determines the number of entries that should be returned.
 
 
 
-指定したエントリの前に位置するエントリだけに、クエリの結果を絞り込みます。
+::: code
 ```twig
 {# Fetch entries after this one #}
 {% set entries = craft.entries()
@@ -880,22 +947,22 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `postDate`
+### `nextSiblingOf`
+
+Narrows the query results to only the entry that comes immediately after another entry.
+
+
+
+Possible values include:
+
+| 値                                          | Fetches the entry… |
+| ------------------------------------------ | ------------------ |
+| `1`                                        | ID が 1 のエントリの前。    |
+| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの前。 |
+
+
 
 ::: code
-
-
-
-:::
-
-| 値                                                      | 取得するエントリ                |
-| ------------------------------------------------------ | ----------------------- |
-| `gt;= 2018-04-01'43bb36c30.80274976'>= 2018-04-01'` | 2018-04-01 以降に投稿されたもの。  |
-| a [Entry](api:craft\elements\Entry) object           | 2018-05-01 より前に投稿されたもの。 |
-
-
-
-エントリの投稿日に基づいて、クエリの結果を絞り込みます。
 ```twig
 {# Fetch entries before this one #}
 {% set entries = craft.entries()
@@ -912,13 +979,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `prevSiblingOf`
+### `offset`
+
+Determines how many entries should be skipped in the results.
+
+
 
 ::: code
-
-
-
-:::
 ```twig
 {# Fetch entries posted last month #}
 {% set start = date('first day of last month')|atom %}
@@ -941,9 +1008,9 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `relatedTo`
+### `orderBy`
 
-利用可能な値には、次のものが含まれます。
+Determines the order that the entries should be returned in. (If empty, defaults to `postDate DESC`.)
 
 
 
@@ -964,18 +1031,18 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `search`
+### `positionedAfter`
 
-特定の他のエレメントと関連付けられたエントリだけに、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are positioned after another entry.
 
 
 
-このパラメーターがどのように機能するかの詳細については、[リレーション](https://docs.craftcms.com/v3/relations.html)を参照してください。
+Possible values include:
 
-| 値                                          | 取得するエントリ           |
-| ------------------------------------------ | ------------------ |
-| `1`                                        | ID が 1 のエントリの前。    |
-| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの前。 |
+| 値                                            | 取得するエントリ                                   |
+| -------------------------------------------- | ------------------------------------------ |
+| `'foo'`                                      | after the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | after the entry represented by the object. |
 
 
 
@@ -996,18 +1063,18 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `section`
+### `positionedBefore`
 
-検索クエリにマッチするエントリだけに、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are positioned before another entry.
 
 
 
-このパラメーターがどのように機能するかの詳細については、[検索](https://docs.craftcms.com/v3/searching.html)を参照してください。
+Possible values include:
 
-| 値                                            | 取得するエントリ                 |
-| -------------------------------------------- | ------------------------ |
-| `'94.78950570'foo'`                          | ハンドルが `foo` のセクション内。     |
-| a [Entry](api:craft\elements\Entry) object | ハンドルが `foo` のセクション内ではない。 |
+| 値                                            | 取得するエントリ                                    |
+| -------------------------------------------- | ------------------------------------------- |
+| `1`                                          | before the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | before the entry represented by the object. |
 
 
 
@@ -1034,17 +1101,17 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `sectionId`
+### `postDate`
 
-エントリが属するセクションに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the entries’ post dates.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値         | 取得するエントリ              |
-| --------- | --------------------- |
-| `1`       | ID が 1 のセクション内。       |
-| `'not 1'` | ID が 1 のセクション内ではない。   |
-| `[1, 2]`  | ID が 1 または 2 のセクション内。 |
+| 値                                                | Fetches entries…                                    |
+| ------------------------------------------------ | --------------------------------------------------- |
+| `'>= 2018-04-01'`                             | that were posted on or after 2018-04-01.            |
+| `'< 2018-05-01'`                              | that were posted before 2018-05-01                  |
+| `['and', '>= 2018-04-04', '< 2018-05-01']` | that were posted between 2018-04-01 and 2018-05-01. |
 
 
 
@@ -1065,19 +1132,19 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `siblingOf`
+### `preferSites`
 
-セクションの ID ごとに、エントリが属するセクションに基づいて、クエリの結果を絞り込みます。
+If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.
 
 
 
-利用可能な値には、次のものが含まれます。
+For example, if element “Foo” exists in Site A and Site B, and element “Bar” exists in Site B and Site C, and this is set to `['c', 'b', 'a']`, then Foo will be returned for Site C, and Bar will be returned for Site B.
+
+If this isn’t set, then preference goes to the current site.
+
+
 
 ::: code
-
-
-
-:::
 ```twig
 {# Fetch entries in the section with an ID of 1 #}
 {% set entries = craft.entries()
@@ -1094,22 +1161,22 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `site`
+### `prevSiblingOf`
 
-利用可能な値には、次のものが含まれます。
+Narrows the query results to only the entry that comes immediately before another entry.
+
+
+
+Possible values include:
+
+| 値                                            | Fetches the entry…                          |
+| -------------------------------------------- | ------------------------------------------- |
+| `'foo'`                                      | before the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | before the entry represented by the object. |
 
 
 
 ::: code
-
-| 値                                          | 取得するエントリ           |
-| ------------------------------------------ | ------------------ |
-| `1`                                        | ID が 1 のエントリの横。    |
-| [Entry](api:craft\elements\Entry) オブジェクト | オブジェクトで表されるエントリの横。 |
-
-
-
-:::
 ```twig
 {# Fetch entries beside this one #}
 {% set entries = craft.entries()
@@ -1126,13 +1193,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `siteId`
+### `relatedTo`
 
-デフォルトでは、現在のサイトが使用されます。
+Narrows the query results to only entries that are related to certain other elements.
 
 
 
-利用可能な値には、次のものが含まれます。
+See [Relations](https://docs.craftcms.com/v3/relations.html) for a full explanation of how to work with this parameter.
 
 
 
@@ -1153,18 +1220,18 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `slug`
+### `revisionCreator`
 
-サイトの ID ごとに、エントリを照会するサイトを決定します。
+Narrows the query results to only revisions created by a given user.
 
 
 
-デフォルトでは、現在のサイトが使用されます。
+Possible values include:
 
-| 値                                    | 取得するエントリ            |
-| ------------------------------------ | ------------------- |
-| `3676'foo'4'foo'7'foo'`              | ハンドルが `foo` のサイトから。 |
-| `\craft\elements\db\Site` オブジェクト | オブジェクトで表されるサイトから。   |
+| 値                                                           | 取得するエントリ                                       |
+| ----------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                     | created by the user with an ID of 1.           |
+| a [craft\elements\User](api:craft\elements\User) object | created by the user represented by the object. |
 
 
 
@@ -1185,17 +1252,17 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `status`
+### `revisionId`
 
-エントリのスラグに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the entries’ revision’s ID (from the `revisions` table).
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                       | 取得するエントリ    |
-| ----------------------- | ----------- |
-| `e'foo'7.76569554'foo'` | スラグが `foo`。 |
+| 値   | 取得するエントリ                          |
+| --- | --------------------------------- |
+| `1` | for the revision with an ID of 1. |
 
 
 
@@ -1222,18 +1289,18 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `title`
+### `revisionOf`
 
-エントリのステータスに基づいて、クエリの結果を絞り込みます。
+Narrows the query results to only revisions of a given entry.
 
 
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                                            | 取得するエントリ                      |
-| -------------------------------------------- | ----------------------------- |
-| `1`                                          | 公開しているもの。                     |
-| a [Entry](api:craft\elements\Entry) object | 保留しているもの（未来の投稿日がセットされた有効なもの）。 |
+| 値                                            | Fetches revisions…                       |
+| -------------------------------------------- | ---------------------------------------- |
+| `1`                                          | for the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | for the entry represented by the object. |
 
 
 
@@ -1254,15 +1321,15 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `trashed`
+### `revisions`
 
-エントリのタイトルに基づいて、クエリの結果を絞り込みます。
-
-
+Narrows the query results to only revision entries.
 
 
 
-利用可能な値には、次のものが含まれます。
+
+
+::: code
 ```twig
 {# Fetch entries with a title that contains "Foo" #}
 {% set entries = craft.entries()
@@ -1279,13 +1346,13 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `type`
+### `search`
 
-:::
+Narrows the query results to only entries that match a search query.
 
 
 
-ソフトデリートされたエントリだけに、クエリの結果を絞り込みます。
+See [Searching](https://docs.craftcms.com/v3/searching.html) for a full explanation of how to work with this parameter.
 
 
 
@@ -1306,19 +1373,19 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `typeId`
+### `section`
 
-エントリの入力タイプに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the sections the entries belong to.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                                              | 取得するエントリ           |
-| ---------------------------------------------- | ------------------ |
-| `'Foo'`                                        | タイトルが `Foo`。       |
-| `'Foo*'`                                       | タイトルが `Foo` ではじまる。 |
-| `'*Foo'`                                       | タイトルが `Foo` で終わる。  |
-| `'*Foo*'`                                      | タイトルが `Foo` を含む。   |
-| a [Section](api:craft\models\Section) object | タイトルが `Foo` を含まない。 |
+| 値                                              | 取得するエントリ                                          |
+| ---------------------------------------------- | ------------------------------------------------- |
+| `'foo'`                                        | in a section with a handle of `foo`.              |
+| `'not foo'`                                    | not in a section with a handle of `foo`.          |
+| `['foo', 'bar']`                               | in a section with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                        | not in a section with a handle of `foo` or `bar`. |
+| a [Section](api:craft\models\Section) object | in a section represented by the object.           |
 
 
 
@@ -1341,18 +1408,18 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `uid`
+### `sectionId`
 
-タイプの ID ごとに、エントリの入力タイプに基づいて、クエリの結果を絞り込みます。
+Narrows the query results based on the sections the entries belong to, per the sections’ IDs.
 
-利用可能な値には、次のものが含まれます。
+Possible values include:
 
-| 値                               | 取得するエントリ                        |
-| ------------------------------- | ------------------------------- |
-| `365.3830'foo''foo''foo'0'foo'` | ハンドルが `foo` のタイプ。               |
-| `'not foo'`                     | ハンドルが `foo` のタイプではない。           |
-| `['foo', 'bar']`                | ハンドルが `foo` または `bar` のタイプ。     |
-| `['not', 'foo', 'bar']`         | ハンドルが `foo` または `bar` のタイプではない。 |
+| 値               | 取得するエントリ                               |
+| --------------- | -------------------------------------- |
+| `1`             | in a section with an ID of 1.          |
+| `'not 1'`       | not in a section with an ID of 1.      |
+| `[1, 2]`        | in a section with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not in a section with an ID of 1 or 2. |
 
 
 
@@ -1373,22 +1440,22 @@ $entries = \craft\elements\Entry::find()
 :::
 
 
-### `uri`
+### `siblingOf`
 
-エントリの UID に基づいて、クエリの結果を絞り込みます。
+Narrows the query results to only entries that are siblings of another entry.
+
+
+
+Possible values include:
+
+| 値                                            | 取得するエントリ                                    |
+| -------------------------------------------- | ------------------------------------------- |
+| `1`                                          | beside the entry with an ID of 1.           |
+| a [Entry](api:craft\elements\Entry) object | beside the entry represented by the object. |
 
 
 
 ::: code
-
-| 値                                            | 取得するエントリ         |
-| -------------------------------------------- | ---------------- |
-| `1`                                          | ID が 1 のタイプ。     |
-| a [Entry](api:craft\elements\Entry) object | ID が 1 のタイプではない。 |
-
-
-
-:::
 ```twig
 {# Fetch the entry by its UID #}
 {% set entry = craft.entries()
@@ -1405,29 +1472,31 @@ $entry = \craft\elements\Entry::find()
 :::
 
 
-### `with`
+### `site`
 
-利用可能な値には、次のものが含まれます。
+Determines which site(s) the entries should be queried in.
+
+
+
+The current site will be used by default.
+
+Possible values include:
+
+| Value                                                   | Fetches entries…                               |
+| ------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                 | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                                        | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                                 | not in a site with a handle of `foo` or `bar`. |
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.       |
+| `'*'`                                                   | from any site.                                 |
+
+::: tip
+If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
+:::
 
 
 
 ::: code
-
-:::
-
-| 値                                      | 取得するエントリ           |
-| -------------------------------------- | ------------------ |
-| `'foo'`                                | URI が `foo`。       |
-| `'foo*'`                               | URI が `foo` ではじまる。 |
-| `'*foo'`                               | URI が `foo` で終わる。  |
-| a `\craft\elements\db\Site` object | URI が `foo` を含む。   |
-| `'not *foo*'`                          | URI が `foo` を含まない。 |
-
-関連付けられたエレメントを eager-loaded した状態で、マッチしたエントリをクエリが返します。
-
-
-
-このパラメーターがどのように機能するかの詳細については、[エレメントのEager-Loading](https://docs.craftcms.com/v3/dev/eager-loading-elements.html)を参照してください。
 ```twig
 {# Get the requested URI #}
 {% set requestedUri = craft.app.request.getPathInfo() %}
@@ -1452,7 +1521,7 @@ $entry = \craft\elements\Entry::find()
 
 ### `siteId`
 
-:::
+Determines which site(s) the entries should be queried in, per the site’s ID.
 
 
 
