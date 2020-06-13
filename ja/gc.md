@@ -2,9 +2,12 @@
 
 Craft は古いデータを削除するためにいくつかのガベージコレクションルーチンを実行することがあります。
 
-- （コンフィグ設定の <config:purgePendingUsersDuration> ごとに）期限切れの保留中のユーザーアカウントを削除します。
-- （コンフィグ設定の <config:softDeleteDuration> ごとに）期限切れのソフトデリート行を完全に削除します。
-- 古いユーザーセッションデータを削除します。
+- Purge unsaved drafts (per the <config:purgeUnsavedDraftsDuration> config setting).
+- Delete expired template caches.
+- Purge any expired pending user accounts (per the <config:purgePendingUsersDuration> config setting).
+- Hard delete expired soft-deleted rows (per the <config:softDeleteDuration> config setting).
+- Delete stale user session data.
+- Delete orphaned search indexes (any indexes belonging to elements that don’t exist anymore).
 
 デフォルトでは、すべてのウェブリクエストがガベージコレクションを発動する 100,000 分の 1 のチャンスを持っています。それは <api:craft\services\Gc::$probability> を上書きすることによって `config/app.php` から設定できます。
 
