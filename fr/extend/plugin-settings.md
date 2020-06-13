@@ -4,7 +4,9 @@
 
 ## Settings Model
 
-Plugins that have global settings need to define a “settings model”, which is responsible for storing the setting values, and validating them.
+Once you’ve indicated your plugin will have settings by enabling `hasCpSettings` in your main plugin class or `composer.json`, you’ll need to provide a model for defining them.
+
+This “settings model” is responsible for storing and validating the setting values.
 
 Settings models are just like any other [model](https://www.yiiframework.com/doc/guide/2.0/en/structure-models). To create it, create a `models/` directory within your plugin’s source directory, and create a `Settings.php` file within it:
 
@@ -106,7 +108,7 @@ The config file cannot contain any keys that are not defined in the plugin’s s
 
 ## Settings Pages
 
-Plugins can also provide a settings page in the Control Panel, which may make it easier for admins to manage settings values, depending on the plugin.
+Plugins can also provide a settings page in the control panel, which may make it easier for admins to manage settings values, depending on the plugin.
 
 To give your plugin a settings page, create a `templates/` directory within your plugin’s source directory, and create a `settings.twig` file within it:
 
@@ -154,11 +156,11 @@ class Plugin extends \craft\base\Plugin
 }
 ```
 
-With all that in place, your plugin will now get its own icon on the Settings page, and a cog icon in its row on the Settings → Plugins page, which will link to `/admin/settings/plugin-handle`.
+With all that in place, your plugin will now get its own icon on the Settings page, and a cog icon in its row on the Settings → Plugins page, which will link to `/admin/settings/plugins/plugin-handle`.
 
 ### Advanced Settings Pages
 
-When the `/admin/settings/plugin-handle` Control Panel URL is requested, your plugin is ultimately in charge of the response. Namely, your plugin’s `getSettingsResponse()` method. The default `getSettingsResponse()` implementation in <api:craft\base\Plugin> will call your plugin’s `settingsHtml()` method, and then tell the active controller to render Craft’s `settings/plugins/_settings` template (the layout template for plugin settings pages), passing it the HTML returned by `settingsHtml()`.
+When the `/admin/settings/plugins/plugin-handle` control panel URL is requested, your plugin is ultimately in charge of the response. Namely, your plugin’s `getSettingsResponse()` method. The default `getSettingsResponse()` implementation in <api:craft\base\Plugin> will call your plugin’s `settingsHtml()` method, and then tell the active controller to render Craft’s `settings/plugins/_settings` template (the layout template for plugin settings pages), passing it the HTML returned by `settingsHtml()`.
 
 If a plugin needs more control over its settings page(s), it can override its `getSettingsResponse()` method and do whatever it wants with the request.
 
