@@ -16,12 +16,12 @@ When [querying for elements](dev/element-queries/README.md) that have a Checkbox
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `'foo'` | with a `foo` option checked.
-| `'not foo'` | without a `foo` option checked.
-| `['foo', 'bar']` | with `foo` or `bar` options selected.
-| `['and', 'foo', 'bar']` | with `foo` and `bar` options selected.
+| Value                   | Fetches elements…                      |
+| ----------------------- | -------------------------------------- |
+| `'foo'`                 | with a `foo` option checked.           |
+| `'not foo'`             | without a `foo` option checked.        |
+| `['foo', 'bar']`        | with `foo` or `bar` options selected.  |
+| `['and', 'foo', 'bar']` | with `foo` and `bar` options selected. |
 
 ```twig
 {# Fetch entries with the 'foo' option checked #}
