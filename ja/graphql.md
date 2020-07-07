@@ -64,7 +64,7 @@ Craft Pro 版では [GraphQL](https://graphql.org) のAPIを使ってコンテ�
 
 ## Getting Started
 
-Before you begin, make sure that you are running Craft 3.3 or later, and you’ve got the Pro edition installed.
+Before you begin, make sure that you’re running Craft Pro 3.3 or later and [the `enableGql` setting](config:enableGql) has not been set to `false`.
 
 ### Create Your API Endpoint
 
