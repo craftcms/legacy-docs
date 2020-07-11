@@ -313,30 +313,93 @@ If you want your element type to support custom fields, you will also need to cr
 
 ```twig
 {% include "_includes/fieldlayoutdesigner" with {
-    fieldLayout: craft.app.fields.getLayoutByType('ns\\prefix\\elements\\Product')
+    fieldLayout: craft.app.fields.getLayoutByType('ns\\prefix\\elements\\MyElementType')
 } only %}
 ```
 
-エレメントタイプ全体で1つのフィールドレイアウトを持つのではなく、必要であれば複数のフィールドレイアウトを管理することもできます。例えば、エントリのフィールドレイアウトはそれぞれの入力タイプ向けに定義され、アセットのフィールドレイアウトはそれぞれのアセットボリューム向けに定義されます。
+Place that include within a `<form>` that posts to one of your plugin’s controllers. The controller can assemble the field layout from the POST data like this:
 
 ```php
-use ns\prefix\elements\Product;
+$fieldLayout = Craft::$app->getFields()->assembleLayoutFromPost();
+$fieldLayout->type = MyElementType::class;
+```
+
+Your service can then save the field layout by passing it to <api:craft\services\Fields::saveLayout()>:
+
+```php
+Craft::$app->fields->saveLayout($fieldLayout);
+```
+
+Or, if the layout is being used by a component that’s stored in the [project config](project-config.md), you can add the field layout to the component’s config, and save it alongside your component.
+
+```php
+use craft\db\Table;
+use craft\helpers\Db;
+use craft\helpers\StringHelper;
+use craft\models\FieldLayout;
 
 // ...
 
-// assemble the new one from the post data, and save it
-$fieldLayout = \Craft::$app->getFields()->assembleLayoutFromPost();
-$fieldLayout->type = Product::class;
-\Craft::$app->getFields()->saveLayout($fieldLayout);
+public function saveComponent($myComponent)
+{
+    // ...
+
+    $fieldLayoutConfig = $fieldLayout->getConfig();
+    if ($fieldLayoutConfig) {
+        if (!$fieldLayout->id) {
+            $layoutUid = $fieldLayout->uid = StringHelper::UUID();
+        } else {
+            $layoutUid = Db::uidById(Table::FIELDLAYOUTS, $fieldLayout->id);
+        }
+        $myComponentConfig['fieldLayouts'] = [
+            $layoutUid => $fieldLayoutConfig
+        ];
+    }
+
+    // ...
+}
+
+public function handleChangedComponent(ConfigEvent $event)
+{
+    // ...
+
+    if (!empty($data['fieldLayouts'])) {
+        // Save the field layout
+        $layout = FieldLayout::createFromConfig(reset($data['fieldLayouts']));
+        $layout->id = $myComponentRecord->fieldLayoutId;
+        $layout->type = MyComponent::class;
+        $layout->uid = key($data['fieldLayouts']);
+        Craft::$app->fields->saveLayout($layout);
+        $myComponentRecord->fieldLayoutId = $layout->id;
+    } else if ($myComponentRecord->fieldLayoutId) {
+        // Delete the field layout
+        Craft::$app->fields->deleteLayoutById($myComponentRecord->fieldLayoutId);
+        $myComponentRecord->fieldLayoutId = null;
+    }
+
+    // ...
+}
+
+public function handleDeletedComponent(ConfigEvent $event)
+{
+    // ...
+
+    // Delete the field layout
+    if ($myComponentRecord->fieldLayoutId) {
+        Craft::$app->fields->deleteLayoutById($myComponentRecord->fieldLayoutId);
+    }
+
+    // ...
+}
 ```
 
-あなたがしたいように、セットすることができます。データベースのどこかに、新しいフィールドレイアウトの ID を保存することを忘れないでください。（`$fieldLayout->id` 経由で `saveLayout()` を呼び出した後、フィールドレイアウトの ID にアクセスできます。)
+Rather than only having one field layout for your entire element type, you can also manage multiple field layouts, if needed. For example, entry field layouts are defined for each entry type; asset field layouts are defined for each asset volume, etc.
 
-エレメントの `getFieldLayout()` メソッドは（存在する場合）現在のエレメントに関連付けられたフィールドレイアウトを返す責任があります。デフォルトでは、エレメントの `$fieldLayoutId` プロパティをチェックします。セットされている場合、同じ ID のフィールドレイアウトを返します。そのため、それらを保存する際、エレメントに `$fieldLayoutId` プロパティをセットすることを推奨します。
+You can set that up however you want. Just make sure you’re passing the right field layout into the `fieldLayout` key when rendering the field layout designer.
 
 #### フィールドレイアウトへのエレメントの関連付け
 
-`$fieldLayoutId` プロパティがセットされている場合、<api:craft\services\Elements::saveElement()> はデータベースの `elements.fieldLayoutId` カラムに保存し、ロード時に取得されたその値をエレメントに再設定します。
+Elements’ `getFieldLayout()` method is responsible for returning the field layout that is associated with the current element (if there is one). By default, it will check a `$fieldLayoutId` property on the element. If set, it will return the field layout with the same ID. Therefore it’s recommended that you set the `$fieldLayoutId` property on your elements when saving them.
 
 ```php
 // ...
@@ -344,9 +407,9 @@ $product->fieldLayoutId = $productType->fieldLayoutId;
 \Craft::$app->elements->saveElement($product);
 ```
 
-あるいは、`getFieldLayout()` メソッドを上書きし、フィールドレイアウトを fetch / return することもできます。これは（ユーザーアカウントのように）エレメントタイプが単一のフィールドレイアウトしか持たない場合、むしろ望ましいかもしれません。
+If the `$fieldLayoutId`  property is set, <api:craft\services\Elements::saveElement()> will store it in the `elements.fieldLayoutId` column in the database, and your elements will be re-populated with the values when they are fetched down the road.
 
-エレメントのタイトルやカスタムフィールドの値がサイト単位で保存されている場合、static な `isLocalized()` メソッドを追加してください。
+Alternatively, you can override the `getFieldLayout()` method, and fetch/return the field layout yourself. This might be preferable if your element type only has a single field layout (like user accounts).
 
 ```php
 public function getFieldLayout()
@@ -357,7 +420,7 @@ public function getFieldLayout()
 
 ### ローカライゼーション
 
-デフォルトでは、エレメントはすべてのサイトに保存されます。特定のサイトだけにエレメントを保存する必要がある場合、`getSupportedSites()` メソッドを追加してください。
+If your elements’ title and custom field values should be stored on a per-site basis, add a static `isLocalized()` method:
 
 ```php
 public static function isLocalized(): bool
@@ -366,7 +429,7 @@ public static function isLocalized(): bool
 }
 ```
 
-`getSupportedSites()` によって返される配列内の値は、整数値（サイト ID）、または、`siteId` キーとそのサイトでエレメントがデフィルトで使用可能であるべきかを示すオプションの `enabledbyDefault` キー（ブール値）の配列のいずれかにできます。
+By default, elements will be stored in all sites. If an element should only be stored for certain sites, add a `getSupportedSites()` method to it.
 
 ```php
 public function getSupportedSites(): array
@@ -379,13 +442,15 @@ public function getSupportedSites(): array
 }
 ```
 
-エレメントに独自のステータスが必要な場合、エレメントクラスに static な `hasStatuses()` メソッドを加えます。
+The values in the array returned by `getSupportedSites()` can either be integers (site IDs) or an array with a `siteId` key and optionally an `enabledbyDefault` key (boolean) indicating whether the element should be enabled by default for that site.
 
-次に、`enabled` と `disabled` 以外のステータスを持つことができる場合、それらを定義するために static な `statuses()` メソッドを追加してください。
+::: tip
+Elements that support multiple sites will have their `afterSave()` method called multiple times on save – once for each site that the element supports. You can tell whether it’s being called for the originally-submitted site versus a propagated site by checking `$this->propagating`.
+:::
 
 ## ステータス
 
-エレメントタイプは、基準パラメータで定義されたエレメントのグループである「ソース」を定義できます。
+If your elements should have their own statuses, give your element class a static <api:craft\base\ElementInterface::hasStatuses()> method:
 
 ```php
 public static function hasStatuses(): bool
@@ -396,19 +461,55 @@ public static function hasStatuses(): bool
 
 ### インデックスページアクション
 
-エレメントタイプのソースは、エレメントインデックスのサイドバーとエレメントの関連フィールドの設定内に表示されます。
+By default your elements will support two statuses: Enabled and Disabled. If you’d like to give your element type its own custom statuses, first define what they are by overriding its static <api:craft\base\ElementInterface::statuses()> method:
 
 ```php
 public static function statuses(): array
 {
     return [
-        'foo' => \Craft::t('plugin-handle', 'Foo'),
-        'bar' => \Craft::t('plugin-handle', 'Bar'),
+        'foo' => ['label' => \Craft::t('plugin-handle', 'Foo'), 'color' => '27AE60'],
+        'bar' => ['label' => \Craft::t('plugin-handle', 'Bar'), 'color' => 'F2842D'],
     ];
 }
 ```
 
-エレメントタイプのソースを定義するために、エレメントクラスに protected static な `defineSources()` メソッドを追加してください。
+Next add a <api:craft\base\ElementInterface::getStatus()> method that returns the current status of an element:
+
+```php
+public function getStatus()
+{
+    if ($this->fooIsTrue) {
+        return 'foo';
+    }
+
+    return 'bar';
+}
+```
+
+Finally, override the <api:craft\elements\db\ElementQuery::statusCondition()> method on your [element query class](#element-query-class):
+
+```php
+protected function statusCondition(string $status)
+{
+    switch ($status) {
+        case 'foo':
+            return ['foo' => true];
+        case 'bar':
+            return ['bar' => true];
+        default:
+            // call the base method for `enabled` or `disabled`
+            return parent::statusCondition($status);
+    }
+}
+```
+
+## ソース
+
+Your element type can define “sources”, which are groups of elements defined by criteria parameters.
+
+Element type sources will be visible in the sidebar of element indexes, and within the settings of element relation fields.
+
+To define your element type’s sources, add a protected static [defineSources()](api:craft\base\Element::defineSources()) method to your element class:
 
 ```php
 protected static function defineSources(string $context = null): array
@@ -437,21 +538,21 @@ protected static function defineSources(string $context = null): array
 }
 ```
 
-ソースが選択されると、Craft はソースの `criteria` 配列にリストされている値で[エレメントクエリ](#element-query-class)を設定します。
+When a source is selected, Craft will configure your [element query](#element-query-class) with the values listed in the source’s `criteria` array.
 
-```php
+## インデックスページ
+
+You can give your [control panel section](cp-section.md) an index page for your element type using the following template:
+
+```twig
 {% extends '_layouts/elementindex' %}
 {% set title = 'Products' %}
 {% set elementType = 'ns\\prefix\\elements\\Product' %}
 ```
 
-## ソース
+### 復元アクション
 
-次のテンプレートを使用して、[コントロールパネルのセクション](cp-section.md)にエレメントタイプのインデックスページを加えることができます。
-
-エレメントクラスに protected static な `defineActions()`メソッドを追加することで、インデックスページでエレメントタイプをサポートする[アクション](element-action-types.md)を定義できます。
-
-To define your element type’s sources, add a protected static [defineSources()](api:craft\base\Element::defineSources()) method to your element class:
+You can define which [actions](element-action-types.md) your element type supports on its index page by adding a protected static [defineActions()](api:craft\base\Element::defineActions()) method on your element class:
 
 ```php
 protected static function defineActions(string $source = null): array
@@ -463,40 +564,9 @@ protected static function defineActions(string $source = null): array
 }
 ```
 
-要素を復元可能にするには、static な `defineActions()` メソッドによって返される配列に <api:craft\elements\actions\Restore> アクションを追加するだけです。Craft は通常のインデックスビューから自動的にそれを隠し、ステータスオプションで「破棄済み」を選択したときだけ表示します。
-
-## インデックスページ
-
-You can give your [control panel section](cp-section.md) an index page for your element type using the following template:
-
-```twig
-protected static function defineSortOptions(): array
-{
-    return [
-        'title' => \Craft::t('app', 'Title'),
-        'price' => \Craft::t('plugin-handle', 'Price'),
-    ];
-}
-```
-
-### 復元アクション
-
-You can define which [actions](element-action-types.md) your element type supports on its index page by adding a protected static [defineActions()](api:craft\base\Element::defineActions()) method on your element class:
-
-```php
-protected static function defineTableAttributes(): array
-{
-    return [
-        'title' => \Craft::t('app', 'Title'),
-        'price' => \Craft::t('plugin-handle', 'Price'),
-        'currency' => \Craft::t('plugin-handle', 'Currency'),
-    ];
-}
-```
-
 ### ソートオプション
 
-エレメントクラスに protected な `defineTableAttributes()` メソッドを追加することで、エレメントインデックスのテーブルビューで利用可能な列をカスタマイズできます。
+All element types are [soft-deletable](soft-deletes.md) out of the box, however it’s up to each element type to decide whether they should be restorable.
 
 To make an element restorable, just add the <api:craft\elements\actions\Restore> action to the array returned by your static [defineActions()](api:craft\base\Element::defineActions()) method. Craft will automatically hide it during normal index views, and show it when someone selects the “Trashed” status option.
 
