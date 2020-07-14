@@ -418,6 +418,14 @@ public function getFieldLayout()
 }
 ```
 
+#### Validating Required Custom Fields
+
+Required custom fields are only enforced when the element is saved using the `live` validation scenario. To make sure required custom fields are validated, set the scenario before calling `saveElement()`:
+
+```php
+$element->setScenario(\craft\base\Element::SCENARIO_LIVE);
+```
+
 ### ローカライゼーション
 
 If your elements’ title and custom field values should be stored on a per-site basis, add a static `isLocalized()` method:
