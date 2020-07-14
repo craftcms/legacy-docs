@@ -35,9 +35,12 @@ public function init()
 - `badgeCount` _（オプション）_ – ナビゲーション項目に表示されるバッジの数。
 - `subnav` _（オプション）_ – セクションにアクセスしたときに表示される、サブナビゲーション項目の配列。（[サブナビゲーション](#subnavs)を参照してください。）
 
+
+For Craft to properly designate an item as “active,” its `url` must be registered with a relative path to the plugin or module’s control panel section. Any `subnav` paths should begin with `url` in order to appear selected when active.
+
 ## サブナビゲーション
 
-セクションがサブナビゲーションを持つ場合、`subnav` 配列内のそれぞれのサブナビゲーション項目は、`url` および `label` キーを持つサブ配列で表される必要があります。
+If your section has a sub-navigation, each subnav item within your `subnav` array should be represented by a sub-array with `url` and `label` keys:
 
 ```php
 'subnav' => [
@@ -47,7 +50,7 @@ public function init()
 ],
 ```
 
-テンプレートでは、`selectedSubnavItem` 変数にナビゲーション項目のキーをセットすることによって、どのサブナビゲーション項目が選択されているかを指定できます。
+Your templates can specify which subnav item should be selected by setting a `selectedSubnavItem` variable to the key of the nav item:
 
 ```twig
 {% set selectedSubnavItem = 'bar' %}
