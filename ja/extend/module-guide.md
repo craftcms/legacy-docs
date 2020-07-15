@@ -17,7 +17,7 @@
 
 モジュールを作るため、Craft プロジェクト内のどこかに `modules/<ModuleID>/` のような新しいディレクトリを作成してください。例えば、モジュール ID が `foo` の場合、次のように設定します。
 
-```
+```treeview
 my-project.test/
 ├── modules/
 │   └── foo/
