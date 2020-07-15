@@ -17,7 +17,7 @@
 
 プラグインの構造は次のようになります。
 
-```
+```treeview
 base_dir/
 └── src/
     ├── FooBundle.php
