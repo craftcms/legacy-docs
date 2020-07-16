@@ -4,7 +4,7 @@ Rather than requiring that everyone upload images at a certain size, Craft lets 
 
 ## Defining Transforms from the Control Panel
 
-You can define transforms from the Control Panel by going to Settings → Assets → Image Transforms and clicking the “New Transform” button.
+You can define transforms from the control panel by going to Settings → Assets → Image Transforms and clicking the “New Transform” button.
 
 Each transform has the following settings:
 
@@ -58,7 +58,7 @@ To output an image with a transform applied, simply pass your transform’s hand
 
 You can also define transforms directly in your templates.
 
-First, you must create an object that defines the transform’s parameters:
+First, you must create a [hash](dev/twig-primer.md#hashes) that defines the transform’s parameters:
 
 ```twig
 {% set thumb = {
@@ -70,13 +70,13 @@ First, you must create an object that defines the transform’s parameters:
 } %}
 ```
 
-Then you can pass that object into your asset’s `getUrl()`, `getWidth()`, and `getHeight()` functions:
+Then you can pass that hash into your asset’s `getUrl()`, `getWidth()`, and `getHeight()` functions:
 
 ```twig
 <img src="{{ asset.getUrl(thumb) }}" width="{{ asset.getWidth(thumb) }}" height="{{ asset.getHeight(thumb) }}">
 ```
 
-Note how in that example there are no quotes around “`thumb`”, like there were in the first one. That’s because in the first one, we were passing a *string* set to a CP-defined transform’s handle, whereas in this example we’re passing a *variable* referencing the ‘thumb’ object we created within the template.
+Note how in that example there are no quotes around “`thumb`”, like there were in the first one. That’s because in the first one, we were passing a [string](dev/twig-primer.md#strings) set to a CP-defined transform’s handle, whereas in this example we’re passing a [variable](dev/twig-primer.md#variables) referencing the `thumb` hash we created within the template.
 
 ### Possible Values
 

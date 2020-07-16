@@ -10,13 +10,13 @@ For example, in a new Craft 3 project, your `.env` file should define these envi
 ENVIRONMENT="dev"
 SECURITY_KEY=""
 DB_DRIVER="mysql"
-DB_SERVER="localhost"
+DB_SERVER="<host>"
+DB_PORT="<port>"
+DB_DATABASE="<dbname>"
 DB_USER="root"
 DB_PASSWORD=""
-DB_DATABASE=""
 DB_SCHEMA="public"
 DB_TABLE_PREFIX=""
-DB_PORT=""
 ```
 
 The variables that start with `DB_` are database connection settings, and they get pulled into `config/db.php` like this:
@@ -25,14 +25,18 @@ The variables that start with `DB_` are database connection settings, and they g
 return [
     'driver' => getenv('DB_DRIVER'),
     'server' => getenv('DB_SERVER'),
+    'port' => getenv('DB_PORT'),
+    'database' => getenv('DB_DATABASE'),
     'user' => getenv('DB_USER'),
     'password' => getenv('DB_PASSWORD'),
-    'database' => getenv('DB_DATABASE'),
     'schema' => getenv('DB_SCHEMA'),
     'tablePrefix' => getenv('DB_TABLE_PREFIX'),
-    'port' => getenv('DB_PORT')
 ];
 ```
+
+::: tip
+NOTE You may also provide a `DB_DSN` environment variable. If defined, Craft will use that.
+:::
 
 We recommend this environment variable approach for two reasons:
 
@@ -109,7 +113,7 @@ Allowed types
 Default value
 :
 
-`''`
+`null`
 
 Defined by
 :
@@ -132,7 +136,7 @@ Allowed types
 Default value
 :
 
-`self::DRIVER_MYSQL`
+`null`
 
 Defined by
 :
@@ -164,10 +168,12 @@ Defined by
 
 
 
-If you want to manually specify your PDO DSN connection string you can do so here.
+The Data Source Name (“DSN”) that tells Craft how to connect to the database.
 
-- MySQL: http://php.net/manual/en/ref.pdo-mysql.connection.php
-- PostgreSQL: http://php.net/manual/en/ref.pdo-pgsql.connection.php If you set this, then the [server](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#server), [port](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#port), [user](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#user), [password](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#password), [database](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#database), [driver](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#driver) and [unixSocket](https://docs.craftcms.com/api/v3/craft-config-dbconfig.html#unixsocket) config settings will be ignored.
+DSNs should begin with a driver prefix (`mysql:` or `pgsql:`), followed by driver-specific parameters. For example, `mysql:host=127.0.0.1;port=3306;dbname=acme_corp`.
+
+- MySQL parameters: http://php.net/manual/en/ref.pdo-mysql.connection.php
+- PostgreSQL parameters: http://php.net/manual/en/ref.pdo-pgsql.connection.php
 
 
 
@@ -250,7 +256,7 @@ Allowed types
 Default value
 :
 
-`'localhost'`
+`null`
 
 Defined by
 :
@@ -259,7 +265,7 @@ Defined by
 
 
 
-The database server name or IP address. Usually 'localhost' or '127.0.0.1'.
+The database server name or IP address. Usually `localhost` or `127.0.0.1`.
 
 
 

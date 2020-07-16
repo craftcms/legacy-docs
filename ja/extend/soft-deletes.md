@@ -12,7 +12,7 @@
 
 ```php
 // New table migration
-$this->createTale('{{%tablename}}', [
+$this->createTable('{{%tablename}}', [
     // other columns...
     'dateDeleted' => $this->dateTime()->null(),
 ]);

@@ -4,7 +4,7 @@
 
 ## コントロールパネルの設定
 
-コントロールパネル内のいくつかの設定は、（`.env` ファイルで定義されているような）環境変数にセットできます。
+Some settings in the control panel can be set to environment variables (like the ones defined in your `.env` file):
 
 - 一般
   - **システム名**

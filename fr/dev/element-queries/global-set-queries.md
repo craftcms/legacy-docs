@@ -51,6 +51,31 @@ Global set queries support the following parameters:
 
 <!-- BEGIN PARAMS -->
 
+| Param                                     | Description                                                                                                                                                                                                                                                                                   |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [anyStatus](#anystatus)                   | Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.                                                  |
+| [asArray](#asarray)                       | Causes the query to return matching global sets as arrays of data, rather than [GlobalSet](api:craft\elements\GlobalSet) objects.                                                                                                                                                           |
+| [clearCachedResult](#clearcachedresult)   | Clears the cached result.                                                                                                                                                                                                                                                                     |
+| [dateCreated](#datecreated)               | Narrows the query results based on the global sets’ creation dates.                                                                                                                                                                                                                           |
+| [dateUpdated](#dateupdated)               | Narrows the query results based on the global sets’ last-updated dates.                                                                                                                                                                                                                       |
+| [fixedOrder](#fixedorder)                 | Causes the query results to be returned in the order specified by [id](#id).                                                                                                                                                                                                                  |
+| [handle](#handle)                         | Narrows the query results based on the global sets’ handles.                                                                                                                                                                                                                                  |
+| [id](#id)                                 | Narrows the query results based on the global sets’ IDs.                                                                                                                                                                                                                                      |
+| [ignorePlaceholders](#ignoreplaceholders) | Causes the query to return matching global sets as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement). |
+| [inReverse](#inreverse)                   | Causes the query results to be returned in reverse order.                                                                                                                                                                                                                                     |
+| [limit](#limit)                           | Determines the number of global sets that should be returned.                                                                                                                                                                                                                                 |
+| [offset](#offset)                         | Determines how many global sets should be skipped in the results.                                                                                                                                                                                                                             |
+| [orderBy](#orderby)                       | Determines the order that the global sets should be returned in. (If empty, defaults to `name ASC`.)                                                                                                                                                                                          |
+| [preferSites](#prefersites)               | If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.                                                                                                                                                                                 |
+| [relatedTo](#relatedto)                   | Narrows the query results to only global sets that are related to certain other elements.                                                                                                                                                                                                     |
+| [search](#search)                         | Narrows the query results to only global sets that match a search query.                                                                                                                                                                                                                      |
+| [site](#site)                             | Determines which site(s) the global sets should be queried in.                                                                                                                                                                                                                                |
+| [siteId](#siteid)                         | Determines which site(s) the global sets should be queried in, per the site’s ID.                                                                                                                                                                                                             |
+| [trashed](#trashed)                       | Narrows the query results to only global sets that have been soft-deleted.                                                                                                                                                                                                                    |
+| [uid](#uid)                               | Narrows the query results based on the global sets’ UIDs.                                                                                                                                                                                                                                     |
+| [unique](#unique)                         | Determines whether only elements with unique IDs should be returned by the query.                                                                                                                                                                                                             |
+| [with](#with)                             | Causes the query to return matching global sets eager-loaded with related elements.                                                                                                                                                                                                           |
+
 ### `anyStatus`
 
 Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
@@ -99,6 +124,15 @@ $globalSets = \craft\elements\GlobalSet::find()
     ->all();
 ```
 :::
+
+
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
 
 
 ### `dateCreated`
@@ -173,128 +207,6 @@ $lastWeek = (new \DateTime('1 week ago'))->format(\DateTime::ATOM);
 $globalSets = \craft\elements\GlobalSet::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
-```
-:::
-
-
-### `draftCreator`
-
-Narrows the query results to only drafts created by a given user.
-
-
-
-Possible values include:
-
-| Value                                  | Fetches drafts…                        |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch drafts by the current user #}
-{% set globalSets = craft.globalSets()
-    .draftCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch drafts by the current user
-$globalSets = \craft\elements\GlobalSet::find()
-    ->draftCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `draftId`
-
-Narrows the query results based on the global sets’ draft’s ID (from the `drafts` table).
-
-
-
-Possible values include:
-
-| Value | Fetches drafts…                |
-| ----- | ------------------------------ |
-| `1`   | for the draft with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a draft #}
-{% set globalSets = craft.globalSets()
-    .draftId(10)
-    .all() %}
-```
-
-```php
-// Fetch a draft
-$globalSets = \craft\elements\GlobalSet::find()
-    ->draftIf(10)
-    ->all();
-```
-:::
-
-
-### `draftOf`
-
-Narrows the query results to only drafts of a given global set.
-
-
-
-Possible values include:
-
-| Value                                                | Fetches drafts…                               |
-| ---------------------------------------------------- | --------------------------------------------- |
-| `1`                                                  | for the global set with an ID of 1.           |
-| a [GlobalSet](api:craft\elements\GlobalSet) object | for the global set represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch drafts of the global set #}
-{% set globalSets = craft.globalSets()
-    .draftOf(myGlobalSet)
-    .all() %}
-```
-
-```php
-// Fetch drafts of the global set
-$globalSets = \craft\elements\GlobalSet::find()
-    ->draftOf($myGlobalSet)
-    ->all();
-```
-:::
-
-
-### `drafts`
-
-Narrows the query results to only drafts global sets.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a draft global set #}
-{% set globalSets = {twig-function}
-    .drafts()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a draft global set
-$globalSets = \craft\elements\GlobalSet::find()
-    ->drafts()
-    ->id(123)
-    ->one();
 ```
 :::
 
@@ -484,7 +396,7 @@ $globalSets = \craft\elements\GlobalSet::find()
 
 ### `orderBy`
 
-Determines the order that the global sets should be returned in.
+Determines the order that the global sets should be returned in. (If empty, defaults to `name ASC`.)
 
 
 
@@ -565,128 +477,6 @@ $globalSets = \craft\elements\GlobalSet::find()
 :::
 
 
-### `revisionCreator`
-
-Narrows the query results to only revisions created by a given user.
-
-
-
-Possible values include:
-
-| Value                                  | Fetches revisions…                     |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions by the current user #}
-{% set globalSets = craft.globalSets()
-    .revisionCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch revisions by the current user
-$globalSets = \craft\elements\GlobalSet::find()
-    ->revisionCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `revisionId`
-
-Narrows the query results based on the global sets’ revision’s ID (from the `revisions` table).
-
-
-
-Possible values include:
-
-| Value | Fetches revisions…                |
-| ----- | --------------------------------- |
-| `1`   | for the revision with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a revision #}
-{% set globalSets = craft.globalSets()
-    .revisionId(10)
-    .all() %}
-```
-
-```php
-// Fetch a revision
-$globalSets = \craft\elements\GlobalSet::find()
-    ->revisionIf(10)
-    ->all();
-```
-:::
-
-
-### `revisionOf`
-
-Narrows the query results to only revisions of a given global set.
-
-
-
-Possible values include:
-
-| Value                                                | Fetches revisions…                            |
-| ---------------------------------------------------- | --------------------------------------------- |
-| `1`                                                  | for the global set with an ID of 1.           |
-| a [GlobalSet](api:craft\elements\GlobalSet) object | for the global set represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions of the global set #}
-{% set globalSets = craft.globalSets()
-    .revisionOf(myGlobalSet)
-    .all() %}
-```
-
-```php
-// Fetch revisions of the global set
-$globalSets = \craft\elements\GlobalSet::find()
-    ->revisionOf($myGlobalSet)
-    ->all();
-```
-:::
-
-
-### `revisions`
-
-Narrows the query results to only revision global sets.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a revision global set #}
-{% set globalSets = {twig-function}
-    .revisions()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a revision global set
-$globalSets = \craft\elements\GlobalSet::find()
-    ->revisions()
-    ->id(123)
-    ->one();
-```
-:::
-
-
 ### `search`
 
 Narrows the query results to only global sets that match a search query.
@@ -730,13 +520,13 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value                                  | Fetches global sets…                           |
-| -------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                | from the site with a handle of `foo`.          |
-| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
-| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
-| a `\craft\elements\db\Site` object | from the site represented by the object.       |
-| `'*'`                                  | from any site.                                 |
+| Value                                                   | Fetches global sets…                           |
+| ------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                 | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                                        | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                                 | not in a site with a handle of `foo` or `bar`. |
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.       |
+| `'*'`                                                   | from any site.                                 |
 
 ::: tip
 If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.

@@ -40,15 +40,21 @@ When [querying for elements](dev/element-queries/README.md) that have an Entries
 
 Possible values include:
 
-| Value | Fetches elements…
-| - | -
-| `':empty:'` | that don’t have any related entries.
-| `':notempty:'` | that have at least one related entry.
+| Value                                                       | Fetches elements…                                        |
+| ----------------------------------------------------------- | -------------------------------------------------------- |
+| `':empty:'`                                                 | that don’t have any related entries.                     |
+| `':notempty:'`                                              | that have at least one related entry.                    |
+| `100`                                                       | that are related to the entry with an ID of 100.         |
+| `[100, 200]`                                                | that are related to an entry with an ID of 100 or 200.   |
+| `['and', 100, 200]`                                         | that are related to the entries with IDs of 100 and 200. |
+| an [Entry](api:craft\elements\Entry) object               | that are related to the entry.                           |
+| an [EntryQuery](api:craft\elements\db\EntryQuery) object | that are related to any of the resulting entries.        |
 
 ```twig
-{# Fetch entries with a related entry #}
-{% set entries = craft.entries()
-    .<FieldHandle>(':notempty:')
+{# Fetch artwork entries that are related to `artist` #}
+{% set works = craft.entries()
+    .section('artwork')
+    .<FieldHandle>(artist)
     .all() %}
 ```
 
@@ -103,6 +109,44 @@ You can set [parameters](dev/element-queries/entry-queries.md#parameters) on the
 ::: tip
 It’s always a good idea to clone the entry query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
 :::
+
+### Saving Entries Fields in Entry Forms
+
+If you have an [entry form](dev/examples/entry-form.md) that needs to contain an Entries field, you will need to submit your field value as a list of entry IDs, in the order you want them to be related.
+
+For example, you could create a list of checkboxes for each of the possible relations:
+
+```twig
+{# Include a hidden input first so Craft knows to update the
+   existing value, if no checkboxes are checked. #}
+{{ hiddenInput('fields[<FieldHandle>]', '') }}
+
+{# Get all of the possible entry options #}
+{% set possibleEntries = craft.entries()
+  .section('galleries')
+  .orderBy('title ASC')
+  .all() %}
+
+{# Get the currently related entry IDs #}
+{% set relatedEntryIds = entry is defined
+  ? entry.<FieldHandle>.ids()
+  : [] %}
+
+<ul>
+  {% for possibleEntry in possibleEntries %}
+    <li>
+      <label>
+        {{ input('checkbox', 'fields[<FieldHandle>][]', possibleEntry.id, {
+          checked: possibleEntry.id in relatedEntryIds
+        }) }}
+        {{ possibleEntry.title }}
+      </label>
+    </li>
+    {% endfor %}
+</ul>
+```
+
+You could then make the checkbox list sortable, so users have control over the order of related entries.
 
 ## See Also
 

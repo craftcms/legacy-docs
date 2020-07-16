@@ -45,11 +45,52 @@ We can display a list of thumbnails for images in a “Photos” volume by doing
 </ul>
 ```
 
+::: warning
+When using `asset.url` or `asset.getUrl()`, the asset’s source volume must have “Assets in this volume have public URLs” enabled and a “Base URL” setting. Otherwise, the result will always be empty.
+:::
+
 ## Parameters
 
 Asset queries support the following parameters:
 
 <!-- BEGIN PARAMS -->
+
+| Param                                     | Description                                                                                                                                                                                                                                                                              |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [anyStatus](#anystatus)                   | Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.                                             |
+| [asArray](#asarray)                       | Causes the query to return matching assets as arrays of data, rather than [Asset](api:craft\elements\Asset) objects.                                                                                                                                                                   |
+| [clearCachedResult](#clearcachedresult)   | Clears the cached result.                                                                                                                                                                                                                                                                |
+| [dateCreated](#datecreated)               | Narrows the query results based on the assets’ creation dates.                                                                                                                                                                                                                           |
+| [dateModified](#datemodified)             | Narrows the query results based on the assets’ files’ last-modified dates.                                                                                                                                                                                                               |
+| [dateUpdated](#dateupdated)               | Narrows the query results based on the assets’ last-updated dates.                                                                                                                                                                                                                       |
+| [filename](#filename)                     | Narrows the query results based on the assets’ filenames.                                                                                                                                                                                                                                |
+| [fixedOrder](#fixedorder)                 | Causes the query results to be returned in the order specified by [id](#id).                                                                                                                                                                                                             |
+| [folderId](#folderid)                     | Narrows the query results based on the folders the assets belong to, per the folders’ IDs.                                                                                                                                                                                               |
+| [height](#height)                         | Narrows the query results based on the assets’ image heights.                                                                                                                                                                                                                            |
+| [id](#id)                                 | Narrows the query results based on the assets’ IDs.                                                                                                                                                                                                                                      |
+| [ignorePlaceholders](#ignoreplaceholders) | Causes the query to return matching assets as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement). |
+| [inReverse](#inreverse)                   | Causes the query results to be returned in reverse order.                                                                                                                                                                                                                                |
+| [includeSubfolders](#includesubfolders)   | Broadens the query results to include assets from any of the subfolders of the folder specified by [folderId](#folderid).                                                                                                                                                                |
+| [kind](#kind)                             | Narrows the query results based on the assets’ file kinds.                                                                                                                                                                                                                               |
+| [limit](#limit)                           | Determines the number of assets that should be returned.                                                                                                                                                                                                                                 |
+| [offset](#offset)                         | Determines how many assets should be skipped in the results.                                                                                                                                                                                                                             |
+| [orderBy](#orderby)                       | Determines the order that the assets should be returned in. (If empty, defaults to `dateCreated DESC`.)                                                                                                                                                                                  |
+| [preferSites](#prefersites)               | If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.                                                                                                                                                                            |
+| [relatedTo](#relatedto)                   | Narrows the query results to only assets that are related to certain other elements.                                                                                                                                                                                                     |
+| [search](#search)                         | Narrows the query results to only assets that match a search query.                                                                                                                                                                                                                      |
+| [site](#site)                             | Determines which site(s) the assets should be queried in.                                                                                                                                                                                                                                |
+| [siteId](#siteid)                         | Determines which site(s) the assets should be queried in, per the site’s ID.                                                                                                                                                                                                             |
+| [size](#size)                             | Narrows the query results based on the assets’ file sizes (in bytes).                                                                                                                                                                                                                    |
+| [title](#title)                           | Narrows the query results based on the assets’ titles.                                                                                                                                                                                                                                   |
+| [trashed](#trashed)                       | Narrows the query results to only assets that have been soft-deleted.                                                                                                                                                                                                                    |
+| [uid](#uid)                               | Narrows the query results based on the assets’ UIDs.                                                                                                                                                                                                                                     |
+| [unique](#unique)                         | Determines whether only elements with unique IDs should be returned by the query.                                                                                                                                                                                                        |
+| [uploader](#uploader)                     | Narrows the query results based on the user the assets were uploaded by, per the user’s IDs.                                                                                                                                                                                             |
+| [volume](#volume)                         | Narrows the query results based on the volume the assets belong to.                                                                                                                                                                                                                      |
+| [volumeId](#volumeid)                     | Narrows the query results based on the volumes the assets belong to, per the volumes’ IDs.                                                                                                                                                                                               |
+| [width](#width)                           | Narrows the query results based on the assets’ image widths.                                                                                                                                                                                                                             |
+| [with](#with)                             | Causes the query to return matching assets eager-loaded with related elements.                                                                                                                                                                                                           |
+| [withTransforms](#withtransforms)         | Causes the query to return matching assets eager-loaded with image transform indexes.                                                                                                                                                                                                    |
 
 ### `anyStatus`
 
@@ -99,6 +140,15 @@ $assets = \craft\elements\Asset::find()
     ->all();
 ```
 :::
+
+
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
 
 
 ### `dateCreated`
@@ -212,128 +262,6 @@ $assets = \craft\elements\Asset::find()
 :::
 
 
-### `draftCreator`
-
-Narrows the query results to only drafts created by a given user.
-
-
-
-Possible values include:
-
-| Value                                  | Fetches drafts…                        |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch drafts by the current user #}
-{% set assets = craft.assets()
-    .draftCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch drafts by the current user
-$assets = \craft\elements\Asset::find()
-    ->draftCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `draftId`
-
-Narrows the query results based on the assets’ draft’s ID (from the `drafts` table).
-
-
-
-Possible values include:
-
-| Value | Fetches drafts…                |
-| ----- | ------------------------------ |
-| `1`   | for the draft with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a draft #}
-{% set assets = craft.assets()
-    .draftId(10)
-    .all() %}
-```
-
-```php
-// Fetch a draft
-$assets = \craft\elements\Asset::find()
-    ->draftIf(10)
-    ->all();
-```
-:::
-
-
-### `draftOf`
-
-Narrows the query results to only drafts of a given asset.
-
-
-
-Possible values include:
-
-| Value                                        | Fetches drafts…                          |
-| -------------------------------------------- | ---------------------------------------- |
-| `1`                                          | for the asset with an ID of 1.           |
-| a [Asset](api:craft\elements\Asset) object | for the asset represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch drafts of the asset #}
-{% set assets = craft.assets()
-    .draftOf(myAsset)
-    .all() %}
-```
-
-```php
-// Fetch drafts of the asset
-$assets = \craft\elements\Asset::find()
-    ->draftOf($myAsset)
-    ->all();
-```
-:::
-
-
-### `drafts`
-
-Narrows the query results to only drafts assets.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a draft asset #}
-{% set assets = {twig-function}
-    .drafts()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a draft asset
-$assets = \craft\elements\Asset::find()
-    ->drafts()
-    ->id(123)
-    ->one();
-```
-:::
-
-
 ### `filename`
 
 Narrows the query results based on the assets’ filenames.
@@ -402,7 +330,7 @@ Narrows the query results based on the folders the assets belong to, per the fol
 
 Possible values include:
 
-| Value           | Fetches categories…                   |
+| Value           | Fetches assets…                       |
 | --------------- | ------------------------------------- |
 | `1`             | in a folder with an ID of 1.          |
 | `'not 1'`       | not in a folder with an ID of 1.      |
@@ -420,7 +348,7 @@ Possible values include:
 ```
 
 ```php
-// Fetch categories in the folder with an ID of 1
+// Fetch assets in the folder with an ID of 1
 $assets = \craft\elements\Asset::find()
     ->folderId(1)
     ->all();
@@ -559,7 +487,7 @@ Broadens the query results to include assets from any of the subfolders of the f
 ```
 
 ```php
-// Fetch categories in the folder with an ID of 1 (including its subfolders)
+// Fetch assets in the folder with an ID of 1 (including its subfolders)
 $assets = \craft\elements\Asset::find()
     ->folderId(1)
     ->includeSubfolders()
@@ -673,7 +601,7 @@ $assets = \craft\elements\Asset::find()
 
 ### `orderBy`
 
-Determines the order that the assets should be returned in.
+Determines the order that the assets should be returned in. (If empty, defaults to `dateCreated DESC`.)
 
 
 
@@ -754,128 +682,6 @@ $assets = \craft\elements\Asset::find()
 :::
 
 
-### `revisionCreator`
-
-Narrows the query results to only revisions created by a given user.
-
-
-
-Possible values include:
-
-| Value                                  | Fetches revisions…                     |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions by the current user #}
-{% set assets = craft.assets()
-    .revisionCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch revisions by the current user
-$assets = \craft\elements\Asset::find()
-    ->revisionCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `revisionId`
-
-Narrows the query results based on the assets’ revision’s ID (from the `revisions` table).
-
-
-
-Possible values include:
-
-| Value | Fetches revisions…                |
-| ----- | --------------------------------- |
-| `1`   | for the revision with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a revision #}
-{% set assets = craft.assets()
-    .revisionId(10)
-    .all() %}
-```
-
-```php
-// Fetch a revision
-$assets = \craft\elements\Asset::find()
-    ->revisionIf(10)
-    ->all();
-```
-:::
-
-
-### `revisionOf`
-
-Narrows the query results to only revisions of a given asset.
-
-
-
-Possible values include:
-
-| Value                                        | Fetches revisions…                       |
-| -------------------------------------------- | ---------------------------------------- |
-| `1`                                          | for the asset with an ID of 1.           |
-| a [Asset](api:craft\elements\Asset) object | for the asset represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions of the asset #}
-{% set assets = craft.assets()
-    .revisionOf(myAsset)
-    .all() %}
-```
-
-```php
-// Fetch revisions of the asset
-$assets = \craft\elements\Asset::find()
-    ->revisionOf($myAsset)
-    ->all();
-```
-:::
-
-
-### `revisions`
-
-Narrows the query results to only revision assets.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a revision asset #}
-{% set assets = {twig-function}
-    .revisions()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a revision asset
-$assets = \craft\elements\Asset::find()
-    ->revisions()
-    ->id(123)
-    ->one();
-```
-:::
-
-
 ### `search`
 
 Narrows the query results to only assets that match a search query.
@@ -919,13 +725,13 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value                                  | Fetches assets…                                |
-| -------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                | from the site with a handle of `foo`.          |
-| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
-| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
-| a `\craft\elements\db\Site` object | from the site represented by the object.       |
-| `'*'`                                  | from any site.                                 |
+| Value                                                   | Fetches assets…                                |
+| ------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                 | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                                        | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                                 | not in a site with a handle of `foo` or `bar`. |
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.       |
+| `'*'`                                                   | from any site.                                 |
 
 ::: tip
 If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
@@ -1124,13 +930,43 @@ $assets = \craft\elements\Asset::find()
 :::
 
 
+### `uploader`
+
+Narrows the query results based on the user the assets were uploaded by, per the user’s IDs.
+
+Possible values include:
+
+| Value                                                       | Fetches assets…                                 |
+| ----------------------------------------------------------- | ----------------------------------------------- |
+| `1`                                                         | uploaded by the user with an ID of 1.           |
+| a [craft\elements\User](api:craft\elements\User) object | uploaded by the user represented by the object. |
+
+
+
+::: code
+```twig
+{# Fetch assets uploaded by the user with an ID of 1 #}
+{% set assets = craft.assets()
+    .uploader(1)
+    .all() %}
+```
+
+```php
+// Fetch assets uploaded by the user with an ID of 1
+$assets = \craft\elements\Asset::find()
+    ->uploader(1)
+    ->all();
+```
+:::
+
+
 ### `volume`
 
 Narrows the query results based on the volume the assets belong to.
 
 Possible values include:
 
-| Value                                      | Fetches categories…                              |
+| Value                                      | Fetches assets…                                  |
 | ------------------------------------------ | ------------------------------------------------ |
 | `'foo'`                                    | in a volume with a handle of `foo`.              |
 | `'not foo'`                                | not in a volume with a handle of `foo`.          |
@@ -1163,7 +999,7 @@ Narrows the query results based on the volumes the assets belong to, per the vol
 
 Possible values include:
 
-| Value           | Fetches categories…                   |
+| Value           | Fetches assets…                       |
 | --------------- | ------------------------------------- |
 | `1`             | in a volume with an ID of 1.          |
 | `'not 1'`       | not in a volume with an ID of 1.      |
@@ -1181,7 +1017,7 @@ Possible values include:
 ```
 
 ```php
-// Fetch categories in the volume with an ID of 1
+// Fetch assets in the volume with an ID of 1
 $assets = \craft\elements\Asset::find()
     ->volumeId(1)
     ->all();

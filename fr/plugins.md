@@ -4,13 +4,13 @@
 If you’re looking for plugin *development* documentation, check out the [Extending Craft](extend/README.md) section.
 :::
 
-Plugins extend Craft’s core functionality. They can introduce new Dashboard widgets, field types, Control Panel sections, Twig templating features, workflow actions, and more.
+Plugins extend Craft’s core functionality. They can introduce new Dashboard widgets, field types, control panel sections, Twig templating features, workflow actions, and more.
 
 ## The Plugin Store
 
-Craft’s Control Panel features a Plugin Store, where you can browse through hundreds of free and commercial plugins, install them with a single click, and pay for them.
+Craft’s control panel features a Plugin Store, where you can browse through hundreds of free and commercial plugins, install them with a single click, and pay for them.
 
-To access the Plugin Store, click on the “Plugin Store” item in Craft’s Control Panel navigation. From there you can browse through the various plugin categories and curated lists to discover new plugins.
+To access the Plugin Store, click on the “Plugin Store” item in Craft’s control panel navigation. From there you can browse through the various plugin categories and curated lists to discover new plugins.
 
 ![The Craft Plugin Store](./images/plugin-store.png)
 
@@ -34,13 +34,19 @@ Once you’ve completed the checkout process, your plugin installation will auto
 
 ## Managing Plugin Licenses
 
-You can managed all of your plugin licenses from your [Craft ID](https://id.craftcms.com/) account, under Licenses → Plugins
+You can manage all of your plugin licenses from your [Craft ID](https://id.craftcms.com/) account, under Licenses → Plugins
 
 If you don’t have a Craft ID account yet, you can create one by going to [id.craftcms.com/register](https://id.craftcms.com/register).
 
 Any plugin licenses that were purchased with the same email address as your Craft ID account will automatically be added to your account.
 
 If you have a plugin license that isn’t showing up, go to Licenses → Claim License. You can enter its license key manually, or if you know the email address that was used for purchase, you can enter it in the “Claim licenses by email address” section. After verifying that you own the email address, any unclaimed licenses associated with that email address will be added to your account.
+
+### Safeguarding Plugin License Keys
+
+By default your plugin license key will be stored in the database and `project.yaml`. You may, however, move that license key to a custom PHP constant and set the key using the `$VARIABLE_NAME` syntax.
+
+If you were to create a `MY_PLUGIN_KEY` environment variable, for example, you could then use `$MY_PLUGIN_KEY` in place of the key itself anywhere the plugin license key is required.
 
 ## Transferring Plugin Licenses
 

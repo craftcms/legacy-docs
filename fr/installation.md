@@ -26,8 +26,8 @@ Composer will take a couple minutes to load everything. Once it’s done you wil
 
 Download the archive format you prefer to work with:
 
-- **zip**: [3.3.20.1](https://download.craftcdn.com/craft/3.3/Craft-3.3.20.1.zip), [latest](https://craftcms.com/latest-v3.zip)
-- **tar.gz**: [3.3.20.1](https://download.craftcdn.com/craft/3.3/Craft-3.3.20.1.tar.gz), [latest](https://craftcms.com/latest-v3.tar.gz)
+- [zip](https://craftcms.com/latest-v3.zip)
+- [tar.gz](https://craftcms.com/latest-v3.tar.gz)
 
 Extract the archive wherever you want your new Craft project to live.
 
@@ -39,7 +39,7 @@ If you’re on macOS, be careful not to lose the hidden files in there (`.env`, 
 
 Once Craft’s files are in place, your project directory should have a directory structure like this:
 
-```
+```treeview
 my-project.test/
 ├── config/
 │   └── ...
@@ -142,6 +142,10 @@ If you’re not using [MAMP](https://mamp.info) or another localhosting tool, yo
 
 You can test whether you set everything up correctly by pointing your web browser to `http://<Hostname>/index.php?p=admin/install` (substituting `<Hostname>` with your web server’s host name). If Craft’s Setup Wizard is shown, the host name is correctly resolving to your Craft installation.
 
+::: tip
+We recommend using the `.test` TLD for local development, and specifically not `.local` on macOS since [conflicts with Bonjour can lead to performance issues](https://help.rm.com/technicalarticle.asp?cref=tec3015691).
+:::
+
 ## Step 6: Run the Setup Wizard
 
 Finally, it’s time to run Craft’s Setup Wizard. You can either run that from your [terminal](#terminal-setup) or your [web browser](#web-browser-setup).
@@ -174,7 +178,7 @@ If the Setup Wizard skips this step, it’s because Craft is already able to con
 
 ![Craft Installation Database Connection Information](./images/installation-step-2.png)
 
-The third step of the installer is to create an admin account. Don’t be one of *those people* and be sure to pick a strong password.
+The third step of the installer is to create an admin account. Don’t be one of _those people_ and be sure to pick a strong password.
 
 ![Craft Installation Create User Account](./images/installation-step-3.png)
 
@@ -184,7 +188,7 @@ The final step is to define your System Name, Base URL, and Language.
 
 Click “Finish up” to complete the setup process. A few seconds later, you should have a working Craft install!
 
-If it was successful, Craft will redirect your browser to the Control Panel.
+If it was successful, Craft will redirect your browser to the control panel.
 
 ![Craft Installation Complete](./images/installation-step-5.png)
 

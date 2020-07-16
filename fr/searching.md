@@ -64,6 +64,10 @@ Assets, categories, entries, users, and tags each support their own set of addit
   * title
 
 
+::: warning
+Searching is a great way to quickly query content broadly across elements, but if you’re querying field attributes the most precise way is through that field type’s [query parameter](dev/element-queries/#executing-element-queries).
+:::
+
 ## Templating
 
 `craft.assets()`, `craft.entries()`, `craft.tags()`, and `craft.users()` support a `search` parameter that you can use to filter their elements by a given search query.
@@ -100,7 +104,7 @@ See our [Search Form](dev/examples/search-form.md) tutorial for a complete examp
 Craft does its best to keep its search indexes as up-to-date as possible, but there are a couple things that might render portions of them inaccurate. If you suspect that your search indexes don’t have the latest and greatest data, you can have Craft rebuild them by bulk-resaving your entries with the `resave/entries` command:
 
 ```bash
-./craft resave/entries
+./craft resave/entries --update-search-index
 ```
 
-You can specify which entries should be resaved with the `--section` and `--type` options, among others. Run `resave/entries --help` to see a full list of supported options. 
+You can specify which entries should be resaved with the `--section` and `--type` options, among others. Run `resave/entries --help` to see a full list of supported options.

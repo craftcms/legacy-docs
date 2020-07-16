@@ -28,20 +28,25 @@ Craft は次の PHP エクステンションが必要です。
 * [Reflection](http://php.net/manual/en/class.reflectionextension.php)
 * [SPL](http://php.net/manual/en/book.spl.php)
 * [Zip](http://php.net/manual/en/book.zip.php)
+* [DOM](http://php.net/manual/en/book.dom.php)
 
 ## オプションの PHP エクステンション
 
 * [Intl](http://php.net/manual/en/book.intl.php) – よりリッチな国際化のサポートを追加します。
-* [DOM](http://php.net/manual/en/book.dom.php) - <api:yii\web\XmlResponseFormatter> と同様に XML フィードの解析に必要です。
 
 ## オプションの PHP メソッドと設定
 
 一部の共用ホスティング環境では、Craft の機能に影響を与える PHP メソッドや設定が無効になっています。
 
-* [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) - アップデートやプラグインストアからのプラグインインストールを可能にするため、Craft では PHP 設定を有効にする必要があります。
-* [proc_*](http://php.net/manual/en/ref.exec.php) - プラグインストアを利用したり、メールの送信ができるよう PHP の `proc_` メソッドを有効にする必要があります。
+- [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) must be enabled for updating and installing plugins from the Plugin Store.
+- [proc_*](http://php.net/manual/en/ref.exec.php) methods must be enabled in order to utilize the Plugin Store and send emails.
+- [ignore_user_abort](https://www.php.net/manual/en/function.ignore-user-abort.php) must be enabled for the [default, web-based queue runner](config:runQueueAutomatically) to operate.
 
-## 必要なデータベースユーザー特権
+## Optional Extras
+
+* [Composer 1.30+](https://docs.craftcms.com/v3/installation.html#downloading-with-composer) - When installing Craft with Composer
+
+## Required Database User Privileges
 
 Craft のデータベースに接続するユーザーには、次の特権がなければなりません。
 
@@ -68,22 +73,22 @@ Craft のデータベースに接続するユーザーには、次の特権が�
 * `REFERENCES`
 * `CONNECT`
 
-## コントロールパネルのブラウザ要件
+## Control Panel Browser Requirements
 
-Craft のコントロールパネルは、モダンブラウザが必要です。
+Craft’s control panel requires a modern browser:
 
 #### Windows と macOS
 
-* Chrome 29 以降
-* Firefox 28 以降
-* Safari 9.0 以降
+* Chrome 29 or later
+* Firefox 28 or later
+* Safari 9.0 or later
 * Microsoft Edge
 
 #### モバイル
 
-* iOS: Safari 9.1 以降
-* Android: Chrome 4.4 以降
+* iOS: Safari 9.1 or later
+* Android: Chrome 4.4 or later
 
 ::: tip
-Craft の CP のブラウザ要件は、実際のウェブサイトとは関係がありません。もしあなたがつらい仕事を苦にせず、IE 6 で完璧に表示されるサイトを望むのであれば、あたなの望む通りにできます。
+Craft’s control panel browser requirements have nothing to do with your actual website. If you’re a glutton for punishment and want your website to look flawless on IE 6, that’s your choice.
 :::

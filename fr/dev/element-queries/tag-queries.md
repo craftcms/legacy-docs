@@ -50,6 +50,34 @@ Tag queries support the following parameters:
 
 <!-- BEGIN PARAMS -->
 
+| Param                                     | Description                                                                                                                                                                                                                                                                            |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [anyStatus](#anystatus)                   | Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.                                           |
+| [asArray](#asarray)                       | Causes the query to return matching tags as arrays of data, rather than [Tag](api:craft\elements\Tag) objects.                                                                                                                                                                       |
+| [clearCachedResult](#clearcachedresult)   | Clears the cached result.                                                                                                                                                                                                                                                              |
+| [dateCreated](#datecreated)               | Narrows the query results based on the tags’ creation dates.                                                                                                                                                                                                                           |
+| [dateUpdated](#dateupdated)               | Narrows the query results based on the tags’ last-updated dates.                                                                                                                                                                                                                       |
+| [fixedOrder](#fixedorder)                 | Causes the query results to be returned in the order specified by [id](#id).                                                                                                                                                                                                           |
+| [group](#group)                           | Narrows the query results based on the tag groups the tags belong to.                                                                                                                                                                                                                  |
+| [groupId](#groupid)                       | Narrows the query results based on the tag groups the tags belong to, per the groups’ IDs.                                                                                                                                                                                             |
+| [id](#id)                                 | Narrows the query results based on the tags’ IDs.                                                                                                                                                                                                                                      |
+| [ignorePlaceholders](#ignoreplaceholders) | Causes the query to return matching tags as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement). |
+| [inReverse](#inreverse)                   | Causes the query results to be returned in reverse order.                                                                                                                                                                                                                              |
+| [limit](#limit)                           | Determines the number of tags that should be returned.                                                                                                                                                                                                                                 |
+| [offset](#offset)                         | Determines how many tags should be skipped in the results.                                                                                                                                                                                                                             |
+| [orderBy](#orderby)                       | Determines the order that the tags should be returned in. (If empty, defaults to `title ASC`.)                                                                                                                                                                                         |
+| [preferSites](#prefersites)               | If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.                                                                                                                                                                          |
+| [relatedTo](#relatedto)                   | Narrows the query results to only tags that are related to certain other elements.                                                                                                                                                                                                     |
+| [search](#search)                         | Narrows the query results to only tags that match a search query.                                                                                                                                                                                                                      |
+| [site](#site)                             | Determines which site(s) the tags should be queried in.                                                                                                                                                                                                                                |
+| [siteId](#siteid)                         | Determines which site(s) the tags should be queried in, per the site’s ID.                                                                                                                                                                                                             |
+| [title](#title)                           | Narrows the query results based on the tags’ titles.                                                                                                                                                                                                                                   |
+| [trashed](#trashed)                       | Narrows the query results to only tags that have been soft-deleted.                                                                                                                                                                                                                    |
+| [uid](#uid)                               | Narrows the query results based on the tags’ UIDs.                                                                                                                                                                                                                                     |
+| [unique](#unique)                         | Determines whether only elements with unique IDs should be returned by the query.                                                                                                                                                                                                      |
+| [uri](#uri)                               | Narrows the query results based on the tags’ URIs.                                                                                                                                                                                                                                     |
+| [with](#with)                             | Causes the query to return matching tags eager-loaded with related elements.                                                                                                                                                                                                           |
+
 ### `anyStatus`
 
 Clears out the [status()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
@@ -98,6 +126,15 @@ $tags = \craft\elements\Tag::find()
     ->all();
 ```
 :::
+
+
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
 
 
 ### `dateCreated`
@@ -172,128 +209,6 @@ $lastWeek = (new \DateTime('1 week ago'))->format(\DateTime::ATOM);
 $tags = \craft\elements\Tag::find()
     ->dateUpdated(">= {$lastWeek}")
     ->all();
-```
-:::
-
-
-### `draftCreator`
-
-Narrows the query results to only drafts created by a given user.
-
-
-
-Possible values include:
-
-| Value                                  | Fetches drafts…                        |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch drafts by the current user #}
-{% set tags = craft.tags()
-    .draftCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch drafts by the current user
-$tags = \craft\elements\Tag::find()
-    ->draftCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `draftId`
-
-Narrows the query results based on the tags’ draft’s ID (from the `drafts` table).
-
-
-
-Possible values include:
-
-| Value | Fetches drafts…                |
-| ----- | ------------------------------ |
-| `1`   | for the draft with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a draft #}
-{% set tags = craft.tags()
-    .draftId(10)
-    .all() %}
-```
-
-```php
-// Fetch a draft
-$tags = \craft\elements\Tag::find()
-    ->draftIf(10)
-    ->all();
-```
-:::
-
-
-### `draftOf`
-
-Narrows the query results to only drafts of a given tag.
-
-
-
-Possible values include:
-
-| Value                                    | Fetches drafts…                        |
-| ---------------------------------------- | -------------------------------------- |
-| `1`                                      | for the tag with an ID of 1.           |
-| a [Tag](api:craft\elements\Tag) object | for the tag represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch drafts of the tag #}
-{% set tags = craft.tags()
-    .draftOf(myTag)
-    .all() %}
-```
-
-```php
-// Fetch drafts of the tag
-$tags = \craft\elements\Tag::find()
-    ->draftOf($myTag)
-    ->all();
-```
-:::
-
-
-### `drafts`
-
-Narrows the query results to only drafts tags.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a draft tag #}
-{% set tags = {twig-function}
-    .drafts()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a draft tag
-$tags = \craft\elements\Tag::find()
-    ->drafts()
-    ->id(123)
-    ->one();
 ```
 :::
 
@@ -516,7 +431,7 @@ $tags = \craft\elements\Tag::find()
 
 ### `orderBy`
 
-Determines the order that the tags should be returned in.
+Determines the order that the tags should be returned in. (If empty, defaults to `title ASC`.)
 
 
 
@@ -597,128 +512,6 @@ $tags = \craft\elements\Tag::find()
 :::
 
 
-### `revisionCreator`
-
-Narrows the query results to only revisions created by a given user.
-
-
-
-Possible values include:
-
-| Value                                  | Fetches revisions…                     |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions by the current user #}
-{% set tags = craft.tags()
-    .revisionCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch revisions by the current user
-$tags = \craft\elements\Tag::find()
-    ->revisionCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `revisionId`
-
-Narrows the query results based on the tags’ revision’s ID (from the `revisions` table).
-
-
-
-Possible values include:
-
-| Value | Fetches revisions…                |
-| ----- | --------------------------------- |
-| `1`   | for the revision with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a revision #}
-{% set tags = craft.tags()
-    .revisionId(10)
-    .all() %}
-```
-
-```php
-// Fetch a revision
-$tags = \craft\elements\Tag::find()
-    ->revisionIf(10)
-    ->all();
-```
-:::
-
-
-### `revisionOf`
-
-Narrows the query results to only revisions of a given tag.
-
-
-
-Possible values include:
-
-| Value                                    | Fetches revisions…                     |
-| ---------------------------------------- | -------------------------------------- |
-| `1`                                      | for the tag with an ID of 1.           |
-| a [Tag](api:craft\elements\Tag) object | for the tag represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions of the tag #}
-{% set tags = craft.tags()
-    .revisionOf(myTag)
-    .all() %}
-```
-
-```php
-// Fetch revisions of the tag
-$tags = \craft\elements\Tag::find()
-    ->revisionOf($myTag)
-    ->all();
-```
-:::
-
-
-### `revisions`
-
-Narrows the query results to only revision tags.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a revision tag #}
-{% set tags = {twig-function}
-    .revisions()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a revision tag
-$tags = \craft\elements\Tag::find()
-    ->revisions()
-    ->id(123)
-    ->one();
-```
-:::
-
-
 ### `search`
 
 Narrows the query results to only tags that match a search query.
@@ -762,13 +555,13 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value                                  | Fetches tags…                                  |
-| -------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                | from the site with a handle of `foo`.          |
-| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
-| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
-| a `\craft\elements\db\Site` object | from the site represented by the object.       |
-| `'*'`                                  | from any site.                                 |
+| Value                                                   | Fetches tags…                                  |
+| ------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                 | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                                        | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                                 | not in a site with a handle of `foo` or `bar`. |
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.       |
+| `'*'`                                                   | from any site.                                 |
 
 ::: tip
 If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.

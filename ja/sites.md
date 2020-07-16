@@ -78,7 +78,7 @@ Craft はデフォルトサイトをプライマリサイトとしてセット�
 異なるホスト名でサイトを作成したい場合、それに対するトラフィックを処理するようサーバーを設定しなければなりません。ホスト名は現在のサイトと同じウェブルート（`web/`）を指すことも、独自の別のウェブルートにすることもできます。後者の場合、`.htaccess`、および、`index.php` ファイルを新しいウェブルートへ確実にコピーしてください。
 
 ::: tip
-`https://site-a.com` と `https://site-b.com` のような異なるルートドメインを使用するマルチサイトを持つ場合、Craft の [license enforcements works](https://craftcms.com/support/license-enforcement) の仕組みによって、_すべて_ のサイトのためにアクセスする Craft コントロールパネルのドメインをその中の1つから選択することができます。
+If you have multiple sites using different root domains like `https://site-a.com` and `https://site-b.com`, with the way Craft’s [license enforcements works](https://craftcms.com/support/license-enforcement), you’ll want to pick one of the domains to access the Craft control panel from for _all_ of the sites.
 :::
 
 ::: warning
@@ -103,7 +103,7 @@ Craft はデフォルトサイトをプライマリサイトとしてセット�
 
 1. 「設定 > サイト」に移動し、「新しいサイト」ボタンをクリックします。
 2. ドロップダウンメニューからサイトが所属するグループを選択します。グループの選択により、サイトの機能に影響することはありません。
-3. 名前を付けてください。Craft はコントロールパネルのサイト名を利用し、`{{ siteName }}` を使ってテンプレート内に表示することもできます。
+3. Give your site a name. Craft uses the site name in the control panel, and you can also display it in your templates using `{{ siteName }}`.
 4. サイト名をベースにして、Craft はサイトのハンドルを生成します。あなたが望むなら、ハンドルを編集できます。テンプレート内でこのサイトを参照するために、サイトハンドルを利用します。
 5. サイトの言語を選択してください。（言語の使い方の詳細は、上記を参照してください）
 6. このサイトをプライマリサイトにする場合は、「これはプライマリサイトですか？」をオンにします。to enable it.

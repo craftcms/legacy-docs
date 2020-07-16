@@ -64,9 +64,13 @@ Craft は次の検索構文をサポートしています。
   * title
 
 
+::: warning
+Searching is a great way to quickly query content broadly across elements, but if you’re querying field attributes the most precise way is through that field type’s [query parameter](dev/element-queries/#executing-element-queries).
+:::
+
 ## テンプレート記法
 
-`craft.assets()`、`craft.entries()`、`craft.tags()`、および、`craft.users()`は、検索クエリを指定したエレメントの絞り込みに利用できる `search` パラメータをサポートしています。
+`craft.assets()`, `craft.entries()`, `craft.tags()`, and `craft.users()` support a `search` parameter that you can use to filter their elements by a given search query.
 
 ```twig
 {# Get the user's search query from the 'q' query-string param #}
@@ -80,7 +84,7 @@ Craft は次の検索構文をサポートしています。
 
 ### スコアによる検索結果の順位付け
 
-検索結果をベストマッチからワーストマッチの順に並び替えたい場合、`orderBy` パラメータに `'score'` をセットすることもできます。
+You can also set the `orderBy` parameter to `'score'` if you want results ordered by best-match to worst-match:
 
 ```twig
 {% set results = craft.entries()
@@ -89,18 +93,18 @@ Craft は次の検索構文をサポートしています。
     .all() %}
 ```
 
-この場合、返されるすべてのエレメントに `searchScore` 属性がセットされ、それぞれの検索スコアを知ることができます。
+When you do this, each of the elements returned will have a `searchScore` attribute set, which reveals what their search score was.
 
 ::: tip
-動的な検索結果をリスト化する完全な例については、[検索フォーム](dev/examples/search-form.md)チュートリアルを参照してください。
+See our [Search Form](dev/examples/search-form.md) tutorial for a complete example of listing dynamic search results.
 :::
 
 ## 検索インデックスの再構築
 
-Craft は検索インデックスを可能な限り最新に保つよう、最善を尽くしています。しかし、その一部を不正確にするかもしれない可能性がいくつかあります。検索インデックスが最新かつ最高データでないと疑われる場合、設定にある検索インデックスの再構築ツールで Craft に再構築させることができます。
+Craft does its best to keep its search indexes as up-to-date as possible, but there are a couple things that might render portions of them inaccurate. If you suspect that your search indexes don’t have the latest and greatest data, you can have Craft rebuild them by bulk-resaving your entries with the `resave/entries` command:
 
 ```bash
-./craft resave/entries
+./craft resave/entries --update-search-index
 ```
 
-You can specify which entries should be resaved with the `--section` and `--type` options, among others. Run `resave/entries --help` to see a full list of supported options. 
+You can specify which entries should be resaved with the `--section` and `--type` options, among others. Run `resave/entries --help` to see a full list of supported options.

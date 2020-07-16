@@ -17,7 +17,7 @@ When choosing a module ID, try to avoid names that will conflict with Craft’s 
 
 To create a module, create a new directory for it somewhere within your Craft project, such as `modules/<ModuleID>/`. For example, if your module ID is `foo`, you might set it up like this:
 
-```
+```treeview
 my-project.test/
 ├── modules/
 │   └── foo/
@@ -91,6 +91,13 @@ class Module extends \yii\base\Module
     {
         // Define a custom alias named after the namespace
         Craft::setAlias('@bar', __DIR__);
+
+        // Set the controllerNamespace based on whether this is a console or web request
+        if (Craft::$app->getRequest()->getIsConsoleRequest()) {
+            $this->controllerNamespace = 'bar\\console\\controllers';
+        } else {
+            $this->controllerNamespace = 'bar\\controllers';
+        }
 
         parent::init();
 

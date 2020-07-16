@@ -117,7 +117,7 @@ eager-loaded エレメントへのアクセスは、lazy-loaded エレメント�
 
 ### Eager-Loaded エレメントのカスタムパラメータを定義する
 
-そのキーを（キー、および、適用されるべき基準パラメータを定義するオブジェクトを含む）2つの値を持つ配列に置き換えることによって、eager-loaded するときにエレメントへ適用されるカスタムの基準パラメータを定義できます。
+You can define custom criteria parameters that will get applied as elements are being eager-loaded, by replacing its key with an array that has two values: the key, and a [hash](twig-primer.md#hashes) that defines the criteria parameters that should be applied.
 
 ```twig
 {% set entries = craft.entries()
@@ -176,7 +176,7 @@ eager-loaded エレメントへのアクセスは、lazy-loaded エレメント�
     .all() %}
 ```
 
-eager-load したいそれぞれのトランスフォームの定義は、文字列（「設定 > アセット > 画像の変形」で定義されたトランスフォームのハンドル)、 または、トランスフォームプロパティを定義したオブジェクトのいずれかです。
+Note that each transform definition you want to eager-load can either be a string (the handle of a transform defined in Settings → Assets → Image Transforms) or a [hash](twig-primer.md#hashes) that defines the transform properties.
 
 `withTransforms` パラメータを使っても、テンプレート内の変換された画像にアクセスする方法には影響を与えません。
 

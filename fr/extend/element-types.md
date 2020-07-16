@@ -311,30 +311,93 @@ public function getEditorHtml(): string
 
 #### Managing Field Layouts
 
-If you want your element type to support custom fields, you will also need to create a page somewhere within the Control Panel for managing your element type’s field layout. Craft provides a template include that will output a Field Layout Designer for you:
+If you want your element type to support custom fields, you will also need to create a page somewhere within the control panel for managing your element type’s field layout. Craft provides a template include that will output a Field Layout Designer for you:
 
 ```twig
 {% include "_includes/fieldlayoutdesigner" with {
-    fieldLayout: craft.app.fields.getLayoutByType('ns\\prefix\\elements\\Product')
+    fieldLayout: craft.app.fields.getLayoutByType('ns\\prefix\\elements\\MyElementType')
 } only %}
 ```
 
-Place that include within a `<form>` that posts to one of your plugin’s controllers. The controller can save the field layout like this:
+Place that include within a `<form>` that posts to one of your plugin’s controllers. The controller can assemble the field layout from the POST data like this:
 
 ```php
-use ns\prefix\elements\Product;
+$fieldLayout = Craft::$app->getFields()->assembleLayoutFromPost();
+$fieldLayout->type = MyElementType::class;
+```
+
+Your service can then save the field layout by passing it to <api:craft\services\Fields::saveLayout()>:
+
+```php
+Craft::$app->fields->saveLayout($fieldLayout);
+```
+
+Or, if the layout is being used by a component that’s stored in the [project config](project-config.md), you can add the field layout to the component’s config, and save it alongside your component.
+
+```php
+use craft\db\Table;
+use craft\helpers\Db;
+use craft\helpers\StringHelper;
+use craft\models\FieldLayout;
 
 // ...
 
-// assemble the new one from the post data, and save it
-$fieldLayout = \Craft::$app->getFields()->assembleLayoutFromPost();
-$fieldLayout->type = Product::class;
-\Craft::$app->getFields()->saveLayout($fieldLayout);
+public function saveComponent($myComponent)
+{
+    // ...
+
+    $fieldLayoutConfig = $fieldLayout->getConfig();
+    if ($fieldLayoutConfig) {
+        if (!$fieldLayout->id) {
+            $layoutUid = $fieldLayout->uid = StringHelper::UUID();
+        } else {
+            $layoutUid = Db::uidById(Table::FIELDLAYOUTS, $fieldLayout->id);
+        }
+        $myComponentConfig['fieldLayouts'] = [
+            $layoutUid => $fieldLayoutConfig
+        ];
+    }
+
+    // ...
+}
+
+public function handleChangedComponent(ConfigEvent $event)
+{
+    // ...
+
+    if (!empty($data['fieldLayouts'])) {
+        // Save the field layout
+        $layout = FieldLayout::createFromConfig(reset($data['fieldLayouts']));
+        $layout->id = $myComponentRecord->fieldLayoutId;
+        $layout->type = MyComponent::class;
+        $layout->uid = key($data['fieldLayouts']);
+        Craft::$app->fields->saveLayout($layout);
+        $myComponentRecord->fieldLayoutId = $layout->id;
+    } else if ($myComponentRecord->fieldLayoutId) {
+        // Delete the field layout
+        Craft::$app->fields->deleteLayoutById($myComponentRecord->fieldLayoutId);
+        $myComponentRecord->fieldLayoutId = null;
+    }
+
+    // ...
+}
+
+public function handleDeletedComponent(ConfigEvent $event)
+{
+    // ...
+
+    // Delete the field layout
+    if ($myComponentRecord->fieldLayoutId) {
+        Craft::$app->fields->deleteLayoutById($myComponentRecord->fieldLayoutId);
+    }
+
+    // ...
+}
 ```
 
 Rather than only having one field layout for your entire element type, you can also manage multiple field layouts, if needed. For example, entry field layouts are defined for each entry type; asset field layouts are defined for each asset volume, etc.
 
-You can set that up however you want. Just remember to store new field layouts’ IDs in the database somewhere. (You can access the field layout’s ID after calling `saveLayout()` via `$fieldLayout->id`.)
+You can set that up however you want. Just make sure you’re passing the right field layout into the `fieldLayout` key when rendering the field layout designer.
 
 #### Associating Elements to their Field Layouts
 
@@ -346,7 +409,7 @@ $product->fieldLayoutId = $productType->fieldLayoutId;
 \Craft::$app->elements->saveElement($product);
 ```
 
-If the `$fieldLayoutId` property is set, <api:craft\services\Elements::saveElement()> will store it in the `elements.fieldLayoutId` column in the database, and your elements will be re-populated with the values when they are fetched down the road.
+If the `$fieldLayoutId`  property is set, <api:craft\services\Elements::saveElement()> will store it in the `elements.fieldLayoutId` column in the database, and your elements will be re-populated with the values when they are fetched down the road.
 
 Alternatively, you can override the `getFieldLayout()` method, and fetch/return the field layout yourself. This might be preferable if your element type only has a single field layout (like user accounts).
 
@@ -355,6 +418,14 @@ public function getFieldLayout()
 {
     return \Craft::$app->fields->getLayoutByType(Product::class);
 }
+```
+
+#### Validating Required Custom Fields
+
+Required custom fields are only enforced when the element is saved using the `live` validation scenario. To make sure required custom fields are validated, set the scenario before calling `saveElement()`:
+
+```php
+$element->setScenario(\craft\base\Element::SCENARIO_LIVE);
 ```
 
 ### Localization
@@ -448,7 +519,7 @@ Your element type can define “sources”, which are groups of elements defined
 
 Element type sources will be visible in the sidebar of element indexes, and within the settings of element relation fields.
 
-To define your element type’s sources, add a protected static `defineSources()` method to your element class:
+To define your element type’s sources, add a protected static [defineSources()](api:craft\base\Element::defineSources()) method to your element class:
 
 ```php
 protected static function defineSources(string $context = null): array
@@ -481,7 +552,7 @@ When a source is selected, Craft will configure your [element query](#element-qu
 
 ## Index Page
 
-You can give your [Control Panel section](cp-section.md) an index page for your element type using the following template:
+You can give your [control panel section](cp-section.md) an index page for your element type using the following template:
 
 ```twig
 {% extends '_layouts/elementindex' %}
@@ -491,7 +562,7 @@ You can give your [Control Panel section](cp-section.md) an index page for your 
 
 ### Index Page Actions
 
-You can define which [actions](element-action-types.md) your element type supports on its index page by adding a protected static `defineActions()` method on your element class:
+You can define which [actions](element-action-types.md) your element type supports on its index page by adding a protected static [defineActions()](api:craft\base\Element::defineActions()) method on your element class:
 
 ```php
 protected static function defineActions(string $source = null): array
@@ -507,11 +578,24 @@ protected static function defineActions(string $source = null): array
 
 All element types are [soft-deletable](soft-deletes.md) out of the box, however it’s up to each element type to decide whether they should be restorable.
 
-To make an element restorable, just add the <api:craft\elements\actions\Restore> action to the array returned by your static `defineActions()` method. Craft will automatically hide it during normal index views, and show it when someone selects the “Trashed” status option.
+To make an element restorable, just add the <api:craft\elements\actions\Restore> action to the array returned by your static [defineActions()](api:craft\base\Element::defineActions()) method. Craft will automatically hide it during normal index views, and show it when someone selects the “Trashed” status option.
+
+### Index Page Exporters
+
+You can define which [exporter types](element-exporter-types.md) your element type supports on its index page by adding a protected static [defineExporters()](api:craft\base\Element::defineExporters()) method on your element class:
+
+```php
+protected static function defineExporters(string $source): array
+{
+    $exporters = parent::defineExporters($source);
+    $exporters[] = MyExporter::class;
+    return $exporters;
+}
+```
 
 ### Sort Options
 
-You can define the sort options for your element indexes by adding a protected static `defineSortOptions()` method to your element class:
+You can define the sort options for your element indexes by adding a protected static [defineSortOptions()](api:craft\base\Element::defineSortOptions()) method to your element class:
 
 ```php
 protected static function defineSortOptions(): array
@@ -527,7 +611,7 @@ When a sort option is selected on an index, its key will be passed to the `$orde
 
 ### Table Attributes
 
-You can customize which columns should be available to your element indexes’ Table views by adding a protected `defineTableAttributes()` method to your element class:
+You can customize which columns should be available to your element indexes’ Table views by adding a protected [defineTableAttributes()](api:craft\base\Element::defineTableAttributes()) method to your element class:
 
 ```php
 protected static function defineTableAttributes(): array
@@ -544,7 +628,7 @@ protected static function defineTableAttributes(): array
 The first attribute you list here is a special case. It defines the header for the first column in the table view, which is the only one admins can’t remove. Its values will come from your elements’ <api:craft\base\ElementInterface::getUiLabel()> method.
 :::
 
-If it’s a big list, you can also limit which columns should be visible by default for new [sources](#sources) by adding a protected `defineDefaultTableAttributes()` method to your element class:
+If it’s a big list, you can also limit which columns should be visible by default for new [sources](#sources) by adding a protected [defineDefaultTableAttributes()](api:craft\base\Element::defineDefaultTableAttributes()) method to your element class:
 
 ```php
 protected static function defineDefaultTableAttributes(string $source): array
@@ -610,7 +694,7 @@ public function getThumbUrl(int $size)
 
 When an element is saved, Craft’s Search service will index its “searchable attributes” as search keywords on the element. By default, the list of searchable attributes will only include the element’s title and slug, plus any custom field values.
 
-If your element type has additional attributes you want to make searchable, add a protected static `defineSearchableAttributes()` method on your element and list them:
+If your element type has additional attributes you want to make searchable, add a protected static [defineSearchableAttributes()](api:craft\base\Element::defineSearchableAttributes()) method on your element and list them:
 
 ```php
 protected static function defineSearchableAttributes(): array
@@ -717,15 +801,6 @@ The Edit Category page offers a relatively straightforward example of how it cou
 Here’s a simple example of the code needed to save an element programatically, which could live within an `actionSave()` controller action:
 
 ```php
-'categories/<groupHandle:{handle}>/new' => 'categories/edit-category',
-  'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>' => 'categories/edit-category',
-  'categories/<groupHandle:{handle}>/<categoryId:\d+><slug:(?:-{slug})?>/<siteHandle:{handle}>' => 'categories/edit-category',
-  'categories/<groupHandle:{handle}>/new/<siteHandle:{handle}>' => 'categories/edit-category',
-```
-
-Once you’ve set up an edit page for your element type, you can add a [getCpEditUrl()](api:craft\base\ElementInterface::getCpEditUrl()) method to your element class, which will communicate your elements’ edit page URLs within the Control Panel.
-
-```php
 // Create a new product element
 $product = new Product();
 
@@ -735,10 +810,19 @@ $product->currency = Craft::$app->request->getBodyParam('currency');
 $product->enabled = (bool)Craft::$app->request->getBodyParam('enabled');
 
 // Set custom field values from POST data in a `fields` namespace
-$entry->setFieldValuesFromRequest('fields');
+$product->setFieldValuesFromRequest('fields');
 
 // Save the product
 $success = Craft::$app->elements->saveElement($product);
+```
+
+Once you’ve set up an edit page for your element type, you can add a [getCpEditUrl()](api:craft\base\ElementInterface::getCpEditUrl()) method to your element class, which will communicate your elements’ edit page URLs within the control panel.
+
+```php
+public function getCpEditUrl()
+{
+    return 'plugin-handle/products/'.$this->id;
+}
 ```
 
 ## Relations
@@ -748,17 +832,6 @@ $success = Craft::$app->elements->saveElement($product);
 You can give your element its own relation field by creating a new [field type](field-types.md) that extends <api:craft\fields\BaseRelationField>.
 
 That base class does most of the grunt work for you, so you can get your field up and running by implementing three simple methods:
-
-```php
-public function getCpEditUrl()
-{
-    return 'plugin-handle/products/'.$this->id;
-}
-```
-
-## Reference Tags
-
-If you want your elements to support reference tags (e.g. `{product:100}`), add a static `refHandle()` method to your element class that returns a unique handle that should be used for its reference tags.
 
 ```php
 <?php
@@ -786,7 +859,9 @@ class Products extends BaseRelationField
 }
 ```
 
-To make it easier for users to copy your elements’ reference tags, you may want to add a “Copy reference tag” [action](#index-page-actions) to your element’s index page.
+## Reference Tags
+
+If you want your elements to support reference tags (e.g. `{product:100}`), add a static `refHandle()` method to your element class that returns a unique handle that should be used for its reference tags.
 
 ```php
 public static function refHandle()
@@ -795,13 +870,7 @@ public static function refHandle()
 }
 ```
 
-## Eager-Loading
-
-If your element type has its own [relation field](#relation-field), it is already eager-loadable through that. And if it supports [custom fields](#custom-fields), any elements that are related to your elements through relation fields will be eager-loadable.
-
-The only case where eager-loading support is not provided for free is if your element type has any “hard-coded” relations with other elements. For example, entries have authors (User elements), but those relations are defined in an `authorId` column in the `entries` table, not a custom Users field.
-
-If your elements have any hard-coded relations to other elements, and you want to make those elements eager-loadable, add an `eagerLoadingMap()` method to your element class:
+To make it easier for users to copy your elements’ reference tags, you may want to add a “Copy reference tag” [action](#index-page-actions) to your element’s index page.
 
 ```php
 use craft\elements\actions\CopyReferenceTag;
@@ -820,9 +889,13 @@ protected static function defineActions(string $source = null): array
 }
 ```
 
-This function takes an of already-queried elements (the “source” elements), and an eager-loading handle. It is supposed to return a mapping of which source element IDs should eager-load which “target” element IDs.
+## Eager-Loading
 
-If you need to override where eager-loaded elements are stored, add a `setEagerLoadedElements()` method to your element class as well:
+If your element type has its own [relation field](#relation-field), it is already eager-loadable through that. And if it supports [custom fields](#custom-fields), any elements that are related to your elements through relation fields will be eager-loadable.
+
+The only case where eager-loading support is not provided for free is if your element type has any “hard-coded” relations with other elements. For example, entries have authors (User elements), but those relations are defined in an `authorId` column in the `entries` table, not a custom Users field.
+
+If your elements have any hard-coded relations to other elements, and you want to make those elements eager-loadable, add an `eagerLoadingMap()` method to your element class:
 
 ```php
 use craft\db\Query;
@@ -852,3 +925,42 @@ public static function eagerLoadingMap(array $sourceElements, string $handle)
     return parent::eagerLoadingMap($sourceElements, $handle);
 }
 ```
+
+This function takes an of already-queried elements (the “source” elements), and an eager-loading handle. It is supposed to return a mapping of which source element IDs should eager-load which “target” element IDs.
+
+If you need to override where eager-loaded elements are stored, add a `setEagerLoadedElements()` method to your element class as well:
+
+```php
+public function setEagerLoadedElements(string $handle, array $elements)
+{
+    if ($handle === 'author') {
+        $author = $elements[0] ?? null;
+        $this->setAuthor($author);
+    } else {
+        parent::setEagerLoadedElements($handle, $elements);
+    }
+}
+```
+
+## Saving Field Content Deltas
+
+Element forms can be configured to submit only the field values that actually changed on the page. This is a prerequisite to [field delta saves](/extend/field-types.md#supporting-delta-saves).
+
+If your element provides its own edit form template, here’s how you can configure it to submit delta field content:
+
+1. Enable delta input name registration at the top of your template.
+2. Add `registerDeltas: true` wherever you’ve used `_includes/fields.html` or `_includes/field.html`.
+
+```twig{1,8}
+{% do view.setIsDeltaRegistrationActive(true) %}
+
+...
+
+{% include "_includes/fields" with {
+    fields: tab.getFields(),
+    element: customElement,
+    registerDeltas: true,
+} only %}
+```
+
+To verify that your element form is utilizing delta saving, inspect the `$_POST` data when saving edits in the Control Panel. Only the field types edited on the page should appear in the `fields` array.

@@ -28,18 +28,23 @@ Craft requires the following PHP extensions:
 * [Reflection](http://php.net/manual/en/class.reflectionextension.php)
 * [SPL](http://php.net/manual/en/book.spl.php)
 * [Zip](http://php.net/manual/en/book.zip.php)
+* [DOM](http://php.net/manual/en/book.dom.php)
 
 ## Optional PHP Extensions
 
 * [Intl](http://php.net/manual/en/book.intl.php) – Adds rich internationalization support.
-* [DOM](http://php.net/manual/en/book.dom.php) - Required for parsing XML feeds as well as <api:yii\web\XmlResponseFormatter>.
 
 ## Optional PHP Methods and Configurations
 
 Some shared hosting environments will disable certain common PHP methods and configurations that affect Craft features.
 
-* [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) - Craft requires PHP configuration to be enabled for updating and installing plugins from the Plugin Store.
-* [proc_*](http://php.net/manual/en/ref.exec.php) - The PHP `proc_` methods must be enabled in order to utilize the Plugin Store and to be able to send emails.
+- [allow_url_fopen](http://php.net/manual/en/filesystem.configuration.php#ini.allow-url-fopen) must be enabled for updating and installing plugins from the Plugin Store.
+- [proc_*](http://php.net/manual/en/ref.exec.php) methods must be enabled in order to utilize the Plugin Store and send emails.
+- [ignore_user_abort](https://www.php.net/manual/en/function.ignore-user-abort.php) must be enabled for the [default, web-based queue runner](config:runQueueAutomatically) to operate.
+
+## Optional Extras
+
+* [Composer 1.30+](https://docs.craftcms.com/v3/installation.html#downloading-with-composer) - When installing Craft with Composer
 
 ## Required Database User Privileges
 
@@ -70,7 +75,7 @@ The database user you tell Craft to connect with must have the following privile
 
 ## Control Panel Browser Requirements
 
-Craft’s Control Panel requires a modern browser:
+Craft’s control panel requires a modern browser:
 
 #### Windows and macOS
 
@@ -85,5 +90,5 @@ Craft’s Control Panel requires a modern browser:
 * Android: Chrome 4.4 or later
 
 ::: tip
-Craft’s Control Panel browser requirements have nothing to do with your actual website. If you’re a glutton for punishment and want your website to look flawless on IE 6, that’s your choice.
+Craft’s control panel browser requirements have nothing to do with your actual website. If you’re a glutton for punishment and want your website to look flawless on IE 6, that’s your choice.
 :::

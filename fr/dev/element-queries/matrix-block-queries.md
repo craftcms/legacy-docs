@@ -54,6 +54,67 @@ Matrix block queries support the following parameters:
 
 <!-- BEGIN PARAMS -->
 
+| Param                                       | Description                                                                                                                                                                                                                                                                                     |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [allowOwnerDrafts](#allowownerdrafts)       | Narrows the query results based on whether the Matrix blocks’ owners are drafts.                                                                                                                                                                                                                |
+| [allowOwnerRevisions](#allowownerrevisions) | Narrows the query results based on whether the Matrix blocks’ owners are revisions.                                                                                                                                                                                                             |
+| [anyStatus](#anystatus)                     | Clears out the [status](#status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.                                                                                                                                 |
+| [asArray](#asarray)                         | Causes the query to return matching Matrix blocks as arrays of data, rather than [MatrixBlock](api:craft\elements\MatrixBlock) objects.                                                                                                                                                       |
+| [clearCachedResult](#clearcachedresult)     | Clears the cached result.                                                                                                                                                                                                                                                                       |
+| [dateCreated](#datecreated)                 | Narrows the query results based on the Matrix blocks’ creation dates.                                                                                                                                                                                                                           |
+| [dateUpdated](#dateupdated)                 | Narrows the query results based on the Matrix blocks’ last-updated dates.                                                                                                                                                                                                                       |
+| [field](#field)                             | Narrows the query results based on the field the Matrix blocks belong to.                                                                                                                                                                                                                       |
+| [fieldId](#fieldid)                         | Narrows the query results based on the field the Matrix blocks belong to, per the fields’ IDs.                                                                                                                                                                                                  |
+| [fixedOrder](#fixedorder)                   | Causes the query results to be returned in the order specified by [id](#id).                                                                                                                                                                                                                    |
+| [id](#id)                                   | Narrows the query results based on the Matrix blocks’ IDs.                                                                                                                                                                                                                                      |
+| [ignorePlaceholders](#ignoreplaceholders)   | Causes the query to return matching Matrix blocks as they are stored in the database, ignoring matching placeholder elements that were set by [craft\services\Elements::setPlaceholderElement()](https://docs.craftcms.com/api/v3/craft-services-elements.html#method-setplaceholderelement). |
+| [inReverse](#inreverse)                     | Causes the query results to be returned in reverse order.                                                                                                                                                                                                                                       |
+| [limit](#limit)                             | Determines the number of Matrix blocks that should be returned.                                                                                                                                                                                                                                 |
+| [offset](#offset)                           | Determines how many Matrix blocks should be skipped in the results.                                                                                                                                                                                                                             |
+| [orderBy](#orderby)                         | Determines the order that the Matrix blocks should be returned in. (If empty, defaults to `sortOrder ASC`.)                                                                                                                                                                                     |
+| [owner](#owner)                             | Sets the [ownerId](#ownerid) and [siteId](#siteid) parameters based on a given element.                                                                                                                                                                                                         |
+| [ownerId](#ownerid)                         | Narrows the query results based on the owner element of the Matrix blocks, per the owners’ IDs.                                                                                                                                                                                                 |
+| [preferSites](#prefersites)                 | If [unique](#unique) is set, this determines which site should be selected when querying multi-site elements.                                                                                                                                                                                   |
+| [relatedTo](#relatedto)                     | Narrows the query results to only Matrix blocks that are related to certain other elements.                                                                                                                                                                                                     |
+| [search](#search)                           | Narrows the query results to only Matrix blocks that match a search query.                                                                                                                                                                                                                      |
+| [site](#site)                               | Determines which site(s) the Matrix blocks should be queried in.                                                                                                                                                                                                                                |
+| [siteId](#siteid)                           | Determines which site(s) the Matrix blocks should be queried in, per the site’s ID.                                                                                                                                                                                                             |
+| [status](#status)                           | Narrows the query results based on the Matrix blocks’ statuses.                                                                                                                                                                                                                                 |
+| [trashed](#trashed)                         | Narrows the query results to only Matrix blocks that have been soft-deleted.                                                                                                                                                                                                                    |
+| [type](#type)                               | Narrows the query results based on the Matrix blocks’ block types.                                                                                                                                                                                                                              |
+| [typeId](#typeid)                           | Narrows the query results based on the Matrix blocks’ block types, per the types’ IDs.                                                                                                                                                                                                          |
+| [uid](#uid)                                 | Narrows the query results based on the Matrix blocks’ UIDs.                                                                                                                                                                                                                                     |
+| [unique](#unique)                           | Determines whether only elements with unique IDs should be returned by the query.                                                                                                                                                                                                               |
+| [with](#with)                               | Causes the query to return matching Matrix blocks eager-loaded with related elements.                                                                                                                                                                                                           |
+
+### `allowOwnerDrafts`
+
+Narrows the query results based on whether the Matrix blocks’ owners are drafts.
+
+Possible values include:
+
+| Value   | Fetches Matrix blocks…          |
+| ------- | ------------------------------- |
+| `true`  | which can belong to a draft.    |
+| `false` | which cannot belong to a draft. |
+
+
+
+
+### `allowOwnerRevisions`
+
+Narrows the query results based on whether the Matrix blocks’ owners are revisions.
+
+Possible values include:
+
+| Value   | Fetches Matrix blocks…             |
+| ------- | ---------------------------------- |
+| `true`  | which can belong to a revision.    |
+| `false` | which cannot belong to a revision. |
+
+
+
+
 ### `anyStatus`
 
 Clears out the [status](#status) and [enabledForSite()](https://docs.craftcms.com/api/v3/craft-elements-db-elementquery.html#method-enabledforsite) parameters.
@@ -102,6 +163,15 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
     ->all();
 ```
 :::
+
+
+### `clearCachedResult`
+
+Clears the cached result.
+
+
+
+
 
 
 ### `dateCreated`
@@ -180,124 +250,35 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 :::
 
 
-### `draftCreator`
+### `field`
 
-Narrows the query results to only drafts created by a given user.
-
-
+Narrows the query results based on the field the Matrix blocks belong to.
 
 Possible values include:
 
-| Value                                  | Fetches drafts…                        |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
+| Value                                                       | Fetches Matrix blocks…                          |
+| ----------------------------------------------------------- | ----------------------------------------------- |
+| `'foo'`                                                     | in a field with a handle of `foo`.              |
+| `'not foo'`                                                 | not in a field with a handle of `foo`.          |
+| `['foo', 'bar']`                                            | in a field with a handle of `foo` or `bar`.     |
+| `['not', 'foo', 'bar']`                                     | not in a field with a handle of `foo` or `bar`. |
+| a [craft\fields\Matrix](api:craft\fields\Matrix) object | in a field represented by the object.           |
 
 
 
 ::: code
 ```twig
-{# Fetch drafts by the current user #}
+{# Fetch Matrix blocks in the Foo field #}
 {% set MatrixBlocks = craft.matrixBlocks()
-    .draftCreator(currentUser)
+    .field('foo')
     .all() %}
 ```
 
 ```php
-// Fetch drafts by the current user
+// Fetch Matrix blocks in the Foo field
 $MatrixBlocks = \craft\elements\MatrixBlock::find()
-    ->draftCreator(Craft::$app->user->identity)
+    ->field('foo')
     ->all();
-```
-:::
-
-
-### `draftId`
-
-Narrows the query results based on the Matrix blocks’ draft’s ID (from the `drafts` table).
-
-
-
-Possible values include:
-
-| Value | Fetches drafts…                |
-| ----- | ------------------------------ |
-| `1`   | for the draft with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a draft #}
-{% set MatrixBlocks = craft.matrixBlocks()
-    .draftId(10)
-    .all() %}
-```
-
-```php
-// Fetch a draft
-$MatrixBlocks = \craft\elements\MatrixBlock::find()
-    ->draftIf(10)
-    ->all();
-```
-:::
-
-
-### `draftOf`
-
-Narrows the query results to only drafts of a given Matrix block.
-
-
-
-Possible values include:
-
-| Value                                                    | Fetches drafts…                                 |
-| -------------------------------------------------------- | ----------------------------------------------- |
-| `1`                                                      | for the Matrix block with an ID of 1.           |
-| a [MatrixBlock](api:craft\elements\MatrixBlock) object | for the Matrix block represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch drafts of the Matrix block #}
-{% set MatrixBlocks = craft.matrixBlocks()
-    .draftOf(myBlock)
-    .all() %}
-```
-
-```php
-// Fetch drafts of the Matrix block
-$MatrixBlocks = \craft\elements\MatrixBlock::find()
-    ->draftOf($myBlock)
-    ->all();
-```
-:::
-
-
-### `drafts`
-
-Narrows the query results to only drafts Matrix blocks.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a draft Matrix block #}
-{% set MatrixBlocks = {twig-function}
-    .drafts()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a draft Matrix block
-$MatrixBlocks = \craft\elements\MatrixBlock::find()
-    ->drafts()
-    ->id(123)
-    ->one();
 ```
 :::
 
@@ -487,7 +468,7 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 
 ### `orderBy`
 
-Determines the order that the Matrix blocks should be returned in.
+Determines the order that the Matrix blocks should be returned in. (If empty, defaults to `sortOrder ASC`.)
 
 
 
@@ -623,128 +604,6 @@ $MatrixBlocks = \craft\elements\MatrixBlock::find()
 :::
 
 
-### `revisionCreator`
-
-Narrows the query results to only revisions created by a given user.
-
-
-
-Possible values include:
-
-| Value                                  | Fetches revisions…                     |
-| -------------------------------------- | -------------------------------------- |
-| `1`                                    | created by the user with an ID of 1.   |
-| a `\craft\elements\db\User` object | by the user represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions by the current user #}
-{% set MatrixBlocks = craft.matrixBlocks()
-    .revisionCreator(currentUser)
-    .all() %}
-```
-
-```php
-// Fetch revisions by the current user
-$MatrixBlocks = \craft\elements\MatrixBlock::find()
-    ->revisionCreator(Craft::$app->user->identity)
-    ->all();
-```
-:::
-
-
-### `revisionId`
-
-Narrows the query results based on the Matrix blocks’ revision’s ID (from the `revisions` table).
-
-
-
-Possible values include:
-
-| Value | Fetches revisions…                |
-| ----- | --------------------------------- |
-| `1`   | for the revision with an ID of 1. |
-
-
-
-::: code
-```twig
-{# Fetch a revision #}
-{% set MatrixBlocks = craft.matrixBlocks()
-    .revisionId(10)
-    .all() %}
-```
-
-```php
-// Fetch a revision
-$MatrixBlocks = \craft\elements\MatrixBlock::find()
-    ->revisionIf(10)
-    ->all();
-```
-:::
-
-
-### `revisionOf`
-
-Narrows the query results to only revisions of a given Matrix block.
-
-
-
-Possible values include:
-
-| Value                                                    | Fetches revisions…                              |
-| -------------------------------------------------------- | ----------------------------------------------- |
-| `1`                                                      | for the Matrix block with an ID of 1.           |
-| a [MatrixBlock](api:craft\elements\MatrixBlock) object | for the Matrix block represented by the object. |
-
-
-
-::: code
-```twig
-{# Fetch revisions of the Matrix block #}
-{% set MatrixBlocks = craft.matrixBlocks()
-    .revisionOf(myBlock)
-    .all() %}
-```
-
-```php
-// Fetch revisions of the Matrix block
-$MatrixBlocks = \craft\elements\MatrixBlock::find()
-    ->revisionOf($myBlock)
-    ->all();
-```
-:::
-
-
-### `revisions`
-
-Narrows the query results to only revision Matrix blocks.
-
-
-
-
-
-::: code
-```twig
-{# Fetch a revision Matrix block #}
-{% set MatrixBlocks = {twig-function}
-    .revisions()
-    .id(123)
-    .one() %}
-```
-
-```php
-// Fetch a revision Matrix block
-$MatrixBlocks = \craft\elements\MatrixBlock::find()
-    ->revisions()
-    ->id(123)
-    ->one();
-```
-:::
-
-
 ### `search`
 
 Narrows the query results to only Matrix blocks that match a search query.
@@ -788,13 +647,13 @@ The current site will be used by default.
 
 Possible values include:
 
-| Value                                  | Fetches Matrix blocks…                         |
-| -------------------------------------- | ---------------------------------------------- |
-| `'foo'`                                | from the site with a handle of `foo`.          |
-| `['foo', 'bar']`                       | from a site with a handle of `foo` or `bar`.   |
-| `['not', 'foo', 'bar']`                | not in a site with a handle of `foo` or `bar`. |
-| a `\craft\elements\db\Site` object | from the site represented by the object.       |
-| `'*'`                                  | from any site.                                 |
+| Value                                                   | Fetches Matrix blocks…                         |
+| ------------------------------------------------------- | ---------------------------------------------- |
+| `'foo'`                                                 | from the site with a handle of `foo`.          |
+| `['foo', 'bar']`                                        | from a site with a handle of `foo` or `bar`.   |
+| `['not', 'foo', 'bar']`                                 | not in a site with a handle of `foo` or `bar`. |
+| a [craft\models\Site](api:craft\models\Site) object | from the site represented by the object.       |
+| `'*'`                                                   | from any site.                                 |
 
 ::: tip
 If multiple sites are specified, elements that belong to multiple sites will be returned multiple times. If you only want unique elements to be returned, use [unique](#unique) in conjunction with this.
@@ -854,10 +713,10 @@ Narrows the query results based on the Matrix blocks’ statuses.
 
 Possible values include:
 
-| Value                   | Fetches Matrix blocks… |
-| ----------------------- | ---------------------- |
-| `'enabled'` *(default)* | that are enabled.      |
-| `'disabled'`            | that are disabled.     |
+| Value                    | Fetches Matrix blocks… |
+| ------------------------ | ---------------------- |
+| `'enabled'`  _(default)_ | that are enabled.      |
+| `'disabled'`             | that are disabled.     |
 
 
 

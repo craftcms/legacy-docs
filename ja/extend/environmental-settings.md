@@ -62,7 +62,7 @@ class MyModel extends Model
 
 ## オートサジェスト入力
 
-コントロールパネルで設定値を入力するユーザーに案内するために、設定にオートサジェスト入力を提供できます。
+To guide users when entering your setting’s value in the control panel, give your setting an autosuggest input.
 
 ```twig
 {% import "_includes/forms" as forms %}

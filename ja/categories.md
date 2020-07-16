@@ -25,7 +25,7 @@ Craft 内で利用可能なすべてのフィールドタイプを使って、�
 
 ## カテゴリの作成と編集
 
-少なくとも1つのカテゴリグループがあれば、コントロールパネルのメインナビゲーションに「カテゴリ」タブが表示されます。クリックすると、カテゴリのインデックスに移動します。サイドバーからカテゴリグループを選択すると、そのグループに含まれるカテゴリを追加 / 並び替え / 削除できます。
+If you have at least one category group, there will be a “Categories” tab in the primary control panel navigation. Clicking on it will take you to the category index. From there you can choose a category group from the sidebar, and add/reorder/delete categories within it:
 
 ![カテゴリインデックス](./images/categories-category-index.png)
 

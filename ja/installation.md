@@ -26,8 +26,8 @@ Composer がすべてをロードするのに、数分かかるでしょう。�
 
 作業に適したアーカイブ形式をダウンロードします。
 
-- **zip**: [3.3.20.1](https://download.craftcdn.com/craft/3.3/Craft-3.3.20.1.zip), [latest](https://craftcms.com/latest-v3.zip)
-- **tar.gz**: [3.3.20.1](https://download.craftcdn.com/craft/3.3/Craft-3.3.20.1.tar.gz), [latest](https://craftcms.com/latest-v3.tar.gz)
+- [zip](https://craftcms.com/latest-v3.zip)
+- [tar.gz](https://craftcms.com/latest-v3.tar.gz)
 
 新しい Craft プロジェクトを稼働したい場所でアーカイブを展開します。
 
@@ -39,7 +39,7 @@ macOS を使用している場合、そこにある不可視ファイル（`.env
 
 Craft のファイルが適切な場所にあれば、プロジェクトディレクトリは次のようなディレクトリ構造になっているはずです。
 
-```
+```treeview
 my-project.test/
 ├── config/
 │   └── ...
@@ -142,19 +142,23 @@ Craft プロジェクトをホストするための新しいウェブサーバ�
 
 ついに、Craft のセットアップウィザードを実行するときがきました。[ターミナル](#terminal-setup) または [ウェブブラウザ](#web-browser-setup) から実行できます。
 
+::: tip
+We recommend using the `.test` TLD for local development, and specifically not `.local` on macOS since [conflicts with Bonjour can lead to performance issues](https://help.rm.com/technicalarticle.asp?cref=tec3015691).
+:::
+
 ## ステップ 6：セットアップウィザードの実行
 
-ターミナル上でプロジェクトのルートディレクトリに移動し、次のコマンドを実行してセットアップウィザードを開始します。
+Finally, it’s time to run Craft’s Setup Wizard. You can either run that from your [terminal](#terminal-setup) or your [web browser](#web-browser-setup).
 
 ### ターミナルによるセットアップ
 
-このコマンドは、データベースへの接続方法を学んだ上で Craft のインストーラーを開始するために、いくつかの質問をします。それが終われば、ウェブブラウザから新しい Craft サイトにアクセスできるはずです。
+In your terminal, go to your project’s root directory and run the following command to kick off the Setup Wizard:
 
 ```bash
 ./craft setup
 ```
 
-ウェブブラウザで `http://<Hostname>/index.php?p=admin/install`（ウェブサーバーのホスト名で `<Hostname>` を置き換える）に移動します。ここまでのステップがうまくいっていれば、Craft のセットアップウィザードが迎えてくれるでしょう。
+The command will ask you a few questions to learn how to connect to your database, and then kick off Craft’s installer. Once it’s done, you should be able to access your new Craft site from your web browser.
 
 ### ウェブブラウザによるセットアップ
 
@@ -166,9 +170,7 @@ The first step of the installer is to accept the [license agreement](https://cra
 
 ![Craft Installation License Agreement](./images/installation-step-1.png)
 
-::: tip
-Craft がすでにデータベースに接続可能な状態であれば、このステップはスキップされます。
-:::
+The second step is to enter your database connection information.
 
 ::: tip
 If the Setup Wizard skips this step, it’s because Craft is already able to connect to your database.
@@ -184,12 +186,12 @@ The final step is to define your System Name, Base URL, and Language.
 
 ![Craft Installation System Settings](./images/installation-step-4.png)
 
-インストールが成功したら、Craft はブラウザをコントロールパネルにリダイレクトします。
+Click “Finish up” to complete the setup process. A few seconds later, you should have a working Craft install!
 
-If it was successful, Craft will redirect your browser to the Control Panel.
+If it was successful, Craft will redirect your browser to the control panel.
 
 ![Craft Installation Complete](./images/installation-step-5.png)
 
-さぁ、素晴らしいものを築きあげましょう。
+Congratulations, you’ve just installed Craft!
 
 Now build something incredible.

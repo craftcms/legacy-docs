@@ -35,6 +35,10 @@ The “Position Select” field type has been removed from Craft 3. If you had a
 
 If you miss Position Select, you can try installing the [Position Fieldtype](https://github.com/Rias500/craft-position-fieldtype) plugin, which brings it back.
 
+## Lightswitch Fields
+
+Lightswitch field values are now always `true` or `false`. If you’re accessing a Lightswitch field value for an element that doesn’t have an explicit value set yet, the field’s default value will be returned instead.
+
 ## Remote Volumes
 
 Support for Amazon S3, Rackspace Cloud Files, and Google Cloud Storage have been moved into plugins. If you have any asset volumes that were using those services in Craft 2, you will need to install the new plugins:
@@ -132,7 +136,7 @@ The acceptable translation categories are:
 
 In Craft 3, your `translations/` folder might look something like this:
 
-```
+```treeview
 translations/
 └── de/
     ├── app.php
@@ -449,14 +453,14 @@ That made it possible to execute variations of an element query, without affecti
 {% set totalEntries = query.total() %}
 ```
 
-Here `.type()` is applying the `type` parameter to a *clone* of `query`, so it had no effect on `query.total()`, which will still return the total number of News entries, regardless of their entry types.
+Here `.type()` is applying the `type` parameter to a _clone_ of `query`, so it had no effect on `query.total()`, which will still return the total number of News entries, regardless of their entry types.
 
 This behavior has changed in Craft 3, though. Now any time you call a parameter-setter method, the method will:
 
 1. set the parameter value on the current element query
 2. return the element query
 
-Which means in the above code example, `totalEntries` will be set to the total *Article* entries, as the `type` parameter will still be applied.
+Which means in the above code example, `totalEntries` will be set to the total _Article_ entries, as the `type` parameter will still be applied.
 
 If you have any templates that count on the Craft 2 behavior, you can fix them using the [clone()](dev/functions.md#clone-object) function.
 
@@ -571,7 +575,7 @@ Your front-end `<form>`s and JS scripts that submit to a controller action will 
 
 ### `action` Params
 
-`action` params must be rewritten in in `kebab-case` rather than `camelCase`.
+`action` params must be rewritten in `kebab-case` rather than `camelCase`.
 
 ```twig
 Old:

@@ -8,7 +8,7 @@
 
 ## テンプレート記法
 
-### 日/時フィールドによるエレメントの照会
+### Querying Elements with Date/Time Fields
 
 日/時フィールドを持つ[エレメントを照会](dev/element-queries/README.md)する場合、フィールドのハンドルにちなんで名付けられたクエリパラメータを使用して、日/時フィールドのデータに基づいた結果をフィルタできます。
 
@@ -29,7 +29,7 @@
 {% set end = now|date_modify('+1 month')|atom %}
 
 {% set entries = craft.entries()
-    .<FieldHandle>('and', ">= #{start}", "< #{end}")
+    .<FieldHandle>(['and', ">= #{start}", "< #{end}"])
     .all() %}
 ```
 
@@ -93,16 +93,21 @@ Craft と Twig は、必要に応じて使用できる日付を操作するた�
 
 #### タイムゾーンのカスタマイズ
 
-デフォルトでは、Craft は日付が UTC で投稿されていると想定します。Craft 3.1.6 から、入力欄の name を `fields[<FieldHandle>][datetime]`、不可視項目の name を `fields[<FieldHandle>][timezone]` とし、[有効な PHP タイムゾーン](http://php.net/manual/en/timezones.php)をセットすることによって、異なるタイムゾーンの日付を投稿できます。
+By default, Craft will assume the date is posted in UTC. As of Craft 3.1.6 you can post dates in a different timezone by changing the input name to `fields[<FieldHandle>][datetime]` and adding a hidden input named `fields[<FieldHandle>][timezone]`, set to a [valid PHP timezone](http://php.net/manual/en/timezones.php):
 
 ```twig
-{% set pt = 'America/Los_Angeles' %}
+{# Use the timezone selected under Settings → General Settings → Time Zone #}
+{% set tz = craft.app.getTimezone() %}
+
+{# Or set a specific timezone #}
+{% set tz = 'America/Los_Angeles' %}
+
 {% set currentValue = entry is defined and entry.<FieldHandle>
-    ? entry.<FieldHandle>|date('Y-m-d\\TH:i', timezone=pt)
+    ? entry.<FieldHandle>|date('Y-m-d\\TH:i', tz)
     : '' %}
 
 <input type="datetime-local" name="fields[<FieldHandle>][datetime]" value="{{ currentValue }}">
-{{ hiddenInput('fields[<FieldHandle>][timezone]', pt) }}
+{{ hiddenInput('fields[<FieldHandle>][timezone]', tz) }}
 ```
 
 または、どのタイムゾーンで日付を投稿するかをユーザーに決定させることもできます。

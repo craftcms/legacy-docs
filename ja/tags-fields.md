@@ -43,10 +43,15 @@
 
 利用可能な値には、次のものが含まれます。
 
-| 値              | 取得するエレメント             |
-| -------------- | --------------------- |
-| `':empty:'`    | 関連付けられたタグを持たない。       |
-| `':notempty:'` | 少なくとも1つの関連付けられたタグを持つ。 |
+| 値                                                       | 取得するエレメント                                             |
+| ------------------------------------------------------- | ----------------------------------------------------- |
+| `':empty:'`                                             | 関連付けられたタグを持たない。                                       |
+| `':notempty:'`                                          | 少なくとも1つの関連付けられたタグを持つ。                                 |
+| `100`                                                   | that are related to the tag with an ID of 100.        |
+| `[100, 200]`                                            | that are related to a tag with an ID of 100 or 200.   |
+| `['and', 100, 200]`                                     | that are related to the tags with IDs of 100 and 200. |
+| an [Tag](api:craft\elements\Tag) object               | that are related to the tag.                          |
+| an [TagQuery](api:craft\elements\db\TagQuery) object | that are related to any of the resulting tags.        |
 
 ```twig
 {# Fetch entries with a related tag #}
@@ -102,6 +107,10 @@
     .group('blogEntryTags')
     .all() %}
 ```
+
+::: tip
+It’s always a good idea to clone the tag query using the [clone()](./dev/functions.md#clone) function before adjusting its parameters, so the parameters don’t have unexpected consequences later on in your template.
+:::
 
 ## 関連項目
 

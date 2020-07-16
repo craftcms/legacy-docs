@@ -78,7 +78,9 @@ $result = (new Query())
 
 If you want to log any messages in your migration code, echo it out rather than calling [Craft::info()](api:yii\BaseYii::info()):
 
-If the migration is being run from a console request, this will ensure the message is seen by whoever is executing the migration, as the message will be output into the terminal. If it’s a web request, Craft will capture it and log it to `storage/logs/` just as if you had used `Craft::info()`.
+::: tip
+You can usually ignore the `safeDown()` method, as Craft doesn’t have a way to revert migrations from the control panel.
+:::
 
 You can have Craft apply your new migration from the terminal:
 
@@ -90,21 +92,18 @@ You can have Craft apply your new migration from the terminal:
 echo "    > some note\n";
 ```
 
-Craft will also check for new plugin migrations on Control Panel requests, for any plugins that have a new [schema version](api:craft\base\PluginTrait::$schemaVersion), and content migrations can be applied from the Control Panel by going to Utilities → Migrations.
+::: warning
+The <api:yii\db\Migration::insert()>, [batchInsert()](api:craft\db\Migration::batchInsert()), and [update()](api:yii\db\Migration::update()) migration methods will automatically insert/update data in the `dateCreated`, `dateUpdated`, `uid` table columns in addition to whatever you specified in the `$columns` argument. If the table you’re working with does’t have those columns, make sure you pass `false` to the `$includeAuditColumns` argument so you don’t get a SQL error.
+:::
 
 Plugins can have a special “Install” migration which handles the installation and uninstallation of the plugin. Install migrations live at `migrations/Install.php` alongside normal migrations. They should follow this template:
 
 ```php
-<br />```bash Content Migration
-    ./craft migrate/up
+use craft\db\Query;
 
-
-:::
-
-Or you can have Craft apply all new migrations across all migration tracks:
-
-```bash
-./craft migrate/all
+$result = (new Query())
+    // ...
+    ->all();
 ```
 :::
 
@@ -166,7 +165,7 @@ Or you can have Craft apply all new migrations across all migration tracks:
 ./craft migrate/all
 ```
 
-Craft will also check for new plugin migrations on Control Panel requests, for any plugins that have a new [schema version](api:craft\base\PluginTrait::$schemaVersion), and content migrations can be applied from the Control Panel by going to Utilities → Migrations.
+Craft will also check for new plugin migrations on control panel requests, for any plugins that have a new [schema version](api:craft\base\PluginTrait::$schemaVersion), and content migrations can be applied from the Control Panel by going to Utilities → Migrations.
 
 ## Plugin Install Migrations
 
