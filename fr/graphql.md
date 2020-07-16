@@ -690,9 +690,10 @@ This directive is used to return a URL for an [asset tranform](https://docs.craf
 
 ### The `markdown` directive
 Parses the passed field value as Markdown.
-| Argument | Type     | Description                                                                                                                     |
-| -------- | -------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `flavor` | `String` | The “flavor” of Markdown the input should be interpreted with. Accepts the same arguments as yii\helpers\Markdown::process(). |
+| Argument     | Type      | Description                                                                                                                     |
+| ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| `flavor`     | `String`  | The “flavor” of Markdown the input should be interpreted with. Accepts the same arguments as yii\helpers\Markdown::process(). |
+| `inlineOnly` | `Boolean` | Whether to only parse inline elements, omitting any `<p>` tags.                                                           |
 
 <!-- END DIRECTIVES -->
 
