@@ -14,21 +14,19 @@ are thus also available to use and not explained here.
 
 Accepts: Object
 
-The `projectConfig` option instructs the Craft module if and how to set-up the `project.yml`
-file in the `config` directory specified in `CRAFT_CONFIG_PATH`. 
-The `projectConfig` setting accepts an object with the following parameters: 
+The `projectConfig` option instructs the Craft module if and how to set-up Project Config support
+for your tests. It accepts an object with the following parameters: 
 
-- file (Required): What file the project config setting must be copied from. This is not the `project.yml` file in 
-`CRAFT_CONFIG_PATH` but instead the file whose contents will be copied into the `project.yml` file 
-located here. 
-- reset: Whether the project config should be reset before each test is run. If enabled Craft will reset the project config
- to what is specified in the `project.yml` file located in `CRAFT_CONFIG_PATH`. Can safely be disabled if you are not making
+- folder (Required): What folder the Project Config files must be copied from. Typically, this is
+ `config/project` starting from the root of your project. The contents of that folder will be 
+ coped into `tests/_craft/config/project`.
+- reset: Whether Project Config should be reset before each test is run. If enabled Craft will reset the Project Config
+ state to what is specified in the `folder` parameter. Can safely be disabled if you are not making
  changes to project config during your tests.
 
-For the `projectConfig` option to work correctly please ensure you enable the [useProjectConfigFile](../../config/config-settings.md#useprojectconfigfile) config setting in `general.php`. 
 ::: warning
-If you have enabled `projectConfig`, regular DB based fixtures for Project Config data (i.e sections) may cause syncing issues. It is recommended
- to setup your environment using the `project.yml` file only. 
+If you have using Project Config for your tests, regular database-backed fixtures for Project Config data (i.e sections) may
+cause syncing issues. It is recommended that you set up your environment using the Project Config support only. 
 :::
 
 ### `migrations`
