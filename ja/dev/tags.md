@@ -82,7 +82,7 @@ You can combine this parameter with [globally](#globally) to cache templates on 
 :::
 
 ::: warning
-If you change the template code within a `{% cache %}` that uses a custom key, any existing template caches will not automatically be purged. You will either need to assign the tag a new key, or clear your existing template caches manually using the Clear Caches tool in Settings.
+If you change the template code within a `{% cache %}` that uses a custom key, any existing template caches will not automatically be purged. You will either need to assign the tag a new key, or clear your existing template caches manually using the Clear Caches tool in Utilities.
 :::
 
 #### `for`
@@ -149,7 +149,7 @@ Your caches will automatically clear when any elements (entries, assets, etc.) w
 
 If you have any element _queries_ within the tags (e.g. a `craft.entries`), and you create a new element that should be returned by one of the queries, Craft will also be able to figure that out and clear the cache.
 
-You can also manually clear all of your template caches from the Settings page, using the “Clear Caches” tool.
+You can also manually clear your caches from the Utilities page, using the “Clear Caches” tool, or by using the `./craft clear-caches` console command.
 
 ### When to use `{% cache %}` tags
 
