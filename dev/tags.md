@@ -83,7 +83,7 @@ You can combine this parameter with [globally](#globally) to cache templates on 
 :::
 
 ::: warning
-If you change the template code within a `{% cache %}` that uses a custom key, any existing template caches will not automatically be purged. You will either need to assign the tag a new key, or clear your existing template caches manually using the Clear Caches tool in Utilities.
+If you change the template code within a `{% cache %}` that uses a custom key, any existing template caches will not automatically be purged. You will either need to assign the tag a new key, or clear your existing template caches manually selecting “Data Caches” in the Utilities → Clear Caches tool.
 :::
 
 #### `for`
