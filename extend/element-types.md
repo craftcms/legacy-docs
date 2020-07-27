@@ -561,7 +561,7 @@ You can give your [control panel section](cp-section.md) an index page for your 
 ```twig
 {% extends '_layouts/elementindex' %}
 {% set title = 'Products' %}
-{% set elementType = 'ns\\prefix\\elements\\Product' %}
+{% set elementType = 'ns\\prefix\\elements\\MyElementType' %}
 ```
 
 ### Index Page Actions
