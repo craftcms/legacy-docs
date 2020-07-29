@@ -1211,7 +1211,7 @@ Since
 
 
 
-Bool Whether the system should run in Headless Mode, which optimizes the system and control panel for headless CMS implementations.
+Whether the system should run in Headless Mode, which optimizes the system and control panel for headless CMS implementations.
 
 When this is enabled, the following changes will take place:
 
@@ -1219,9 +1219,12 @@ When this is enabled, the following changes will take place:
 - `{port}` -現在のデータベースポート
 - `{server}` - 現在のデータベースホスト名
 - `{user}` -データベースのに接続するユーザー
-- `{database}` - 現在のデータベース名
+- Twig will be configured to escape unsafe strings for JavaScript/JSON rather than HTML by default for front-end requests.
 - The <config:loginPath>, <config:logoutPath>, <config:setPasswordPath>, and <config:verifyEmailPath> settings will be ignored.
 
+::: tip
+When Headless Mode is enabled, users will not be able to set an initial password, set a new password, or verify their email address unless they have the "Access the control panel" permission. Make sure to grant this permission to content editors and administrators who should be able to log into the control panel.
+:::
 
 
 ### `imageDriver`
