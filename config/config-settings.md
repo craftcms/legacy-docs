@@ -1109,7 +1109,7 @@ When this is enabled, the following changes will take place:
 - The <config:loginPath>, <config:logoutPath>, <config:setPasswordPath>, and <config:verifyEmailPath> settings will be ignored.
 
 ::: tip
-When Headless Mode is enabled, users will not be able to set an initial password, set a new password, or verify their email address unless they have the "Access the control panel" permission. Make sure to grant this permission to content editors and administrators who should be able to log into the control panel.
+When Headless Mode is enabled, users will not be able to set an initial password, set a new password, or verify their email address unless they have the “Access the control panel” permission. Make sure to grant this permission to content editors and administrators who should be able to log into the control panel.
 :::
 
 
