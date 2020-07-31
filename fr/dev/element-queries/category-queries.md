@@ -524,13 +524,12 @@ Narrows the query results based on the categories’ IDs.
 
 Possible values include:
 
-| Value              | Fetches categories…          |
-| ------------------ | ---------------------------- |
-| `1`                | with an ID of 1.             |
-| `'not 1'`          | not with an ID of 1.         |
-| `[1, 2]`           | with an ID of 1 or 2.        |
-| `['not, 1, 2, 7']` | not with an ID of 1, 2 or 7. |
-
+| Value           | Fetches categories…       |
+| --------------- | ------------------------- |
+| `1`             | with an ID of 1.          |
+| `'not 1'`       | not with an ID of 1.      |
+| `[1, 2]`        | with an ID of 1 or 2.     |
+| `['not', 1, 2]` | not with an ID of 1 or 2. |
 
 
 ::: code
