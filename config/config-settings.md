@@ -1097,8 +1097,7 @@ Since
 
 
 
-Bool Whether the system should run in Headless Mode, which
-optimizes the system and control panel for headless CMS implementations.
+Whether the system should run in Headless Mode, which optimizes the system and control panel for headless CMS implementations.
 
 When this is enabled, the following changes will take place:
 
@@ -1106,11 +1105,12 @@ When this is enabled, the following changes will take place:
 - Template route management will be hidden.
 - Front-end routing will skip checks for element and template requests.
 - Front-end responses will be JSON-formatted rather than HTML by default.
-- Twig will be configured to escape unsafe strings for JavaScript/JSON
-  rather than HTML by default for front-end requests.
-- The <config:loginPath>, <config:logoutPath>, <config:setPasswordPath>, and
-  <config:verifyEmailPath> settings will be ignored.
+- Twig will be configured to escape unsafe strings for JavaScript/JSON rather than HTML by default for front-end requests.
+- The <config:loginPath>, <config:logoutPath>, <config:setPasswordPath>, and <config:verifyEmailPath> settings will be ignored.
 
+::: tip
+When Headless Mode is enabled, users will not be able to set an initial password, set a new password, or verify their email address unless they have the "Access the control panel" permission. Make sure to grant this permission to content editors and administrators who should be able to log into the control panel.
+:::
 
 
 ### `imageDriver`
@@ -1129,8 +1129,7 @@ Defined by
 
 
 
-The image driver Craft should use to cleanse and transform images. By default Craft will auto-detect if ImageMagick is installed and fallback to GD if not. You can explicitly set
-either `'imagick'` or `'gd'` here to override that behavior.
+The image driver Craft should use to cleanse and transform images. By default Craft will auto-detect if ImageMagick is installed and fallback to GD if not. You can explicitly set either `'imagick'` or `'gd'` here to override that behavior.
 
 
 
